@@ -60,6 +60,46 @@ Networks, devices, and spaces. Wi-Fi in every room, cameras that record when the
 
 Security awareness and readiness. Plain-language sessions on phishing, fraud, passwords, and data brokers, plus SOC 2 readiness for companies heading into an audit.
 
+Not sure which one fits? Pick what's going on.
+
+Where does it hurt?
+Running a business
+Software, cloud, or AI
+An office, home, or building
+Staying safe
+
+What's going on?
+We type the same orders, forms, or invoices into more than one place
+Our email, spreadsheets, and booking or accounting tools don&#x27;t talk to each other
+
+What's going on?
+People can&#x27;t find answers in our own documents
+Our servers, deploys, or backups worry us
+
+What's going on?
+The Wi-Fi drops, or some rooms barely get it
+Cameras, smart devices, or new gear need setting up properly
+
+What's going on?
+Our people need to spot phishing, fraud, and scams
+A customer or audit is asking about our security (SOC 2)
+
+Start with Business workflows and technology. See how a similar one went in Intake, out of the shared inbox, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Business workflows and technology. See how a similar one went in Intake, out of the shared inbox, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Cloud and AI engineering. See how a similar one went in Answers in seconds, with sources, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Cloud and AI engineering. See how a similar one went in Two offices off local servers, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Networks, devices, and spaces. See how a similar one went in From cameras to Grandma&#x27;s email, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Networks, devices, and spaces. See how a similar one went in From cameras to Grandma&#x27;s email, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Security awareness and readiness. See how a similar one went in Security for non-security people, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
+Start with Security awareness and readiness. See how a similar one went in Security for non-security people, then book a free call (https://calendly.com/1isgladtobeofservice/neon1-consultation) and we'll look at yours.
+
 A free 15-minute call finds the main pain points and your options. Every option comes with an estimate before any work starts, and if a quick fix will do, I'll just tell you. Accounts and bills stay in your name.
 
 ## process
@@ -83,6 +123,8 @@ Small changes, tested, and shown to you as they land.
 ### Hand over
 
 I show you how it works and write it down, so you can run it without me. Then I check it's doing what we agreed, and keep improving it if you want ongoing care.
+
+See a sample project in 1NEON (https://neon1.tech/tour.html), start to finish, with made-up data.
 
 ## case studies
 
@@ -334,7 +376,7 @@ Neo means new. Neon is unmissable. 1 is glad to be of service.
 ## questions
 
 Do you come on site?
-Yes. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
+Yes, within about 30 miles. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
 
 When do you work?
 Saturdays and Sundays from 8am to 8pm, and weekday evenings from 6pm (until 9pm Monday to Thursday, 8pm on Friday), Eastern time, typically with 10 to 20 hours a week for project work. The booking calendar shows what's open.
@@ -358,7 +400,34 @@ I don't repair electronics, though I can debug software and hardware installs an
 
 Tell me what's on your mind, or ask for an opinion on how your operations run today. Send me an email (mailto:hello@neon1.tech), call or text (424) 32-neon1 (tel:+14243263661), or pick a time on my calendar below. Let's get started.
 
+where
+Remote from anywhere, or on site within about 30 miles
+
+when
+Weekends 8am to 8pm and weekday evenings, Eastern time
+
+size
+Small jobs of a week or two up to projects of four to six weeks, with at most two clients at a time
+
+first call
+Free and 15 minutes: the main pain points and your options
+
+after
+A short proposal with options and estimates. Nothing starts until you pick one
+
 book a call (https://calendly.com/1isgladtobeofservice/neon1-consultation)
+
+Want to get more from the call? Write a short brief first (optional).
+
+What happens today?
+What should be better?
+Any timing to know about?
+Please leave out passwords, health details, and payment information. Nothing you type here is sent or saved; it stays on this page until you copy it.
+
+Your brief appears here as you type.
+
+copy brief
+save as text
 
 neon1
 
@@ -386,7 +455,7 @@ privacy (https://neon1.tech/1NEON/privacy)\
 browser storage (https://neon1.tech/1NEON/cookies)\
 terms (https://neon1.tech/1NEON/terms)\
 No ads or trackers\
-v0.23.0 (https://github.com/neon1llc/neon1-site)
+v0.28.1 (https://github.com/neon1llc/neon1-site)
 
 grid
 text

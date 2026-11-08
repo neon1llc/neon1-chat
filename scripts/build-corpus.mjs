@@ -12,7 +12,7 @@ const OUT = new URL("../app/corpus/", import.meta.url);
 const SITE = "https://neon1.tech/";
 const REPOS = [
   ["neon1-site", "The neon1.tech website"],
-  ["1NEON", "1NEON, the client portal"],
+  ["neon1-1NEON", "1NEON, the client portal"],
   ["neon1-aws-infrastructure", "Terraform for neon1.tech on AWS"],
   ["aws-clip", "AWS CLIP (AWS CLI Plus)"],
 ];
@@ -83,7 +83,7 @@ for (const [repo, title] of REPOS) {
 
 // 1NEON's public pages: the legal documents (live at neon1.tech/1NEON/...) and, once it ships
 // on main, the in-portal help. A page that isn't on main yet is skipped, not an error
-const PORTAL = "https://raw.githubusercontent.com/neon1llc/1NEON/main/apps/web/src";
+const PORTAL = "https://raw.githubusercontent.com/neon1llc/neon1-1NEON/main/apps/web/src";
 const PAGES = [
   ["legal/privacy-policy.md", "1NEON and neon1.tech privacy policy", "https://neon1.tech/1NEON/privacy", true],
   ["legal/terms-of-use.md", "1NEON and neon1.tech terms of use", "https://neon1.tech/1NEON/terms", true],

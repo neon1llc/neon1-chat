@@ -14,7 +14,7 @@ neon1.tech describes neon1's services. The information is general and isn't prof
 
 1NEON is where neon1 and its clients plan, run, measure, and hand over projects. Access is by invitation only.
 
-- **Your account.** Keep your sign-in methods secure and don't share your account. Tell me right away at the address below if you think someone else has used it. Administrators should protect their accounts with a passkey or an authenticator app.
+- **Your account.** Keep your sign-in methods secure and don't share your account. Tell me right away at the address below if you think someone else has used it. Administrators sign in with a passkey to manage people and settings.
 - **Your organization.** Your organization's administrators decide who can access its workspace and at what level, and they're responsible for the people they invite.
 - **Your content.** You and your organization own what you put in the portal. You give neon1 permission to store, process, and display it only to provide the portal and the work we've agreed on. You confirm that you have the right to share it.
 - **Acceptable use.** Don't put passwords, keys, or other secrets in the portal. Don't upload malware, unlawful material, or regulated data (such as health or payment card data) unless we have a written agreement that covers it. Don't try to access another organization's data, test the portal's security without written permission, or disrupt the service.
