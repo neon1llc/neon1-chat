@@ -103,6 +103,28 @@ Next, an MCP server over the same search, so agents get answers with the same pe
 
 ~5 min → 14 s lookup · recall 72% → 94%
 
+#### Needs
+
+The firm's knowledge was spread across Microsoft 365: policies, procedure manuals, Word files, PDFs, and client documents. Staff could usually find an answer, but a routine lookup took 2 to 10 minutes, and often meant asking a senior colleague who knew where things lived. Drafts, old versions, and client-restricted files sat right next to the right answer, so a simple chatbot would have been risky.
+The ask was simple: let staff ask normal questions, return the approved answer with its document, and never make the AI more authoritative than the source.
+
+#### Execute
+
+This was my first project with an AWS partner, Xenoss (https://xenoss.io/), who helped with design and now with maintenance. I handled ingestion, embeddings, retrieval, and answer quality.
+
+- Only documents in approved Microsoft 365 libraries are synced into versioned, encrypted S3, keeping their source, version, and access details.
+- Bedrock Knowledge Bases with Titan embeddings and OpenSearch Serverless run hybrid search, so exact accounting terms and form numbers match as well as differently worded questions.
+- Each question is checked against what that person is allowed to see before anything is retrieved. Answers come only from the retrieved passages, with citations, or the assistant says it doesn't know.
+- Built with Terraform and deployed through GitHub Actions, with CloudWatch tracking ingestion, retrieval, and answer time separately.
+
+#### Observe
+
+MeasureBeforeAfterMedian lookup, answer and source checked~4.8 min13.6 sSlowest 5% of lookupsup to 10 min~24 sRight passage found (recall at 8)72%94%Answers fully supported by their source78%92%Interruptions of senior staff per week~18~7Measured on 80 representative questions, including ones the assistant should refuse, and judged by two reviewers. A fast answer from the wrong document counted as a failure.
+
+#### Normalize
+
+Microsoft 365 stays the source of truth, and the search index can be rebuilt from it at any time. The firm owns which documents are approved and who can see them. Next is an MCP server in front of the same retrieval, so assistants and agents can use the firm's knowledge with the same per-person permissions, followed by narrow, reviewable agent actions where they save real time.
+
 dermatology practice · workflows
 
 ### Intake, out of the shared inbox
@@ -117,6 +139,27 @@ N
 Ongoing maintenance with Xenoss, and tuning as the practice grows.
 
 2.6 days → 3.4 hours · 24 → 8 min staff time
+
+#### Needs
+
+A newly opened practice handled intake through a shared Microsoft 365 inbox, and its sister location did the same. Patients replied with forms, insurance cards, referrals, and phone photos. Staff downloaded attachments, renamed them, tracked status in Outlook flags and a spreadsheet, then uploaded each one into a slow EHR. If something was missing, another round of emails began.
+
+#### Execute
+
+I mapped the process with the staff using a questionnaire and conversations, separating the time patients spent waiting from the time staff spent handling documents. Then I built a Terraform-managed serverless portal, with Xenoss (https://xenoss.io/) helping on design and maintenance.
+
+- CloudFront, WAF, and a private S3 site serve the portal. API Gateway, Cognito, and Python Lambda run the workflow.
+- Every intake has one clear state in DynamoDB. Documents upload straight to an encrypted S3 vault and stay locked until a malware scan passes.
+- Staff see one queue of what's complete and what's missing. Completed documents are filed into the EHR under the patient's ID and MRN, so they land in the right chart.
+- Email notifications never include patient details, and access, encryption, and audit logging were decided up front.
+
+#### Observe
+
+MeasureBeforeAfterMedian time to a complete intake~2.6 business days~3.4 hoursStaff time per intake~24 min~8 minFinding and opening a document~2 min 18 s~12 sIntakes needing a missing-document follow-up~34%~10%Four weeks before and four weeks after, with the same definitions. At about 250 intakes a month, the time saved is roughly 67 staff hours a month.
+
+#### Normalize
+
+The EHR stays the clinical record. Xenoss and I maintain the portal, watch the intake measures, and tune the workflow as the practice and its sister location grow.
 
 automotive business · migration
 
@@ -133,6 +176,27 @@ Change more only when reliability, capacity, or cost data says so.
 
 2 servers · 2 offices · no app rewrite
 
+#### Needs
+
+An automotive business ran its application, database, and files on two local servers, and both of its locations had to keep working through any move. Their technical lead already patched and supported those servers, so he knew the environment best.
+
+#### Execute
+
+He led the inventory and dependency discovery. I owned the AWS design, sizing, and migration plan.
+
+- An isolated VPC built with Terraform, EC2 for the application, RDS for the database, and S3 for files that suit object storage.
+- Site-to-Site VPN connects both offices, with separate access paths for the app, the database, and management.
+- Sized from measured CPU, memory, database activity, and storage growth, not by copying the old hardware.
+- Data was seeded ahead of time, and the final cutover kept a fallback ready until both offices signed off.
+
+#### Observe
+
+CheckResultDaily business tasks, both officesPassed from each locationRecords and files after migrationReconciled against the originalsBackup and restoreTested with the technical leadApplication changes neededNone
+
+#### Normalize
+
+The technical lead runs the environment, with the architecture, access, backup, restore, and monitoring steps written down. Containers or a bigger platform come later, only if a measured reliability, capacity, or cost problem makes the case.
+
 schools, families, & teams · security
 
 ### Security for non-security people
@@ -147,6 +211,28 @@ N
 Stay current with neon1-ready and other sources as threats change.
 
 30+ people per seminar · every level
+
+#### Needs
+
+Teachers, parents, engineers, and executives all had the same worry: they knew their accounts, homes, and businesses were exposed, but security advice was either too technical or too vague to act on.
+
+#### Execute
+
+I've run sessions at every level, from small groups of parents to cross-team seminars in Manhattan for 30 or more people. Topics include:
+
+- Securing home and business networks, cameras, and connected devices.
+- Fraud, phishing, data brokers, and what's sold on the dark web.
+- Software and account hygiene, including password managers and two-factor sign-in.
+- The security of physical spaces, not just screens.
+Each session is built around what that audience actually uses, with time to work through real settings together.
+
+#### Observe
+
+The most useful measure has been what people do afterward: turning on two-factor sign-in during the session, changing default camera and router passwords, and coming back with specific questions about their own setups.
+
+#### Normalize
+
+The landscape keeps moving, so the material does too. neon1-ready, neon1's security readiness guide, tracks what's worth doing for each kind of space, alongside other trusted sources. Companies heading into an audit get SOC 2 and other readiness work.
 
 family & friends · home tech
 
@@ -163,6 +249,23 @@ Advice, tech support, and on-demand troubleshooting when something acts up.
 
 small jobs welcome · patience included
 
+#### Needs
+
+Not every job is a cloud migration. My parents' house had no camera coverage, and like most families, we reused a handful of passwords across everything.
+
+#### Execute
+
+- Planned camera placement around the entrances and blind spots, then installed and configured the system, including recording and alerts.
+- Moved the family onto a password manager, one person at a time, and turned on two-factor sign-in for the accounts that matter most.
+
+#### Observe
+
+The test was simple: could everyone use it without calling me? Recordings and alerts work, and everyone can sign in and find their passwords on their own.
+
+#### Normalize
+
+Ongoing advice, tech support, and on-demand troubleshooting when something acts up, with the same patience for every small job, whether it's Wi-Fi that doesn't reach a room, a new laptop, or helping a grandparent open their email.
+
 grade school · community
 
 ### Where neon1 started
@@ -177,6 +280,22 @@ N
 Free security sessions for teachers and parents, which became neon1.
 
 free for the school · where it began
+
+#### Needs
+
+I'd wanted to put my experience to work in my own community for a long time. A local grade school needed a STEM edtech setup that would actually get used, on a budget that couldn't afford mistakes.
+
+#### Execute
+
+I budgeted the new system, compared the realistic options, and set it up for the classrooms, all as volunteer work. Along the way, I invited teachers and parents to free sessions on staying safe online.
+
+#### Observe
+
+Seeing teachers use it in class, and parents leave those sessions knowing a little more and worrying a little less, showed me the same help was worth offering more widely.
+
+#### Normalize
+
+That's how neon1 began. Community and nonprofit work is still part of it, so if your school or organization needs a hand, reach out.
 
 ←→
 

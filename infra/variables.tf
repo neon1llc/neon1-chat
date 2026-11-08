@@ -17,7 +17,7 @@ variable "model_id" {
 variable "max_tokens" {
   description = "Longest reply, in tokens."
   type        = number
-  default     = 400
+  default     = 300
 }
 
 

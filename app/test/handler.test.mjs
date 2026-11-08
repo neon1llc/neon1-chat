@@ -83,3 +83,11 @@ test("the prompt carries the public sources and the grounding rules", () => {
   assert.match(prompt, /Answer only from the SOURCES/);
   assert.match(prompt, /1 is glad to be of service/);
 });
+
+test("invented links become the home page; real ones and Markdown labels survive", async () => {
+  const { cleanLinks, allowedLinks } = await import("../src/chat.mjs");
+  const allowed = allowedLinks("book a call (https://calendly.com/x/neon1) or 1NEON (https://neon1.tech/1NEON/)");
+  assert.equal(cleanLinks("See [contact](https://neon1.tech/contact).", allowed), "See contact (https://neon1.tech).");
+  assert.equal(cleanLinks("Book at https://calendly.com/x/neon1.", allowed), "Book at https://calendly.com/x/neon1.");
+  assert.equal(cleanLinks("Visit [neon1.tech/1NEON](https://neon1.tech/1NEON).", allowed), "Visit https://neon1.tech/1NEON.");
+});

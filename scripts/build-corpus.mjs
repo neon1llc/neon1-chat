@@ -34,11 +34,11 @@ function decode(text) {
 }
 
 // Turn the page into plain text with headings kept as Markdown, links as "text (url)",
-// and scripts, styles, SVG art, and the hidden easter egg dropped
+// and scripts, styles, and SVG art dropped; case-study templates stay, since they are public
 function pageText(html) {
   const body = html
     .replace(/<head[\s\S]*?<\/head>/i, "")
-    .replace(/<(script|style|svg|template|noscript)[\s\S]*?<\/\1>/gi, "");
+    .replace(/<(script|style|svg|noscript)[\s\S]*?<\/\1>/gi, "");
 
   return decode(
     body
