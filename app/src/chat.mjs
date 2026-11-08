@@ -84,7 +84,9 @@ export async function reply(messages, { corpus, client } = {}) {
     .map((block) => block.text ?? "")
     .join("")
     .trim();
-  const text = cleanLinks(raw, allowedLinks(corpus));
+  // Plain text only: Markdown emphasis and headings the model adds anyway are dropped
+  const plain = raw.replace(/\*\*(.+?)\*\*|__(.+?)__/g, "$1$2").replace(/^#{1,6}\s+/gm, "");
+  const text = cleanLinks(plain, allowedLinks(corpus));
 
   return { text, usage: res.usage ?? {}, stopReason: res.stopReason };
 }
