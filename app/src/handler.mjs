@@ -14,7 +14,8 @@ const corpus = loadCorpus();
 
 const config = () => ({
   table: process.env.TABLE_NAME,
-  perHour: Number(process.env.PER_HOUR ?? 20),
+  perMinute: Number(process.env.PER_MINUTE ?? 6),
+  perHour: Number(process.env.PER_HOUR ?? 60),
   perDay: Number(process.env.PER_DAY ?? 500),
 });
 
@@ -81,7 +82,8 @@ export async function handler(event, deps = {}) {
 
   // Caps before the model call, so a flood costs DynamoDB writes, not tokens
   const blocked = await allow(viewerIp(event), { ...config(), client: deps.dynamo });
-  if (blocked === "visitor") return json(429, { error: "That's a lot of questions for one hour. Please try again later." });
+  if (blocked === "burst") return json(429, { error: "You're sending messages quickly. Please wait a minute or two, then try again." });
+  if (blocked === "visitor") return json(429, { error: "You've asked a lot this hour. Please try again a little later, or reach neon1 directly below." });
   if (blocked === "daily") return json(429, { error: "The assistant is resting for today. Please email hello@neon1.tech." });
 
   // One model call; only sizes and timing go to the logs

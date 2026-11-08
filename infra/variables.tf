@@ -1,31 +1,31 @@
 # infra/variables.tf - The model, caps, and alert address. Defaults are production values.
 
 
-# Bedrock inference profile and the foundation model behind it
-variable "model_profile" {
-  description = "Bedrock inference profile the function calls."
+# The Bedrock model the function calls: a model ID, or a "us." cross-region inference profile
+variable "model" {
+  description = "Bedrock model ID or US inference profile ID."
   type        = string
-  default     = "us.amazon.nova-micro-v1:0"
-}
-
-variable "model_id" {
-  description = "Foundation model behind the inference profile, for the IAM policy."
-  type        = string
-  default     = "amazon.nova-micro-v1:0"
+  default     = "openai.gpt-oss-120b-1:0"
 }
 
 variable "max_tokens" {
   description = "Longest reply, in tokens."
   type        = number
-  default     = 300
+  default     = 600
 }
 
 
-# Spend guards: per visitor per hour, site-wide per day, and concurrent runs
+# Spend guards: per visitor per minute and per hour, site-wide per day, and concurrent runs
+variable "per_minute" {
+  description = "Questions one visitor may ask in a minute before being asked to slow down."
+  type        = number
+  default     = 6
+}
+
 variable "per_hour" {
   description = "Questions one visitor may ask in an hour."
   type        = number
-  default     = 20
+  default     = 60
 }
 
 variable "per_day" {

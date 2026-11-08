@@ -8,7 +8,7 @@ The assistant on [neon1.tech](https://neon1.tech) and in 1NEON. It answers visit
 
 ## How it stays grounded and cheap
 
-The whole corpus (about 10,000 tokens) goes in a cached system prompt, so there's no search index to run. Amazon Nova Micro on Bedrock writes the reply, for well under a tenth of a cent a question. Each visitor gets 20 questions an hour and the site gets 500 a day. The function runs at most 5 at once, and an email goes out if Bedrock spend nears $5 in a month. Message text is never logged or stored.
+The whole corpus (about 10,000 tokens) goes in a cached system prompt, so there's no search index to run. gpt-oss-120b on Amazon Bedrock writes the reply, for about a fifth of a cent a question. Each visitor gets 6 questions a minute and 60 an hour and the site gets 500 a day. The function runs at most 5 at once, and an email goes out if Bedrock spend nears $5 in a month. Message text is never logged or stored.
 
 Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the site and 1NEON, and their CSPs stay `connect-src 'self'`. CloudFront adds a secret header that the function checks, so the API can't be called around the caps.
 

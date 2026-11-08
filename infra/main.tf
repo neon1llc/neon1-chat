@@ -14,6 +14,14 @@ locals {
   account    = data.aws_caller_identity.current.account_id
   region     = data.aws_region.current.region
   api_domain = replace(aws_apigatewayv2_api.chat.api_endpoint, "https://", "")
+
+  # A "us." profile may route to any US region's copy of the model; a plain ID stays here
+  profile  = startswith(var.model, "us.")
+  model_id = trimprefix(var.model, "us.")
+  model_arns = local.profile ? concat(
+    ["arn:aws:bedrock:${local.region}:${local.account}:inference-profile/${var.model}"],
+    [for r in ["us-east-1", "us-east-2", "us-west-2"] : "arn:aws:bedrock:${r}::foundation-model/${local.model_id}"],
+  ) : ["arn:aws:bedrock:${local.region}::foundation-model/${var.model}"]
 }
 
 
@@ -100,16 +108,11 @@ data "aws_iam_policy_document" "chat" {
     resources = ["${aws_cloudwatch_log_group.chat.arn}:*"]
   }
 
-  # The US inference profile, and the model in each US region it may route to
+  # The one model the assistant uses (and, for a US profile, its copies in each US region)
   statement {
-    sid     = "Model"
-    actions = ["bedrock:InvokeModel"]
-    resources = [
-      "arn:aws:bedrock:${local.region}:${local.account}:inference-profile/${var.model_profile}",
-      "arn:aws:bedrock:us-east-1::foundation-model/${var.model_id}",
-      "arn:aws:bedrock:us-east-2::foundation-model/${var.model_id}",
-      "arn:aws:bedrock:us-west-2::foundation-model/${var.model_id}",
-    ]
+    sid       = "Model"
+    actions   = ["bedrock:InvokeModel"]
+    resources = local.model_arns
   }
 
   statement {
@@ -140,9 +143,10 @@ resource "aws_lambda_function" "chat" {
 
   environment {
     variables = {
-      MODEL_ID      = var.model_profile
+      MODEL_ID      = var.model
       MAX_TOKENS    = tostring(var.max_tokens)
       TABLE_NAME    = aws_dynamodb_table.counters.name
+      PER_MINUTE    = tostring(var.per_minute)
       PER_HOUR      = tostring(var.per_hour)
       PER_DAY       = tostring(var.per_day)
       ORIGIN_SECRET = random_password.origin_secret.result

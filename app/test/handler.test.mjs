@@ -38,7 +38,7 @@ test("a valid question gets a reply and two counter writes", async () => {
   const res = await handler(event({ messages: [{ role: "user", content: "What do you do?" }] }), { dynamo, bedrock: model });
   assert.equal(res.statusCode, 200);
   assert.equal(JSON.parse(res.body).reply, "neon1 can help with that.");
-  assert.equal(dynamo.calls.length, 2);
+  assert.equal(dynamo.calls.length, 3);
   assert.equal(model.calls[0].messages[0].content[0].text, "What do you do?");
 });
 
@@ -88,6 +88,7 @@ test("viewer address drops the port, IPv4 and IPv6 alike", () => {
 test("counter keys hold no address and roll over each hour", () => {
   const key = visitorKey("198.51.100.7", new Date("2026-11-08T15:30:00Z"), "salt");
   assert.match(key, /^ip#[0-9a-f]{16}#2026-11-08T15$/);
+  assert.match(visitorKey("198.51.100.7", new Date("2026-11-08T15:30:00Z"), "salt", 16), /#2026-11-08T15:30$/);
   assert.ok(!key.includes("198"));
 });
 
@@ -97,10 +98,18 @@ test("the prompt carries the public sources and the grounding rules", () => {
   assert.match(prompt, /1 is glad to be of service/);
 });
 
-test("invented links become the home page; real ones and Markdown labels survive", async () => {
+test("links are real and labeled; invented ones lose the link", async () => {
   const { cleanLinks, allowedLinks } = await import("../src/chat.mjs");
-  const allowed = allowedLinks("book a call (https://calendly.com/x/neon1) or 1NEON (https://neon1.tech/1NEON/)");
-  assert.equal(cleanLinks("See [contact](https://neon1.tech/contact).", allowed), "See contact (https://neon1.tech).");
-  assert.equal(cleanLinks("Book at https://calendly.com/x/neon1.", allowed), "Book at https://calendly.com/x/neon1.");
-  assert.equal(cleanLinks("Visit [neon1.tech/1NEON](https://neon1.tech/1NEON).", allowed), "Visit https://neon1.tech/1NEON.");
+  const allowed = allowedLinks("book a call (https://calendly.com/x/neon1) or 1NEON (https://neon1.tech/1NEON/) or mail (mailto:hello@neon1.tech)");
+  assert.equal(cleanLinks("See [contact](https://neon1.tech/contact).", allowed), "See contact.");
+  assert.equal(cleanLinks("Book: [book a call](https://calendly.com/x/neon1).", allowed), "Book: [book a call](https://calendly.com/x/neon1).");
+  assert.equal(cleanLinks("Book at calendly.com/x/neon1.", allowed), "Book at [calendly.com/x/neon1](https://calendly.com/x/neon1).");
+  assert.equal(cleanLinks("Try https://neon1.tech/made-up now", allowed), "Try [neon1.tech](https://neon1.tech) now");
+  assert.equal(cleanLinks("Email [hello@neon1.tech](mailto:hello@neon1.tech).", allowed), "Email [hello@neon1.tech](mailto:hello@neon1.tech).");
+});
+
+test("a reply cut off by the token cap ends at a full sentence", async () => {
+  const { finish } = await import("../src/chat.mjs");
+  assert.equal(finish("One. Two is cut", "max_tokens"), "One.");
+  assert.equal(finish("One. Two is cut", "end_turn"), "One. Two is cut");
 });
