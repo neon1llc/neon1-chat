@@ -1,4 +1,4 @@
-# 1NEON, the client portal (https://github.com/neon1llc/1NEON)
+# 1NEON, the client portal: the repository README, written for developers (https://github.com/neon1llc/1NEON)
 
 # 1NEON
 

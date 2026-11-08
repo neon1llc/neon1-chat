@@ -8,7 +8,7 @@ The assistant on [neon1.tech](https://neon1.tech) and in 1NEON. It answers visit
 
 ## How it stays grounded and cheap
 
-The whole corpus (about 5,000 tokens) goes in a cached system prompt, so there's no search index to run. Amazon Nova Micro on Bedrock writes the reply, at about $0.0003 a question. Each visitor gets 20 questions an hour and the site gets 500 a day. The function runs at most 5 at once, and an email goes out if Bedrock spend nears $5 in a month. Message text is never logged or stored.
+The whole corpus (about 10,000 tokens) goes in a cached system prompt, so there's no search index to run. Amazon Nova Micro on Bedrock writes the reply, for well under a tenth of a cent a question. Each visitor gets 20 questions an hour and the site gets 500 a day. The function runs at most 5 at once, and an email goes out if Bedrock spend nears $5 in a month. Message text is never logged or stored.
 
 Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the site and 1NEON, and their CSPs stay `connect-src 'self'`. CloudFront adds a secret header that the function checks, so the API can't be called around the caps.
 
@@ -18,10 +18,10 @@ Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the si
 npm ci
 npm test                                   # handler, caps, and prompt, with AWS faked out
 npm run corpus                             # refresh app/corpus from neon1.tech and public READMEs
-AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run ask   # ask the live model a fixed set of questions
+AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the fixed test set against the live model (about a cent)
 ```
 
-Refresh the corpus after the site's copy changes, and read the diff before committing it: only public text belongs there.
+The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cookie notice, 1NEON's in-portal help once it's on main, and the public repositories' READMEs. `refresh.yml` rebuilds it every Monday and deploys any change, so the assistant keeps up with the site on its own. Run `npm run eval` after changing the prompt or the model.
 
 ## Deploys
 

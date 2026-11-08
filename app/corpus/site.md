@@ -386,7 +386,7 @@ privacy (https://neon1.tech/1NEON/privacy)\
 browser storage (https://neon1.tech/1NEON/cookies)\
 terms (https://neon1.tech/1NEON/terms)\
 No ads or trackers\
-v0.22.0 (https://github.com/neon1llc/neon1-site)
+v0.23.0 (https://github.com/neon1llc/neon1-site)
 
 grid
 text

@@ -1,0 +1,49 @@
+# .github/workflows/refresh.yml - Keep the assistant's corpus in step with neon1's public pages:
+# rebuild it every Monday (or on demand), commit any change to main, and deploy it.
+
+name: refresh
+
+on:
+  schedule:
+    - cron: "17 11 * * 1"
+  workflow_dispatch:
+
+# Read-only by default; the job adds what it needs to commit and start a deploy
+permissions:
+  contents: read
+
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      # The token stays for the push below; nothing else in this job runs third-party code
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
+      # Every source is public: the live site and public GitHub files
+      - run: node scripts/build-corpus.mjs
+
+      # Only a real change is committed; pushes made with this token don't start workflows,
+      # so the deploy is started explicitly
+      - name: Commit and deploy a changed corpus
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- app/corpus; then
+            echo "corpus unchanged"
+            exit 0
+          fi
+          git diff --stat -- app/corpus
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/corpus
+          git commit -m "chore: refresh the corpus from neon1's public pages"
+          git push origin HEAD:main
+          gh workflow run deploy.yml --ref main

@@ -76,7 +76,30 @@ for (const [repo, title] of REPOS) {
 
   // Long READMEs are cut at a section break; the overview is what visitors ask about
   const cut = readme.length > MAX_README ? readme.slice(0, readme.lastIndexOf("\n## ", MAX_README)) : readme;
-  const text = `# ${title} (https://github.com/neon1llc/${repo})\n\n${cut.trim()}\n`;
+  const text = `# ${title}: the repository README, written for developers (https://github.com/neon1llc/${repo})\n\n${cut.trim()}\n`;
   await writeFile(new URL(`repo-${repo.toLowerCase()}.md`, OUT), text);
   console.log(`repo-${repo.toLowerCase()}.md: ${text.length} chars`);
+}
+
+// 1NEON's public pages: the legal documents (live at neon1.tech/1NEON/...) and, once it ships
+// on main, the in-portal help. A page that isn't on main yet is skipped, not an error
+const PORTAL = "https://raw.githubusercontent.com/neon1llc/1NEON/main/apps/web/src";
+const PAGES = [
+  ["legal/privacy-policy.md", "1NEON and neon1.tech privacy policy", "https://neon1.tech/1NEON/privacy", true],
+  ["legal/terms-of-use.md", "1NEON and neon1.tech terms of use", "https://neon1.tech/1NEON/terms", true],
+  ["legal/cookie-notice.md", "Cookie and browser storage notice", "https://neon1.tech/1NEON/cookies", true],
+  ["help/faqs.md", "1NEON help: frequently asked questions", "https://neon1.tech/1NEON/", false],
+];
+
+for (const [path, title, url, required] of PAGES) {
+  const res = await fetch(`${PORTAL}/${path}`, { headers: { "user-agent": "neon1-chat corpus builder" } });
+  if (!res.ok) {
+    if (required) throw new Error(`${path}: HTTP ${res.status}`);
+    console.log(`${path}: not on main yet, skipped`);
+    continue;
+  }
+  const name = `portal-${path.split("/").pop()}`;
+  const text = `# ${title} (${url})\n\n${(await res.text()).trim()}\n`;
+  await writeFile(new URL(name, OUT), text);
+  console.log(`${name}: ${text.length} chars`);
 }

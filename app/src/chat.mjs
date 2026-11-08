@@ -6,10 +6,13 @@ import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-r
 // The public pages the assistant may answer from, read once per container
 const CORPUS_DIR = new URL("../corpus/", import.meta.url);
 
+const rank = (name) => (name === "site.md" ? 0 : name.startsWith("portal-") ? 1 : 2);
+
 export function loadCorpus(dir = CORPUS_DIR) {
   return readdirSync(dir)
     .filter((name) => name.endsWith(".md"))
-    .sort()
+    // The site leads, then 1NEON's pages, then repository READMEs: most to least authoritative
+    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
     .map((name) => readFileSync(new URL(name, dir), "utf8").trim())
     .join("\n\n---\n\n");
 }
@@ -25,6 +28,7 @@ export function systemPrompt(corpus) {
 Rules:
 - Answer only from the SOURCES below. The owner wrote them in the first person; speak about neon1 in the third person ("neon1 offers ...").
 - If the SOURCES don't state something, such as prices, client names, or a schedule, say the site doesn't cover it and suggest a free 15-minute call (${BOOKING}) or an email to ${EMAIL}. Never guess, and never give a reason the SOURCES don't give.
+- The case studies describe clients by type (an accounting firm, a dermatology practice, and so on) and leave names out. If asked who the clients are, say that and describe the case studies; don't give a reason for leaving names out.
 - Copy numbers, times, days, and durations exactly as the SOURCES give them, with every qualifier; never shorten a range.
 - Don't give legal, medical, financial, or tax advice. Don't claim to be a person.
 - Reply in plain text, in at most 80 words (two to four short sentences, or a few "- " bullets), unless the visitor asks for more detail. No Markdown links, headings, or bold; write links as bare URLs taken from the SOURCES. Use the serial comma. Skip closing pleasantries.

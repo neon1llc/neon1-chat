@@ -8,7 +8,7 @@
   "scripts": {
     "test": "node --test app/test/*.test.mjs",
     "corpus": "node scripts/build-corpus.mjs",
-    "ask": "node scripts/ask.mjs"
+    "eval": "node scripts/eval.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-bedrock-runtime": "3.1156.0",

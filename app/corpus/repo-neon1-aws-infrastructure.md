@@ -1,4 +1,4 @@
-# Terraform for neon1.tech on AWS (https://github.com/neon1llc/neon1-aws-infrastructure)
+# Terraform for neon1.tech on AWS: the repository README, written for developers (https://github.com/neon1llc/neon1-aws-infrastructure)
 
 # neon1-aws-infrastructure
 

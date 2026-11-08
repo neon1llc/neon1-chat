@@ -1,4 +1,4 @@
-# AWS CLIP (AWS CLI Plus) (https://github.com/neon1llc/aws-clip)
+# AWS CLIP (AWS CLI Plus): the repository README, written for developers (https://github.com/neon1llc/aws-clip)
 
 # AWS CLI Plus
 

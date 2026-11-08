@@ -1,4 +1,4 @@
-# The neon1.tech website (https://github.com/neon1llc/neon1-site)
+# The neon1.tech website: the repository README, written for developers (https://github.com/neon1llc/neon1-site)
 
 # neon1-site
 

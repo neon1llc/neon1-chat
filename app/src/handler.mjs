@@ -25,10 +25,11 @@ const json = (statusCode, body) => ({
   body: JSON.stringify(body),
 });
 
-// Requests must come through CloudFront, which adds a secret header the public can't see
+// Requests must come through CloudFront, which adds a secret header the public can't see.
+// Without a configured secret everything is refused, unless local testing turns the check off
 function fromEdge(headers) {
   const want = process.env.ORIGIN_SECRET;
-  if (!want) return true;
+  if (!want) return process.env.EDGE_CHECK === "off";
   const got = Buffer.from(headers["x-origin-verify"] ?? "");
   const exp = Buffer.from(want);
   return got.length === exp.length && timingSafeEqual(got, exp);

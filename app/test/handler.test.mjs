@@ -1,6 +1,9 @@
 // app/test/handler.test.mjs - Request checks, caps, and replies, with AWS faked out.
 
 import { test } from "node:test";
+
+// Unit tests call the handler directly, as CloudFront would after its own check
+process.env.EDGE_CHECK = "off";
 import assert from "node:assert/strict";
 import { handler, validate, viewerIp } from "../src/handler.mjs";
 import { systemPrompt, loadCorpus } from "../src/chat.mjs";
@@ -55,6 +58,16 @@ test("malformed or oversized conversations are rejected", () => {
   assert.equal(validate({ messages: [{ role: "user", content: "x".repeat(1201) }] }), null);
   assert.equal(validate({ messages: [{ role: "user", content: "a" }, { role: "assistant", content: "b" }] }), null);
   assert.deepEqual(validate({ messages: [{ role: "user", content: " hi " }] }), [{ role: "user", content: "hi" }]);
+});
+
+test("without a configured secret, the edge check fails closed", async () => {
+  delete process.env.EDGE_CHECK;
+  try {
+    const res = await handler(event({ messages: [{ role: "user", content: "hi" }] }));
+    assert.equal(res.statusCode, 403);
+  } finally {
+    process.env.EDGE_CHECK = "off";
+  }
 });
 
 test("requests without the edge secret are refused when one is set", async () => {
