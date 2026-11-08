@@ -92,7 +92,8 @@ export async function handler(event, deps = {}) {
     if (!out.text) throw new Error("empty reply");
     return json(200, { reply: out.text });
   } catch (err) {
-    console.error(JSON.stringify({ event: "chat_error", name: err.name, message: err.message }));
+    // The error's name and status only: a provider message could echo part of the question
+    console.error(JSON.stringify({ event: "chat_error", name: err.name, status: err.$metadata?.httpStatusCode }));
     return json(502, { error: "The assistant couldn't answer just now. Please try again, or email hello@neon1.tech." });
   }
 }

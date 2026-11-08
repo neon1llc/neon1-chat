@@ -78,6 +78,10 @@ resource "aws_cloudwatch_log_group" "chat" {
 resource "aws_iam_role" "chat" {
   name = local.name
 
+  # The ceiling neon1-aws-infrastructure sets for this role; the deploy role can only create or
+  # change this role with it attached, so nothing granted here can exceed it
+  permissions_boundary = "arn:aws:iam::${local.account}:policy/neon1-boundary-chat"
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
