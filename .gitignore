@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.terraform/
+*.tfstate*
+*.tfplan
+tfplan
+.env*
+.DS_Store
+.build/

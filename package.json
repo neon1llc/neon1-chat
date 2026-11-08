@@ -1,0 +1,17 @@
+{
+  "name": "neon1-chat",
+  "private": true,
+  "type": "module",
+  "description": "The neon1.tech assistant: answers visitors from neon1's public pages.",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test app/test/*.test.mjs",
+    "corpus": "node scripts/build-corpus.mjs",
+    "ask": "node scripts/ask.mjs"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-bedrock-runtime": "3.1156.0",
+    "@aws-sdk/client-dynamodb": "3.1156.0"
+  }
+}
