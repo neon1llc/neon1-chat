@@ -17,6 +17,8 @@ permissions:
 jobs:
   # Unit tests run with AWS faked out, so they need no credentials
   app:
+    # A name no other workflow uses, so branch rules can require exactly this check
+    name: ci-app
     runs-on: ubuntu-latest
     steps:
       # Actions are pinned to commit SHAs; the checkout keeps no token
@@ -35,6 +37,8 @@ jobs:
 
   # Terraform formatting and validation need no AWS access
   terraform:
+    # A name no other workflow uses, so branch rules can require exactly this check
+    name: ci-terraform
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -55,6 +59,8 @@ jobs:
 
   # Full history, so a secret in any commit fails the build
   secrets:
+    # A name no other workflow uses, so branch rules can require exactly this check
+    name: ci-secrets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
