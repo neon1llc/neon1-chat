@@ -252,3 +252,67 @@ resource "aws_budgets_budget" "bedrock" {
     subscriber_email_addresses = [var.alert_email]
   }
 }
+
+
+# --- A few service alarms, emailed to the same address ---
+#
+# Four signals cover the ways the assistant goes wrong for visitors: answers that fail (store,
+# model, or deadline), crashes or timeouts, throttling, and slowness. Missing data counts as fine,
+# so a quiet day with no questions never alarms. Metrics carry counts and times only, never text.
+# The email subscription must be confirmed once from the inbox before alerts arrive.
+
+
+resource "aws_sns_topic" "alerts" {
+  name = "${local.name}-alerts"
+}
+
+resource "aws_sns_topic_subscription" "alerts" {
+  topic_arn = aws_sns_topic.alerts.arn
+  protocol  = "email"
+  endpoint  = var.alert_email
+}
+
+# The handler logs each failed answer as one line naming its event (never the question), so a
+# count of those lines is the failure rate visitors see
+resource "aws_cloudwatch_log_metric_filter" "failures" {
+  name           = "${local.name}-failures"
+  log_group_name = aws_cloudwatch_log_group.chat.name
+  pattern        = "?chat_error ?limit_error ?handler_error ?config_error"
+
+  metric_transformation {
+    name      = "Failures"
+    namespace = "neon1-chat"
+    value     = "1"
+  }
+}
+
+locals {
+  # Each alarm: its metric, statistic, threshold, and window. A short burst is noise; these ask
+  # for a sustained problem before sending an email
+  alarms = {
+    failures = { namespace = "neon1-chat", metric = "Failures", stat = "Sum", threshold = 5, period = 900, periods = 1, about = "Five or more questions failed (store, model, or deadline) within 15 minutes." }
+    errors   = { namespace = "AWS/Lambda", metric = "Errors", stat = "Sum", threshold = 3, period = 900, periods = 1, about = "The function crashed or timed out three or more times within 15 minutes." }
+    throttle = { namespace = "AWS/Lambda", metric = "Throttles", stat = "Sum", threshold = 5, period = 900, periods = 1, about = "Five or more requests were throttled within 15 minutes; expected while paused with concurrency = 0." }
+    slow     = { namespace = "AWS/Lambda", metric = "Duration", stat = "p95", threshold = 12000, period = 300, periods = 3, about = "The slowest 5% of requests took over 12 seconds for 15 minutes, close to the 15-second deadline." }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "chat" {
+  for_each = local.alarms
+
+  alarm_name          = "${local.name}-${each.key}"
+  alarm_description   = each.value.about
+  namespace           = each.value.namespace
+  metric_name         = each.value.metric
+  dimensions          = each.value.namespace == "AWS/Lambda" ? { FunctionName = aws_lambda_function.chat.function_name } : null
+  statistic           = each.value.stat == "p95" ? null : each.value.stat
+  extended_statistic  = each.value.stat == "p95" ? "p95" : null
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  threshold           = each.value.threshold
+  period              = each.value.period
+  evaluation_periods  = each.value.periods
+  datapoints_to_alarm = each.value.periods
+  treat_missing_data  = "notBreaching"
+  alarm_actions       = [aws_sns_topic.alerts.arn]
+  ok_actions          = [aws_sns_topic.alerts.arn]
+}
