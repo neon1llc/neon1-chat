@@ -49,8 +49,9 @@ export const CASES = [
       { role: "assistant", content: "neon1 can help with networks, devices, and spaces for small businesses, on site, remotely, or through a temporary secure connection." },
       { role: "user", content: "How long would something like that usually take?" },
     ],
-    must: [/two to four|2 to 4|four to six|4 to 6/i],
-    support: ["two to four weeks"],
+    // Any of the durations the sources give counts; a small office often fits the shortest
+    must: [/week or two|one to two|1 to 2|two to four|2 to 4|four to six|4 to 6/i],
+    support: ["a week or two", "two to four weeks"],
   },
   {
     id: "carry-portal-health",
