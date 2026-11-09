@@ -69,3 +69,7 @@ CloudFront adds `x-origin-verify` to every request, read from `/neon1-chat/prod/
 1. Read the current value from SSM into `TF_VAR_origin_secret_previous` (don't print it), and apply this stack with `-replace=random_password.origin_secret`. The function now accepts both values, and SSM holds the new one.
 2. Apply the site stack in neon1-aws-infrastructure, so CloudFront sends the new value.
 3. Apply this stack again without `TF_VAR_origin_secret_previous`, so only the new value passes.
+
+## License
+
+The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 name, logo, and other brand marks are not licensed, and the corpus is a copy of neon1.tech's public pages, which stay under the site's terms. Third-party packages keep their own licenses.
