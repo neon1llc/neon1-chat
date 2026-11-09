@@ -119,7 +119,7 @@ const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu
 // Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
 // get no film nod at all,
 // whatever the model adds, since steadiness matters more there than style
-const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
+const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|sell|information|personal|cookie|polic|terms|secur|breach|hack|scam|fraud|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
 
 // Drop film nods: a paragraph that is only a short nod, and a short nod sentence at the end of the
 // last paragraph. Everything else stays word for word
@@ -230,7 +230,9 @@ function fragments(l) {
   const parts = [...l.line.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
   if (!parts.length) parts.push(l.line);
   if (l.say) parts.push(l.say);
-  return parts.map((p) => words(p).trim().split(" ")).filter((w) => w.length >= 2);
+  // Each sentence of a quote counts on its own too, so a partial quote ("You know that road.") is caught
+  const sentences = parts.flatMap((p) => p.split(/(?<=[.?!])\s+/));
+  return [...new Set([...parts, ...sentences])].map((p) => words(p).trim().split(" ")).filter((w) => w.length >= 2);
 }
 
 // Whether text (as words) holds a fragment: the whole of a short one, or any five words in a row of a long one
@@ -280,7 +282,7 @@ export function onlyFit(text, fit, list = []) {
 
 export function lineNote(l) {
   if (!l) return "";
-  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} After answering, use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES. Then use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
 }
 
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
@@ -294,20 +296,24 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const fit = SERIOUS.test(question) ? null : pickLine(question, { earlier, first: messages.length === 1, list: filmLines(directives) });
   const note = lineNote(fit);
 
-  const res = await client.send(
-    new ConverseCommand({
-      modelId: MODEL_ID,
-      system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : []), ...(note ? [{ text: note }] : [])],
-      messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
-      inferenceConfig: { maxTokens: MAX_TOKENS, temperature: TEMPERATURE },
-    }),
-    { abortSignal: signal },
-  );
+  const ask = (extra) =>
+    client.send(
+      new ConverseCommand({
+        modelId: MODEL_ID,
+        system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : []), ...(extra ? [{ text: extra }] : [])],
+        messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
+        inferenceConfig: { maxTokens: MAX_TOKENS, temperature: TEMPERATURE },
+      }),
+      { abortSignal: signal },
+    );
+  const text = (r) => (r.output?.message?.content ?? []).map((block) => block.text ?? "").join("").trim();
 
-  const said = (res.output?.message?.content ?? [])
-    .map((block) => block.text ?? "")
-    .join("")
-    .trim();
+  let res = await ask(note);
+  // A reply that is only the film line, with no answer, is asked again without the note; the line is
+  // then added after the answer below
+  const bare = (t) => onlyFit(t, null, filmLines(directives)).split(/\s+/).length;
+  if (fit && bare(text(res)) < 8 && bare(text(res)) * 2 < text(res).split(/\s+/).length) res = await ask("");
+  const said = text(res);
   // The misuse marker is read, then removed wherever the model put it
   const flagged = FLAGGED.test(said) || said.includes(FLAG);
   const raw = said.replace(FLAGGED, "").replaceAll(FLAG, "").trim();
@@ -332,7 +338,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const ordered = nodLast(oneNod(onlyFit(fitted, flagged ? null : fit, filmLines(directives)))).replace(/\b(wake up|knock,? knock|follow the white rabbit),? Neo\b/gi, "$1");
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
-  const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
+  const out = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
 
-  return { text, flagged, usage: res.usage ?? {}, stopReason: res.stopReason };
+  return { text: out, flagged, usage: res.usage ?? {}, stopReason: res.stopReason };
 }

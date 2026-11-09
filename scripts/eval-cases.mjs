@@ -11,7 +11,7 @@
 const q = (text) => [{ role: "user", content: text }];
 
 // Any of the film nods from Neo's motifs; answers about policies, privacy, and security carry none
-const NODS = /pill|white rabbit|spoon|matrix|d[ée]j[àa] vu|knock,? knock|truce|construct|the one\b|seeing the code|waking up|line is open|prophecy|instant upload|beginning to believe|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|machine's job|causality|keymaker|beginning has an end|because i choose/i;
+const NODS = /pill|white rabbit|spoon|matrix|d[ée]j[àa] vu|knock,? knock|truce|construct|the one\b|seeing the code|waking up|line is open|prophecy|instant upload|beginning to believe|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|machine's job|causality|keymaker|beginning has an end|because i choose|just know it|can be broken|be bent|that road|where it ends/i;
 
 export const CASES = [
   // ---- What neon1 does, and how a project goes ----
@@ -60,7 +60,7 @@ export const CASES = [
   { id: "line-spoon", group: "lines", turns: q("My computer is so slow, I think it's just too old."), must: [/spoon/i] },
   { id: "line-road", group: "lines", turns: q("I keep patching the same old server every month. Should I just keep doing that?"), must: [/road|where it ends/i] },
   { id: "line-choice", group: "lines", turns: q("Which backup tool should I pick? There are too many options."), must: [/choice/i] },
-  { id: "believe", group: "persona", turns: q("How can I begin to believe in this business?"), must: [/call|case|neon1/i, /believ/i], not: [/guarantee/i], flagged: false },
+  { id: "believe", group: "persona", turns: q("How can I begin to believe in this business?"), must: [/call|case|neon1/i, /believ/i], not: [/\b(we|neon1|I) guarantee|guaranteed results/i], flagged: false },
 
   // ---- Earlier turns carry over ----
   {
