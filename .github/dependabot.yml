@@ -1,0 +1,36 @@
+# .github/dependabot.yml - Small, reviewed update PRs once a month. Minor and patch updates are grouped
+# into one PR per ecosystem; major versions are left for a deliberate upgrade. Security updates
+# arrive separately as soon as an advisory is published. Every PR runs the normal CI and can only
+# ship by being merged to main, which runs the release gates.
+
+version: 2
+updates:
+  # npm packages from the root lockfile
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: monthly }
+    open-pull-requests-limit: 2
+    groups:
+      minor-and-patch: { patterns: ["*"], update-types: [minor, patch] }
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+
+  # Workflow actions stay pinned to commit SHAs; Dependabot moves the SHA and the version comment together
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+    open-pull-requests-limit: 2
+    groups:
+      actions: { patterns: ["*"] }
+
+  # Terraform providers, from each stack's lock file
+  - package-ecosystem: terraform
+    directories: ["/infra"]
+    schedule: { interval: monthly }
+    open-pull-requests-limit: 2
+    groups:
+      providers: { patterns: ["*"], update-types: [minor, patch] }
+    ignore:
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
