@@ -8,7 +8,7 @@ Neo, the assistant on [neon1.tech](https://neon1.tech) and in 1NEON. It answers 
 
 ## How it stays grounded and cheap
 
-The whole corpus (about 12,000 tokens) goes in the system prompt, so there's no search index to run. Qwen3 Next 80B on Amazon Bedrock writes the reply, for under a fifth of a cent a question. It was chosen with `npm run eval` over gpt-oss-120b, Nova 2 Lite, Nemotron Super, DeepSeek V3.2, Kimi K2.5, and Mistral Large 3: across repeated runs it passed every case at about the price of gpt-oss-120b, which once repeated a planted price. Replies sample at temperature 0.7, so the same question gets freshly worded answers; the prompt, not a temperature of zero, keeps them grounded. Message text is never logged or stored by this app.
+The whole corpus (about 12,000 tokens) goes in the system prompt, so there's no search index to run. gpt-oss-120b on Amazon Bedrock writes the reply, for under a fifth of a cent a question. Qwen3 Next 80B is next: it was chosen with `npm run eval` over gpt-oss-120b, Nova 2 Lite, Nemotron Super, DeepSeek V3.2, Kimi K2.5, and Mistral Large 3: across repeated runs it passed every case at about the price of gpt-oss-120b, which once repeated a planted price. It goes live once the function's permissions boundary in neon1-aws-infrastructure allows it (`chat_model_id`), then `model` here. Replies sample at temperature 0.7, so the same question gets freshly worded answers; the prompt, not a temperature of zero, keeps them grounded. Message text is never logged or stored by this app.
 
 ## Neo's character
 

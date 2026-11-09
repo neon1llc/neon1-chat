@@ -12,7 +12,7 @@
 
 import { createHash } from "node:crypto";
 import { isIPv6 } from "node:net";
-import { DynamoDBClient, GetItemCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
 let defaultClient;
 
@@ -108,9 +108,22 @@ async function count(client, table, pk, ttl, signal) {
   return Number(res?.Attributes?.n?.N ?? 1);
 }
 
-// The visitor's strike record, or an empty one
-async function readPenalty(client, table, pk, signal) {
-  const res = await client.send(new GetItemCommand({ TableName: table, Key: { pk: { S: pk } }, ConsistentRead: true }), { abortSignal: signal });
+// The visitor's strike record, or an empty one. Read with an UpdateItem that changes nothing on an
+// existing record (and leaves a short-lived empty one otherwise), since the function's permissions
+// boundary allows UpdateItem on the table and nothing else; UpdateItem reads are always consistent
+async function readPenalty(client, table, pk, signal, epoch = Math.floor(Date.now() / 1000)) {
+  const res = await client.send(
+    new UpdateItemCommand({
+      TableName: table,
+      Key: { pk: { S: pk } },
+      UpdateExpression: "SET #ttl = if_not_exists(#ttl, :ttl)",
+      ExpressionAttributeNames: { "#ttl": "ttl" },
+      ExpressionAttributeValues: { ":ttl": { N: String(epoch + FORGIVE) } },
+      ReturnValues: "ALL_NEW",
+    }),
+    { abortSignal: signal },
+  );
+  res.Item = res?.Attributes;
   const n = (k) => Number(res?.Item?.[k]?.N ?? 0);
   return { level: n("level"), until: n("until"), last: n("last"), why: res?.Item?.why?.S ?? "burst" };
 }
@@ -156,7 +169,7 @@ export async function allow(ip, { table, perMinute, perHour, perDay, question, c
   client ??= defaultClient ??= new DynamoDBClient(CLIENT);
   const epoch = Math.floor(now.getTime() / 1000);
   const pen = penaltyKey(ip);
-  const prior = await readPenalty(client, table, pen, signal);
+  const prior = await readPenalty(client, table, pen, signal, epoch);
   const cool = (reason) => async () => ({ blocked: "cooldown", reason, ...(await strike(client, table, pen, prior, epoch, signal, reason)) });
 
   // Still cooling down: no answer, and pushing on through it is a strike of its own
@@ -193,5 +206,5 @@ export async function misuse(ip, { table, client, signal, now = new Date() }) {
   const flags = await count(client, table, misuseKey(ip, now), epoch + 2 * 3600, signal);
   if (flags % MISUSE !== 0) return null;
   const pen = penaltyKey(ip);
-  return strike(client, table, pen, await readPenalty(client, table, pen, signal), epoch, signal, "misuse");
+  return strike(client, table, pen, await readPenalty(client, table, pen, signal, epoch), epoch, signal, "misuse");
 }

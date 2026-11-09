@@ -118,8 +118,8 @@ data "aws_iam_policy_document" "chat" {
 
   statement {
     sid       = "Counters"
-    # Read a visitor's strike record, and count
-    actions   = ["dynamodb:GetItem", "dynamodb:UpdateItem"]
+    # Count, and read a visitor's strike record (an UpdateItem that returns it)
+    actions   = ["dynamodb:UpdateItem"]
     resources = [aws_dynamodb_table.counters.arn]
   }
 }

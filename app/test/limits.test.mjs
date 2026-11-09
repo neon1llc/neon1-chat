@@ -1,11 +1,11 @@
 // app/test/limits.test.mjs - Escalating cooldowns, repeats, misuse strikes, and IPv6 grouping,
-// against an in-memory table that behaves like DynamoDB for the few expressions limits.mjs uses.
+// against an in-memory table that behaves like DynamoDB for the few UpdateItem shapes limits.mjs uses.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { allow, misuse, network, repeatKey, LADDER, FORGIVE, PUSHES } from "../src/limits.mjs";
 
-// ---- An in-memory table for GetItem and the two UpdateItem shapes ----
+// ---- An in-memory table for the three UpdateItem shapes ----
 
 function table() {
   const items = new Map();
@@ -13,8 +13,11 @@ function table() {
     const i = cmd.input;
     const pk = i.Key.pk.S;
     const item = items.get(pk) ?? {};
-    if (cmd.constructor.name === "GetItemCommand") return items.has(pk) ? { Item: structuredClone(item) } : {};
     const v = i.ExpressionAttributeValues;
+    if (i.UpdateExpression.startsWith("SET #ttl")) {
+      items.set(pk, { ...item, pk: { S: pk }, ttl: item.ttl ?? v[":ttl"] });
+      return { Attributes: structuredClone(items.get(pk)) };
+    }
     if (i.UpdateExpression.startsWith("ADD n")) {
       const n = Number(item.n?.N ?? 0);
       if (i.ConditionExpression && n >= Number(v[":max"].N)) throw Object.assign(new Error("cap"), { name: "ConditionalCheckFailedException" });

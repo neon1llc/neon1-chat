@@ -9,7 +9,7 @@
 variable "model" {
   description = "Bedrock model ID or US inference profile ID."
   type        = string
-  default     = "qwen.qwen3-next-80b-a3b"
+  default     = "openai.gpt-oss-120b-1:0"
 
   # provider.model-name[:version], optionally behind "us."; anything else would build a bad ARN
   validation {
