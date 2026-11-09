@@ -16,7 +16,20 @@ permissions:
   contents: read
 
 jobs:
+  # Full history, so a secret in any commit stops the deploy. The image is pinned by digest
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - run: docker run --rm -v "$PWD:/src" -w /src ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f git --redact --no-banner .
+
+  # Nothing ships unless the secret scan passed on this same commit
   deploy:
+    needs: secrets
     if: vars.AWS_TERRAFORM_ROLE_ARN != ''
     runs-on: ubuntu-latest
     permissions:
@@ -40,6 +53,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+
+      # A CycloneDX inventory of what ships (production dependencies only), kept with the run
+      - run: npm sbom --sbom-format cyclonedx --omit dev > sbom.cdx.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sbom-${{ github.sha }}
+          path: sbom.cdx.json
+          retention-days: 90
 
       # The release folder Terraform zips: source, listed corpus, pinned SDK, and release.json
       - run: node scripts/package.mjs
