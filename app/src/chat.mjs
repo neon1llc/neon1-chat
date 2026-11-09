@@ -141,6 +141,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
     // House style: list names take a colon, hyphens are plain, and clauses aren't joined by dashes
     .replace(/^([-*\u2022]|\d+[.)])\s+([^\n:]{1,40}?)\s+[\u2013\u2014-]\s+/gm, "- $2: ")
     .replace(/^([*\u2022]|\d+[.)])\s+/gm, "- ")
+    // Italics too: *word* and _word_ lose their marks, leaving list hyphens and plain asterisks alone
+    .replace(/(^|[\s(])[*_](?![\s*_])([^*_\n]+?)[*_](?=[\s.,;:!?)]|$)/gm, "$1$2")
     .replace(/[\u2010\u2011]/g, "-")
     .replace(/\s*[\u2014]\s*/g, ", ")
     .replace(/[ \t]+$/gm, "");

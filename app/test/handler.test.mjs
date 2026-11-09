@@ -168,3 +168,9 @@ test("Neo's directives are in the prompt, apart from the sources", async () => {
   assert.equal(typeof loadDirectives(), "string");
   assert.ok(!loadCorpus().includes("# Neo, the chat on neon1.tech"), "directives never sit among the sources");
 });
+
+test("italics lose their marks, and plain asterisks and underscores stay", async () => {
+  const { reply } = await import("../src/chat.mjs");
+  const client = { send: async () => ({ output: { message: { content: [{ text: "Named after *The Matrix*. A_b and 2 * 3 stay, _this_ goes." }] } }, stopReason: "end_turn" }) };
+  assert.equal((await reply([{ role: "user", content: "x" }], { corpus: "c", client })).text, "Named after The Matrix. A_b and 2 * 3 stay, this goes.");
+});
