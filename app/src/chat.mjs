@@ -214,7 +214,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
   // "Beginning to believe" only answers doubt or trust; elsewhere the model tends to use it as a sign-off
   const fitted = /believ|trust|doubt|skeptic|sure about|confiden|convince/i.test(question) ? calm : dropBelieve(calm);
-  const ordered = nodLast(oneNod(fitted));
+  // The visitor isn't Neo, so a line that names him is said to no one in particular
+  const ordered = nodLast(oneNod(fitted)).replace(/\b(wake up|knock,? knock|follow the white rabbit),? Neo\b/gi, "$1");
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
   const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
