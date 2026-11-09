@@ -119,7 +119,7 @@ const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu
 // Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
 // get no film nod at all,
 // whatever the model adds, since steadiness matters more there than style
-const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|sell|information|personal|cookie|polic|terms|secur|breach|hack|scam|fraud|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
+const SERIOUS = /book|schedule|call you|contact|reach|email you|your email|email address|phone|privacy|private|data(?! entry)|sell|information|personal|cookie|polic|terms|secur|breach|hack|scam|fraud|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
 
 // Drop film nods: a paragraph that is only a short nod, and a short nod sentence at the end of the
 // last paragraph. Everything else stays word for word
@@ -282,7 +282,7 @@ export function onlyFit(text, fit, list = []) {
 
 export function lineNote(l) {
   if (!l) return "";
-  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES. Then use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` Say it in this short form: "${l.say}".` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES. Then use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
 }
 
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
