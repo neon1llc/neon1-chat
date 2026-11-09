@@ -176,7 +176,9 @@ test("italics lose their marks, and plain asterisks and underscores stay", async
 });
 
 test("a short opening nod moves after the answer; real answers and lists stay put", async () => {
-  const { nodLast } = await import("../src/chat.mjs");
+  const { nodLast, oneNod } = await import("../src/chat.mjs");
+  assert.equal(oneNod("Book a call. You're beginning to believe it fits.\n\nYou have to see it for yourself."), "Book a call. You're beginning to believe it fits.");
+  assert.equal(oneNod("Book a call.\n\nThere is no spoon."), "Book a call.\n\nThere is no spoon.");
   assert.equal(nodLast("There is no spoon.\n\nneon1 automates intake."), "neon1 automates intake.\n\nThere is no spoon.");
   assert.equal(nodLast("Yes, from 6pm.\n\nWeekends too."), "Yes, from 6pm.\n\nWeekends too.");
   assert.equal(nodLast("Opening hours are 8am to 8pm.\n\nMore."), "Opening hours are 8am to 8pm.\n\nMore.");

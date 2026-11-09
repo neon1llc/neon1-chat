@@ -114,7 +114,7 @@ export function finish(text, stopReason) {
 }
 
 // The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
-const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload|beginning to believe|matrix has you|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|operator|machine's job|anything is possible|upgrades|causality|keymaker|beginning has an end|because i choose|question that drives|answer is out there|walk through it|walking the path|know you are/i;
+const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload|beginning to believe|matrix has you|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|operator|machine's job|anything is possible|upgrades|causality|keymaker|beginning has an end|because i choose|question that drives|answer is out there|walk through it|walking the path|know you are|see it for yourself|show you the door|some things do|connection the word/i;
 
 // Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
 // get no film nod at all,
@@ -132,6 +132,17 @@ export function dropNods(text) {
   const m = last.match(/^(.*[.?!])\s+([^.?!]+[.?!]?)$/s);
   if (m && isNod(m[2].trim())) parts[parts.length - 1] = m[1];
   return parts.join("\n\n");
+}
+
+// At most one nod in a reply: when the model adds a second, the short standalone one goes and a
+// nod woven into a sentence stays
+export function oneNod(text) {
+  const count = (t) => (t.match(new RegExp(NOD.source, "gi")) ?? []).length;
+  if (count(text) < 2) return text;
+  const parts = text.split(/\n{2,}/);
+  const kept = parts.filter((p) => p.split(/\s+/).length > 7 || /\d|\]\(/.test(p) || !NOD.test(p));
+  const once = kept.length ? kept.join("\n\n") : text;
+  return count(once) < 2 ? once : dropNods(once);
 }
 
 // "Knock, knock" opens a conversation; later in one it falls flat, so it's dropped there
@@ -191,7 +202,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // spoon.") moves to the end, so the reply opens with its facts
   const question = messages.at(-1)?.content ?? "";
   const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
-  const ordered = nodLast(calm);
+  const ordered = nodLast(oneNod(calm));
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
   const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
