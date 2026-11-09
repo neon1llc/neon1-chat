@@ -16,7 +16,7 @@ Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the si
 
 ```bash
 npm ci
-npm test                                   # handler, caps, and prompt, with AWS faked out
+npm test                                   # handler, caps, contract, corpus, and release checks, with AWS faked out
 npm run corpus                             # refresh app/corpus from neon1.tech and public READMEs
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the fixed test set against the live model (about a cent)
 ```
@@ -27,10 +27,13 @@ The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cooki
 
 ## Deploys
 
-Pushing to `main` runs `deploy.yml`, which plans and applies `infra/`. That also packages and ships `app/`. It uses the role in the repository variable `AWS_TERRAFORM_ROLE_ARN` (defined in neon1-aws-infrastructure `github/chat.tf`). To apply by hand:
+Pushing to `main` runs `deploy.yml`: the tests, then `scripts/package.mjs`, which stages the release folder Terraform zips (`app/src`, the corpus files its manifest lists, and the production dependencies installed with `npm ci --omit=dev` from the same lockfile the tests used). The function therefore runs the exact AWS SDK versions in `package-lock.json`, not the copy built into the Lambda runtime. `release.json` in that folder names the source commit and lockfile digest, and the health check at `/chat/api/health` reports them with the digest of the corpus it actually loaded. After applying, `scripts/verify-release.mjs` checks those against the commit just deployed and fails the job if an older build is still serving. Changes to `package.json`, `package-lock.json`, or those two scripts deploy too, since they change what ships.
+
+The workflow uses the role in the repository variable `AWS_TERRAFORM_ROLE_ARN` (defined in neon1-aws-infrastructure `github/chat.tf`). To apply by hand:
 
 ```bash
 export AWS_PROFILE=neon1
+node scripts/package.mjs
 terraform -chdir=infra init
 terraform -chdir=infra plan -out=tfplan
 terraform -chdir=infra apply tfplan

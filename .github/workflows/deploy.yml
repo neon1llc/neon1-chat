@@ -3,11 +3,12 @@
 
 name: deploy
 
-# Pushes to main that change the app or infrastructure, or a manual run
+# Pushes to main that change anything that ships (the app, its locked dependencies, the
+# packaging and verification scripts) or the infrastructure, or a manual run
 on:
   push:
     branches: [main]
-    paths: ["app/**", "infra/**", ".github/workflows/deploy.yml"]
+    paths: ["app/**", "infra/**", "package.json", "package-lock.json", "scripts/package.mjs", "scripts/verify-release.mjs", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 # Read-only by default; the job adds the OIDC token it needs
@@ -40,6 +41,9 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      # The release folder Terraform zips: source, listed corpus, pinned SDK, and release.json
+      - run: node scripts/package.mjs
+
       - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: 1.16.0
@@ -59,6 +63,7 @@ jobs:
       - name: Apply
         run: terraform -chdir=infra apply -input=false -no-color tfplan
 
-      # The live assistant answers its health check through neon1.tech
+      # The live assistant answers its health check through neon1.tech with this commit, corpus,
+      # and lockfile; anything else (an old version still serving, say) fails the job
       - name: Verify
-        run: curl -fsS https://neon1.tech/chat/api/health
+        run: node scripts/verify-release.mjs https://neon1.tech/chat/api/health

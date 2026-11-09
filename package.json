@@ -10,7 +10,7 @@
     "corpus": "node scripts/build-corpus.mjs",
     "eval": "node scripts/eval.mjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "3.1156.0",
     "@aws-sdk/client-dynamodb": "3.1156.0"
   }

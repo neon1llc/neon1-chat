@@ -7,12 +7,15 @@
 import { timingSafeEqual } from "node:crypto";
 import { loadCorpus, reply } from "./chat.mjs";
 import { CODES, LIMITS, check } from "./contract.mjs";
+import { readCorpus } from "./corpus.mjs";
 import { allow } from "./limits.mjs";
+import { release } from "./release.mjs";
 
 // The contract's bounds, kept under their old name for callers that read them from here
 export { LIMITS };
 
 const corpus = loadCorpus();
+const identity = release(readCorpus().digest);
 
 // One deadline for the whole request (caps and model call), safely inside the function's
 // 20-second timeout, so a slow dependency ends in a clear answer instead of a gateway error
@@ -116,7 +119,9 @@ async function route(event, deps) {
 
   if (!fromEdge(event.headers ?? {})) return json(403, { error: "forbidden" });
 
-  if (method === "GET" && path.endsWith("/health")) return json(200, { ok: true });
+  // Which code and corpus are serving, so a deploy can check it shipped what it built. Routing
+  // only: it makes no AWS or model call, so it stays green when Bedrock is unavailable
+  if (method === "GET" && path.endsWith("/health")) return json(200, { ok: true, ...identity });
   if (method !== "POST" || !path.endsWith("/chat")) return json(404, { error: "not found" });
 
   // Parse and check the conversation before spending anything on it

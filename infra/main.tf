@@ -66,15 +66,16 @@ resource "aws_dynamodb_table" "counters" {
 }
 
 
-# --- The function: the app folder as is, since the Lambda runtime ships the AWS SDK ---
+# --- The function: the release folder scripts/package.mjs stages ---
 
 
-# Source and the public corpus; tests stay out of the bundle
+# Source, the corpus its manifest lists, the AWS SDK at the lockfile's exact versions (the ones
+# the tests ran against), and release.json naming the commit and corpus. Run
+# `node scripts/package.mjs` before planning; without it the plan stops here
 data "archive_file" "app" {
   type        = "zip"
-  source_dir  = "${path.module}/../app"
+  source_dir  = "${path.module}/.build/app"
   output_path = "${path.module}/.build/app.zip"
-  excludes    = ["test"]
 }
 
 # Two weeks of logs is enough to debug; message text is never logged
