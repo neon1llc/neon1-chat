@@ -60,3 +60,12 @@ terraform -chdir=infra apply tfplan
 ```
 
 The `/chat/api/*` route on neon1.tech belongs to the neon1-aws-infrastructure site stack. It reads `/neon1-chat/prod/api_domain` and `/neon1-chat/prod/origin_secret`, so apply this stack first.
+
+
+## Rotating the origin secret
+
+CloudFront adds `x-origin-verify` to every request, read from `/neon1-chat/prod/origin_secret` when the site stack applies. To change it without refusing any visitor:
+
+1. Read the current value from SSM into `TF_VAR_origin_secret_previous` (don't print it), and apply this stack with `-replace=random_password.origin_secret`. The function now accepts both values, and SSM holds the new one.
+2. Apply the site stack in neon1-aws-infrastructure, so CloudFront sends the new value.
+3. Apply this stack again without `TF_VAR_origin_secret_previous`, so only the new value passes.

@@ -80,6 +80,22 @@ test("requests without the edge secret are refused when one is set", async () =>
   }
 });
 
+test("during a rotation both the new and the previous edge secret pass, and nothing else", async () => {
+  // An empty conversation fails validation right after the edge check, so no AWS call is made
+  const withHeader = (v) => event({ messages: [] }, { headers: { "cloudfront-viewer-address": "198.51.100.7:1", "x-origin-verify": v } });
+  process.env.ORIGIN_SECRET = "new-secret-value";
+  try {
+    assert.equal((await handler(withHeader("old-secret-value"))).statusCode, 403);
+    process.env.ORIGIN_SECRET_PREVIOUS = "old-secret-value";
+    assert.equal((await handler(withHeader("old-secret-value"))).statusCode, 400);
+    assert.equal((await handler(withHeader("new-secret-value"))).statusCode, 400);
+    assert.equal((await handler(withHeader("other-secret-val"))).statusCode, 403);
+  } finally {
+    delete process.env.ORIGIN_SECRET;
+    delete process.env.ORIGIN_SECRET_PREVIOUS;
+  }
+});
+
 test("viewer address drops the port, IPv4 and IPv6 alike", () => {
   assert.equal(viewerIp({ headers: { "cloudfront-viewer-address": "198.51.100.7:443" } }), "198.51.100.7");
   assert.equal(viewerIp({ headers: { "cloudfront-viewer-address": "2001:db8::1:443" } }), "2001:db8::1");

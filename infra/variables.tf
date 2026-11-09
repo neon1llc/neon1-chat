@@ -101,3 +101,13 @@ variable "alert_email" {
     error_message = "alert_email must be an email address."
   }
 }
+
+
+# Only during an origin secret rotation: the old value, accepted until the site stack sends the new
+# one. Pass it with TF_VAR_origin_secret_previous for that one apply, then apply again without it
+variable "origin_secret_previous" {
+  description = "Previous origin secret, accepted alongside the current one during a rotation."
+  type        = string
+  default     = ""
+  sensitive   = true
+}

@@ -151,7 +151,9 @@ resource "aws_lambda_function" "chat" {
       PER_HOUR      = tostring(var.per_hour)
       PER_DAY       = tostring(var.per_day)
       ORIGIN_SECRET = random_password.origin_secret.result
-      HASH_SALT     = random_password.hash_salt.result
+      # Set only while rotating (README): the value CloudFront still sends until the site applies
+      ORIGIN_SECRET_PREVIOUS = var.origin_secret_previous
+      HASH_SALT              = random_password.hash_salt.result
     }
   }
 

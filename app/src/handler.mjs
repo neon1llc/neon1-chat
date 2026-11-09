@@ -50,13 +50,18 @@ const logError = (event, err) =>
   console.error(JSON.stringify({ event, name: err?.name ?? "Error", status: err?.$metadata?.httpStatusCode }));
 
 // Requests must come through CloudFront, which adds a secret header the public can't see.
-// Without a configured secret everything is refused, unless local testing turns the check off
+// Without a configured secret everything is refused, unless local testing turns the check off.
+// During a rotation ORIGIN_SECRET_PREVIOUS is accepted too, so the edge can switch to the new value
+// after the function has, with no window of refusals (README, "Rotating the origin secret")
 function fromEdge(headers) {
   const want = process.env.ORIGIN_SECRET;
   if (!want) return process.env.EDGE_CHECK === "off";
   const got = Buffer.from(headers["x-origin-verify"] ?? "");
-  const exp = Buffer.from(want);
-  return got.length === exp.length && timingSafeEqual(got, exp);
+  return [want, process.env.ORIGIN_SECRET_PREVIOUS].some((v) => {
+    if (!v) return false;
+    const exp = Buffer.from(v);
+    return got.length === exp.length && timingSafeEqual(got, exp);
+  });
 }
 
 // CloudFront reports the viewer as "address:port"; the port is dropped
