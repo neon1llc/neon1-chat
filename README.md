@@ -16,6 +16,12 @@ Three different controls bound cost, and they are not the same thing:
 - **Concurrency** caps how many copies of the function run at once (5), and the HTTP API throttles the whole route to 5 requests a second.
 - **The Bedrock budget** is an email at 80% (forecast) and 100% (actual) of $5 a month. It is an alert, not a spending cap, and it covers Bedrock only, not CloudFront, the API, or DynamoDB.
 
+## The conversation contract
+
+The chat window and this API share one contract, written in `app/src/contract.mjs` and mirrored in neon1-site `shared/chat.js`: turns alternate visitor and assistant, start and end with the visitor, and number at most 11; each turn is at most 1,200 characters after trimming, whoever wrote it; all turns together are at most 6,000; and a reply is at most 1,200 characters, cut at a sentence or word and never inside a link, so it always fits back into the history. Characters are JavaScript string length, which is what a browser's `maxlength` counts. The window drops its oldest question and answer together until a conversation fits, so the newest question always goes up. A refusal says which rule failed (`question_too_long` or `conversation_too_long`), so the window can tell a visitor to shorten a question only when that's the problem. Change both repositories together, and deploy this one first.
+
+Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the site and 1NEON, and their CSPs stay `connect-src 'self'`. CloudFront adds a secret header that the function checks, so the API can't be called around the caps.
+
 ## Working on it
 
 ```bash
