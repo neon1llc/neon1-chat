@@ -183,7 +183,7 @@ test("the committed corpus matches its manifest, with nothing unlisted beside it
   const listed = new Set(files.map((f) => f.name));
   const onDisk = readdirSync(new URL("../corpus/", import.meta.url)).filter((n) => n !== "manifest.json");
   assert.deepEqual(onDisk.filter((n) => !listed.has(n)), []);
-  const known = (name) => SOURCES.some((s) => (s.kind === "corpus" ? name.startsWith(s.file) : name === s.file));
+  const known = (name) => name.startsWith("directive-") || SOURCES.some((s) => (s.kind === "corpus" ? name.startsWith(s.file) : name === s.file));
   assert.deepEqual([...listed].filter((n) => !known(n)), []);
 });
 

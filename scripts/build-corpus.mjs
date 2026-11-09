@@ -154,7 +154,9 @@ export async function build({ fetch = globalThis.fetch, now = new Date(), log = 
       // The document's own title line names its live page, so the assistant can link to it
       const url = doc.published ?? HOME;
       const text = `${body.replace(/^# (.+)/, `# $1 (${url})`)}\n`;
-      add(`${src.file}${doc.file}`, url, `${from}#${doc.file}`, `${src.repo} ${tag}`, text);
+      // A directive (Neo's character and rules) is kept apart from the facts by its file name
+      const file = doc.type === "directive" ? `directive-${doc.file}` : `${src.file}${doc.file}`;
+      add(file, url, `${from}#${doc.file}`, `${src.repo} ${tag}`, text);
     }
     const all = bundle.files.map((d) => d.text).join("\n");
     const missing = src.must.find((re) => !re.test(all));

@@ -5,16 +5,17 @@
 // error message, since a provider's message can echo part of the question.
 
 import { timingSafeEqual } from "node:crypto";
-import { loadCorpus, reply } from "./chat.mjs";
+import { loadCorpus, loadDirectives, reply } from "./chat.mjs";
 import { CODES, LIMITS, check } from "./contract.mjs";
 import { readCorpus } from "./corpus.mjs";
-import { allow } from "./limits.mjs";
+import { allow, misuse } from "./limits.mjs";
 import { release } from "./release.mjs";
 
 // The contract's bounds, kept under their old name for callers that read them from here
 export { LIMITS };
 
 const corpus = loadCorpus();
+const directives = loadDirectives();
 const identity = release(readCorpus().digest);
 
 // One deadline for the whole request (caps and model call), safely inside the function's
@@ -83,6 +84,15 @@ const REFUSED = {
   [CODES.conversation]: "This conversation has grown longer than Neo can follow. Please start a new one.",
 };
 
+// A cooldown in words, with roughly how long it lasts but never how many messages it took
+export function cooldownText({ retry, reason }) {
+  const wait = retry >= 20 * 3600 ? "until tomorrow" : retry >= 3000 ? `for about ${Math.round(retry / 3600)} hour${retry >= 5400 ? "s" : ""}` : `for about ${Math.max(1, Math.round(retry / 60))} minute${retry >= 90 ? "s" : ""}`;
+  if (reason === "repeat") return `That's the same question again. Neo will pause ${wait}; the earlier answer is above.`;
+  if (reason === "misuse") return `Neo is stepping back from this conversation ${wait}. You can still reach neon1 directly below.`;
+  if (retry >= 3000) return `Too many messages, too fast. Neo will be back ${wait}. You can still reach neon1 directly below.`;
+  return `You're sending messages faster than Neo can answer well. Please wait ${wait}, then try again.`;
+}
+
 class Timeout extends Error {
   name = "Timeout";
 }
@@ -147,23 +157,33 @@ async function route(event, deps) {
     logError("config_error", { name: "InvalidCaps" });
     return failure(503, "unavailable", "Neo is unavailable just now. Please try again later, or email hello@neon1.tech.", 300);
   }
+  const ip = viewerIp(event);
+  const question = messages.at(-1).content;
   let blocked;
   try {
-    blocked = await before(deadline, (signal) => allow(viewerIp(event), { ...settings, client: deps.dynamo, signal }));
+    blocked = await before(deadline, (signal) => allow(ip, { ...settings, question, client: deps.dynamo, signal }));
   } catch (err) {
     logError("limit_error", err);
     return failure(503, "unavailable", "Neo is busy just now. Please try again in a minute.", 60);
   }
-  if (blocked === "burst") return failure(429, "burst", "You're sending messages quickly. Please wait a minute or two, then try again.", 60);
-  if (blocked === "visitor") return failure(429, "visitor", "You've asked a lot this hour. Please try again a little later, or reach neon1 directly below.", 900);
-  if (blocked === "daily") return failure(429, "daily", "The assistant is resting for today. Please email hello@neon1.tech.", 3600);
-
+  if (blocked) {
+    // Strikes are logged by level and reason only, so alarms and reviews can see abuse without an address
+    if (blocked.reason && !blocked.waiting) console.log(JSON.stringify({ event: "strike", reason: blocked.reason, level: blocked.level }));
+    if (blocked.blocked === "daily") return failure(429, "daily", "Neo is resting for today. Please email hello@neon1.tech.", blocked.retry);
+    return failure(429, "cooldown", cooldownText(blocked), blocked.retry);
+  }
   // One model call; only sizes and timing go to the logs
   const started = Date.now();
   try {
-    const out = await before(deadline, (signal) => reply(messages, { corpus, client: deps.bedrock, signal }));
-    console.log(JSON.stringify({ event: "chat", turns: messages.length, ms: Date.now() - started, stop: out.stopReason, usage: out.usage }));
+    const out = await before(deadline, (signal) => reply(messages, { corpus, directives, client: deps.bedrock, signal }));
+    console.log(JSON.stringify({ event: "chat", turns: messages.length, ms: Date.now() - started, stop: out.stopReason, flagged: out.flagged, usage: out.usage }));
     if (!out.text) throw Object.assign(new Error("empty reply"), { name: "EmptyReply" });
+    // A flagged message still gets its calm answer; enough of them start a cooldown from the next one.
+    // Counting it is best effort: a store hiccup here never costs the visitor the reply already paid for
+    if (out.flagged) {
+      const cooled = await misuse(ip, { table: settings.table, client: deps.dynamo }).catch((err) => logError("limit_error", err));
+      if (cooled) console.log(JSON.stringify({ event: "strike", reason: "misuse", level: cooled.level }));
+    }
     return json(200, { reply: out.text });
   } catch (err) {
     logError("chat_error", err);

@@ -35,11 +35,24 @@ export function readCorpus(dir = CORPUS_DIR) {
   return { manifest, files, digest: corpusDigest(files) };
 }
 
-// The text that goes in the prompt: each listed file, trimmed, in authority order
+// Directive documents say how Neo behaves (its character and rules), not facts about neon1, so
+// they go in the prompt's rules and never among the sources it answers from
+export const isDirective = (name) => name.startsWith("directive-");
+
+// The text that goes in the prompt as SOURCES: each listed fact file, trimmed, in authority order
 export function loadCorpus(dir = CORPUS_DIR) {
   return readCorpus(dir)
-    .files.map((f, i) => ({ ...f, i }))
+    .files.filter((f) => !isDirective(f.name))
+    .map((f, i) => ({ ...f, i }))
     .sort((a, b) => rank(a.name) - rank(b.name) || a.i - b.i)
+    .map((f) => f.text.trim())
+    .join("\n\n---\n\n");
+}
+
+// Neo's character and directives from neon1-corpus, in manifest order; empty if there are none
+export function loadDirectives(dir = CORPUS_DIR) {
+  return readCorpus(dir)
+    .files.filter((f) => isDirective(f.name))
     .map((f) => f.text.trim())
     .join("\n\n---\n\n");
 }

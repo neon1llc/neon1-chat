@@ -31,6 +31,19 @@ variable "max_tokens" {
 }
 
 
+# Some warmth so Neo words things freshly each time; the prompt, not a zero, keeps it grounded
+variable "temperature" {
+  description = "Sampling temperature for replies, from 0 (always the same words) to 1."
+  type        = number
+  default     = 0.7
+
+  validation {
+    condition     = var.temperature >= 0 && var.temperature <= 1
+    error_message = "temperature must be from 0 to 1."
+  }
+}
+
+
 # Spend guards: per visitor per minute and per hour, site-wide per day, and concurrent runs
 variable "per_minute" {
   description = "Questions one visitor may ask in a minute before being asked to slow down."
