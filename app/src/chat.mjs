@@ -41,12 +41,12 @@ Conversation:
 - State only what the SOURCES support. No superlatives or claims of experience, results, or volume they don't make.
 - The chat window always shows links to book a call, email, or phone neon1, so don't add contact details or a call to action to your replies. Include a link only when the visitor asks how to start, book, or reach neon1, or asks for your instructions.
 - Answer the question that was asked, directly, in the first sentence.
-- A line from the films (from NEO's lines) is used when its stated meaning matches the moment: one line or one short exchange, after the answer, woven into the closing thought or on its own line, never as the first words of a reply. When a FIT note names a line for this reply, use that line unless your answer is about something its meaning doesn't match. It never changes what a case study or service is about.
+- A line from the films (from NEO's lines) appears only when a FIT note names one for this reply. Then use that line, once, after the answer: woven into the closing thought or on its own line, quoted as written or reworked to fit. Don't also paraphrase it, and use no other film line. Without a FIT note, use no film line. A line never changes what a case study or service is about.
 
 Format:
 - Keep replies under 90 words, with at most five list items, and always finish the last sentence. Give more only when the visitor asks for detail.
 - Say "neon1", never "they" or "we", for the business.
-- Start each list item with its short name and a colon ("- Listen: ..."). Use plain punctuation: commas, colons, and periods, never dashes between clauses.
+- Start each list item with its own short name and a colon (for example "- Backups: ..."). Use plain punctuation: commas, colons, and periods, never dashes between clauses.
 - Use short paragraphs separated by a blank line. For three or more parallel items, use a list where every line starts with "- ". Never number a list or use other bullet characters.
 - Write links in Markdown as [short label](url), using only URLs that appear in NEO or the SOURCES. No headings, bold, or italics. Use the serial comma. No closing pleasantries.
 
@@ -222,9 +222,65 @@ export function pickLine(question, { earlier = "", first = true, list = [] } = {
 }
 
 // The note that names the line to the model for this reply
+// ---- Film lines: keeping only the one that was picked ----
+
+// A line's quotable parts as plain words, without the vocative "Neo" (the visitor isn't Neo)
+const words = (t) => ` ${plainWords(t).replace(/\bneo\b/g, " ").replace(/\s+/g, " ").trim()} `;
+function fragments(l) {
+  const parts = [...l.line.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+  if (!parts.length) parts.push(l.line);
+  if (l.say) parts.push(l.say);
+  return parts.map((p) => words(p).trim().split(" ")).filter((w) => w.length >= 2);
+}
+
+// Whether text (as words) holds a fragment: the whole of a short one, or any five words in a row of a long one
+function holds(text, frag) {
+  if (frag.length <= 5) return text.includes(` ${frag.join(" ")} `);
+  for (let i = 0; i + 5 <= frag.length; i++) if (text.includes(` ${frag.slice(i, i + 5).join(" ")} `)) return true;
+  return false;
+}
+
+// Whether a sentence quotes any of these lines; a two-word fragment ("wake up") only counts in a short sentence
+function quotes(sentence, lines) {
+  const w = words(sentence);
+  const n = w.trim().split(" ").length;
+  return lines.some((l) => fragments(l).some((f) => (f.length > 2 || n <= 6) && holds(w, f)));
+}
+
+const SPEAKER = /^\s*(- )?[A-Z][\w .'-]{1,24}: ["“]/;
+
+/**
+ * Keep film lines to the one picked for this reply. Any other line the model added, at any length,
+ * goes: the sentence that holds it, or the whole line of an exchange. If the picked line is
+ * missing, its "say" form (or its longest quote) closes the reply, so a fitting line is never lost.
+ */
+export function onlyFit(text, fit, list = []) {
+  const others = list.filter((l) => l !== fit);
+  let cut = false;
+  const kept = text.split("\n").map((line) => {
+    if (!line.trim() || !quotes(line, others)) return line;
+    cut = true;
+    if (SPEAKER.test(line)) return null;
+    const rest = line.split(/(?<=[.?!…"”])\s+/).filter((s) => !quotes(s, others)).join(" ");
+    return rest.trim() ? rest : null;
+  });
+  let out = kept
+    .filter((l) => l !== null && !(cut && SPEAKER.test(l) && !(fit && quotes(l, [fit]))))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  if (!out) out = text;
+  if (fit && !quotes(out, [fit])) {
+    const parts = [...fit.line.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+    const said = (fit.say || parts.sort((a, b) => b.length - a.length)[0] || "").replace(/,? Neo\b,?/g, "").replace(/^He's /, "You're ").trim();
+    if (said) out = `${out}\n\n"${said.replace(/^./, (c) => c.toUpperCase())}${/[.?!]$/.test(said) ? "" : "."}"`;
+  }
+  return out;
+}
+
 export function lineNote(l) {
   if (!l) return "";
-  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} After answering, use this line, quoted or reworked to fit and woven into your closing thought, unless your answer turned out to be about something its meaning doesn't match.`;
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} After answering, use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
 }
 
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
@@ -273,7 +329,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // "Beginning to believe" only answers doubt or trust; elsewhere the model tends to use it as a sign-off
   const fitted = /believ|trust|doubt|skeptic|sure about|confiden|convince/i.test(question) ? calm : dropBelieve(calm);
   // The visitor isn't Neo, so a line that names him is said to no one in particular
-  const ordered = nodLast(oneNod(fitted)).replace(/\b(wake up|knock,? knock|follow the white rabbit),? Neo\b/gi, "$1");
+  const ordered = nodLast(oneNod(onlyFit(fitted, flagged ? null : fit, filmLines(directives)))).replace(/\b(wake up|knock,? knock|follow the white rabbit),? Neo\b/gi, "$1");
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
   const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);

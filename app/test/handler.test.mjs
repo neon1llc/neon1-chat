@@ -213,3 +213,15 @@ test("the film line whose cues match the question is picked, once per conversati
   assert.equal(pickLine("We retype it", { list, earlier: "Never send a human to do a machine's job." }), null);
   assert.match(lineNote(list[0]), /^FIT: .*let machines do it/);
 });
+
+test("only the picked film line stays, at any length, and a missing one closes the reply", async () => {
+  const { filmLines, onlyFit } = await import("../src/chat.mjs");
+  const list = filmLines(`- **"You take the blue pill, the story ends. You take the red pill, you stay in Wonderland."** — Morpheus. Means: a choice. Cues: worth it.
+- **"Wake up, Neo."** — the screen. Means: a nudge. Cues: weird.
+- **"Never send a human to do a machine's job."** — Smith. Means: automate. Say: "Let the machine do it". Cues: retype.`);
+  assert.equal(onlyFit("It stays private. You take the red pill, you stay in Wonderland.", null, list), "It stays private.");
+  assert.equal(onlyFit("neon1 does cloud work.\n\nWake up.", null, list), "neon1 does cloud work.");
+  assert.equal(onlyFit("Wake up to find it fixed every morning.", null, list), "Wake up to find it fixed every morning.");
+  assert.equal(onlyFit("neon1 can automate it.", list[2], list), 'neon1 can automate it.\n\n"Let the machine do it."');
+  assert.equal(onlyFit("Never send a human to do a machine's job. neon1 can automate it.", list[2], list), "Never send a human to do a machine's job. neon1 can automate it.");
+});
