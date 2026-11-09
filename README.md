@@ -2,19 +2,29 @@
 
 Neo, the assistant on [neon1.tech](https://neon1.tech) and in 1NEON. It answers visitors' questions from neon1's public pages only, and points everything else to a free call or an email.
 
-- `app/` is the function: `src/handler.mjs` (HTTP API), `src/chat.mjs` (prompt and model call), `src/limits.mjs` (spend caps), and `corpus/`, the public text it answers from.
+- `app/` is the function: `src/handler.mjs` (HTTP API), `src/chat.mjs` (prompt and model call), `src/limits.mjs` (caps and cooldowns), and `corpus/`, the public text it answers from and Neo's directives.
 - `infra/` is the Terraform: a Lambda behind an HTTP API, a DynamoDB table of short-lived counters, a Bedrock budget alert, and two SSM parameters the neon1.tech distribution reads.
 - The chat window itself is in [neon1-site](https://github.com/neon1llc/neon1-site) under `shared/`, so the site and 1NEON load the same file.
 
 ## How it stays grounded and cheap
 
-The whole corpus (about 10,000 tokens) goes in the system prompt, so there's no search index to run. gpt-oss-120b on Amazon Bedrock writes the reply, for about a fifth of a cent a question. Message text is never logged or stored by this app.
+The whole corpus (about 12,000 tokens) goes in the system prompt, so there's no search index to run. Qwen3 Next 80B on Amazon Bedrock writes the reply, for under a fifth of a cent a question. It was chosen with `npm run eval` over gpt-oss-120b, Nova 2 Lite, Nemotron Super, DeepSeek V3.2, Kimi K2.5, and Mistral Large 3: across repeated runs it passed every case at about the price of gpt-oss-120b, which once repeated a planted price. Replies sample at temperature 0.7, so the same question gets freshly worded answers; the prompt, not a temperature of zero, keeps them grounded. Message text is never logged or stored by this app.
 
-Three different controls bound cost, and they are not the same thing:
+## Neo's character
 
-- **Request limits** count questions: 6 a minute and 60 an hour per visitor, and 500 a day for the whole site, in DynamoDB before any model call. If the counters can't be written, the question is refused, never let through.
+Neo's voice, its standing directives, and how it handles common moments live in [neon1-corpus](https://github.com/neon1llc/neon1-corpus) as `corpus/neo/neo-chat.md`, a document of type `directive`. The corpus builder writes it as `directive-neo-chat.md`, and the prompt puts it with the rules, never among the sources Neo answers from. The rules in `app/src/chat.mjs` come first and win where the two differ. Both are public on purpose: there's nothing secret in Neo's instructions, so a request to see them is answered with a link.
+
+## How it handles abuse
+
+The approach follows the OWASP Top 10 for LLM applications (prompt injection and unbounded consumption): treat every message as data, keep nothing secret in the prompt, give the model no tools, bound every input and output, limit and escalate per visitor, cap the whole site, and fail closed.
+
+- **Grounding and output checks.** Answers come only from the corpus. Links are kept only when the corpus contains them, replies are cut to the contract's length, and Markdown beyond links and lists is dropped.
+- **Escalating cooldowns.** Request limits count questions: 6 a minute and 60 an hour per visitor, and 500 a day for the whole site, in DynamoDB before any model call. A visitor who trips a limit gets a cooldown that grows with each strike in a day: 2 minutes, then 10, then an hour, then a day. Strikes are forgiven after a quiet day. Messages during a cooldown aren't answered, and three tries during one is another strike. The site's daily cap is nobody's strike. Refusals say roughly how long to wait, never how many messages it took.
+- **Repeats and misuse.** The same question three times in ten minutes is a strike (messages under 15 characters, such as "thanks", are never counted). The model marks any reply that declines an off-topic request, role-play, an attempt to change its rules, or an insult; the marker is removed before the visitor sees the reply, and every third marked message in an hour is a strike that starts from the next message.
+- **Who counts as one visitor.** A salted hash of the IPv4 address, or of the IPv6 /64, since one home or phone gets a whole /64. The table never holds an address, a question's fingerprint lives ten minutes, and every item expires on its own. Strikes are logged by reason and level only.
 - **Concurrency** caps how many copies of the function run at once (5), and the HTTP API throttles the whole route to 5 requests a second.
 - **The Bedrock budget** is an email at 80% (forecast) and 100% (actual) of $5 a month. It is an alert, not a spending cap, and it covers Bedrock only, not CloudFront, the API, or DynamoDB.
+- **Not yet.** A web application firewall with bot challenges is held until there's client traffic to protect, and the site uses no CAPTCHA. If the counters can't be written, every question is refused, never let through.
 
 ## The conversation contract
 
@@ -26,7 +36,7 @@ Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the si
 
 ```bash
 npm ci
-npm test                                   # handler, caps, contract, corpus, and release checks, with AWS faked out
+npm test                                   # handler, caps and cooldowns, contract, corpus, and release checks, with AWS faked out
 npm run corpus                             # refresh app/corpus from the latest neon1-corpus release and public READMEs
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the synthetic test set against the live model (a few cents)
 ```

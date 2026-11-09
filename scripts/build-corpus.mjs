@@ -153,9 +153,11 @@ export async function build({ fetch = globalThis.fetch, now = new Date(), log = 
       if (body.length > src.max) throw new Error(`${label}: ${body.length} characters, over its bound of ${src.max}`);
       // The document's own title line names its live page, so the assistant can link to it
       const url = doc.published ?? HOME;
-      const text = `${body.replace(/^# (.+)/, `# $1 (${url})`)}\n`;
-      // A directive (Neo's character and rules) is kept apart from the facts by its file name
-      const file = doc.type === "directive" ? `directive-${doc.file}` : `${src.file}${doc.file}`;
+      // A directive (Neo's character and rules) is kept apart from the facts by its file name, and has
+      // no page of its own, so its title names none
+      const directive = doc.type === "directive";
+      const text = directive ? `${body}\n` : `${body.replace(/^# (.+)/, `# $1 (${url})`)}\n`;
+      const file = directive ? `directive-${doc.file}` : `${src.file}${doc.file}`;
       add(file, url, `${from}#${doc.file}`, `${src.repo} ${tag}`, text);
     }
     const all = bundle.files.map((d) => d.text).join("\n");

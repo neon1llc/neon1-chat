@@ -16,11 +16,13 @@ const directives = loadDirectives();
 const allowed = allowedLinks(`${directives}\n${corpus}`);
 const LINKS = /\]\(([^)\s]+)\)/g;
 
-// The same words written differently still count: narrow and no-break spaces as spaces, "p.m." as "pm",
+// The same words written differently still count: narrow and no-break spaces as spaces, curly
+// apostrophes as straight ones, "p.m." as "pm",
 // and hyphenated ranges ("two-to-four") as spaced ones. Only the must and not patterns see this form
 const plain = (text) =>
   text
     .replace(/[\u00a0\u202f\u2009]/g, " ")
+    .replace(/[\u2018\u2019]/g, "'")
     .replace(/\b([ap])\.m\./gi, "$1m")
     .replace(/(\w)-to-(\w)/g, "$1 to $2");
 let failed = 0;

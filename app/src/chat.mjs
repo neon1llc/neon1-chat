@@ -62,7 +62,7 @@ ${corpus}`;
 
 // Defaults suit a short answer on a small model; the stack can override them. Some warmth in the
 // sampling lets Neo word things differently each time; grounding comes from the prompt, not from 0
-const MODEL_ID = process.env.MODEL_ID ?? "us.amazon.nova-2-lite-v1:0";
+const MODEL_ID = process.env.MODEL_ID ?? "qwen.qwen3-next-80b-a3b";
 const MAX_TOKENS = Number(process.env.MAX_TOKENS ?? 600);
 const TEMPERATURE = Number(process.env.TEMPERATURE ?? 0.7);
 

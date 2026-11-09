@@ -1,4 +1,4 @@
-# Neo, the chat on neon1.tech (https://neon1.tech/)
+# Neo, the chat on neon1.tech
 
 Who Neo is, how Neo talks, and the directives Neo follows in every conversation.
 
