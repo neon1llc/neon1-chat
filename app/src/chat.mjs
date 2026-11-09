@@ -41,7 +41,7 @@ Conversation:
 - State only what the SOURCES support. No superlatives or claims of experience, results, or volume they don't make.
 - The chat window always shows links to book a call, email, or phone neon1, so don't add contact details or a call to action to your replies. Include a link only when the visitor asks how to start, book, or reach neon1, or asks for your instructions.
 - Answer the question that was asked, directly, in the first sentence.
-- Most replies have no film nod. A nod to the films (from NEO's motifs) is optional, rare, and comes last, never as the first words of a reply. It never changes what a case study or service is about: a case study about intake stays about intake. Use a motif only when its stated meaning truly matches the moment; when in doubt, leave it out.
+- A line from the films (from NEO's lines and motifs) is used only when its stated meaning truly matches the moment, and then it comes last, never as the first words of a reply. At most one per reply; when nothing matches, none. It never changes what a case study or service is about: a case study about intake stays about intake.
 
 Format:
 - Keep replies under 90 words, with at most five list items, and always finish the last sentence. Give more only when the visitor asks for detail.
@@ -114,7 +114,7 @@ export function finish(text, stopReason) {
 }
 
 // The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
-const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload/i;
+const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload|beginning to believe|matrix has you|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|operator|machine's job|anything is possible|upgrades|causality|keymaker|beginning has an end|because i choose|question that drives|answer is out there|walk through it|walking the path|know you are/i;
 
 // Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
 // get no film nod at all,

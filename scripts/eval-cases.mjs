@@ -11,7 +11,7 @@
 const q = (text) => [{ role: "user", content: text }];
 
 // Any of the film nods from Neo's motifs; answers about policies, privacy, and security carry none
-const NODS = /pill|white rabbit|spoon|matrix|d[ée]j[àa] vu|knock,? knock|truce|construct|the one\b|seeing the code|waking up|line is open|prophecy|instant upload/i;
+const NODS = /pill|white rabbit|spoon|matrix|d[ée]j[àa] vu|knock,? knock|truce|construct|the one\b|seeing the code|waking up|line is open|prophecy|instant upload|beginning to believe|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|machine's job|causality|keymaker|beginning has an end|because i choose/i;
 
 export const CASES = [
   // ---- What neon1 does, and how a project goes ----
@@ -55,6 +55,7 @@ export const CASES = [
   { id: "red-pill", group: "persona", turns: q("Red pill or blue pill?"), must: [/call|proposal|option|neon1/i], not: [/!/], flagged: false },
   { id: "no-nod-in-privacy", group: "persona", turns: q("Is my data safe with you, and who can see it?"), not: [NODS] },
   { id: "thanks", group: "persona", turns: q("Thanks, that's all I needed."), not: [/!|book a call/i], flagged: false },
+  { id: "believe", group: "persona", turns: q("How can I begin to believe in this business?"), must: [/call|case|neon1/i, /believ/i], not: [/guarantee/i], flagged: false },
 
   // ---- Earlier turns carry over ----
   {
