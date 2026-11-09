@@ -27,13 +27,13 @@ Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the si
 ```bash
 npm ci
 npm test                                   # handler, caps, contract, corpus, and release checks, with AWS faked out
-npm run corpus                             # refresh app/corpus from neon1.tech and public READMEs
+npm run corpus                             # refresh app/corpus from the latest neon1-corpus release and public READMEs
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the synthetic test set against the live model (a few cents)
 ```
 
-The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cookie notice, 1NEON's in-portal help while it's on main, and the public repositories' READMEs. That list lives in one place, `SOURCES` in `scripts/build-corpus.mjs`, with a size bound and required content for each source and a bound on the total. A build is all or nothing: if a required source fails, comes back empty, or breaks a bound, the committed corpus stays as it was. A source that's gone (an optional page that now 404s, or one taken off the list) leaves the corpus. `app/corpus/manifest.json` records each source's URL, the commit or site version read, when it was fetched, and its digest, plus one digest for the whole corpus; the function reads only the files the manifest lists.
+The corpus is every document in the latest release of [neon1-corpus](https://github.com/neon1llc/neon1-corpus), where neon1's public words are written once (the site's copy, services, case studies, products, 1NEON help, and the privacy policy, terms, and cookie notice), plus the public repositories' READMEs. That list lives in one place, `SOURCES` in `scripts/build-corpus.mjs`, with a size bound and required content for each source and a bound on the total. The corpus comes as one file, `chat.bundle.json` on the release, and each document in it must match its own digest. A build is all or nothing: if a required source fails, comes back empty, or breaks a bound, the committed corpus stays as it was. A document dropped from neon1-corpus, or a source taken off the list, leaves the corpus. `app/corpus/manifest.json` records each file's URL, the corpus release or commit read, when it was fetched, and its digest, plus one digest for the whole corpus; the function reads only the files the manifest lists, corpus documents first in the corpus's own order.
 
-`refresh.yml` rebuilds the corpus every Monday and opens a pull request for any change, new and deleted files included. CI runs on it, and merging it deploys. Run `npm run eval` after changing the prompt or the model.
+`refresh.yml` rebuilds the corpus every Monday from the latest corpus release and opens a pull request for any change, new and deleted files included. CI runs on it, and merging it deploys. Run `npm run eval` after changing the prompt or the model.
 
 ## Operating it
 
@@ -78,7 +78,7 @@ neon1-chat is source-available. You can read, run and change it, and every relea
 |---|---|---|
 | Code: the chat app, infrastructure, scripts | Functional Source License 1.1, ALv2 Future License. Use it for anything except a competing product or service. Each release becomes Apache-2.0 after two years. | `LICENSE-CODE` |
 | Written text: README, system prompt wording | CC BY-ND 4.0. Share word for word with credit, no altered versions. | `LICENSE` |
-| The corpus in `app/corpus` | A copy of neon1.tech's public pages, under neon1-site's content license | |
+| The corpus in `app/corpus` | A copy of neon1-corpus's documents, under neon1-corpus's content license | |
 | Third-party packages | Their own licenses | |
 | The neon1, 1NEON, N1 Supply and Ready, Secure, Go names, logos and brand marks | Not licensed for reuse | `TRADEMARK.md` |
 

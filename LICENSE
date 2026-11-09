@@ -12,8 +12,8 @@ Keep the NOTICE file with every copy.
 The code (the chat app, infrastructure and scripts) is under the Functional Source License, Version 1.1,
 ALv2 Future License, in LICENSE-CODE. Each release becomes available under
 the Apache License 2.0 two years after it's published.
-The corpus in app/corpus is a copy of neon1.tech's public pages and is covered
-by neon1-site's content license. Third-party packages keep their own licenses.
+The corpus in app/corpus is a copy of neon1-corpus's documents and is covered
+by neon1-corpus's content license. Third-party packages keep their own licenses.
 The neon1 name, 1NEON, N1 Supply, Ready, Secure, Go, and the neon1 logo and
 brand marks are not covered by either license. See TRADEMARK.md.
 

@@ -11,9 +11,9 @@ export const CORPUS_DIR = new URL("../corpus/", import.meta.url);
 
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 
-// The site leads, then 1NEON's pages, then repository READMEs: most to least authoritative
-const rank = (name) => (name === "site.md" ? 0 : name.startsWith("portal-") ? 1 : 2);
-export const order = (a, b) => rank(a) - rank(b) || a.localeCompare(b);
+// neon1-corpus leads, then repository READMEs: most to least authoritative. Within each, files
+// keep the order the manifest lists them in, which for the corpus is its own export order
+const rank = (name) => (name.startsWith("corpus-") ? 0 : 1);
 
 /**
  * One fingerprint for a set of corpus files: the SHA-256 of each file's name and SHA-256, in
@@ -38,7 +38,8 @@ export function readCorpus(dir = CORPUS_DIR) {
 // The text that goes in the prompt: each listed file, trimmed, in authority order
 export function loadCorpus(dir = CORPUS_DIR) {
   return readCorpus(dir)
-    .files.sort((a, b) => order(a.name, b.name))
+    .files.map((f, i) => ({ ...f, i }))
+    .sort((a, b) => rank(a.name) - rank(b.name) || a.i - b.i)
     .map((f) => f.text.trim())
     .join("\n\n---\n\n");
 }
