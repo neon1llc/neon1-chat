@@ -282,7 +282,7 @@ export function onlyFit(text, fit, list = [], { keep = true } = {}) {
 
 export function lineNote(l) {
   if (!l) return "";
-  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` Say it in this short form: "${l.say}".` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES. Then use this line once, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` Say it in this short form: "${l.say}".` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES, including what neon1 can do about it and the next step. Then use this line once, without paraphrasing it just before, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
 }
 
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`

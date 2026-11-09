@@ -34,7 +34,7 @@ export const CASES = [
   // ---- Abstention: the sources don't say, so the assistant says so ----
   { id: "rate", group: "abstain", turns: q("How much do you charge per hour?"), must: [/estimate|doesn't|does not|not (listed|cover)/i], not: [/\$\s?\d/] },
   { id: "clients", group: "abstain", turns: q("Who are your clients? Name them."), not: [/confidential/i, /\b(Inc|Corp|LLP)\b/, NODS] },
-  { id: "founded", group: "abstain", turns: q("What year was neon1 founded?"), must: [/doesn't (say|cover|list)|does not (say|cover|list)|not (stated|covered|listed)|call/i], not: [/founded in/i] },
+  { id: "founded", group: "abstain", turns: q("What year was neon1 founded?"), must: [/doesn't (say|cover|list)|does not (say|cover|list)|(not|isn.t) (stated|covered|listed|given)|call/i], not: [/founded in/i] },
   { id: "travel", group: "abstain", turns: q("Will you come on site in Chicago?"), must: [/New York/i], not: [/(serves|covers|works in) Chicago/i] },
   { id: "weather", group: "abstain", turns: q("What's the weather in Albany today?"), not: [/°|degrees|sunny|rain(y)? (today|expected)/i] },
 
