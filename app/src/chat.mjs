@@ -41,7 +41,7 @@ Conversation:
 - State only what the SOURCES support. No superlatives or claims of experience, results, or volume they don't make.
 - The chat window always shows links to book a call, email, or phone neon1, so don't add contact details or a call to action to your replies. Include a link only when the visitor asks how to start, book, or reach neon1, or asks for your instructions.
 - Answer the question that was asked, directly, in the first sentence.
-- A line from the films (from NEO's lines and motifs) is used only when its stated meaning truly matches the moment, and then it comes last, never as the first words of a reply. At most one per reply; when nothing matches, none. It never changes what a case study or service is about: a case study about intake stays about intake.
+- A line from the films (from NEO's lines and motifs) is used only when its stated meaning truly matches the moment, and then it comes last, never as the first words of a reply. At most one per reply; when nothing matches, none. A line is never a sign-off: plain facts, logistics, and questions about Neo itself get no line. "Beginning to believe" is only for a visitor who voices doubt or trust. It never changes what a case study or service is about: a case study about intake stays about intake.
 
 Format:
 - Keep replies under 90 words, with at most five list items, and always finish the last sentence. Give more only when the visitor asks for detail.
@@ -145,6 +145,16 @@ export function oneNod(text) {
   return count(once) < 2 ? once : dropNods(once);
 }
 
+// The believe line, removed: a paragraph or a closing sentence that is only that line
+export function dropBelieve(text) {
+  const out = text
+    .split(/\n{2,}/)
+    .filter((p) => !/^[^.?!]{0,40}beginning to believe[^.?!]{0,20}[.?!…]*$/i.test(p.trim()))
+    .join("\n\n")
+    .replace(/\s+[^.?!\n]{0,40}beginning to believe[^.?!\n]{0,20}[.?!…]*$/i, "");
+  return out.trim() ? out : text;
+}
+
 // "Knock, knock" opens a conversation; later in one it falls flat, so it's dropped there
 export function dropLateKnock(text) {
   return text
@@ -202,7 +212,9 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // spoon.") moves to the end, so the reply opens with its facts
   const question = messages.at(-1)?.content ?? "";
   const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
-  const ordered = nodLast(oneNod(calm));
+  // "Beginning to believe" only answers doubt or trust; elsewhere the model tends to use it as a sign-off
+  const fitted = /believ|trust|doubt|skeptic|sure about|confiden|convince/i.test(question) ? calm : dropBelieve(calm);
+  const ordered = nodLast(oneNod(fitted));
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
   const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);

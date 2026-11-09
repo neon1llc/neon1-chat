@@ -176,7 +176,9 @@ test("italics lose their marks, and plain asterisks and underscores stay", async
 });
 
 test("a short opening nod moves after the answer; real answers and lists stay put", async () => {
-  const { nodLast, oneNod } = await import("../src/chat.mjs");
+  const { nodLast, oneNod, dropBelieve } = await import("../src/chat.mjs");
+  assert.equal(dropBelieve("neon1 builds cloud setups. You're beginning to believe."), "neon1 builds cloud setups.");
+  assert.equal(dropBelieve("neon1 builds cloud setups.\n\nYou're beginning to believe."), "neon1 builds cloud setups.");
   assert.equal(oneNod("Book a call. You're beginning to believe it fits.\n\nYou have to see it for yourself."), "Book a call. You're beginning to believe it fits.");
   assert.equal(oneNod("Book a call.\n\nThere is no spoon."), "Book a call.\n\nThere is no spoon.");
   assert.equal(nodLast("There is no spoon.\n\nneon1 automates intake."), "neon1 automates intake.\n\nThere is no spoon.");
