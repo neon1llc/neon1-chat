@@ -1,6 +1,6 @@
-# 1NEON help: frequently asked questions (https://neon1.tech/1NEON/)
+# 1NEON help (https://neon1.tech/1NEON/)
 
-# FAQs
+Short answers about using the 1NEON client portal.
 
 Short answers about using 1NEON. Signed in? Tap **?** at the top right of any page for help with that page.
 

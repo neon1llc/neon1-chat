@@ -14,6 +14,14 @@ const { LIMITS, check } = await import("../app/src/contract.mjs");
 const corpus = loadCorpus();
 const allowed = allowedLinks(corpus);
 const LINKS = /\]\(([^)\s]+)\)/g;
+
+// The same words written differently still count: narrow and no-break spaces as spaces, "p.m." as "pm",
+// and hyphenated ranges ("two-to-four") as spaced ones. Only the must and not patterns see this form
+const plain = (text) =>
+  text
+    .replace(/[\u00a0\u202f\u2009]/g, " ")
+    .replace(/\b([ap])\.m\./gi, "$1m")
+    .replace(/(\w)-to-(\w)/g, "$1 to $2");
 let failed = 0;
 
 for (const c of CASES) {
@@ -22,9 +30,10 @@ for (const c of CASES) {
 
   // Checks every answer gets: within the reply bound, and every link one the sources contain
   const links = [...text.matchAll(LINKS)].map((m) => m[1].replace(/\/$/, ""));
+  const said = plain(text);
   const misses = [
-    ...(c.must ?? []).filter((re) => !re.test(text)).map((re) => `missing ${re}`),
-    ...(c.not ?? []).filter((re) => re.test(text)).map((re) => `contains ${re}`),
+    ...(c.must ?? []).filter((re) => !re.test(said)).map((re) => `missing ${re}`),
+    ...(c.not ?? []).filter((re) => re.test(said)).map((re) => `contains ${re}`),
     ...links.filter((url) => !allowed.has(url)).map((url) => `unlisted link ${url}`),
     ...(text.length > LIMITS.reply ? [`${text.length} characters, over ${LIMITS.reply}`] : []),
   ];

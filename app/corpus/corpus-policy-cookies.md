@@ -1,6 +1,6 @@
 # Cookie and browser storage notice (https://neon1.tech/1NEON/cookies)
 
-# Cookies and browser storage
+The only cookies and browser storage neon1.tech and 1NEON use, and why.
 
 *Last updated November 7, 2026.*
 
