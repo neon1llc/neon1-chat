@@ -28,7 +28,7 @@ Browsers call `https://neon1.tech/chat/api/chat`, so it's same-origin for the si
 npm ci
 npm test                                   # handler, caps, contract, corpus, and release checks, with AWS faked out
 npm run corpus                             # refresh app/corpus from neon1.tech and public READMEs
-AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the fixed test set against the live model (about a cent)
+AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the synthetic test set against the live model (a few cents)
 ```
 
 The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cookie notice, 1NEON's in-portal help while it's on main, and the public repositories' READMEs. That list lives in one place, `SOURCES` in `scripts/build-corpus.mjs`, with a size bound and required content for each source and a bound on the total. A build is all or nothing: if a required source fails, comes back empty, or breaks a bound, the committed corpus stays as it was. A source that's gone (an optional page that now 404s, or one taken off the list) leaves the corpus. `app/corpus/manifest.json` records each source's URL, the commit or site version read, when it was fetched, and its digest, plus one digest for the whole corpus; the function reads only the files the manifest lists.
@@ -42,6 +42,8 @@ The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cooki
 **Alarms.** Four CloudWatch alarms email the budget address through an SNS topic: failed answers (5 in 15 minutes), crashes or timeouts (3 in 15 minutes), throttles (5 in 15 minutes), and slow answers (the slowest 5% over 12 seconds for 15 minutes). A quiet period with no questions never alarms. Confirm the subscription email once after the first apply, or alerts won't arrive.
 
 **Pausing.** To switch the assistant off without touching the site, apply with `-var concurrency=0`. The function then runs no copies, every question gets a short error in the window, and the site, 1NEON, and their contact links work as usual. The throttle alarm fires while paused; that's expected. Apply without the variable to restore it. Every other number is checked at plan time: a cap of zero, a fraction, or an implausibly large value fails the plan, and the function refuses non-positive or fractional request limits at run time too.
+
+**Testing answers.** `npm run eval` sends the synthetic questions in `scripts/eval-cases.mjs` to the live model with the production prompt (a few cents a run, synthetic questions only). `npm test` checks offline that every case is a valid conversation and that the facts each case expects are present in the corpus.
 
 ## Deploys
 
