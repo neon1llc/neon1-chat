@@ -12,7 +12,7 @@
     "eval": "node scripts/eval.mjs"
   },
   "dependencies": {
-    "@aws-sdk/client-bedrock-runtime": "3.1156.0",
-    "@aws-sdk/client-dynamodb": "3.1156.0"
+    "@aws-sdk/client-bedrock-runtime": "3.1163.0",
+    "@aws-sdk/client-dynamodb": "3.1163.0"
   }
 }
