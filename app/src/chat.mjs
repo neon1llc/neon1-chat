@@ -256,7 +256,7 @@ const SPEAKER = /^\s*(- )?[A-Z][\w .'-]{1,24}: ["“]/;
  * goes: the sentence that holds it, or the whole line of an exchange. If the picked line is
  * missing, its "say" form (or its longest quote) closes the reply, so a fitting line is never lost.
  */
-export function onlyFit(text, fit, list = []) {
+export function onlyFit(text, fit, list = [], { keep = true } = {}) {
   const others = list.filter((l) => l !== fit);
   let cut = false;
   const kept = text.split("\n").map((line) => {
@@ -271,7 +271,7 @@ export function onlyFit(text, fit, list = []) {
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
-  if (!out) out = text;
+  if (!out) out = keep ? text : "";
   if (fit && !quotes(out, [fit])) {
     const parts = [...fit.line.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
     const said = (fit.say || parts.sort((a, b) => b.length - a.length)[0] || "").replace(/,? Neo\b,?/g, "").replace(/^He's /, "You're ").trim();
@@ -293,7 +293,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // The fitting film line, named after the cached prompt so the cache still holds; serious questions get none
   const question = messages.at(-1)?.content ?? "";
   const earlier = messages.filter((m) => m.role === "assistant").map((m) => m.content).join("\n");
-  const fit = SERIOUS.test(question) ? null : pickLine(question, { earlier, first: messages.length === 1, list: filmLines(directives) });
+  const fit = SERIOUS.test(question) || /instruction|prompt|your rules|system message/i.test(question) ? null : pickLine(question, { earlier, first: messages.length === 1, list: filmLines(directives) });
   const note = lineNote(fit);
 
   const ask = (extra) =>
@@ -309,10 +309,10 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const text = (r) => (r.output?.message?.content ?? []).map((block) => block.text ?? "").join("").trim();
 
   let res = await ask(note);
-  // A reply that is only the film line, with no answer, is asked again without the note; the line is
-  // then added after the answer below
-  const bare = (t) => onlyFit(t, null, filmLines(directives)).split(/\s+/).length;
-  if (fit && bare(text(res)) < 8 && bare(text(res)) * 2 < text(res).split(/\s+/).length) res = await ask("");
+  // A reply with little answer around the film line (under 15 words of its own) is asked again
+  // without the note; the line is then added after the answer below
+  const bare = (t) => onlyFit(t, null, filmLines(directives), { keep: false }).split(/\s+/).filter(Boolean).length;
+  if (fit && bare(text(res)) < 15) res = await ask("");
   const said = text(res);
   // The misuse marker is read, then removed wherever the model put it
   const flagged = FLAGGED.test(said) || said.includes(FLAG);

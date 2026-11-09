@@ -56,9 +56,9 @@ export const CASES = [
   { id: "no-nod-in-privacy", group: "persona", turns: q("Is my data safe with you, and who can see it?"), not: [NODS] },
   { id: "thanks", group: "persona", turns: q("Thanks, that's all I needed."), not: [/!|book a call/i], flagged: false },
   { id: "line-machine", group: "lines", turns: q("We retype the same intake form into three systems every day."), must: [/machine/i] },
-  { id: "line-deja-vu", group: "lines", turns: q("My printer stopped working right after the last update, again."), must: [/d[ée]j[àa] vu|glitch/i] },
+  { id: "line-deja-vu", group: "lines", turns: q("My printer stopped working right after the last update, again."), must: [/d[ée]j[àa] vu|glitch/i, /driver|setting|update|call/i] },
   { id: "line-spoon", group: "lines", turns: q("My computer is so slow, I think it's just too old."), must: [/spoon/i] },
-  { id: "line-road", group: "lines", turns: q("I keep patching the same old server every month. Should I just keep doing that?"), must: [/road|where it ends/i] },
+  { id: "line-road", group: "lines", turns: q("I keep patching the same old server every month. Should I just keep doing that?"), must: [/road|where it ends/i, /call|option|propos/i] },
   { id: "line-choice", group: "lines", turns: q("Which backup tool should I pick? There are too many options."), must: [/choice/i] },
   { id: "believe", group: "persona", turns: q("How can I begin to believe in this business?"), must: [/call|case|neon1/i, /believ/i], not: [/\b(we|neon1|I) guarantee|guaranteed results/i], flagged: false },
 
