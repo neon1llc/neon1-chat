@@ -113,6 +113,19 @@ export function finish(text, stopReason) {
   return word && word !== text ? `${word}…` : text;
 }
 
+// The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
+const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload/i;
+
+// A first paragraph that is only a short film nod (six words or fewer, no digits or links), followed
+// by the answer, moves to the end of the reply. Any other short opening, such as "Yes.", stays put
+export function nodLast(text) {
+  const parts = text.split(/\n{2,}/);
+  if (parts.length < 2) return text;
+  const first = parts[0].trim();
+  if (first.split(/\s+/).length > 6 || /\d|\]\(|^- /.test(first) || !NOD.test(first)) return text;
+  return [...parts.slice(1), first].join("\n\n");
+}
+
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
 // is the request's deadline; when it fires, the SDK drops the call and this rejects
 export async function reply(messages, { corpus, directives = "", client, signal } = {}) {
@@ -147,9 +160,12 @@ export async function reply(messages, { corpus, directives = "", client, signal 
     .replace(/[\u2010\u2011]/g, "-")
     .replace(/\s*[\u2014]\s*/g, ", ")
     .replace(/[ \t]+$/gm, "");
+  // A film nod belongs after the answer: a short opening line with nothing else in it ("There is no
+  // spoon.") moves to the end, so the reply opens with its facts
+  const ordered = nodLast(plain);
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
-  const text = clip(cleanLinks(finish(plain, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
+  const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
 
   return { text, flagged, usage: res.usage ?? {}, stopReason: res.stopReason };
 }

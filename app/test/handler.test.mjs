@@ -174,3 +174,13 @@ test("italics lose their marks, and plain asterisks and underscores stay", async
   const client = { send: async () => ({ output: { message: { content: [{ text: "Named after *The Matrix*. A_b and 2 * 3 stay, _this_ goes." }] } }, stopReason: "end_turn" }) };
   assert.equal((await reply([{ role: "user", content: "x" }], { corpus: "c", client })).text, "Named after The Matrix. A_b and 2 * 3 stay, this goes.");
 });
+
+test("a short opening nod moves after the answer; real answers and lists stay put", async () => {
+  const { nodLast } = await import("../src/chat.mjs");
+  assert.equal(nodLast("There is no spoon.\n\nneon1 automates intake."), "neon1 automates intake.\n\nThere is no spoon.");
+  assert.equal(nodLast("Yes, from 6pm.\n\nWeekends too."), "Yes, from 6pm.\n\nWeekends too.");
+  assert.equal(nodLast("Opening hours are 8am to 8pm.\n\nMore."), "Opening hours are 8am to 8pm.\n\nMore.");
+  assert.equal(nodLast("- Listen: first\n\n- Next"), "- Listen: first\n\n- Next");
+  assert.equal(nodLast("One paragraph only."), "One paragraph only.");
+  assert.equal(nodLast("Yes, it can.\n\nneon1 works on site."), "Yes, it can.\n\nneon1 works on site.");
+});
