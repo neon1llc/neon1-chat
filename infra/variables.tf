@@ -9,7 +9,7 @@
 variable "model" {
   description = "Bedrock model ID or US inference profile ID."
   type        = string
-  default     = "openai.gpt-oss-120b-1:0"
+  default     = "qwen.qwen3-next-80b-a3b"
 
   # provider.model-name[:version], optionally behind "us."; anything else would build a bad ARN
   validation {
@@ -27,6 +27,19 @@ variable "max_tokens" {
   validation {
     condition     = floor(var.max_tokens) == var.max_tokens && var.max_tokens >= 100 && var.max_tokens <= 4096
     error_message = "max_tokens must be a whole number from 100 to 4096."
+  }
+}
+
+
+# Some warmth so Neo words things freshly each time; the prompt, not a zero, keeps it grounded
+variable "temperature" {
+  description = "Sampling temperature for replies, from 0 (always the same words) to 1."
+  type        = number
+  default     = 0.7
+
+  validation {
+    condition     = var.temperature >= 0 && var.temperature <= 1
+    error_message = "temperature must be from 0 to 1."
   }
 }
 

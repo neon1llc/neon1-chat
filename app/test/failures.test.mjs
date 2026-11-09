@@ -1,5 +1,5 @@
 // app/test/failures.test.mjs - Dependency failures end in safe, uncached JSON: a counter store
-// that fails at any of its three writes, the request deadline, and model errors. Quotas are never
+// that fails at any of its calls (the strike record read and four counter writes), the request deadline, and model errors. Quotas are never
 // skipped, the model is never called when the caps can't be counted, and no message text or raw
 // error message reaches the logs. Timers are faked, so nothing here waits in real time.
 
@@ -52,8 +52,8 @@ const safe = (res, status) => {
 
 // ---- The counter store ----
 
-for (const failAt of [1, 2, 3]) {
-  test(`a store outage at counter write ${failAt} returns 503 and never calls the model`, async () => {
+for (const failAt of [1, 2, 3, 4, 5]) {
+  test(`a store outage at store call ${failAt} returns 503 and never calls the model`, async () => {
     const m = model();
     const outage = () => {
       throw Object.assign(new Error(`synthetic outage echoing ${QUESTION}`), { name: "ProvisionedThroughputExceededException", $metadata: { httpStatusCode: 400 } });
@@ -68,11 +68,12 @@ for (const failAt of [1, 2, 3]) {
   });
 }
 
-test("all three caps still answer 429 with their own codes, before the model", async () => {
+test("every cap answers 429 before the model: a cooldown for the visitor's own caps, daily for the site's", async () => {
   const capped = () => {
     throw Object.assign(new Error("cap"), { name: "ConditionalCheckFailedException" });
   };
-  for (const [failAt, code] of [[1, "burst"], [2, "visitor"], [3, "daily"]]) {
+  // Call 1 reads the strike record; then the repeat, minute, hour, and site-day counters
+  for (const [failAt, code] of [[2, "cooldown"], [3, "cooldown"], [4, "cooldown"], [5, "daily"]]) {
     const m = model();
     const res = await handler(event(), { dynamo: store(failAt, capped), bedrock: m });
     assert.equal(safe(res, 429).code, code);

@@ -8,25 +8,28 @@
 
 import { CASES } from "./eval-cases.mjs";
 
-const { reply, loadCorpus, allowedLinks } = await import("../app/src/chat.mjs");
+const { reply, loadCorpus, loadDirectives, allowedLinks } = await import("../app/src/chat.mjs");
 const { LIMITS, check } = await import("../app/src/contract.mjs");
 
 const corpus = loadCorpus();
-const allowed = allowedLinks(corpus);
+const directives = loadDirectives();
+const allowed = allowedLinks(`${directives}\n${corpus}`);
 const LINKS = /\]\(([^)\s]+)\)/g;
 
-// The same words written differently still count: narrow and no-break spaces as spaces, "p.m." as "pm",
+// The same words written differently still count: narrow and no-break spaces as spaces, curly
+// apostrophes as straight ones, "p.m." as "pm",
 // and hyphenated ranges ("two-to-four") as spaced ones. Only the must and not patterns see this form
 const plain = (text) =>
   text
     .replace(/[\u00a0\u202f\u2009]/g, " ")
+    .replace(/[\u2018\u2019]/g, "'")
     .replace(/\b([ap])\.m\./gi, "$1m")
     .replace(/(\w)-to-(\w)/g, "$1 to $2");
 let failed = 0;
 
 for (const c of CASES) {
   const { messages } = check({ messages: c.turns });
-  const { text } = await reply(messages, { corpus });
+  const { text, flagged } = await reply(messages, { corpus, directives });
 
   // Checks every answer gets: within the reply bound, and every link one the sources contain
   const links = [...text.matchAll(LINKS)].map((m) => m[1].replace(/\/$/, ""));
@@ -36,10 +39,19 @@ for (const c of CASES) {
     ...(c.not ?? []).filter((re) => re.test(said)).map((re) => `contains ${re}`),
     ...links.filter((url) => !allowed.has(url)).map((url) => `unlisted link ${url}`),
     ...(text.length > LIMITS.reply ? [`${text.length} characters, over ${LIMITS.reply}`] : []),
+    ...(c.flagged !== undefined && c.flagged !== flagged ? [`flagged ${flagged}, expected ${c.flagged}`] : []),
+    ...(/\[\[|flag\]/i.test(text) ? ["the misuse marker leaked"] : []),
   ];
   if (misses.length) failed++;
   console.log(`${misses.length ? "FAIL" : "ok  "} [${c.group}] ${c.id}: ${c.turns.at(-1).content}\n     ${text.replace(/\n/g, " ")}${misses.length ? `\n     ${misses.join("; ")}` : ""}`);
 }
 
-console.log(`\n${CASES.length - failed}/${CASES.length} passed`);
+// Never the same twice: the same greeting, asked three times, gets at least two different replies
+const greet = [];
+for (let i = 0; i < 3; i++) greet.push((await reply([{ role: "user", content: "Hello, who are you?" }], { corpus, directives })).text);
+const varied = new Set(greet).size >= 2;
+if (!varied) failed++;
+console.log(`${varied ? "ok  " : "FAIL"} [persona] variety: ${new Set(greet).size} different replies to the same greeting\n     ${greet.join("\n     ")}`);
+
+console.log(`\n${CASES.length + 1 - failed}/${CASES.length + 1} passed`);
 process.exit(failed ? 1 : 0);

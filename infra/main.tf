@@ -118,7 +118,8 @@ data "aws_iam_policy_document" "chat" {
 
   statement {
     sid       = "Counters"
-    actions   = ["dynamodb:UpdateItem"]
+    # Read a visitor's strike record, and count
+    actions   = ["dynamodb:GetItem", "dynamodb:UpdateItem"]
     resources = [aws_dynamodb_table.counters.arn]
   }
 }
@@ -146,6 +147,7 @@ resource "aws_lambda_function" "chat" {
     variables = {
       MODEL_ID      = var.model
       MAX_TOKENS    = tostring(var.max_tokens)
+      TEMPERATURE   = tostring(var.temperature)
       TABLE_NAME    = aws_dynamodb_table.counters.name
       PER_MINUTE    = tostring(var.per_minute)
       PER_HOUR      = tostring(var.per_hour)
