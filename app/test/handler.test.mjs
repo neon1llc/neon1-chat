@@ -32,7 +32,7 @@ test("health answers without touching AWS", async () => {
   assert.equal(res.statusCode, 200);
 });
 
-test("a valid question gets a reply and two counter writes", async () => {
+test("a valid question gets a reply and three counter writes", async () => {
   const dynamo = fake(() => ({}));
   const model = bedrock();
   const res = await handler(event({ messages: [{ role: "user", content: "What do you do?" }] }), { dynamo, bedrock: model });
@@ -108,8 +108,18 @@ test("links are real and labeled; invented ones lose the link", async () => {
   assert.equal(cleanLinks("Email [hello@neon1.tech](mailto:hello@neon1.tech).", allowed), "Email [hello@neon1.tech](mailto:hello@neon1.tech).");
 });
 
-test("a reply cut off by the token cap ends at a full sentence", async () => {
+test("a reply cut off by the token cap ends at a full sentence, or visibly at a whole word", async () => {
   const { finish } = await import("../src/chat.mjs");
   assert.equal(finish("One. Two is cut", "max_tokens"), "One.");
   assert.equal(finish("One. Two is cut", "end_turn"), "One. Two is cut");
+  // No sentence end at all: the half word goes and "…" shows the reply was cut
+  assert.equal(finish("A response with no complete sente", "max_tokens"), "A response with no complete…");
+});
+
+test("a reply longer than the contract allows is shortened so it fits back into the history", async () => {
+  const long = fake(() => ({ output: { message: { content: [{ text: "neon1 can help with that. ".repeat(60) }] } }, stopReason: "end_turn" }));
+  const res = await handler(event({ messages: [{ role: "user", content: "Tell me everything." }] }), { dynamo: fake(() => ({})), bedrock: long });
+  const { reply } = JSON.parse(res.body);
+  assert.ok(reply.length <= 1200);
+  assert.ok(validate({ messages: [{ role: "user", content: "q" }, { role: "assistant", content: reply }, { role: "user", content: "next" }] }));
 });

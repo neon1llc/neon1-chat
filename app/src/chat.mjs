@@ -2,6 +2,7 @@
 
 import { readdirSync, readFileSync } from "node:fs";
 import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
+import { LIMITS, clip } from "./contract.mjs";
 
 // The public pages the assistant may answer from, read once per container
 const CORPUS_DIR = new URL("../corpus/", import.meta.url);
@@ -66,6 +67,9 @@ const CACHE = /amazon\.|anthropic\./.test(MODEL_ID);
 
 let defaultClient;
 
+// One retry at most, and a socket timeout inside the handler's 15-second request deadline
+const CLIENT = { maxAttempts: 2, requestHandler: { connectionTimeout: 2000, requestTimeout: 12000 } };
+
 // Every link the sources contain, normalized without a trailing slash
 const URLS = /(?:https?:\/\/|mailto:)[^\s<>"'()\]]+[^\s<>"'().,;:!?\]]/g;
 const bare = (url) => url.replace(/\/$/, "");
@@ -94,17 +98,20 @@ export function cleanLinks(text, allowed) {
     .replace(/\u0000(\d+)\u0000/g, (_, i) => links[Number(i)]);
 }
 
-// A reply cut off by the token cap ends at its last complete sentence instead
+// A reply cut off by the token cap ends at its last complete sentence instead; with no complete
+// sentence at all, it ends at its last whole word with "…", so the cut is visible
 export function finish(text, stopReason) {
   if (stopReason !== "max_tokens") return text;
   const end = Math.max(text.lastIndexOf(". "), text.lastIndexOf(".\n"), text.lastIndexOf("? "), text.lastIndexOf("! "));
-  return end > 0 ? text.slice(0, end + 1) : text;
+  if (end > 0) return text.slice(0, end + 1);
+  const word = text.replace(/\s+\S*$/, "");
+  return word && word !== text ? `${word}…` : text;
 }
 
-
-// One Converse call: cached system prompt, the visitor's recent turns, a capped reply
-export async function reply(messages, { corpus, client } = {}) {
-  client ??= defaultClient ??= new BedrockRuntimeClient({});
+// One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
+// is the request's deadline; when it fires, the SDK drops the call and this rejects
+export async function reply(messages, { corpus, client, signal } = {}) {
+  client ??= defaultClient ??= new BedrockRuntimeClient(CLIENT);
 
   const res = await client.send(
     new ConverseCommand({
@@ -113,6 +120,7 @@ export async function reply(messages, { corpus, client } = {}) {
       messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
       inferenceConfig: { maxTokens: MAX_TOKENS, temperature: 0 },
     }),
+    { abortSignal: signal },
   );
 
   const raw = (res.output?.message?.content ?? [])
@@ -129,7 +137,9 @@ export async function reply(messages, { corpus, client } = {}) {
     .replace(/[\u2010\u2011]/g, "-")
     .replace(/\s*[\u2014]\s*/g, ", ")
     .replace(/[ \t]+$/gm, "");
-  const text = cleanLinks(finish(plain, res.stopReason), allowedLinks(corpus));
+  // Tokens don't bound characters, so the contract's reply length is applied last: a reply
+  // always fits back into the window's history without being cut again
+  const text = clip(cleanLinks(finish(plain, res.stopReason), allowedLinks(corpus)), LIMITS.reply);
 
   return { text, usage: res.usage ?? {}, stopReason: res.stopReason };
 }
