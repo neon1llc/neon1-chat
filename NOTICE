@@ -1,0 +1,13 @@
+neon1-chat
+Copyright (c) 2026 neon1 LLC (neon1.tech). All rights not granted below are reserved.
+
+Neo, the chat assistant on neon1.tech, built by neon1 LLC (DBA neon1).
+
+Required credit on every copy: "© neon1 LLC (neon1.tech)"
+
+Content (the README, the system prompt wording and other written text) is under CC BY-ND 4.0, see LICENSE.
+Code (the chat app, infrastructure and scripts) is under FSL-1.1-ALv2, see LICENSE-CODE. Each release
+becomes Apache-2.0 two years after it's published.
+Names, logos and brand marks are reserved, see TRADEMARK.md.
+
+Keep this file with every copy.

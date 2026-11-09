@@ -72,4 +72,14 @@ CloudFront adds `x-origin-verify` to every request, read from `/neon1-chat/prod/
 
 ## License
 
-The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 name, logo, and other brand marks are not licensed, and the corpus is a copy of neon1.tech's public pages, which stay under the site's terms. Third-party packages keep their own licenses.
+neon1-chat is source-available. You can read, run and change it, and every release becomes fully open two years after it's published.
+
+| What | License | File |
+|---|---|---|
+| Code: the chat app, infrastructure, scripts | Functional Source License 1.1, ALv2 Future License. Use it for anything except a competing product or service. Each release becomes Apache-2.0 after two years. | `LICENSE-CODE` |
+| Written text: README, system prompt wording | CC BY-ND 4.0. Share word for word with credit, no altered versions. | `LICENSE` |
+| The corpus in `app/corpus` | A copy of neon1.tech's public pages, under neon1-site's content license | |
+| Third-party packages | Their own licenses | |
+| The neon1, 1NEON, N1 Supply and Ready, Secure, Go names, logos and brand marks | Not licensed for reuse | `TRADEMARK.md` |
+
+Required credit on every copy: "© neon1 LLC (neon1.tech)". Keep the `NOTICE` file with every copy.

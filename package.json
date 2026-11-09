@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "The neon1.tech assistant: answers visitors from neon1's public pages.",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE-CODE",
   "engines": { "node": ">=22" },
   "scripts": {
     "test": "node --test app/test/*.test.mjs",
