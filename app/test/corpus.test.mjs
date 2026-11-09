@@ -89,11 +89,11 @@ test("generated README bodies never exceed their bound, through the whole build"
 });
 
 test("one document over its own bound, or all over the total, fails the build", async () => {
-  const huge = [["company-about.md", `# About\n\nneon1 1NEON Needs, Execute, Observe ${"x".repeat(20500)}`]];
-  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(huge)) }).fetch, log: quiet }), /company-about\.md: \d+ characters, over its bound of 20000/);
+  const huge = [["company-about.md", `# About\n\nneon1 1NEON Needs, Execute, Observe ${"x".repeat(30500)}`]];
+  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(huge)) }).fetch, log: quiet }), /company-about\.md: \d+ characters, over its bound of 30000/);
   // Each document within its own 20,000, but together past the 80,000 total
-  const many = [1, 2, 3, 4].map((n) => [`page-${n}.md`, `# Page ${n}\n\nneon1 1NEON Needs, Execute, Observe ${"p".repeat(19500)}`]);
-  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(many)) }).fetch, log: quiet }), /over the total bound of 80000/);
+  const many = [1, 2, 3, 4].map((n) => [`page-${n}.md`, `# Page ${n}\n\nneon1 1NEON Needs, Execute, Observe ${"p".repeat(26000)}`]);
+  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(many)) }).fetch, log: quiet }), /over the total bound of 100000/);
 });
 
 // ---- Failed, empty, and retired sources ----

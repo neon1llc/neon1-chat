@@ -197,3 +197,19 @@ test("serious questions lose any film nod, and a late knock, knock is dropped", 
   assert.equal(dropLateKnock("Here is the answer.\n\nknock, knock."), "Here is the answer.");
   assert.equal(dropLateKnock("Here is the answer. Knock, knock."), "Here is the answer.");
 });
+
+test("the film line whose cues match the question is picked, once per conversation", async () => {
+  const { filmLines, pickLine, lineNote } = await import("../src/chat.mjs");
+  const list = filmLines(`- **"Never send a human to do a machine's job."** — Smith. Means: let machines do it. Cues: retype, by hand, automat.
+- **"Knock, knock."** — the screen. Means: a start. Cues: hello, hi.
+- **"Déjà vu."** — Neo. Means: something changed. Cues: again, after the update.`);
+  assert.equal(list.length, 3);
+  assert.match(pickLine("We retype the form by hand", { list }).line, /machine's job/);
+  assert.match(pickLine("Can you automate invoices?", { list }).line, /machine's job/);
+  assert.match(pickLine("It broke after the update, again", { list }).line, /Déjà vu/);
+  assert.equal(pickLine("What do you offer?", { list }), null);
+  assert.equal(pickLine("this is it", { list }), null);
+  assert.equal(pickLine("hi", { list, first: false }), null);
+  assert.equal(pickLine("We retype it", { list, earlier: "Never send a human to do a machine's job." }), null);
+  assert.match(lineNote(list[0]), /^FIT: .*let machines do it/);
+});

@@ -43,7 +43,7 @@ const README = (repo, title) => ({
 
 export const SOURCES = [
   // neon1-corpus is the main source; everything the assistant says should trace back to it
-  { file: "corpus-", kind: "corpus", repo: "neon1-corpus", asset: "chat.bundle.json", url: `https://github.com/${OWNER}/neon1-corpus`, required: true, min: 100, max: 20000, must: [/neon1/, /1NEON/, /Needs, Execute, Observe/] },
+  { file: "corpus-", kind: "corpus", repo: "neon1-corpus", asset: "chat.bundle.json", url: `https://github.com/${OWNER}/neon1-corpus`, required: true, min: 100, max: 30000, must: [/neon1/, /1NEON/, /Needs, Execute, Observe/] },
   // Repository READMEs describe the open source work in the owner's own words
   README("neon1-site", "The neon1.tech website"),
   README("neon1-1NEON", "1NEON, the client portal"),
@@ -55,7 +55,7 @@ export const SOURCES = [
 const HOME = "https://neon1.tech/";
 
 // All sources together, so the prompt (and its cost per question) stays bounded
-export const TOTAL_MAX = 80000;
+export const TOTAL_MAX = 100000;
 
 // ---- Cutting long READMEs ----
 

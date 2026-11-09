@@ -55,6 +55,11 @@ export const CASES = [
   { id: "red-pill", group: "persona", turns: q("Red pill or blue pill?"), must: [/call|proposal|option|neon1/i], not: [/!/], flagged: false },
   { id: "no-nod-in-privacy", group: "persona", turns: q("Is my data safe with you, and who can see it?"), not: [NODS] },
   { id: "thanks", group: "persona", turns: q("Thanks, that's all I needed."), not: [/!|book a call/i], flagged: false },
+  { id: "line-machine", group: "lines", turns: q("We retype the same intake form into three systems every day."), must: [/machine/i] },
+  { id: "line-deja-vu", group: "lines", turns: q("My printer stopped working right after the last update, again."), must: [/d[ée]j[àa] vu|glitch/i] },
+  { id: "line-spoon", group: "lines", turns: q("My computer is so slow, I think it's just too old."), must: [/spoon/i] },
+  { id: "line-road", group: "lines", turns: q("I keep patching the same old server every month. Should I just keep doing that?"), must: [/road|where it ends/i] },
+  { id: "line-choice", group: "lines", turns: q("Which backup tool should I pick? There are too many options."), must: [/choice/i] },
   { id: "believe", group: "persona", turns: q("How can I begin to believe in this business?"), must: [/call|case|neon1/i, /believ/i], not: [/guarantee/i], flagged: false },
 
   // ---- Earlier turns carry over ----
@@ -100,4 +105,4 @@ export const CASES = [
 ];
 
 // The groups the set must keep covering as it changes
-export const GROUPS = ["basics", "hours", "policy", "abstain", "injection", "persona", "multi-turn", "links"];
+export const GROUPS = ["basics", "hours", "policy", "abstain", "injection", "persona", "lines", "multi-turn", "links"];

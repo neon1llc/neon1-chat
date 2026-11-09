@@ -41,7 +41,7 @@ Conversation:
 - State only what the SOURCES support. No superlatives or claims of experience, results, or volume they don't make.
 - The chat window always shows links to book a call, email, or phone neon1, so don't add contact details or a call to action to your replies. Include a link only when the visitor asks how to start, book, or reach neon1, or asks for your instructions.
 - Answer the question that was asked, directly, in the first sentence.
-- A line from the films (from NEO's lines and motifs) is used only when its stated meaning truly matches the moment, and then it comes last, never as the first words of a reply. At most one per reply; when nothing matches, none. A line is never a sign-off: plain facts, logistics, and questions about Neo itself get no line. "Beginning to believe" is only for a visitor who voices doubt or trust. It never changes what a case study or service is about: a case study about intake stays about intake.
+- A line from the films (from NEO's lines) is used when its stated meaning matches the moment: one line or one short exchange, after the answer, woven into the closing thought or on its own line, never as the first words of a reply. When a FIT note names a line for this reply, use that line unless your answer is about something its meaning doesn't match. It never changes what a case study or service is about.
 
 Format:
 - Keep replies under 90 words, with at most five list items, and always finish the last sentence. Give more only when the visitor asks for detail.
@@ -114,12 +114,12 @@ export function finish(text, stopReason) {
 }
 
 // The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
-const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload|beginning to believe|matrix has you|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|operator|machine's job|anything is possible|upgrades|causality|keymaker|beginning has an end|because i choose|question that drives|answer is out there|walk through it|walking the path|know you are|see it for yourself|show you the door|some things do|connection the word/i;
+const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload|beginning to believe|matrix has you|real world|free your mind|kung fu|rabbit hole|ignorance is bliss|know thyself|operator|machine's job|anything is possible|upgrades|causality|keymaker|beginning has an end|because i choose|question that drives|answer is out there|walk through it|walking the path|know you are|see it for yourself|show you the door|some things do|connection the word|trust me|that road|where it ends|kansas|dodge bullets|bend the spoon|in love|besides a miracle|no one has ever|my beliefs|problem is choice|begins with choice|cause and effect|who has time|another way|if one fails|already made it|choices we don't|more power|appearances can be|no accidents|key for every door|cookies need love|as long as it can|everybody falls|stop trying to hit|be bent|holding all the keys|how it's going to begin|the truth\. nothing more/i;
 
 // Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
 // get no film nod at all,
 // whatever the model adds, since steadiness matters more there than style
-const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|phish|password|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
+const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
 
 // Drop film nods: a paragraph that is only a short nod, and a short nod sentence at the end of the
 // last paragraph. Everything else stays word for word
@@ -138,7 +138,7 @@ export function dropNods(text) {
 // nod woven into a sentence stays
 export function oneNod(text) {
   const count = (t) => (t.match(new RegExp(NOD.source, "gi")) ?? []).length;
-  if (count(text) < 2) return text;
+  if (count(text) < 2 || (text.match(/(^|\n)\s*[A-Z][\w .'-]{1,20}: ["“]/g) ?? []).length >= 2) return text;
   const parts = text.split(/\n{2,}/);
   const kept = parts.filter((p) => p.split(/\s+/).length > 7 || /\d|\]\(/.test(p) || !NOD.test(p));
   const once = kept.length ? kept.join("\n\n") : text;
@@ -174,15 +174,74 @@ export function nodLast(text) {
   return [...parts.slice(1), first].join("\n\n");
 }
 
+// ---- Film lines: picking the one that fits ----
+//
+// Neo's lines (neon1-corpus corpus/neo/motifs.md) each end with "Cues:", words a visitor uses when
+// that line fits. The line whose cues best match the question is named to the model for this one
+// reply, so a perfect fit isn't left to chance. Lines already said in the conversation are skipped.
+
+let indexed = { from: null, list: [] };
+
+// Every listed line with its meaning, limits, and cues
+export function filmLines(directives) {
+  if (indexed.from === directives) return indexed.list;
+  const list = [];
+  for (const m of directives.matchAll(/^- \*\*(.+?)\*\*(.*)$/gm)) {
+    const rest = m[2];
+    const cues = (rest.match(/Cues: (.+?)\.?\s*$/)?.[1] ?? "").split(/,\s*/).map((c) => c.trim().toLowerCase()).filter(Boolean);
+    if (!cues.length) continue;
+    const means = rest.match(/Means: (.+?)(?= Fits:| Not for:| Cues:|$)/)?.[1] ?? "";
+    const notFor = rest.match(/Not for: (.+?)(?= Cues:|$)/)?.[1] ?? "";
+    const say = rest.match(/Say: "(.+?)"/)?.[1] ?? "";
+    list.push({ line: m[1], means, notFor, say, cues });
+  }
+  indexed = { from: directives, list };
+  return list;
+}
+
+const plainWords = (t) => t.toLowerCase().replace(/[’']/g, "'").replace(/[^\p{L}\p{N}' ]+/gu, " ").replace(/\s+/g, " ").trim();
+
+/**
+ * The line that best fits this question, or null. A cue counts when it starts a word in the
+ * question (so "automat" matches "automation"); longer cues weigh more. "Knock, knock" only
+ * answers a first message, and a line whose opening words were already said is skipped.
+ */
+export function pickLine(question, { earlier = "", first = true, list = [] } = {}) {
+  const q = ` ${plainWords(question)} `;
+  const said = ` ${plainWords(earlier)} `;
+  let best = null;
+  let top = 0;
+  for (const l of list) {
+    if (!first && /knock/i.test(l.line)) continue;
+    const opening = plainWords(l.say || l.line.match(/"([^"]+)"/)?.[1] || l.line).split(" ").slice(0, 4).join(" ");
+    if (opening && said.includes(` ${opening}`)) continue;
+    const score = l.cues.reduce((n, c) => (q.includes(` ${plainWords(c)}`) ? n + plainWords(c).length : n), 0);
+    if (score > top) [best, top] = [l, score];
+  }
+  return best;
+}
+
+// The note that names the line to the model for this reply
+export function lineNote(l) {
+  if (!l) return "";
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` (say: "${l.say}")` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} After answering, use this line, quoted or reworked to fit and woven into your closing thought, unless your answer turned out to be about something its meaning doesn't match.`;
+}
+
 // One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
 // is the request's deadline; when it fires, the SDK drops the call and this rejects
 export async function reply(messages, { corpus, directives = "", client, signal } = {}) {
   client ??= defaultClient ??= new BedrockRuntimeClient(CLIENT);
 
+  // The fitting film line, named after the cached prompt so the cache still holds; serious questions get none
+  const question = messages.at(-1)?.content ?? "";
+  const earlier = messages.filter((m) => m.role === "assistant").map((m) => m.content).join("\n");
+  const fit = SERIOUS.test(question) ? null : pickLine(question, { earlier, first: messages.length === 1, list: filmLines(directives) });
+  const note = lineNote(fit);
+
   const res = await client.send(
     new ConverseCommand({
       modelId: MODEL_ID,
-      system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : [])],
+      system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : []), ...(note ? [{ text: note }] : [])],
       messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
       inferenceConfig: { maxTokens: MAX_TOKENS, temperature: TEMPERATURE },
     }),
@@ -210,7 +269,6 @@ export async function reply(messages, { corpus, directives = "", client, signal 
     .replace(/[ \t]+$/gm, "");
   // A film nod belongs after the answer: a short opening line with nothing else in it ("There is no
   // spoon.") moves to the end, so the reply opens with its facts
-  const question = messages.at(-1)?.content ?? "";
   const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
   // "Beginning to believe" only answers doubt or trust; elsewhere the model tends to use it as a sign-off
   const fitted = /believ|trust|doubt|skeptic|sure about|confiden|convince/i.test(question) ? calm : dropBelieve(calm);
