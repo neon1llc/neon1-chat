@@ -1,5 +1,6 @@
 # .github/workflows/refresh.yml - Keep the assistant's corpus in step with neon1's public pages:
-# rebuild it every Monday (or on demand), commit any change to main, and deploy it.
+# rebuild it every Monday (or on demand) and open a pull request for any change, so a refreshed
+# corpus ships through the same checks and review as any other change.
 
 name: refresh
 
@@ -8,7 +9,7 @@ on:
     - cron: "17 11 * * 1"
   workflow_dispatch:
 
-# Read-only by default; the job adds what it needs to commit and start a deploy
+# Read-only by default; the job adds what it needs to push a branch, open a PR, and start CI
 permissions:
   contents: read
 
@@ -17,33 +18,43 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
       actions: write
 
     steps:
-      # The token stays for the push below; nothing else in this job runs third-party code
+      # The token stays for the branch push below; nothing else in this job runs third-party code
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
 
-      # Every source is public: the live site and public GitHub files
+      # Every source is public: the live site and public GitHub files. The build is all or
+      # nothing; a failed source leaves the committed corpus as it was. The token only raises
+      # the GitHub API rate limit for commit lookups
       - run: node scripts/build-corpus.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
-      # Only a real change is committed; pushes made with this token don't start workflows,
-      # so the deploy is started explicitly
-      - name: Commit and deploy a changed corpus
+      # git status, not git diff, so new and deleted files count as changes too. Pushes and PRs
+      # made with this token don't start workflows, so CI is started on the branch explicitly
+      - name: Open a pull request for a changed corpus
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- app/corpus; then
+          if [ -z "$(git status --porcelain -- app/corpus)" ]; then
             echo "corpus unchanged"
             exit 0
           fi
-          git diff --stat -- app/corpus
+          git status --short -- app/corpus
+          branch="corpus-refresh/$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/corpus
+          git switch -c "$branch"
+          git add -A app/corpus
           git commit -m "chore: refresh the corpus from neon1's public pages"
-          git push origin HEAD:main
-          gh workflow run deploy.yml --ref main
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh the corpus from neon1's public pages" \
+            --body "Weekly rebuild from the sources in scripts/build-corpus.mjs. app/corpus/manifest.json lists each source's URL, revision, and digest. Merging deploys it."
+          gh workflow run ci.yml --ref "$branch"

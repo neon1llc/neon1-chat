@@ -1,0 +1,87 @@
+{
+  "digest": "sha256:77e83add75953eadcaca48d8a534abbad5c3cb11d93cbe3fde9a7771a96526c4",
+  "chars": 48770,
+  "sources": [
+    {
+      "file": "site.md",
+      "url": "https://neon1.tech/",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "b6eb8c672e27ebbb1b1cad3c67c9d95fefc08a44db837fff7e6d9218ff9f5968",
+      "chars": 21243
+    },
+    {
+      "file": "repo-neon1-site.md",
+      "url": "https://github.com/neon1llc/neon1-site",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "b4f72038b45fbf3e14e90a92cf2eb9ea1ab5053e4f2d45787c1035dd30f9626a",
+      "chars": 3528
+    },
+    {
+      "file": "repo-neon1-1neon.md",
+      "url": "https://github.com/neon1llc/neon1-1NEON",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "299105cffae10305567386155180bc9e9cf41ff3e72de7c96c36aa320cad8f9a",
+      "chars": 1173
+    },
+    {
+      "file": "repo-neon1-aws-infrastructure.md",
+      "url": "https://github.com/neon1llc/neon1-aws-infrastructure",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "8e1262b1ac9a0e6acca7204c332e1b00a146ae15ad94b1b07e1bb6c4ae728782",
+      "chars": 1727
+    },
+    {
+      "file": "repo-aws-clip.md",
+      "url": "https://github.com/neon1llc/aws-clip",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "0d16d012f9921fefec5e95a519b0473bc38f75bc4a5bef9db3c329c7f3aa01f2",
+      "chars": 4226
+    },
+    {
+      "file": "portal-privacy-policy.md",
+      "url": "https://neon1.tech/1NEON/privacy",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "3e03fe5737c6db4966a082a0d3ad517eeab718344f6bb63ed0c67cfd35e0ed00",
+      "chars": 5567
+    },
+    {
+      "file": "portal-terms-of-use.md",
+      "url": "https://neon1.tech/1NEON/terms",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "73e4ea3490b303140be8113d8f0a16695034860a4010be1a110e5c30374b92b0",
+      "chars": 3371
+    },
+    {
+      "file": "portal-cookie-notice.md",
+      "url": "https://neon1.tech/1NEON/cookies",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "bc58c648af5479a5b4bc47814e21c86ff447f71393017a82ff1512d2d422a5b3",
+      "chars": 2433
+    },
+    {
+      "file": "portal-faqs.md",
+      "url": "https://neon1.tech/1NEON/",
+      "source": null,
+      "revision": null,
+      "fetched": null,
+      "sha256": "95bf93dd5d6aaf574e3354a7109a775aba9b1af5cceb10b189872d30c98844ee",
+      "chars": 5502
+    }
+  ]
+}

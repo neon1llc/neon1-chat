@@ -7,3 +7,6 @@ tfplan
 .env*
 .DS_Store
 .build/
+
+# A corpus refresh stages its swap beside app/corpus; a failed run may leave these
+app/.corpus-*/

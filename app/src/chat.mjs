@@ -1,22 +1,11 @@
 // app/src/chat.mjs - Build the grounded prompt and ask the model for one reply.
 
-import { readdirSync, readFileSync } from "node:fs";
 import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
 import { LIMITS, clip } from "./contract.mjs";
 
-// The public pages the assistant may answer from, read once per container
-const CORPUS_DIR = new URL("../corpus/", import.meta.url);
-
-const rank = (name) => (name === "site.md" ? 0 : name.startsWith("portal-") ? 1 : 2);
-
-export function loadCorpus(dir = CORPUS_DIR) {
-  return readdirSync(dir)
-    .filter((name) => name.endsWith(".md"))
-    // The site leads, then 1NEON's pages, then repository READMEs: most to least authoritative
-    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
-    .map((name) => readFileSync(new URL(name, dir), "utf8").trim())
-    .join("\n\n---\n\n");
-}
+// The public pages the assistant may answer from, read once per container (corpus.mjs reads
+// only the files its manifest lists)
+export { loadCorpus } from "./corpus.mjs";
 
 // Where people go when the sources don't cover a question
 const BOOKING = "https://calendly.com/1isgladtobeofservice/neon1-consultation";

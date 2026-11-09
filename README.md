@@ -21,7 +21,9 @@ npm run corpus                             # refresh app/corpus from neon1.tech 
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval  # the fixed test set against the live model (about a cent)
 ```
 
-The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cookie notice, 1NEON's in-portal help once it's on main, and the public repositories' READMEs. `refresh.yml` rebuilds it every Monday and deploys any change, so the assistant keeps up with the site on its own. Run `npm run eval` after changing the prompt or the model.
+The corpus is the live neon1.tech page, 1NEON's privacy policy, terms, and cookie notice, 1NEON's in-portal help while it's on main, and the public repositories' READMEs. That list lives in one place, `SOURCES` in `scripts/build-corpus.mjs`, with a size bound and required content for each source and a bound on the total. A build is all or nothing: if a required source fails, comes back empty, or breaks a bound, the committed corpus stays as it was. A source that's gone (an optional page that now 404s, or one taken off the list) leaves the corpus. `app/corpus/manifest.json` records each source's URL, the commit or site version read, when it was fetched, and its digest, plus one digest for the whole corpus; the function reads only the files the manifest lists.
+
+`refresh.yml` rebuilds the corpus every Monday and opens a pull request for any change, new and deleted files included. CI runs on it, and merging it deploys. Run `npm run eval` after changing the prompt or the model.
 
 ## Deploys
 

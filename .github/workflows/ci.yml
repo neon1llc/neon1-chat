@@ -2,11 +2,13 @@
 
 name: ci
 
-# Every branch push, plus pull requests into main
+# Every branch push, plus pull requests into main; refresh.yml starts it by hand on its corpus
+# branch, since a push made with the workflow token starts nothing on its own
 on:
   push:
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 # Read-only token; CI never writes to the repo
 permissions:
