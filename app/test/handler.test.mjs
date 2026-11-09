@@ -184,3 +184,12 @@ test("a short opening nod moves after the answer; real answers and lists stay pu
   assert.equal(nodLast("One paragraph only."), "One paragraph only.");
   assert.equal(nodLast("Yes, it can.\n\nneon1 works on site."), "Yes, it can.\n\nneon1 works on site.");
 });
+
+test("serious questions lose any film nod, and a late knock, knock is dropped", async () => {
+  const { dropNods, dropLateKnock } = await import("../src/chat.mjs");
+  assert.equal(dropNods("neon1 never sells your data.\n\nA truce with the machines."), "neon1 never sells your data.");
+  assert.equal(dropNods("Only strictly necessary cookies. Knock, knock."), "Only strictly necessary cookies.");
+  assert.equal(dropNods("The portal keeps files private.\n\nOnly invited people see them."), "The portal keeps files private.\n\nOnly invited people see them.");
+  assert.equal(dropLateKnock("Here is the answer.\n\nknock, knock."), "Here is the answer.");
+  assert.equal(dropLateKnock("Here is the answer. Knock, knock."), "Here is the answer.");
+});

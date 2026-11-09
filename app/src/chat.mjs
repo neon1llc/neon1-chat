@@ -116,6 +116,32 @@ export function finish(text, stopReason) {
 // The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
 const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload/i;
 
+// Questions about policies, privacy, security, money, health, or logging in get no film nod at all,
+// whatever the model adds, since steadiness matters more there than style
+const SERIOUS = /privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|phish|password|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
+
+// Drop film nods: a paragraph that is only a short nod, and a short nod sentence at the end of the
+// last paragraph. Everything else stays word for word
+export function dropNods(text) {
+  // One short sentence that names a motif, with no digits, links, or second sentence
+  const isNod = (t) => t.split(/\s+/).length <= 7 && !/\d|\]\(|[.?!]\s/.test(t) && NOD.test(t);
+  const parts = text.split(/\n{2,}/).filter((p) => !isNod(p.trim()));
+  if (!parts.length) return text;
+  const last = parts.at(-1);
+  const m = last.match(/^(.*[.?!])\s+([^.?!]+[.?!]?)$/s);
+  if (m && isNod(m[2].trim())) parts[parts.length - 1] = m[1];
+  return parts.join("\n\n");
+}
+
+// "Knock, knock" opens a conversation; later in one it falls flat, so it's dropped there
+export function dropLateKnock(text) {
+  return text
+    .split(/\n{2,}/)
+    .filter((p) => !/^knock,? knock[.!…]*$/i.test(p.trim()))
+    .join("\n\n")
+    .replace(/\s+knock,? knock[.!…]*$/i, "");
+}
+
 // A first paragraph that is only a short film nod (six words or fewer, no digits or links), followed
 // by the answer, moves to the end of the reply. Any other short opening, such as "Yes.", stays put
 export function nodLast(text) {
@@ -162,7 +188,9 @@ export async function reply(messages, { corpus, directives = "", client, signal 
     .replace(/[ \t]+$/gm, "");
   // A film nod belongs after the answer: a short opening line with nothing else in it ("There is no
   // spoon.") moves to the end, so the reply opens with its facts
-  const ordered = nodLast(plain);
+  const question = messages.at(-1)?.content ?? "";
+  const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
+  const ordered = nodLast(calm);
   // Tokens don't bound characters, so the contract's reply length is applied last: a reply
   // always fits back into the window's history without being cut again
   const text = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
