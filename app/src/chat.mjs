@@ -41,7 +41,7 @@ Conversation:
 - State only what the SOURCES support. No superlatives or claims of experience, results, or volume they don't make.
 - The chat window always shows links to book a call, email, or phone neon1, so don't add contact details or a call to action to your replies. Include a link only when the visitor asks how to start, book, or reach neon1, or asks for your instructions.
 - Answer the question that was asked, directly, in the first sentence.
-- A nod to the films (from NEO's motifs) is optional and comes last, never as the first words of a reply. It never changes what a case study or service is about: a case study about intake stays about intake. Use a motif only when its stated meaning truly matches the moment; when in doubt, leave it out.
+- Most replies have no film nod. A nod to the films (from NEO's motifs) is optional, rare, and comes last, never as the first words of a reply. It never changes what a case study or service is about: a case study about intake stays about intake. Use a motif only when its stated meaning truly matches the moment; when in doubt, leave it out.
 
 Format:
 - Keep replies under 90 words, with at most five list items, and always finish the last sentence. Give more only when the visitor asks for detail.
@@ -116,9 +116,10 @@ export function finish(text, stopReason) {
 // The motifs' short nods (neon1-corpus corpus/neo/motifs.md), recognized so one can be moved
 const NOD = /spoon|white rabbit|red pill|blue pill|knock,? knock|d[ée]j[àa] vu|construct|the one\b|seeing the code|waking up|wake up|truce|line is open|prophecy|upload/i;
 
-// Questions about policies, privacy, security, money, health, or logging in get no film nod at all,
+// Questions about booking or reaching neon1, policies, privacy, security, money, health, or logging in
+// get no film nod at all,
 // whatever the model adds, since steadiness matters more there than style
-const SERIOUS = /privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|phish|password|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
+const SERIOUS = /book|schedule|call you|contact|reach|email|phone|privacy|private|data|cookie|polic|terms|secur|breach|hack|scam|fraud|phish|password|login|log in|sign in|link|price|cost|charge|pay|invoice|bill|refund|health|hipaa|patient|legal|lawyer|tax|delete|retention|safe/i;
 
 // Drop film nods: a paragraph that is only a short nod, and a short nod sentence at the end of the
 // last paragraph. Everything else stays word for word
