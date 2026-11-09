@@ -1,10 +1,10 @@
-# 1NEON and neon1.tech privacy policy (https://neon1.tech/1NEON/privacy)
+# Privacy policy (https://neon1.tech/1NEON/privacy)
 
-# Privacy policy
+What neon1.tech and the 1NEON portal collect, why, and what you can do about it.
 
 *Last updated November 8, 2026.*
 
-NEON1 LLC ("neon1", "I", "me") runs the website neon1.tech and the 1NEON client portal at neon1.tech/1NEON. This policy explains what information I collect, why, and what you can do about it.
+neon1 LLC ("neon1", "I", "me") runs the website neon1.tech and the 1NEON client portal at neon1.tech/1NEON. This policy explains what information I collect, why, and what you can do about it.
 
 ## The short version
 
@@ -65,7 +65,7 @@ Your organization's administrator controls who can access its workspace. If a re
 
 ## Cookies
 
-The website sets no cookies. The portal uses only strictly necessary cookies. See the [cookie and storage notice](/1NEON/cookies) for those cookies and what each site saves in your browser.
+The website sets no cookies. The portal uses only strictly necessary cookies. See the [cookie and storage notice](https://neon1.tech/1NEON/cookies) for those cookies and what each site saves in your browser.
 
 ## Children
 
@@ -77,4 +77,4 @@ If I change this policy in a way that matters, I'll update the effective date an
 
 ## Contact
 
-NEON1 LLC, New York, NY · [privacy@neon1.tech](mailto:privacy@neon1.tech)
+neon1 LLC, New York, NY · [privacy@neon1.tech](mailto:privacy@neon1.tech)

@@ -26,3 +26,7 @@ Locally there's no sign-in. Pick a demo account from the switcher on the sign-in
 ## Deploy
 
 Pushing to `main` deploys. GitHub Actions applies `infra/envs/prod` and ships the functions and the app with AWS roles assumed through OIDC, so the repo holds no AWS keys.
+
+## License
+
+The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so please don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses.
