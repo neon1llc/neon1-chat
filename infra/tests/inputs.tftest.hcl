@@ -83,7 +83,7 @@ run "malformed_model" {
 
 run "us_profile_model" {
   command = plan
-  variables { model = "us.anthropic.claude-3-5-haiku-20241022-v1:0" }
+  variables { model = "us.amazon.nova-micro-v1:0" }
 }
 
 run "zero_budget" {
