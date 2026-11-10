@@ -10,10 +10,10 @@ Short answers about using 1NEON. Signed in? Tap **?** at the top right of any pa
 The portal where you and I run your projects together. Each project keeps what you need, the work, the results, and the handover in one place. [Watch it](https://neon1.tech/1NEON/live).
 
 ### Can I try it first?
-Yes. [The demo](https://neon1.tech/1NEON/demo/) is a working copy of 1NEON with made-up clients. Pick who to be, and everything you change stays in your browser. [The example](https://neon1.tech/1NEON/example) walks one made-up project from start to finish, and [the live playback](https://neon1.tech/1NEON/live) plays one out on screen, step by step, with controls to pause or jump between sections. Short ones show a single thing start to finish: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
+Yes, three ways, and none needs an account. The [guided walkthrough](https://neon1.tech/1NEON/live) plays a fictional project on the real portal in about a minute, with controls to pause, pick a chapter, or exit; the full story takes about six. The [interactive demo](https://neon1.tech/1NEON/demo/) is a working copy with made-up clients where you pick who to be and try anything; your changes stay in your browser until you choose **Start over**. The [sample project](https://neon1.tech/1NEON/example) is one made-up project to read at your own pace, from request to handover. With a minute to spare, start with the walkthrough. Short walkthroughs show a single thing: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
 
 ### How do I get in?
-You need an invite. Open the link in your invite email, enter your email address, and type the code I send you. No password needed. [Watch it](https://neon1.tech/1NEON/live?play=invite).
+You need an invite. Open the link in your invite email and enter your email address. Sign in with a code sent to your email, or with a passkey. No password needed. [Watch it](https://neon1.tech/1NEON/live?play=invite).
 
 ### I didn't get the sign-in code.
 Check your spam or promotions folder, then wait a minute and choose **Send a new code**. Codes work for a few minutes, in the browser where you asked for them. [Watch it](https://neon1.tech/1NEON/live?play=invite).
@@ -83,7 +83,7 @@ The person named as the project's decision maker. If nobody is named, an admin o
 Not edited. Once approved, neither the decision nor the option it came from can be edited or removed. To change course, a new option is proposed and approved; the earlier decision stays on record, marked as replaced, so the history stays clear.
 
 ### What do Cost, Quality, and Effort mean?
-A quick comparison of each option, in plain words. Lowest cost, best quality, and lightest effort are the better ends. [Watch it](https://neon1.tech/1NEON/live?play=propose).
+They're neon1's assessment of each option, from 1 to 5, where more filled dots is always better. **Cost** is the total cost. **Quality** is how fully it meets the requirements you agreed. **Effort** is your team's effort to adopt and run it. Each option also lists one-time and recurring charges apart, with a first-year total when it has both; the written price on the option is what you'd agree to. Figures in the demo and the walkthrough are illustrative. [Watch it](https://neon1.tech/1NEON/live?play=propose).
 
 ## Files
 
@@ -108,7 +108,7 @@ Admins go to **People** and choose **Invite people**. The person gets an email w
 Once texts are switched on, yes. Add your mobile number on your profile, agree to texts, save, then type the code 1NEON texts you. Texts only say that something new is waiting, with a link; they never name your organization, projects, or files. Reply STOP to any text to turn them off. [Watch it](https://neon1.tech/1NEON/live?play=texts).
 
 ### Why does it ask me to confirm it's me?
-Inviting people, changing access, and changing settings need a second check, so a stolen email account isn't enough to make changes. On your profile, under Two-step verification, add a passkey, an authenticator app, or text-message codes, then confirm with it when asked. Any one works, and a second is a backup if you lose the first. Once confirmed, you won't be asked again for 12 hours in that sign-in. [Watch it](https://neon1.tech/1NEON/live?play=passkey).
+Admin actions (inviting people, changing access or settings, and deleting a project or someone else's comment or file) also need a recent confirmation with a passkey, an authenticator app, or a text-message code. That way a stolen email account isn't enough to make changes. On your profile, under Two-step verification, add any of the three, then confirm with it when asked. A second one is a backup if you lose the first. Once confirmed, you won't be asked again for 12 hours in that sign-in. [Watch it](https://neon1.tech/1NEON/live?play=passkey).
 
 ### Can I use an authenticator app?
 Yes. On your profile, choose **Set up** next to Authenticator app, scan the code with Google Authenticator, Microsoft Authenticator, 1Password, Authy, or similar, and type the 6-digit code it shows. [Watch it](https://neon1.tech/1NEON/live?play=authenticator).
