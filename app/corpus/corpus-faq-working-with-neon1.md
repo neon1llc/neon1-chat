@@ -16,15 +16,15 @@ Small jobs take a week or two, medium ones two to four weeks, and bigger project
 
 ## How is the cost worked out?
 
-After the first call I send a short proposal with options, usually a quick fix, a solid setup, and a fuller build. Each comes with a cost estimate and says what it covers, how much effort and engineering it takes, and what quality to expect. You pick the one that fits, and if the scope or the work changes along the way, I'll tell you before it changes the cost.
+After the first call I send a short proposal with options, usually a quick fix, a solid setup, and a fuller build. Each comes with a cost estimate and says what it covers, how much effort and engineering it takes, and what quality to expect. You pick one. If the scope or the work changes along the way, I'll tell you before it changes the cost. [See how options look in 1NEON](https://neon1.tech/1NEON/live?play=propose).
 
 ## How do you treat our data and accounts?
 
-Before any work starts we sign a short agreement on the scope and on how I'll handle your systems and information: only the access the job needs, kept confidential, and handed back or removed when we're done. It works both ways, so you'll know what I need from you and why. If the work touches personal or health data, the right agreement, such as a Business Associate Agreement, comes first.
+Before any work starts we sign a short agreement on the scope and on how I'll handle your systems and information: only the access the job needs, kept confidential, and handed back or removed when we're done. It works both ways, so you'll know what I need from you and why. If the work touches personal or health data, the right agreement, such as a Business Associate Agreement, comes first. [See a handover in 1NEON](https://neon1.tech/1NEON/live?play=handover).
 
 ## Do you run security training?
 
-Yes, for anyone from parents and teachers to engineers and executives. I cover home and business networks, cameras and IoT, accounts and passwords, and the security of physical spaces. I also cover privacy policies and terms, how personal data is handled, security frameworks and administration, and incident prevention, monitoring, and response. And the threats people run into most: phishing, fraud, data brokers, and the dark web.
+Yes, for groups from parents and teachers to engineers and executives. Sessions cover the threats people meet most, such as phishing, fraud, and data brokers, plus accounts and passwords, home and business networks, cameras and smart devices, and physical security. For organizations I also cover privacy policies, data handling, security frameworks, and incident response.
 
 ## What don't you do?
 

@@ -5,8 +5,8 @@ Four kinds of help, from automating a small business to SOC 2 readiness.
 | | For | What it covers |
 |---|---|---|
 | **Business workflows and technology** | Small to medium businesses | Email, spreadsheets, POS, booking, and accounting connected, with the repetitive steps automated, so nobody retypes orders at the end of the day. |
-| **Cloud and AI engineering** | Technical teams | Infrastructure as code, deploy pipelines you can trust, AI assistants grounded in your own documents, and backups proven by test restores. |
-| **Networks, devices, and spaces** | Offices, homes, and physical spaces | Wi-Fi in every room, cameras that record when they should, devices set up properly, and smart gear on its own network. |
+| **Cloud and AI engineering** | Technical teams | Infrastructure as code, deploy pipelines with checks and rollback, AI assistants that answer from your own documents, and backups proven by test restores. |
+| **Networks, devices, and spaces** | Offices, homes, and physical spaces | Wi-Fi that reaches the rooms you use, cameras that record and alert as set, devices configured and documented, and smart gear on its own network. |
 | **Security awareness and readiness** | Organizations, teams, families, and individuals | Plain-language sessions on phishing, fraud, passwords, and data brokers, plus SOC 2 readiness for companies heading into an audit. |
 
 ## Not sure which one fits?
@@ -22,4 +22,4 @@ Four kinds of help, from automating a small business to SOC 2 readiness.
 | Our people need to spot phishing, fraud, and scams | Security awareness and readiness | [Security for non-security people](../case-studies/security-for-non-security-people.md) |
 | A customer or audit is asking about our security (SOC 2) | Security awareness and readiness | [Security for non-security people](../case-studies/security-for-non-security-people.md) |
 
-A free 15-minute call finds the main pain points and your options. Every option comes with an estimate before any work starts, and if a quick fix will do, I'll just tell you. Accounts and bills stay in your name. [Book a call](../company/contact.md).
+The first call is free and takes 15 minutes. It covers the main problem and your options. Each option comes with an estimate before work starts, and if a small fix is enough, I'll say so. Accounts and bills stay in your name. [Book a call](../company/contact.md).

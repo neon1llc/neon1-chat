@@ -15,7 +15,7 @@ People knew they were exposed online, but not where to start.
 
 ## Needs
 
-Teachers, parents, engineers, and executives all had the same worry: they knew their accounts, homes, and businesses were exposed, but security advice was either too technical or too vague to act on.
+Teachers, parents, engineers, and executives had the same problem: they knew their accounts, homes, and businesses were exposed, but the security advice they'd seen was too technical or too vague to act on.
 
 ## Execute
 
@@ -26,7 +26,7 @@ I've run sessions at every level, from small groups of parents to cross-team sem
 - Software and account hygiene, including password managers and two-factor sign-in.
 - The security of physical spaces, not just screens.
 
-Each session is built around what that audience actually uses, with time to work through real settings together.
+Each session is built around the devices and accounts that audience uses, with time to change real settings together.
 
 ## Observe
 

@@ -28,4 +28,4 @@ The test was simple: could everyone use it without calling me? Recordings and al
 
 ## Normalize
 
-Ongoing advice, tech support, and on-demand troubleshooting when something acts up, with the same patience for every small job, whether it's Wi-Fi that doesn't reach a room, a new laptop, or helping a grandparent open their email.
+Ongoing advice and troubleshooting when something breaks. Small jobs count too: Wi-Fi that doesn't reach a room, a new laptop, or a grandparent who can't open their email.
