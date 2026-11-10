@@ -1,5 +1,4 @@
-# .github/workflows/deploy.yml - Apply the stack from main, which also ships the function code,
-# then check the live endpoint. Off until the repository variable AWS_TERRAFORM_ROLE_ARN is set.
+# .github/workflows/deploy.yml - Release main: every gate for one commit passes first, then a single locked job applies the stack and checks the live endpoint. Off until AWS_TERRAFORM_ROLE_ARN is set.
 
 name: deploy
 
@@ -11,12 +10,14 @@ on:
     paths: ["app/**", "infra/**", "package.json", "package-lock.json", "scripts/package.mjs", "scripts/verify-release.mjs", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
-# Read-only by default; the job adds the OIDC token it needs
+# Read-only by default; the release job adds the OIDC token it needs
 permissions:
   contents: read
 
 jobs:
-  # Full history, so a secret in any commit stops the deploy. The image is pinned by digest
+  # ---- Gates: nothing here touches AWS, so any of them can fail with production unchanged ----
+
+  # Full history, so a secret in any commit stops the release. The image is pinned by digest
   secrets:
     runs-on: ubuntu-latest
     steps:
@@ -27,32 +28,31 @@ jobs:
 
       - run: docker run --rm -v "$PWD:/src" -w /src ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f git --redact --no-banner .
 
-  # Nothing ships unless the secret scan passed on this same commit
-  deploy:
-    needs: secrets
-    if: vars.AWS_TERRAFORM_ROLE_ARN != ''
+  # Tests, Terraform checks, and the production build for this commit. The build is uploaded, and
+  # the release job ships that artifact, not a rebuild
+  gate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-
-    # Let a running deploy finish; the next one starts after it
-    concurrency:
-      group: deploy-prod
-      cancel-in-progress: false
-
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # The same tests as CI; nothing ships that fails them
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm test
+
+      # The same Terraform checks as CI, with no AWS access
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: 1.16.0
+          terraform_wrapper: false
+      - run: terraform fmt -check -recursive -diff infra
+      - run: terraform -chdir=infra init -backend=false -input=false
+      - run: terraform -chdir=infra validate -no-color
+      - run: terraform -chdir=infra test -no-color
 
       # A CycloneDX inventory of what ships (production dependencies only), kept with the run
       - run: npm sbom --sbom-format cyclonedx --omit dev > sbom.cdx.json
@@ -65,26 +65,104 @@ jobs:
       # The release folder Terraform zips: source, listed corpus, pinned SDK, and release.json
       - run: node scripts/package.mjs
 
-      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+      # The folder is hidden (infra/.build), so it has to be included explicitly. Its release.json
+      # names the commit and lockfile digest the release job checks before applying
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-${{ github.sha }}
+          path: infra/.build/app
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+  # ---- Release: one job, so one lock covers the apply and everything that ships with it ----
+
+  # Runs only after every gate passed on this same commit. The release group is shared by every
+  # run, and a running release is never cancelled, so two releases cannot interleave. (GitHub keeps
+  # one waiting run per group; a newer push replaces it, which is fine because the newest main
+  # commit contains the older one.)
+  release:
+    needs: [secrets, gate]
+    # Explicit switch: with no Terraform role configured the gates still run and nothing is applied
+    if: vars.AWS_TERRAFORM_ROLE_ARN != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    concurrency:
+      group: release-prod
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # A release that waited in the queue must not roll production back behind a newer commit:
+      # if main has moved on, this one stops, and the newer run ships everything it contains
+      - name: Stop if main has moved on
+        if: github.event_name == 'push'
+        run: |
+          head=$(git ls-remote "https://github.com/${GITHUB_REPOSITORY}.git" refs/heads/main | cut -f1)
+          [ -n "$head" ] || { echo "::error::could not read the head of main"; exit 1; }
+          if [ "$head" != "$GITHUB_SHA" ]; then
+            echo "::notice::main is now ${head::7}; this release (${GITHUB_SHA::7}) is superseded"
+            echo "superseded=yes" >> "$GITHUB_ENV"
+          fi
+
+      - if: env.superseded != 'yes'
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-${{ github.sha }}
+          path: infra/.build/app
+
+      # Record and check the identity of what is about to ship: the artifact was built from this
+      # commit and this lockfile, not another run's
+      - name: Check the artifact
+        if: env.superseded != 'yes'
+        run: |
+          lock="sha256:$(sha256sum package-lock.json | cut -d' ' -f1)"
+          node -e '
+            const r = JSON.parse(require("fs").readFileSync("infra/.build/app/release.json", "utf8"));
+            const [sha, lock] = process.argv.slice(1);
+            if (r.commit !== sha || r.lock !== lock) {
+              console.error("::error::artifact is for " + r.commit + " / " + r.lock + ", expected " + sha + " / " + lock);
+              process.exit(1);
+            }
+          ' "$GITHUB_SHA" "$lock"
+          echo "release ${GITHUB_SHA::7}, lockfile $lock" >> "$GITHUB_STEP_SUMMARY"
+
+      - if: env.superseded != 'yes'
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: 1.16.0
           terraform_wrapper: false
 
+      - if: env.superseded != 'yes'
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
       # Short-lived credentials through GitHub OIDC; the role trusts only this repo's main branch
-      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+      - if: env.superseded != 'yes'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: ${{ vars.AWS_TERRAFORM_ROLE_ARN }}
           aws-region: us-east-1
 
-      # Apply exactly the plan that was printed
+      # Apply exactly the plan that was printed, against the downloaded build
       - name: Plan
+        if: env.superseded != 'yes'
         run: |
           terraform -chdir=infra init -input=false
           terraform -chdir=infra plan -input=false -no-color -out=tfplan
       - name: Apply
+        if: env.superseded != 'yes'
         run: terraform -chdir=infra apply -input=false -no-color tfplan
 
       # The live assistant answers its health check through neon1.tech with this commit, corpus,
       # and lockfile; anything else (an old version still serving, say) fails the job
       - name: Verify
+        if: env.superseded != 'yes'
         run: node scripts/verify-release.mjs https://neon1.tech/chat/api/health
