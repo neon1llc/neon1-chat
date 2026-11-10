@@ -54,8 +54,9 @@ export const SOURCES = [
 // A corpus document links to its live page when it has one, and to the site otherwise
 const HOME = "https://neon1.tech/";
 
-// All sources together, so the prompt (and its cost per question) stays bounded
-export const TOTAL_MAX = 100000;
+// All sources together, so the prompt (and its cost per question) stays bounded. Raised from 100,000
+// for corpus v0.23.0 (operational FAQ answers and fuller policies, about 110,000); cached, so cost moves little
+export const TOTAL_MAX = 120000;
 
 // ---- Cutting long READMEs ----
 
