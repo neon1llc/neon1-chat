@@ -9,7 +9,7 @@ Staff spent minutes hunting through Microsoft 365, or interrupted a senior colle
 | | In short |
 |---|---|
 | **Needs** | Staff spent minutes hunting through Microsoft 365, or interrupted a senior colleague. |
-| **Execute** | An assistant on AWS Bedrock that answers only from approved documents each person may see. |
+| **Execute** | An assistant on AWS Bedrock, designed to answer from approved documents each person may see. |
 | **Observe** | Timed real lookups before and after, and scored 80 test questions for accuracy. |
 | **Normalize** | Next, an MCP server over the same search, so agents get answers with the same permissions. |
 
@@ -25,7 +25,7 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), who 
 
 - Only documents in approved Microsoft 365 libraries are synced into versioned, encrypted S3, keeping their source, version, and access details.
 - Bedrock Knowledge Bases with Titan embeddings and OpenSearch Serverless run hybrid search, so exact accounting terms and form numbers match as well as differently worded questions.
-- Each question is checked against what that person is allowed to see before anything is retrieved. Answers come only from the retrieved passages, with citations, or the assistant says it doesn't know.
+- By design, each question is checked against what that person is allowed to see before anything is retrieved, and the assistant is built to answer from the retrieved passages, with citations, or to say it doesn't know. How well it kept to that was measured separately, below.
 - Built with Terraform and deployed through GitHub Actions, with CloudWatch tracking ingestion, retrieval, and answer time separately.
 
 ## Observe
@@ -39,6 +39,8 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), who 
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
 Measured on 80 representative questions, including ones the assistant should refuse, and judged by two reviewers. A fast answer from the wrong document counted as a failure.
+
+These results describe that test set, not a guarantee. In the evaluation, 92% of answers were fully supported by their source, so the rest were not. Each answer carries its citations so the source can be checked.
 
 ## Normalize
 

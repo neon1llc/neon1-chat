@@ -10,13 +10,17 @@ Yes, within about 30 miles. I also work remotely, or on your own network through
 
 Saturdays and Sundays from 8am to 8pm, and weekday evenings from 6pm (until 9pm Monday to Thursday, 8pm on Friday), Eastern time, typically with 10 to 20 hours a week for project work. The booking calendar shows what's open.
 
+## What if something urgent comes up?
+
+I work in planned appointments on weekday evenings and weekends, and I don't offer 24/7 or emergency response. Urgent issues, such as a security incident in progress or an outage you can't run without, need a provider with emergency coverage. Ongoing care after a project is agreed in writing, including any response times. Email [hello@neon1.tech](mailto:hello@neon1.tech) for anything else.
+
 ## How long does a project take?
 
 Small jobs take a week or two, medium ones two to four weeks, and bigger projects four to six. I take on up to two clients at a time so each one gets proper attention.
 
 ## How is the cost worked out?
 
-After the first call I send a short proposal with options, usually a quick fix, a solid setup, and a fuller build. Each comes with a cost estimate and says what it covers, how much effort and engineering it takes, and what quality to expect. You pick one. If the scope or the work changes along the way, I'll tell you before it changes the cost. [See how options look in 1NEON](https://neon1.tech/1NEON/live?play=propose).
+After the first call I send a short proposal with options, usually a quick fix, a solid setup, and a fuller build. Each comes with a cost estimate and says what it covers and how much effort it takes, how much is automated, what upkeep it needs, and how well it copes when something fails. Every option meets the same baseline for security and quality; a smaller option does less, not worse. You pick one. If the scope or the work changes along the way, I'll tell you before it changes the cost. [See how options look in 1NEON](https://neon1.tech/1NEON/live?play=propose).
 
 ## How do you treat our data and accounts?
 

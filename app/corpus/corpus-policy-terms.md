@@ -2,7 +2,7 @@
 
 The terms for using neon1.tech and the 1NEON portal.
 
-*Last updated November 7, 2026.*
+*Last updated November 10, 2026.* This update corrects which sign-in methods administrators can use to confirm sensitive changes and adds the section on text messages. It adds no new obligations for you.
 
 These terms cover your use of neon1.tech and the 1NEON client portal, which are run by neon1 LLC ("neon1", "I", "me"). Paid work is governed by a separate agreement or signed proposal. If that agreement conflicts with these terms, the agreement wins.
 
@@ -14,10 +14,11 @@ neon1.tech describes neon1's services. The information is general and isn't prof
 
 1NEON is where neon1 and its clients plan, run, measure, and hand over projects. Access is by invitation only.
 
-- **Your account.** Keep your sign-in methods secure and don't share your account. Tell me right away at the address below if you think someone else has used it. Administrators sign in with a passkey to manage people and settings.
+- **Your account.** Keep your sign-in methods secure and don't share your account. Tell me right away at the address below if you think someone else has used it. To manage people and settings, or to delete things, administrators first confirm it's them with a second step: a passkey, an authenticator app, or a text code where texts are available. A confirmation lasts 12 hours in that sign-in.
 - **Your organization.** Your organization's administrators decide who can access its workspace and at what level, and they're responsible for the people they invite.
 - **Your content.** You and your organization own what you put in the portal. You give neon1 permission to store, process, and display it only to provide the portal and the work we've agreed on. You confirm that you have the right to share it.
 - **Acceptable use.** Don't put passwords, keys, or other secrets in the portal. Don't upload malware, unlawful material, or regulated data (such as health or payment card data) unless we have a written agreement that covers it. Don't try to access another organization's data, test the portal's security without written permission, or disrupt the service.
+- **Text messages.** Texts are optional and only sent after you agree to them in your profile. 1NEON texts you about the changes you choose; frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Carriers aren't liable for delayed or undelivered messages.
 - **Approvals.** When someone approves an option, decision, change request, or handoff in the portal, the approval is recorded with their name and the time. Both sides may rely on those records as confirmation of what was agreed.
 
 ## 3. Availability and changes

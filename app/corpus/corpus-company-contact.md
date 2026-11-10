@@ -20,4 +20,8 @@ Tell me what's on your mind, or ask for an opinion on how your operations run to
 - **First call:** free and 15 minutes. The main pain points and your options.
 - **After:** a short proposal with options and estimates. Nothing starts until you pick one.
 
+## Availability and urgent issues
+
+Work happens in planned appointments on weekday evenings and weekends. There's no 24/7 or emergency response. If something can't wait, such as a security incident in progress, an outage your business can't run without, or fraud on an account, contact a provider who offers emergency coverage, and your bank or the service involved, first. Ongoing care after a project, and any response times that come with it, are agreed in writing before they start.
+
 Please leave passwords, health details, and payment information out of any first message.

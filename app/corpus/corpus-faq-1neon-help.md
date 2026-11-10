@@ -93,6 +93,9 @@ Use **Upload** next to a file I asked for, or go to **Files** and upload it ther
 ### Are files safe?
 Every file is checked for viruses before anyone can download it, and stays private to your organization. Please don't upload passwords or keys.
 
+### What can I upload?
+Any kind of file, up to 100 MB each. Please don't upload passwords, keys, or other secrets, malware, or regulated data such as health or payment card details unless we have a written agreement that covers it.
+
 ## People and access
 
 ### What can viewers, editors, and admins do?
@@ -111,7 +114,7 @@ Inviting people, changing access, and changing settings need a second check, so 
 Yes. On your profile, choose **Set up** next to Authenticator app, scan the code with Google Authenticator, Microsoft Authenticator, 1Password, Authy, or similar, and type the 6-digit code it shows. [Watch it](https://neon1.tech/1NEON/live?play=authenticator).
 
 ### What's a passkey?
-A sign-in that uses your face, fingerprint, or device PIN instead of a code. It's faster and can't be phished. Add one on your profile under Two-step verification; next time you sign in, 1NEON offers it first. [Watch it](https://neon1.tech/1NEON/live?play=passkey).
+A sign-in that uses your face, fingerprint, or device PIN instead of a code. It's faster, and it's phishing-resistant: it only works on the real 1NEON site, so a look-alike page can't use it. Add one on your profile under Two-step verification; next time you sign in, 1NEON offers it first. [Watch it](https://neon1.tech/1NEON/live?play=passkey).
 
 ## Your account
 
@@ -121,5 +124,31 @@ Open your profile from the menu. You can change your name, title, theme, menu, a
 ### How do I sign out?
 Open your profile and choose **Sign out**.
 
+### I lost my phone or my authenticator app.
+You can still sign in with a code sent to your email. The second step is only needed for admin actions, such as inviting people or changing settings. If you set up another method, confirm it's you with that one, then remove the lost one under Two-step verification on your profile and add a new one. If you've lost every method, email [hello@neon1.tech](mailto:hello@neon1.tech) from your account's address. The portal has no self-service reset for a lost second step.
+
+### My email address changed.
+Your email address is how 1NEON knows you, and it can't be changed on your profile. Ask an admin of your organization to invite your new address and deactivate the old one, or email [hello@neon1.tech](mailto:hello@neon1.tech). Work done under the old address stays in the record under that name.
+
+### Who do I ask for access?
+An admin of your organization. Admins invite people and change their access. If you don't know who that is, or neon1's own access needs to change, email [hello@neon1.tech](mailto:hello@neon1.tech).
+
+## Support, billing, and your data
+
+### What does approving an option commit us to?
+An approval records that your organization agreed to that option as shown: its scope, cost, and timeline, plus any conditions you added. Both sides can rely on that record. It works alongside your signed agreement with neon1, which governs the paid work.
+
+### Where are invoices and payments?
+Not in 1NEON. Invoices and payment happen outside the portal, as your signed agreement sets out.
+
+### Something urgent is wrong. Who do I tell?
+Email [hello@neon1.tech](mailto:hello@neon1.tech) with what happened and when. neon1 is one person working planned hours, with no 24/7 or emergency response, so for something that can't wait, such as a fraud on your bank account or an outage your business can't run without, contact the provider responsible first. Report a security problem in the portal itself to [security@neon1.tech](mailto:security@neon1.tech).
+
+### Can we get a copy of our data?
+Yes. There's no export button, so ask at [hello@neon1.tech](mailto:hello@neon1.tech) and I'll send your organization's data in a common format.
+
+### What happens to our data when the work ends?
+It's kept as the record of our work together, so either of us can refer back to it, unless your organization asks me to delete it. Your organization can stop using 1NEON at any time and ask for an export first. The [privacy policy](https://neon1.tech/1NEON/privacy) has the details, including how long backups and audit records last.
+
 ### Who can I contact?
-Email hello@neon1.tech.
+Email [hello@neon1.tech](mailto:hello@neon1.tech).

@@ -34,4 +34,4 @@ The generated blocks are committed, so the deploy stays a plain copy of `src/app
 
 CloudFront serves the page with a strict policy: scripts, styles, fonts, and connections only from neon1.tech, and images from neon1.tech or `data:` URLs. Keep scripts and styles in their own files, since inline `<script>`, `<style>`, `style=""` attributes, and `on…` handlers are blocked. Setting styles from JavaScript (`el.style.x = …`) is fine. A new outside origin needs a change to the policy in neon1-aws-infrastructure first.
 
-`robots.txt`, `sitemap.xml`, and `.well-known/security.txt` are published with the page. Update the security contact's `Expires` date before it passes.
+`robots.txt`, `sitemap.xml`, and `.well-known/security.txt` are published with the page, and so are the square icons at fixed URLs: `/favicon.ico`, `/favicon-48.png`, and `/apple-touch-icon.png`. The structured data names `/media/neon1-logo-512.png` as the logo and keeps the wide link-preview card for `og:image`. `make icons` redraws all four from the bar's mark. Update the security contact's `Expires` date before it passes.
