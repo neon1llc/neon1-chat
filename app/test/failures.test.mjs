@@ -151,3 +151,57 @@ test("a malformed body is refused with safe JSON before any write", async () => 
   assert.equal(safe(res, 400).code, "invalid");
   assert.equal(writes, 0);
 });
+
+// ---- The flagged-reply counter ----
+
+// A flagged answer, as the model marks a declined request
+const flaggedModel = () => model(async () => ({ output: { message: { content: [{ text: "[[flag]] I stay Neo. Ask me about neon1." }] } }, stopReason: "end_turn" }));
+// A store that answers every write except the misuse counter, which never finishes
+function hangingMisuse(seen) {
+  return {
+    send: async (cmd, opts) => {
+      if (!cmd.input.Key.pk.S.startsWith("mis#")) return {};
+      seen.signal = opts?.abortSignal;
+      return new Promise(() => {});
+    },
+  };
+}
+
+test("a misuse counter that never answers still returns the finished reply, aborted at the deadline", async (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "Date"] });
+  const seen = {};
+  const m = flaggedModel();
+  const pending = logged(() => handler(event(), { dynamo: hangingMisuse(seen), bedrock: m }));
+  // Let the caps and the model settle so the counter update has started
+  for (let i = 0; i < 10; i++) await new Promise((r) => setImmediate(r));
+  assert.ok(seen.signal, "the counter update gets the request's abort signal");
+  assert.equal(seen.signal.aborted, false);
+  t.mock.timers.tick(DEADLINE_MS);
+  const { result, lines } = await pending;
+  assert.equal(result.statusCode, 200);
+  assert.match(JSON.parse(result.body).reply, /Ask me about neon1/);
+  assert.ok(seen.signal.aborted, "the stalled update is told to stop");
+  assert.equal(m.calls, 1);
+  // The timeout is recorded by name only: no question or answer text
+  const timeout = lines.map((l) => JSON.parse(l)).find((l) => l.event === "misuse_timeout");
+  assert.equal(timeout?.name, "Timeout");
+  assert.ok(lines.every((l) => !l.includes("4417") && !l.includes("Ask me about")));
+});
+
+test("a misuse counter that fails outright does not cost the reply", async () => {
+  const dynamo = { send: async (cmd) => (cmd.input.Key.pk.S.startsWith("mis#") ? Promise.reject(Object.assign(new Error("boom 4417"), { name: "InternalServerError" })) : {}) };
+  const { result, lines } = await logged(() => handler(event(), { dynamo, bedrock: flaggedModel() }));
+  assert.equal(result.statusCode, 200);
+  assert.ok(lines.every((l) => !l.includes("4417")));
+});
+
+test("the pre-model caps stay fail-closed: a hung cap check refuses and never calls the model", async (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "Date"] });
+  const m = flaggedModel();
+  const pending = logged(() => handler(event(), { dynamo: { send: () => new Promise(() => {}) }, bedrock: m }));
+  await new Promise((r) => setImmediate(r));
+  t.mock.timers.tick(DEADLINE_MS);
+  const { result } = await pending;
+  assert.equal(safe(result, 503).code, "unavailable");
+  assert.equal(m.calls, 0);
+});

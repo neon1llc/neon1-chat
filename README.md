@@ -47,7 +47,7 @@ The corpus is every document in the latest release of [neon1-corpus](https://git
 
 ## Operating it
 
-**Failures.** Every failure returns JSON that is never cached, with a `code` and a `retry-after`: 503 when the counters can't be written or the settings are invalid (the model is not called), 504 when the 15-second request deadline passes, 503 when Bedrock throttles, and 502 for any other model error. The function's own timeout is 20 seconds, and each AWS client retries at most once. Logs hold only an event name, an error's class name, and its HTTP status.
+**Failures.** Every failure returns JSON that is never cached, with a `code` and a `retry-after`: 503 when the counters can't be written or the settings are invalid (the model is not called), 504 when the 15-second request deadline passes, 503 when Bedrock throttles, and 502 for any other model error. The function's own timeout is 20 seconds, and each AWS client retries at most once. Logs hold only an event name, an error's class name, and its HTTP status. Counting a flagged reply toward a cooldown is best effort: it runs under the rest of the same deadline, and if it times out the finished answer is still returned and a `misuse_timeout` event is logged. Each question makes one model call, and the chat log line records `attempts: 1` with its token usage.
 
 **Alarms.** Four CloudWatch alarms email the budget address through an SNS topic: failed answers (5 in 15 minutes), crashes or timeouts (3 in 15 minutes), throttles (5 in 15 minutes), and slow answers (the slowest 5% over 12 seconds for 15 minutes). A quiet period with no questions never alarms. Confirm the subscription email once after the first apply, or alerts won't arrive.
 

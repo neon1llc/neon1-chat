@@ -179,10 +179,17 @@ async function route(event, deps) {
     console.log(JSON.stringify({ event: "chat", turns: messages.length, ms: Date.now() - started, stop: out.stopReason, flagged: out.flagged, attempts: out.attempts, usage: out.usage }));
     if (!out.text) throw Object.assign(new Error("empty reply"), { name: "EmptyReply" });
     // A flagged message still gets its calm answer; enough of them start a cooldown from the next one.
-    // Counting it is best effort: a store hiccup here never costs the visitor the reply already paid for
+    // Counting it is best effort and runs under what is left of the request deadline, with the same
+    // abort signal as every other call: a store that hangs here never costs the visitor the reply
+    // already paid for. (The caps before the model call stay fail-closed.) A timeout is logged as
+    // a name only, never the question or the answer
     if (out.flagged) {
-      const cooled = await misuse(ip, { table: settings.table, client: deps.dynamo }).catch((err) => logError("limit_error", err));
-      if (cooled) console.log(JSON.stringify({ event: "strike", reason: "misuse", level: cooled.level }));
+      try {
+        const cooled = await before(deadline, (signal) => misuse(ip, { table: settings.table, client: deps.dynamo, signal }));
+        if (cooled) console.log(JSON.stringify({ event: "strike", reason: "misuse", level: cooled.level }));
+      } catch (err) {
+        logError(err instanceof Timeout ? "misuse_timeout" : "limit_error", err);
+      }
     }
     return json(200, { reply: out.text });
   } catch (err) {
