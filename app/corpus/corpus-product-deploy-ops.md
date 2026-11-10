@@ -4,4 +4,4 @@ Cloud automation, bundled: pipelines for infrastructure and applications on any 
 
 *Private · pre-release*
 
-**Cloud automation, bundled.** Pipelines for infrastructure and applications on AWS, Azure, Google Cloud, or several at once. It sets up CI/CD for one repo or many, works with the IaC you already use, and adds checks, approvals, rollback, monitoring, and alerts where your team will see them.
+**Deploy pipelines for any cloud.** Pipelines for infrastructure and applications on AWS, Azure, Google Cloud, or several at once. It sets up CI/CD for one repo or many, works with the IaC you already use, and adds checks, approvals, rollback, monitoring, and alerts where your team will see them.
