@@ -87,7 +87,8 @@ jobs:
     if: vars.AWS_TERRAFORM_ROLE_ARN != ''
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      # write only to push the release tag once the release is verified live
+      contents: write
       id-token: write
 
     concurrency:
@@ -166,3 +167,22 @@ jobs:
       - name: Verify
         if: env.superseded != 'yes'
         run: node scripts/verify-release.mjs https://neon1.tech/chat/api/health
+
+      # Every released version gets an annotated tag on the commit that shipped it, once it's live.
+      # The version is the changelog's top entry; a push that doesn't add one ships under the last tag
+      - name: Tag the release
+        if: env.superseded != 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^## v\([0-9][0-9.]*[0-9a-z.-]*\).*/\1/p' CHANGELOG.md | head -1)
+          [ -n "$version" ] || { echo "::error::CHANGELOG.md names no version"; exit 1; }
+          if git ls-remote --exit-code --tags "https://github.com/${GITHUB_REPOSITORY}.git" "refs/tags/v$version" >/dev/null; then
+            echo "v$version is already tagged"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "v$version" -m "v$version" "$GITHUB_SHA"
+            git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "v$version"
+            echo "tagged v$version" >> "$GITHUB_STEP_SUMMARY"
+          fi
