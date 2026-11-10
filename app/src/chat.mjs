@@ -282,11 +282,11 @@ export function onlyFit(text, fit, list = [], { keep = true } = {}) {
 
 export function lineNote(l) {
   if (!l) return "";
-  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` Say it in this short form: "${l.say}".` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES, including what neon1 can do about it and the next step. Then use this line once, without paraphrasing it just before, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
+  return `FIT: A line from the films matches this question: ${l.line}${l.say ? ` Say it in this short form: "${l.say}".` : ""}. Its meaning: ${l.means}${l.notFor ? ` Not for: ${l.notFor}` : ""} First answer the question in full from the SOURCES, including what neon1 can do about it and the next step; the answer comes first and is never just the line. Then use this line once, without paraphrasing it just before, quoted or reworked to fit, woven into your closing thought or on its own line. Don't also paraphrase it, and use no other film line.`;
 }
 
-// One Converse call: cached system prompt, the visitor's recent turns, a capped reply. `signal`
-// is the request's deadline; when it fires, the SDK drops the call and this rejects
+// One Converse call (attempts is always 1): cached system prompt, the visitor's recent turns, a
+// capped reply. `signal` is the request's deadline; when it fires, the SDK drops the call and this rejects
 export async function reply(messages, { corpus, directives = "", client, signal } = {}) {
   client ??= defaultClient ??= new BedrockRuntimeClient(CLIENT);
 
@@ -296,23 +296,19 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const fit = SERIOUS.test(question) || /instruction|prompt|your rules|system message/i.test(question) ? null : pickLine(question, { earlier, first: messages.length === 1, list: filmLines(directives) });
   const note = lineNote(fit);
 
-  const ask = (extra) =>
-    client.send(
-      new ConverseCommand({
-        modelId: MODEL_ID,
-        system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : []), ...(extra ? [{ text: extra }] : [])],
-        messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
-        inferenceConfig: { maxTokens: MAX_TOKENS, temperature: TEMPERATURE },
-      }),
-      { abortSignal: signal },
-    );
+  // Exactly one generation per question: the daily cap counts questions, so it also bounds model
+  // work. A film line that crowds out the answer is prevented by the FIT note's wording, not by a
+  // second call
+  const res = await client.send(
+    new ConverseCommand({
+      modelId: MODEL_ID,
+      system: [{ text: systemPrompt(corpus, directives) }, ...(CACHE ? [{ cachePoint: { type: "default" } }] : []), ...(note ? [{ text: note }] : [])],
+      messages: messages.map((m) => ({ role: m.role, content: [{ text: m.content }] })),
+      inferenceConfig: { maxTokens: MAX_TOKENS, temperature: TEMPERATURE },
+    }),
+    { abortSignal: signal },
+  );
   const text = (r) => (r.output?.message?.content ?? []).map((block) => block.text ?? "").join("").trim();
-
-  let res = await ask(note);
-  // A reply with little answer around the film line (under 15 words of its own) is asked again
-  // without the note; the line is then added after the answer below
-  const bare = (t) => onlyFit(t, null, filmLines(directives), { keep: false }).split(/\s+/).filter(Boolean).length;
-  if (fit && bare(text(res)) < 15) res = await ask("");
   const said = text(res);
   // The misuse marker is read, then removed wherever the model put it
   const flagged = FLAGGED.test(said) || said.includes(FLAG);
@@ -340,5 +336,5 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // always fits back into the window's history without being cut again
   const out = clip(cleanLinks(finish(ordered, res.stopReason), allowedLinks(`${directives}\n${corpus}`)), LIMITS.reply);
 
-  return { text: out, flagged, usage: res.usage ?? {}, stopReason: res.stopReason };
+  return { text: out, flagged, attempts: 1, usage: res.usage ?? {}, stopReason: res.stopReason };
 }
