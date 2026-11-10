@@ -15,3 +15,28 @@ The first tagged release. Neo had been live at neon1.tech/chat, deployed from ma
 
 ### Fixed
 - One model generation per question, and the flagged-reply counter stays within the request deadline.
+
+## Before v0.1.0
+
+Neo shipped from main for several days before releases were tagged. These pre-releases mark the points in that history where a meaningful piece landed, on the commits as they are on main. They were tagged on 2026-11-10; the dates below are when each one shipped.
+
+### v0.1.0-alpha.7 - 2026-11-10
+- Review fixes: one model generation per question, a bounded flagged-reply counter, and every check before any AWS change.
+
+### v0.1.0-alpha.6 - 2026-11-09
+- Lines from the films, at most one per reply and only where the meaning fits, never in place of the answer.
+
+### v0.1.0-alpha.5 - 2026-11-09
+- Answers from Qwen3 Next 80B once the permission boundary allowed it.
+
+### v0.1.0-alpha.4 - 2026-11-09
+- Neo's character from neon1-corpus, misuse strikes, and escalating cooldowns.
+
+### v0.1.0-alpha.3 - 2026-11-09
+- The corpus built from neon1-corpus releases instead of scraping neon1.tech, and the licensing set out.
+
+### v0.1.0-alpha.2 - 2026-11-09
+- A hardening pass: one conversation contract, safe answers when caps or the model fail, validated caps and service alarms, a broader test set, and origin secret rotation.
+
+### v0.1.0-alpha.1 - 2026-11-08
+- Neo on neon1.tech: steadier answers with labeled links, a per-minute limit, the neon1 permission boundary, and 1NEON's FAQs in the corpus.
