@@ -4,7 +4,7 @@ Short answers on where, when, how long, how much, and how data is handled.
 
 ## Do you come on site?
 
-Yes, within about 30 miles. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
+Yes, within about 30 miles of Queens, NY. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
 
 ## When do you work?
 
