@@ -10,7 +10,7 @@ Short answers about using 1NEON. Signed in? Tap **?** at the top right of any pa
 The portal where you and I run your projects together. Each project keeps what you need, the work, the results, and the handover in one place. [Watch it](https://neon1.tech/1NEON/live).
 
 ### Can I try it first?
-Yes, three ways, and none needs an account. The [guided walkthrough](https://neon1.tech/1NEON/live) plays a fictional project on the real portal in about a minute, with controls to pause, pick a chapter, or exit; the full story takes about six. The [interactive demo](https://neon1.tech/1NEON/demo/) is a working copy with made-up clients where you pick who to be and try anything; your changes stay in your browser until you choose **Start over**. The [sample project](https://neon1.tech/1NEON/example) is one made-up project to read at your own pace, from request to handover. With a minute to spare, start with the walkthrough. Short walkthroughs show a single thing: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
+Yes, three ways, and none needs an account. The [guided walkthrough](https://neon1.tech/1NEON/live) plays a fictional project on the real portal in about two minutes, with controls to pause, pick a chapter, or exit; the full story takes about six. The [interactive demo](https://neon1.tech/1NEON/demo/) is a working copy with made-up clients where you pick who to be and try anything; your changes stay in your browser until you choose **Start over**. The [sample project](https://neon1.tech/1NEON/example) is one made-up project to read at your own pace, from request to handover. With a couple of minutes to spare, start with the walkthrough. Short walkthroughs show a single thing: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
 
 ### How do I get in?
 You need an invite. Open the link in your invite email and enter your email address. Sign in with a code sent to your email, or with a passkey. No password needed. [Watch it](https://neon1.tech/1NEON/live?play=invite).
@@ -51,10 +51,10 @@ Tap the item's title. A panel opens with its status, owner, due date, and detail
 Tick the box beside it. Every item that can be finished has one, and the counts on each tab and section show how many are done. A choice between options counts as one, done once an option is approved, and a measure counts as done when it reaches its target. Status updates and decisions are records, so they don't count. Files you upload aren't counted either; a **File needed** is, and it's checked off when you send the file. [Watch it](https://neon1.tech/1NEON/live?play=handover).
 
 ### How do I delete something?
-Use the trash button on the item, or **Delete** in its panel. Either one asks first. Approved options and decisions can't be deleted, since they're the record of what was agreed; options themselves come from neon1. Files have their own **Delete** for the person who uploaded them and admins.
+Use the trash button on the item, or **Delete** in its panel. Either one asks first. Approved options and decisions can't be deleted, since they're the record of what was agreed. Options themselves come from neon1. Files have their own **Delete** for the person who uploaded them and admins.
 
 ### What does the onion next to a project mean?
-It shows progress. Needs is the center ring and Normalize is the outside one; each ring fills as that layer's work gets done.
+It shows progress. Needs is the center ring and Normalize is the outside one. Each ring fills as that layer's work gets done.
 
 ### What does the board show?
 Every project as a card, in the stage it's in. Columns run left to right from the first call to care after handover. Drag a card to move it, or use its **Move to** menu on a phone. A closed project moves back the same way, or use **Reopen** on its page. [Watch it](https://neon1.tech/1NEON/live?play=build).
@@ -80,7 +80,7 @@ Open the project's **Needs** layer, compare the options, and choose **Approve th
 The person named as the project's decision maker. If nobody is named, an admin of your organization can. Only an admin of your organization can name or change the decision maker, under **People** on the project's overview, after confirming it's them; editors can change everyone else on the project. Each change is recorded with the old and new decision maker, and neon1 can't be named, since it proposes the options. (In neon1's own organization, where neon1 is the client, it can.) [Watch it](https://neon1.tech/1NEON/live?play=decide).
 
 ### Can an approval be changed?
-Not edited. Once approved, neither the decision nor the option it came from can be edited or removed. To change course, a new option is proposed and approved; the earlier decision stays on record, marked as replaced, so the history stays clear.
+Not edited. Once approved, neither the decision nor the option it came from can be edited or removed. To change course, a new option is proposed and approved. The earlier decision stays on record, marked as replaced, so the history stays clear.
 
 ### What do Cost, Quality, and Effort mean?
 They're neon1's assessment of each option, from 1 to 5, where more filled dots is always better. **Cost** is the total cost. **Quality** is how fully it meets the requirements you agreed. **Effort** is your team's effort to adopt and run it. Each option also lists one-time and recurring charges apart, with a first-year total when it has both; the written price on the option is what you'd agree to. Figures in the demo and the walkthrough are illustrative. [Watch it](https://neon1.tech/1NEON/live?play=propose).
@@ -125,7 +125,7 @@ Open your profile from the menu. You can change your name, title, theme, menu, a
 Open your profile and choose **Sign out**.
 
 ### I lost my phone or my authenticator app.
-You can still sign in with a code sent to your email. The second step is only needed for admin actions, such as inviting people or changing settings. If you set up another method, confirm it's you with that one, then remove the lost one under Two-step verification on your profile and add a new one. If you've lost every method, email [hello@neon1.tech](mailto:hello@neon1.tech) from your account's address. The portal has no self-service reset for a lost second step.
+You can still sign in with a code sent to your email. The second step is only needed for admin actions, such as inviting people or changing settings. If you set up another method, confirm it's you with that one, then remove the lost one under Two-step verification on your profile and add a new one. If you've lost every method, email [hello@neon1.tech](mailto:hello@neon1.tech) from your account's address. Email alone isn't enough to remove a second step, since a stolen mailbox is exactly what it guards against, so I confirm who you are another way first: a call to a phone number already on record for you or your organization (never one given in the email), and, if your organization has another admin, their written OK as well. Then I remove the lost methods, note what was done and when, and email you that it's done; you add a new one on your profile. Until then, email codes still sign you in, and only admin actions wait. The portal has no self-service reset for a lost second step.
 
 ### My email address changed.
 Your email address is how 1NEON knows you, and it can't be changed on your profile. Ask an admin of your organization to invite your new address and deactivate the old one, or email [hello@neon1.tech](mailto:hello@neon1.tech). Work done under the old address stays in the record under that name.
@@ -136,13 +136,16 @@ An admin of your organization. Admins invite people and change their access. If 
 ## Support, billing, and your data
 
 ### What does approving an option commit us to?
-An approval records that your organization agreed to that option as shown: its scope, cost, and timeline, plus any conditions you added. Both sides can rely on that record. It works alongside your signed agreement with neon1, which governs the paid work.
+An approval records that your organization agreed to that option as shown: its scope, price, hours, and timeline, plus any conditions you added. It counts the same as signing the proposal, and both sides can rely on it. It works under your [services agreement](https://neon1.tech/knowledge/templates/services-agreement/) with neon1, which covers payment, ownership, and confidentiality.
+
+### Can I download the proposal?
+Yes. Under the options, choose **Read the full proposal**. It puts the discovery, the goals, every option with what's in and out, the hours and prices, what each of us will do, and the agreement on one page. **Print or save as PDF** keeps a copy, or lets you sign it on paper. [Watch it](https://neon1.tech/1NEON/live?play=decide).
 
 ### Where are invoices and payments?
 Not in 1NEON. Invoices and payment happen outside the portal, as your signed agreement sets out.
 
 ### Something urgent is wrong. Who do I tell?
-Email [hello@neon1.tech](mailto:hello@neon1.tech) with what happened and when. neon1 is one person working planned hours, with no 24/7 or emergency response, so for something that can't wait, such as a fraud on your bank account or an outage your business can't run without, contact the provider responsible first. Report a security problem in the portal itself to [security@neon1.tech](mailto:security@neon1.tech).
+Email [hello@neon1.tech](mailto:hello@neon1.tech) with what happened and when. neon1 works planned hours, with no 24/7 or emergency response, so for something that can't wait, such as a fraud on your bank account or an outage your business can't run without, contact the provider responsible first. Report a security problem in the portal itself to [security@neon1.tech](mailto:security@neon1.tech).
 
 ### Can we get a copy of our data?
 Yes. There's no export button, so ask at [hello@neon1.tech](mailto:hello@neon1.tech) and I'll send your organization's data in a common format.

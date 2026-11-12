@@ -34,4 +34,4 @@ The most useful measure has been what people do afterward: turning on two-factor
 
 ## Normalize
 
-The landscape keeps moving, so the material does too. Ready, Secure, Go, neon1's security readiness guide, tracks what's worth doing for each kind of space, alongside other trusted sources. Companies heading into an audit get SOC 2 and other readiness work.
+Threats and tools keep changing, so the material does too. Ready, Secure, Go, neon1's security readiness guide, tracks what's worth doing for each kind of space, alongside other trusted sources. Companies heading into an audit get SOC 2 and other readiness work.
