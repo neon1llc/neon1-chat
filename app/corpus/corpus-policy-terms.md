@@ -2,9 +2,16 @@
 
 The terms for using neon1.tech and the 1NEON portal.
 
-*Last updated November 10, 2026.* This update corrects which sign-in methods administrators can use to confirm sensitive changes and adds the section on text messages. It adds no new obligations for you.
+*Last updated November 12, 2026.* This update adds a short summary at the top. Nothing else changes, and it adds no new obligations for you.
 
 These terms cover your use of neon1.tech and the 1NEON client portal, which are run by neon1 LLC ("neon1", "I", "me"). Paid work is governed by a separate agreement or signed proposal. If that agreement conflicts with these terms, the agreement wins.
+
+## The short version
+
+- A signed agreement or proposal governs paid work, and it wins if it differs from these terms.
+- 1NEON is by invitation only. Keep your sign-in methods to yourself, and keep passwords and other secrets out of the portal.
+- You own what you put in the portal. I use it only to run the portal and the work we agreed on.
+- Approvals in the portal are recorded with a name and the time, and both of us may rely on them.
 
 ## 1. The website
 

@@ -9,6 +9,17 @@ Four kinds of help, from automating a small business to SOC 2 readiness.
 | **Networks, devices, and spaces** | Offices, homes, and physical spaces | Wi-Fi that reaches the rooms you use, cameras that record and alert as set, devices configured and documented, and smart gear on its own network. |
 | **Security awareness and readiness** | Organizations, teams, families, and individuals | Plain-language sessions on phishing, fraud, passwords, and data brokers, plus SOC 2 readiness for companies heading into an audit. |
 
+## Typical first projects
+
+Most clients start with one contained piece of work, then decide whether to go further. The lengths are typical, counted from the day you pick an option to the handover, and each proposal gives its own estimate.
+
+| Service | A typical first project | Usually takes |
+|---|---|---|
+| Business workflows and technology | One intake, order, or invoice flow connected end to end, so it's typed once, with the steps written down for your staff | 2 to 4 weeks |
+| Cloud and AI engineering | One service moved to infrastructure as code with checked, reversible deploys, or a document assistant on one approved library, measured before and after | 4 to 6 weeks |
+| Networks, devices, and spaces | Wi-Fi and cameras for one office or home: coverage checked room by room, devices set up on their own network, and everything documented | 1 to 2 weeks |
+| Security awareness and readiness | A plain-language session for your team on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks |
+
 ## Not sure which one fits?
 
 | What's going on | Start with | A similar project |

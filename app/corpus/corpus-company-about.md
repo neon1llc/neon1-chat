@@ -1,6 +1,6 @@
 # About neon1 (https://neon1.tech/)
 
-A one-person technology practice in New York that leaves people better off with their tech than they were before.
+A technology practice that leaves people better off with their tech than they were before.
 
 I'm [Pradeep](https://www.linkedin.com/in/pradeep-tathineni/). For about 15 years I've kept a strong curiosity and passion for technology and automation, and put them to work at home and on the job. neon1 is how I do that work for local businesses, teams, and families, so they end up better off with their tech than before.
 

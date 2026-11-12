@@ -42,6 +42,12 @@ Measured on 80 representative questions, including ones the assistant should ref
 
 These results describe that test set, not a guarantee. In the evaluation, 92% of answers were fully supported by their source, so the rest were not. Each answer carries its citations so the source can be checked.
 
+In the client's words:
+
+> "The work helped quicken the direction that we were moving on for some time, working toward a completely centralized single cloud for our org, assets and products used. And using AI safely and intentionally. The knowledge base project was a push forward for us on both fronts. Thanks Pradeep!"
+>
+> Boris M., Boris M Tax
+
 ## Normalize
 
 Microsoft 365 stays the source of truth, and the search index can be rebuilt from it at any time. The firm owns which documents are approved and who can see them. Next is an MCP server in front of the same retrieval, so assistants and agents can use the firm's knowledge with the same per-person permissions, followed by narrow, reviewable agent actions where they save real time.

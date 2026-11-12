@@ -2,9 +2,15 @@
 
 How to report a security problem in neon1.tech, the 1NEON portal, or a neon1 repository, and what happens after you do.
 
-*Last updated November 11, 2026.* This update rewords the note on bug bounties. Nothing else changes.
+*Last updated November 12, 2026.* This update adds a short summary at the top. Nothing else changes.
 
 If you think you've found a security problem in neon1.tech, the 1NEON portal, Neo, or any [neon1llc repository](https://github.com/neon1llc), thank you. Please tell me privately so it can be fixed before anyone else finds it.
+
+## The short version
+
+- Email [security@neon1.tech](mailto:security@neon1.tech) privately rather than opening a public issue.
+- I'll reply within a few days, keep you posted, and credit you if you'd like. There's no bug bounty.
+- If you act in good faith and follow this policy, I won't pursue legal action over your research.
 
 ## How to report
 
