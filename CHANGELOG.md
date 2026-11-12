@@ -2,6 +2,11 @@
 
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://neon1.tech/knowledge/standards/versioning/)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
+## v0.1.1 - 2026-11-12
+
+### Changed
+- The corpus may total 140,000 characters, up from 120,000, so the weekly refresh can take neon1-corpus v0.35.1 (about 126,000) and Neo answers from current pages again.
+
 ## v0.1.0 - 2026-11-10
 
 The first tagged release. Neo had been live at neon1.tech/chat, deployed from main without version numbers; this entry records what that release holds.

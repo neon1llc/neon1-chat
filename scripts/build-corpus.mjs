@@ -55,8 +55,9 @@ export const SOURCES = [
 const HOME = "https://neon1.tech/";
 
 // All sources together, so the prompt (and its cost per question) stays bounded. Raised from 100,000
-// for corpus v0.23.0 (operational FAQ answers and fuller policies, about 110,000); cached, so cost moves little
-export const TOTAL_MAX = 120000;
+// for corpus v0.23.0 (operational FAQ answers and fuller policies, about 110,000), then from 120,000
+// for corpus v0.35.1 (about 126,000, with the 1NEON help grown); cached, so cost moves little
+export const TOTAL_MAX = 140000;
 
 // ---- Cutting long READMEs ----
 
