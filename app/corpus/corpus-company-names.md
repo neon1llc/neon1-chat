@@ -12,7 +12,7 @@ The slogan nods to Robin Williams' Andrew from *Bicentennial Man*, a machine who
 
 ## The legal names
 
-- **neon1 LLC**, a New York limited liability company, does business as **neon1**.
+- **neon1 LLC**, a New York limited liability company, does business as **neon1**, a registered assumed name (see the [state registration](registration.md)).
 - **N1 Supply LLC** does business as **N1 Supply**. It is an affiliate of neon1 LLC.
 
 ## Product names

@@ -8,7 +8,7 @@ I want everyone to be able to use neon1.tech, the 1NEON portal, and the document
 
 ## The goal
 
-neon1.tech aims to meet the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) at level AA. This is a target, not a certification, and the site hasn't had a full independent audit.
+neon1.tech aims to meet the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) at [level AA](https://www.w3.org/WAI/WCAG22/Understanding/conformance#levels). This is a target, not a certification, and the site hasn't had a full independent audit.
 
 ## What's in place
 

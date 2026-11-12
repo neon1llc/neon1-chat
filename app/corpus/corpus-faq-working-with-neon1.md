@@ -4,7 +4,7 @@ Short answers on where, when, how long, how much, and how data is handled.
 
 ## Do you come on site?
 
-Yes, within about 30 miles. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
+Yes, within about 30 miles of Queens, NY. I also work remotely, or on your own network through a secure connection that I set up for the job and that's removed when it's done.
 
 ## When do you work?
 
@@ -24,7 +24,7 @@ After the first call I send a short proposal with options, usually a quick fix, 
 
 ## How do you treat our data and accounts?
 
-Before any work starts we sign a short agreement on the scope and on how I'll handle your systems and information: only the access the job needs, kept confidential, and handed back or removed when we're done. It works both ways, so you'll know what I need from you and why. If the work touches personal or health data, the right agreement, such as a Business Associate Agreement, comes first. [See a handover in 1NEON](https://neon1.tech/1NEON/live?play=handover).
+Before any paid work, we sign a short [services agreement](../templates/services-agreement.md) once. It covers how I'll handle your systems and information: only the access the job needs, kept confidential, and handed back or removed when we're done. After that, each project is a [proposal](../examples/proposal-options.md) with options, and choosing one, on paper or in 1NEON, is what we both agree to. It works both ways, so you'll know what I need from you and why. If the work touches personal or health data, the right agreement, such as a Business Associate Agreement, comes first. [See a handover in 1NEON](https://neon1.tech/1NEON/live?play=handover).
 
 ## Do you run security training?
 
