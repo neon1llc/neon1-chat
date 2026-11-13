@@ -8,24 +8,24 @@ A house with no cameras, and passwords reused everywhere.
 
 | | In short |
 |---|---|
-| **Needs** | A house with no cameras, and passwords reused everywhere. |
-| **Execute** | A camera system at my parents' house, and a password manager for the family. |
-| **Observe** | Checked that recordings, alerts, and logins all work without me there. |
-| **Normalize** | Advice, tech support, and on-demand troubleshooting when something acts up. |
+| **The problem** | A house with no cameras, and passwords reused everywhere. |
+| **The work** | A camera system at my parents' house, and a password manager for the family. |
+| **The results** | Checked recordings, alerts, and logins work without me. |
+| **After handover** | Advice and troubleshooting when something acts up. |
 
-## Needs
+## The problem
 
-Not every job is a cloud migration. My parents' house had no camera coverage, and like most families, we reused a handful of passwords across everything.
+Not every job is a cloud migration. My parents' house had no cameras, and like most families, we reused a few passwords everywhere.
 
-## Execute
+## The work
 
-- Planned camera placement around the entrances and blind spots, then installed and configured the system, including recording and alerts.
-- Moved the family onto a password manager, one person at a time, and turned on two-factor sign-in for the accounts that matter most.
+- Placed cameras around entrances and blind spots, then set up recording and alerts.
+- Moved the family onto a password manager, one person at a time, with two-factor sign-in on key accounts.
 
-## Observe
+## The results
 
-The test was simple: could everyone use it without calling me? Recordings and alerts work, and everyone can sign in and find their passwords on their own.
+The test: could everyone use it without calling me? Recordings and alerts work, and everyone finds their passwords on their own.
 
-## Normalize
+## After handover
 
-Ongoing advice and troubleshooting when something breaks. Small jobs count too: Wi-Fi that doesn't reach a room, a new laptop, or a grandparent who can't open their email.
+Advice and troubleshooting when something breaks. Small jobs count too: Wi-Fi that misses a room, a new laptop, or a grandparent who can't open their email.

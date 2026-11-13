@@ -8,30 +8,30 @@ People knew they were exposed online, but not where to start.
 
 | | In short |
 |---|---|
-| **Needs** | People knew they were exposed online, but not where to start. |
-| **Execute** | Plain-language sessions on networks, cameras, devices, fraud, and data brokers. |
-| **Observe** | Live checkups during sessions, and the questions people brought back later. |
-| **Normalize** | Stay current with Ready, Secure, Go and other sources as threats change. |
+| **The problem** | People knew they were exposed online, but not where to start. |
+| **The work** | Plain-language sessions on networks, cameras, fraud, and data brokers. |
+| **The results** | Live checkups, and the questions people brought back. |
+| **After handover** | Kept current with Ready, Secure, Go as threats change. |
 
-## Needs
+## The problem
 
-Teachers, parents, engineers, and executives had the same problem: they knew their accounts, homes, and businesses were exposed, but the security advice they'd seen was too technical or too vague to act on.
+Teachers, parents, engineers, and executives knew their accounts, homes, and businesses were exposed, but the advice they'd seen was too technical or too vague to act on.
 
-## Execute
+## The work
 
-I've run sessions at every level, from small groups of parents to cross-team seminars in Manhattan for 30 or more people. Topics include:
+I've run sessions from small groups of parents to Manhattan seminars for 30 or more. Topics include:
 
 - Securing home and business networks, cameras, and connected devices.
 - Fraud, phishing, data brokers, and what's sold on the dark web.
-- Software and account hygiene, including password managers and two-factor sign-in.
+- Account hygiene, password managers, and two-factor sign-in.
 - The security of physical spaces, not just screens.
 
-Each session is built around the devices and accounts that audience uses, with time to change real settings together.
+Each session fits that audience's devices and accounts, with time to change real settings together.
 
-## Observe
+## The results
 
-The most useful measure has been what people do afterward: turning on two-factor sign-in during the session, changing default camera and router passwords, and coming back with specific questions about their own setups.
+The best measure is what people do: turning on two-factor sign-in in the session, changing default camera and router passwords, and returning with questions about their own setups.
 
-## Normalize
+## After handover
 
-Threats and tools keep changing, so the material does too. Ready, Secure, Go, neon1's security readiness guide, tracks what's worth doing for each kind of space, alongside other trusted sources. Companies heading into an audit get SOC 2 and other readiness work.
+Threats change, so the material does too. [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. Companies heading into an audit get SOC 2 readiness work. [Get in touch](../company/contact.md) to ask about a session for your group.

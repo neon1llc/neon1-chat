@@ -2,11 +2,11 @@
 
 AWS CLI Plus: account guards and approval checks around the AWS CLI, for people who juggle several AWS profiles.
 
-*Public · pre-release*
+*Public · v0.1.0*
 
 **AWS CLI Plus.** Account guards and approval checks around the AWS CLI. It doesn't replace the AWS CLI, which still handles sign-in, credentials, requests, and output.
 
-- **Available now:** the code is public and runs from source. It's pre-release, so commands and settings may still change.
+- **Available now:** the code is public and runs from source. It's a first release (v0.1), so commands and settings may still change before v1.0.
 - **Who it helps:** people who work across several AWS profiles and want to see which account they're in, and confirm before anything risky runs.
 
 ## What it does
