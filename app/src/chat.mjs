@@ -325,9 +325,9 @@ export async function reply(messages, { corpus, directives = "", client, signal 
     .replace(/[\u2010\u2011]/g, "-")
     .replace(/\s*[\u2014]\s*/g, ", ")
     .replace(/[ \t]+$/gm, "");
-  // A film nod belongs after the answer: a short opening line with nothing else in it ("There is no
-  // spoon.") moves to the end, so the reply opens with its facts
-  const calm = SERIOUS.test(question) ? dropNods(plain) : messages.length > 1 ? dropLateKnock(plain) : plain;
+  // Neo's voice is its own (neon1-corpus v0.40 retired the film lines), so a short film nod the model
+  // adds anyway is dropped from every reply, not only serious ones
+  const calm = dropNods(plain);
   // "Beginning to believe" only answers doubt or trust; elsewhere the model tends to use it as a sign-off
   const fitted = /believ|trust|doubt|skeptic|sure about|confiden|convince/i.test(question) ? calm : dropBelieve(calm);
   // The visitor isn't Neo, so a line that names him is said to no one in particular
