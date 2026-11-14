@@ -2,7 +2,7 @@
 
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
-## Unreleased
+## v0.2.0 - 2026-11-14
 
 ### Added
 - A prospect question set (`app/eval/questions.json`, 52 questions) with checkable rules for each, and a runner that checks prompt assembly offline, grades a deployed endpoint (at most one question every 20 seconds against neon1.tech, stopping at the first 429), or asks Bedrock with this checkout's prompt. The first baseline against production is `app/eval/baseline-2026-11-14.json`.
