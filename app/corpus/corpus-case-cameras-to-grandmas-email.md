@@ -4,6 +4,8 @@ A house with no cameras, and passwords reused everywhere.
 
 *family & friends · home tech*
 
+For my own family
+
 **small jobs welcome** · patience included
 
 | | In short |

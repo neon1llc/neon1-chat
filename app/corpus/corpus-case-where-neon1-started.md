@@ -4,6 +4,8 @@ A grade school wanted real STEM tools on a small budget.
 
 *grade school · community*
 
+As a volunteer, before neon1
+
 **free for the school** · where it began
 
 | | In short |

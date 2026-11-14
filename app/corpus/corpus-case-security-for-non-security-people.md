@@ -4,6 +4,8 @@ People knew they were exposed online, but not where to start.
 
 *schools, families, & teams · security*
 
+As neon1, 2025
+
 **30+ people** per seminar · every level
 
 | | In short |
