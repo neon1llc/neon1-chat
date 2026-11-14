@@ -5,7 +5,7 @@
 // error message, since a provider's message can echo part of the question.
 
 import { timingSafeEqual } from "node:crypto";
-import { loadCorpus, loadDirectives, reply } from "./chat.mjs";
+import { HUMAN, loadCorpus, loadDirectives, reply } from "./chat.mjs";
 import { CODES, LIMITS, check } from "./contract.mjs";
 import { readCorpus } from "./corpus.mjs";
 import { allow, misuse } from "./limits.mjs";
@@ -45,6 +45,10 @@ const json = (statusCode, body, extra = {}) => ({
 // and how long to wait before trying again
 const failure = (statusCode, code, error, retry) =>
   json(statusCode, { error, code }, retry ? { "retry-after": String(retry) } : {});
+
+// Whenever Neo can't answer (limited, out of budget, or failing), the words say how to reach a
+// person now. The window renders the Markdown links (neon1-site shared/chat.js)
+export const withHuman = (text) => `${text} Pradeep can help directly: ${HUMAN}.`;
 
 // Only an error's class name and HTTP status are ever logged
 const logError = (event, err) =>
@@ -87,10 +91,10 @@ const REFUSED = {
 // A cooldown in words, with roughly how long it lasts but never how many messages it took
 export function cooldownText({ retry, reason }) {
   const wait = retry >= 20 * 3600 ? "until tomorrow" : retry >= 3000 ? `for about ${Math.round(retry / 3600)} hour${retry >= 5400 ? "s" : ""}` : `for about ${Math.max(1, Math.round(retry / 60))} minute${retry >= 90 ? "s" : ""}`;
-  if (reason === "repeat") return `That's the same question again. Neo will pause ${wait}; the earlier answer is above.`;
-  if (reason === "misuse") return `Neo is stepping back from this conversation ${wait}. You can still reach neon1 directly below.`;
-  if (retry >= 3000) return `Too many messages, too fast. Neo will be back ${wait}. You can still reach neon1 directly below.`;
-  return `You're sending messages faster than Neo can answer well. Please wait ${wait}, then try again.`;
+  if (reason === "repeat") return withHuman(`That's the same question again. Neo will pause ${wait}; the earlier answer is above.`);
+  if (reason === "misuse") return withHuman(`Neo is stepping back from this conversation ${wait}.`);
+  // Volume limits count a whole network, so on shared Wi-Fi someone else may have used them up
+  return withHuman(`Neo has had too many messages from your network just now and will be back ${wait}. On shared Wi-Fi that can include other people's messages.`);
 }
 
 class Timeout extends Error {
@@ -123,7 +127,7 @@ export async function handler(event, deps = {}) {
     return await route(event, deps);
   } catch (err) {
     logError("handler_error", err);
-    return failure(500, "error", "Neo couldn't answer just now. Please try again in a moment.", 30);
+    return failure(500, "error", withHuman("Neo couldn't answer just now. Please try again in a moment."), 30);
   }
 }
 
@@ -155,7 +159,7 @@ async function route(event, deps) {
   const settings = config();
   if (!settings.perMinute || !settings.perHour || !settings.perDay) {
     logError("config_error", { name: "InvalidCaps" });
-    return failure(503, "unavailable", "Neo is unavailable just now. Please try again later, or email hello@neon1.tech.", 300);
+    return failure(503, "unavailable", withHuman("Neo is unavailable just now. Please try again later."), 300);
   }
   const ip = viewerIp(event);
   const question = messages.at(-1).content;
@@ -164,12 +168,12 @@ async function route(event, deps) {
     blocked = await before(deadline, (signal) => allow(ip, { ...settings, question, client: deps.dynamo, signal }));
   } catch (err) {
     logError("limit_error", err);
-    return failure(503, "unavailable", "Neo is busy just now. Please try again in a minute.", 60);
+    return failure(503, "unavailable", withHuman("Neo is busy just now. Please try again in a minute."), 60);
   }
   if (blocked) {
     // Strikes are logged by level and reason only, so alarms and reviews can see abuse without an address
     if (blocked.reason && !blocked.waiting) console.log(JSON.stringify({ event: "strike", reason: blocked.reason, level: blocked.level }));
-    if (blocked.blocked === "daily") return failure(429, "daily", "Neo is resting for today. Please email hello@neon1.tech.", blocked.retry);
+    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has answered as many questions as it can for today and is resting until tomorrow."), blocked.retry);
     return failure(429, "cooldown", cooldownText(blocked), blocked.retry);
   }
   // One model call; only sizes and timing go to the logs
@@ -195,11 +199,11 @@ async function route(event, deps) {
   } catch (err) {
     logError("chat_error", err);
     if (err instanceof Timeout || err?.name === "AbortError" || err?.name === "TimeoutError") {
-      return failure(504, "timeout", "Neo took too long to answer. Please try again in a moment.", 10);
+      return failure(504, "timeout", withHuman("Neo took too long to answer. Please try again in a moment."), 10);
     }
     if (err?.name === "ThrottlingException" || err?.name === "ServiceQuotaExceededException") {
-      return failure(503, "busy", "Neo is busy just now. Please try again in a minute.", 60);
+      return failure(503, "busy", withHuman("Neo is busy just now. Please try again in a minute."), 60);
     }
-    return failure(502, "unavailable", "The assistant couldn't answer just now. Please try again, or email hello@neon1.tech.", 30);
+    return failure(502, "unavailable", withHuman("Neo couldn't answer just now. Please try again in a moment."), 30);
   }
 }

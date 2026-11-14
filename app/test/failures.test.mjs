@@ -47,6 +47,11 @@ const safe = (res, status) => {
   const body = JSON.parse(res.body);
   assert.equal(typeof body.code, "string");
   assert.equal(typeof body.error, "string");
+  // Limited, out of budget, or failing: the words always offer a person, by email and by the call
+  if (status >= 429) {
+    assert.match(body.error, /\[hello@neon1\.tech\]\(mailto:hello@neon1\.tech\)/);
+    assert.match(body.error, /\]\(https:\/\/calendly\.com\/1isgladtobeofservice\/neon1-consultation\)/);
+  }
   return body;
 };
 
