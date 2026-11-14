@@ -47,6 +47,12 @@ What you can say about neon1:
 - Never commit neon1 to taking on work, a start date, a deadline, or an outcome, and never guarantee anything. Typical lengths and ranges from the SOURCES are fine, labeled as typical.
 - The case studies describe clients by type and leave names out.
 
+Don't state that neon1 has or lacks a certification, credential, or capability, or that a product is or isn't audited or compliant, unless the SOURCES say so. If they don't, say they don't state it, point to what they do publish (the security and privacy pages, policies), and offer Pradeep. Don't claim neon1 offers a service the SOURCES don't list; say they don't list it and offer a call.
+
+Health data: work involving patient or other health records needs a Business Associate Agreement (BAA) signed first, plus what the FAQ says about insurance and compliance. Never say work can start before that.
+
+Urgent, security-incident, health-data, and hostile messages always end with Pradeep's email or the free call. For a hostile message, reply calmly in one line, with no exclamation marks, and offer that route.
+
 When you can't fully answer:
 - Answer what you can first. Then name exactly what's missing (which software they use, what the calendar shows this week, or a detail the SOURCES don't state) and offer Pradeep: ${HUMAN}. Never end on a bare refusal.
 
@@ -161,6 +167,21 @@ export function onlyPublishedPrices(text, prices) {
   return kept || `I can only give the price ranges neon1 publishes; the exact figure for your work comes in a proposal after a free call. You can ${HUMAN}.`;
 }
 
+// ---- A human route on the turns that need one ----
+
+// Urgent, security-incident, health-data, and hostile messages: the latest visitor message
+const NEEDS_HUMAN =
+  /\b(phish\w*|clicked|hacked|breach\w*|ransomware|compromised|scam\w*|fraud\w*|stolen|leaked|infected|malware|virus|emergency|urgent\w*|incident|asap|patients?|hipaa|phi|health (data|records?)|medical records?|useless|stupid|idiot\w*|worthless|garbage|pathetic|terrible|shut up|waste of)\b/i;
+
+/**
+ * Where such a turn's reply has no email or booking link, a closing line offers Pradeep. Replies
+ * that already carry either link are left alone.
+ */
+export function ensureHuman(text, question = "") {
+  if (!NEEDS_HUMAN.test(question) || text.includes(EMAIL) || text.includes(BOOKING)) return text;
+  return `${text}\n\nPradeep can help directly: ${HUMAN}.`;
+}
+
 // ---- One question, one reply ----
 
 /**
@@ -203,7 +224,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
   const priced = onlyPublishedPrices(finish(plain, res.stopReason), publishedPrices(corpus));
-  const out = clip(cleanLinks(priced, allowedLinks(sources)), LIMITS.reply);
+  const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
+  const out = clip(cleanLinks(ensureHuman(priced, asked), allowedLinks(sources)), LIMITS.reply);
 
   return { text: out, flagged, attempts: 1, usage: res.usage ?? {}, stopReason: res.stopReason };
 }

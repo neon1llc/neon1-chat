@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 process.env.EDGE_CHECK = "off";
-const { BOOKING, EMAIL, HUMAN, SCOPE, buildRequest, dollarFigures, loadCorpus, onlyPublishedPrices, publishedPrices, reply, systemPrompt } = await import("../src/chat.mjs");
+const { BOOKING, EMAIL, HUMAN, SCOPE, buildRequest, dollarFigures, ensureHuman, loadCorpus, onlyPublishedPrices, publishedPrices, reply, systemPrompt } = await import("../src/chat.mjs");
 const { cooldownText, withHuman } = await import("../src/handler.mjs");
 
 const corpus = loadCorpus();
@@ -73,4 +73,31 @@ test("every limit and failure message offers a person", () => {
     }
   }
   assert.match(withHuman("Neo is busy."), /^Neo is busy\. Pradeep can help directly: email \[hello@neon1\.tech\]/);
+});
+
+test("ensureHuman appends the human route on urgent and hostile turns that lack one", () => {
+  for (const q of ["Someone clicked a phishing link", "You're useless.", "We store patient records", "We were hacked, urgent"]) {
+    const out = ensureHuman("Steps here.", q);
+    assert.match(out, /^Steps here\.\n\nPradeep can help directly: .*hello@neon1\.tech/s, q);
+    assert.ok(out.includes(BOOKING));
+  }
+});
+
+test("ensureHuman leaves other turns and replies that already have a route alone", () => {
+  assert.equal(ensureHuman("MFA is a second step.", "What is MFA?"), "MFA is a second step.");
+  assert.equal(ensureHuman("Disconnect it. Email hello@neon1.tech.", "We got phished"), "Disconnect it. Email hello@neon1.tech.");
+  assert.equal(ensureHuman("Disconnect it.", ""), "Disconnect it.");
+});
+
+test("the prompt carries the no-unstated-claims, BAA, and human-route rules", () => {
+  const p = systemPrompt("SRC", "DIR");
+  assert.match(p, /certification, credential, or capability/);
+  assert.match(p, /Business Associate Agreement \(BAA\)/);
+  assert.match(p, /always end with Pradeep's email or the free call/);
+});
+
+test("reply() adds the human route to an urgent turn's answer", async () => {
+  const client = { send: async () => ({ output: { message: { content: [{ text: "Disconnect the device and change the password." }] } }, stopReason: "end_turn" }) };
+  const { text } = await reply([{ role: "user", content: "Someone clicked a phishing link" }], { corpus: `${EMAIL} mailto:${EMAIL} ${BOOKING}`, client });
+  assert.match(text, /Disconnect the device.*Pradeep can help directly:.*\(mailto:hello@neon1\.tech\)/s);
 });
