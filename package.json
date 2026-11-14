@@ -1,7 +1,7 @@
 {
   "name": "neon1-chat",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "description": "The neon1.tech assistant: answers visitors from neon1's public pages.",
   "license": "SEE LICENSE IN LICENSE-CODE",
