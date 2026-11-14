@@ -41,6 +41,8 @@ jobs:
           echo "release v$top"
       - run: npm ci
       - run: npm test
+      # The prospect question set, assembled into the prompt offline (no model call)
+      - run: npm run eval:offline
 
   # Terraform formatting and validation need no AWS access
   terraform:
