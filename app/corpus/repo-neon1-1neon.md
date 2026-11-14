@@ -23,6 +23,15 @@ npm run check   # types, tests, and build
 
 Locally there's no sign-in. Pick a demo account from the switcher on the sign-in screen.
 
+## Dev
+
+[dev.neon1.tech/1NEON](https://dev.neon1.tech/1NEON/) is a private copy of the portal, behind dev.neon1.tech's sign-in. It runs `infra/envs/dev`: its own API, table, documents bucket, and sign-in pool on auth-dev.neon1.tech, with no texts, no malware scan, and locked records kept one day.
+
+- **Deploys:** pushing the `dev` branch ships the functions and the app in about a minute. `dev-sync` merges main into `dev` after every push to main. Dev is never tagged; changelog entries wait under `## Unreleased`, and each work branch goes to main on its own.
+- **Data:** `AWS_PROFILE=neon1 node scripts/dev-data.mjs --yes` replaces dev's table and documents with a copy of production's (production is only read). Queued messages, sessions, and sign-in links are left out, so everyone signs in to dev again.
+- **neon1 only:** because that copy names real clients, dev (`APP_ENV=dev`, see `apps/api/src/dev-guard.ts`) admits only operators and neon1.tech addresses, sends mail only to them, and creates no accounts for anyone else. The dev pool holds neon1 admins only.
+- **Signing in:** use the email code. A production passkey shows up because passkeys belong to neon1.tech, but the dev pool doesn't know it; add a dev passkey from your profile after signing in.
+
 ## Deploy
 
 Pushing to `main` deploys. GitHub Actions applies `infra/envs/prod` and ships the functions and the app with AWS roles assumed through OIDC, so the repo holds no AWS keys.

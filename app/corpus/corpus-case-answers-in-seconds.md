@@ -4,6 +4,8 @@ Staff spent minutes searching Microsoft 365, or asked a senior colleague.
 
 *accounting firm · cloud & AI*
 
+As neon1, designed with Xenoss and handed over to them, 2026
+
 **~5 min → 14 s** lookup · recall 72% → 94%
 
 | | In short |

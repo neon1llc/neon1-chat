@@ -1,283 +1,283 @@
 {
-  "digest": "sha256:097e049176e4ced7566ca12df48f3582312860e906933a47df347c6ce897459f",
-  "chars": 112145,
+  "digest": "sha256:feb3569f458c8782c83dbe71521550dbd25cfbade107a9579a7ddb16277bcba2",
+  "chars": 115609,
   "sources": [
     {
       "file": "corpus-company-about.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-about.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-about.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "a9fea4c548ac9a4df20d401c33e17bfd63ae3508ad86d66af178038e3c37338f",
       "chars": 867
     },
     {
       "file": "corpus-company-contact.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-contact.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "63fa0a61a97247cc1a3421efd2c664a211696e350b6c9dee51b04f9cb172ef10",
-      "chars": 1663
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-contact.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "8cee39345e0696899122171a26263fc0c70384616b84436e8381df1e7bbb9e7b",
+      "chars": 1674
     },
     {
       "file": "corpus-company-mission.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-mission.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "b6a8c5ccf84e084fab6f5cb5681733a35c17bec69959b4d39cabfb8900537832",
-      "chars": 1564
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-mission.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "5855ef7979c4c386e1c6886479923d7579edad747fdfa5d7f743220d03a187fa",
+      "chars": 1353
     },
     {
       "file": "corpus-company-names.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-names.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-names.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "749a100ed3bbc526c7b6040fec27df24b96ad90e72ed902bf02bfb622c8d68fd",
       "chars": 1080
     },
     {
       "file": "corpus-company-pricing.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-pricing.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-pricing.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "43f7370cc8042a3f2559264e3e5afe3d5f120fafdc92a96226af0df1965336af",
       "chars": 7809
     },
     {
       "file": "corpus-company-process.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#company-process.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "b3a721b27baa8ab82484a35d395c8d10ca02d3bbb5a9e1de571f217267f42dfa",
-      "chars": 690
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#company-process.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "a078506cf01890c2b5cc25f7869d98f52b0d38c244f85fa26ffedbebdb8f6a2f",
+      "chars": 706
     },
     {
       "file": "corpus-services.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#services.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#services.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "1ceed28d3731b740ab7f8d8baccacbc656665fcc1e8e4a8109e1cab9d83a3267",
       "chars": 1870
     },
     {
       "file": "corpus-faq-1neon-help.md",
       "url": "https://neon1.tech/1NEON/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#faq-1neon-help.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "8c807c5101d14cc7e71167139bb0faf4d4d640eb4c1474e16f0a084986a38e48",
-      "chars": 22395
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#faq-1neon-help.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "8f441cbea62301a700a2d34db1ff38f54cd65436904f17d44ef75db1a83fb959",
+      "chars": 23961
     },
     {
       "file": "corpus-faq-working-with-neon1.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#faq-working-with-neon1.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "edc3a69b0f06f2f449f72e0bd213bf6a1f9a0523b5d23b98f0d12d39a5e272e7",
-      "chars": 3990
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#faq-working-with-neon1.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "7b464f81129068433c0f3ee74ee764534ccb9969ef45bfeee675d9a73d0927b5",
+      "chars": 3953
     },
     {
       "file": "corpus-case-answers-in-seconds.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-answers-in-seconds.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "c0208b41c6136309b4977bef8a305e15cb97ac7496c1e782dc670d28e97e52eb",
-      "chars": 3341
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-answers-in-seconds.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "32842ea26c48fa96a1f4d0b7fb6cd0c1a01409d8221f484b9eb408aa0f9b25e8",
+      "chars": 3403
     },
     {
       "file": "corpus-case-intake-out-of-the-inbox.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-intake-out-of-the-inbox.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "2a779cb8b60eec13060655775614865f86f5c99cce9d4b4d4f24d1a33f3104cd",
-      "chars": 2356
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-intake-out-of-the-inbox.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "0c2f0a7625f1282edf8c2593ad66493bbefbab2f2caef0883d220759ff324e2f",
+      "chars": 2372
     },
     {
       "file": "corpus-case-two-offices-off-local-servers.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-two-offices-off-local-servers.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "427ce37c7da727f5981897bdcb93527bb908efb4b8fc8b62b03f9c5199fa1307",
-      "chars": 2003
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-two-offices-off-local-servers.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "10e7186c63b311d0183aa2accff8f78fcc7a6138670cabe586d5a840cecf3a2a",
+      "chars": 2019
     },
     {
       "file": "corpus-case-security-for-non-security-people.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-security-for-non-security-people.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "e59de3dc9ddb03f30fa31ac202a43c05cadc85fbe6b23eebc58e9be4b74c15d8",
-      "chars": 1739
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-security-for-non-security-people.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "546fc77411511adede4fd74a82a58de00ecb886e4d012be653593fb1b572b6d4",
+      "chars": 1755
     },
     {
       "file": "corpus-case-cameras-to-grandmas-email.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-cameras-to-grandmas-email.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "66c21c0769eebd55d674addaccf170f28c51ddb1f3e05da388de9286109072bc",
-      "chars": 1225
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-cameras-to-grandmas-email.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "8262a12222d9d3923f80599f4c69255cdf60ba11109e515f30a41b3e50398fa1",
+      "chars": 1244
     },
     {
       "file": "corpus-case-where-neon1-started.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#case-where-neon1-started.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "e787b9ecc79804174cebcb2ace82d9f59c5d5424eff0b5735b76a09d4a66c78c",
-      "chars": 1160
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#case-where-neon1-started.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "a9e28512760f4c7ce547b2b3575df098cf47285032d508ef44f30f7ee1a076fe",
+      "chars": 1190
     },
     {
       "file": "corpus-product-1neon.md",
       "url": "https://neon1.tech/1NEON/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#product-1neon.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "d0484aeb136a72c5016e263a951c91c26b664a7e0b6c4e3451c8adccf8524188",
-      "chars": 1977
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#product-1neon.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "3ff514bead1a83a3849fc960411021665fbef3130ae4e406bafc0835a91180ff",
+      "chars": 2274
     },
     {
       "file": "corpus-product-aws-clip.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#product-aws-clip.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "08a1a8d1b322d5dfa629e835a269e2af8eb2b009817263caa1a561c868b642e5",
-      "chars": 2572
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#product-aws-clip.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "2979dc9702e47c666d628d94fedd7dc3962ccedc73abacae7bbd51c5b1b0b877",
+      "chars": 2594
     },
     {
       "file": "corpus-product-deploy-ops.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#product-deploy-ops.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "76e293294322b33c1e9ebe199992faa64a6229607c2b11ffaddfe300e0dc626e",
-      "chars": 1377
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#product-deploy-ops.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "f2b71f6c37d98f0bb61ab11817cf531df7cd08112b140a7b42e3f68c47b9ee16",
+      "chars": 2310
     },
     {
       "file": "corpus-product-ready-secure-go.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#product-ready-secure-go.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "9f4c58915f1df49027a1adb97d37218f5d0988527b6475e39452822a2e5a75f3",
-      "chars": 2418
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#product-ready-secure-go.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "29b81a44a1b6ace6b9e19ac87d7b7790929be57116ac5fc1bfd69ac281dd0382",
+      "chars": 2573
     },
     {
       "file": "corpus-policy-accessibility.md",
       "url": "https://neon1.tech/knowledge/policies/accessibility/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-accessibility.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-accessibility.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "600e17d1ef90193d0d9f0ee2c0f82f6fd116a3e58a0f5fae7167008f14dcb963",
       "chars": 2443
     },
     {
       "file": "corpus-policy-ai-use.md",
       "url": "https://neon1.tech/knowledge/policies/ai-use/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-ai-use.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-ai-use.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "ecfa9ff6b1a8471cfd596dd1786fd3342a7889130332bae9cee74cc1d44f2c4d",
       "chars": 2105
     },
     {
       "file": "corpus-policy-cookies.md",
       "url": "https://neon1.tech/1NEON/cookies",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-cookies.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "cdd7b200499cf92386f91b70745c4f99707764e0726b318997701f02c8723658",
-      "chars": 4386
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-cookies.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "2f09b4da1bffac572f30d361e0d4b11f8f8fa3d24b2a3b873ab43f27f372b2fa",
+      "chars": 5130
     },
     {
       "file": "corpus-policy-privacy.md",
       "url": "https://neon1.tech/1NEON/privacy",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-privacy.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "bc870d7536fe0b57417a8882ddc5012f7acaf61612fd684d0f9f1406306de568",
-      "chars": 8640
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-privacy.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "23883b459e6a84df8c8e4bf6336eaba326d4fca7d1a8a5535fed123d239f546d",
+      "chars": 9675
     },
     {
       "file": "corpus-policy-security.md",
       "url": "https://neon1.tech/knowledge/policies/security/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-security.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-security.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "d17311476f857da0aed10f7045af2500f4044126e4c15aabae26bb82e626c6bb",
       "chars": 2171
     },
     {
       "file": "corpus-policy-service-agreement.md",
       "url": "https://neon1.tech/1NEON/agreement",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-service-agreement.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-service-agreement.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "39bf76d4e01a9e66f4b37882f9a6d67fd3d48afb39fde8b9fd2a1bd6a10d7b62",
       "chars": 4003
     },
     {
       "file": "corpus-policy-terms.md",
       "url": "https://neon1.tech/1NEON/terms",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#policy-terms.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "06072ed3c3430370636d194f61761584f63d52c7aaa28622fcce4e0bfa76a94e",
-      "chars": 4450
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#policy-terms.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "d7070e21a7d2a0c6603b2cfae2448589f68345a9924efb7be13f4125e12dbda3",
+      "chars": 4613
     },
     {
       "file": "directive-neo-chat.md",
       "url": "https://neon1.tech/",
-      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.40.0/chat.bundle.json#neo-chat.md",
-      "revision": "neon1-corpus v0.40.0",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "2589b66404575fc3eb382f0c1a03610d07602f5ebf0b25155f2d5e3d5d36030e",
-      "chars": 6809
+      "source": "https://github.com/neon1llc/neon1-corpus/releases/download/v0.41.0/chat.bundle.json#neo-chat.md",
+      "revision": "neon1-corpus v0.41.0",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "1439b600fc2a2302be2b48aadc46a6558ebcd32ff1387be308110a6e6b4ce915",
+      "chars": 4152
     },
     {
       "file": "repo-neon1-site.md",
       "url": "https://github.com/neon1llc/neon1-site",
       "source": "https://raw.githubusercontent.com/neon1llc/neon1-site/d422f1900911dd59e0166741f83a8ab6284e6a46/README.md",
       "revision": "d422f1900911dd59e0166741f83a8ab6284e6a46",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "79e19fcb97553a403203d5b50346a9e8f3ed2ccd21eb7a2c2b667dc3665c0752",
       "chars": 4414
     },
     {
       "file": "repo-neon1-1neon.md",
       "url": "https://github.com/neon1llc/neon1-1NEON",
-      "source": "https://raw.githubusercontent.com/neon1llc/neon1-1NEON/67e8dbc0a06aa7e0f7567a0e1730527c76ca122a/README.md",
-      "revision": "67e8dbc0a06aa7e0f7567a0e1730527c76ca122a",
-      "fetched": "2026-11-13T23:58:21.976Z",
-      "sha256": "1a5fe9082a5f0f067a06cd10ed27bfa05d312acc9e388923df74734b0947df00",
-      "chars": 1462
+      "source": "https://raw.githubusercontent.com/neon1llc/neon1-1NEON/61eef42283b595212b21eeb34cf4d77e5ecf2671/README.md",
+      "revision": "61eef42283b595212b21eeb34cf4d77e5ecf2671",
+      "fetched": "2026-11-14T22:39:26.155Z",
+      "sha256": "eafc086903eadc68ed8ed2087a7add0bd2dd87dce2b937b361f349a211005767",
+      "chars": 2730
     },
     {
       "file": "repo-neon1-aws-infrastructure.md",
       "url": "https://github.com/neon1llc/neon1-aws-infrastructure",
       "source": "https://raw.githubusercontent.com/neon1llc/neon1-aws-infrastructure/a8e80cb346be74f9f3e09896dca8df52589de66c/README.md",
       "revision": "a8e80cb346be74f9f3e09896dca8df52589de66c",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "f8df0e91fab213452c043a98ffc57d5936009d1efcdf5ea2e6ab2ec923b45dba",
       "chars": 4940
     },
     {
       "file": "repo-aws-clip.md",
       "url": "https://github.com/neon1llc/aws-clip",
-      "source": "https://raw.githubusercontent.com/neon1llc/aws-clip/01c672d149f3e5632abb2d2f8bb2dd5764795372/README.md",
-      "revision": "01c672d149f3e5632abb2d2f8bb2dd5764795372",
-      "fetched": "2026-11-13T23:58:21.976Z",
+      "source": "https://raw.githubusercontent.com/neon1llc/aws-clip/874ef4cf7e1516079f6ea48517aef64793e06b85/README.md",
+      "revision": "874ef4cf7e1516079f6ea48517aef64793e06b85",
+      "fetched": "2026-11-14T22:39:26.155Z",
       "sha256": "0d16d012f9921fefec5e95a519b0473bc38f75bc4a5bef9db3c329c7f3aa01f2",
       "chars": 4226
     }

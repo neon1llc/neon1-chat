@@ -4,6 +4,8 @@ Intake ran through one inbox, with staff chasing and retyping documents.
 
 *dermatology practice · workflows*
 
+As neon1, 2026
+
 **2.6 days → 3.4 hours** · 24 → 8 min staff time
 
 | | In short |

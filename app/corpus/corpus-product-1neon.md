@@ -12,11 +12,11 @@ The neon1 client portal at [neon1.tech/1NEON](https://neon1.tech/1NEON/). Each p
 
 - Access is by invitation only, from neon1 or an administrator of your organization.
 - Online payments go through Stripe Checkout, by bank transfer (ACH) or card. Checks, Zelle, and wires are recorded by hand when they arrive.
-- An admin can download everything at any time, from Settings: every project's records, decisions, signatures, invoices, and payments as JSON and CSV, plus every file as uploaded.
+- An admin can download everything at any time, from Settings: every project's records, decisions, signatures, invoices, and payments as JSON and CSV, plus every comment, the activity history, projects in Trash, and every file as uploaded, with a manifest.json listing what's included or left out. The zip's name ends in -complete or -partial.
 - Text messages work only once they're switched on and you've agreed to them on your profile.
 
 ## Next step
 
-[See a sample project](https://neon1.tech/1NEON/example) or [try the demo](https://neon1.tech/1NEON/demo/), which runs in your browser with made-up data. To use 1NEON for real, start with [a first call](../company/contact.md). For help inside the portal, see [1NEON help](../faq/1neon-help.md).
+[See how it works](https://neon1.tech/1NEON/live) in a guided walkthrough of a fictional project, about three minutes. You can also read a [sample project](https://neon1.tech/1NEON/example) or [try the demo](https://neon1.tech/1NEON/demo/), which runs in your browser with made-up data. To use 1NEON for real, start with [a first call](../company/contact.md). For help inside the portal, see [1NEON help](../faq/1neon-help.md).
 
 Code: [neon1llc/neon1-1NEON](https://github.com/neon1llc/neon1-1NEON).
