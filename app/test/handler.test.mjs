@@ -112,8 +112,11 @@ test("counter keys hold no address and roll over each hour", () => {
 
 test("the prompt carries the public sources and the grounding rules", () => {
   const prompt = systemPrompt(loadCorpus());
-  assert.match(prompt, /Answer only from the SOURCES/);
+  assert.match(prompt, /Facts about neon1 .* come only from the SOURCES/);
   assert.match(prompt, /1 is glad to be of service/);
+  // The human route is in the rules, so Neo can offer Pradeep whenever it can't fully answer
+  assert.match(prompt, /\[hello@neon1\.tech\]\(mailto:hello@neon1\.tech\)/);
+  assert.match(prompt, /calendly\.com\/1isgladtobeofservice\/neon1-consultation/);
 });
 
 test("links are real and labeled; invented ones lose the link", async () => {
@@ -173,55 +176,4 @@ test("italics lose their marks, and plain asterisks and underscores stay", async
   const { reply } = await import("../src/chat.mjs");
   const client = { send: async () => ({ output: { message: { content: [{ text: "Named after *The Matrix*. A_b and 2 * 3 stay, _this_ goes." }] } }, stopReason: "end_turn" }) };
   assert.equal((await reply([{ role: "user", content: "x" }], { corpus: "c", client })).text, "Named after The Matrix. A_b and 2 * 3 stay, this goes.");
-});
-
-test("a short opening nod moves after the answer; real answers and lists stay put", async () => {
-  const { nodLast, oneNod, dropBelieve } = await import("../src/chat.mjs");
-  assert.equal(dropBelieve("neon1 builds cloud setups. You're beginning to believe."), "neon1 builds cloud setups.");
-  assert.equal(dropBelieve("neon1 builds cloud setups.\n\nYou're beginning to believe."), "neon1 builds cloud setups.");
-  assert.equal(oneNod("Book a call. You're beginning to believe it fits.\n\nYou have to see it for yourself."), "Book a call. You're beginning to believe it fits.");
-  assert.equal(oneNod("Book a call.\n\nThere is no spoon."), "Book a call.\n\nThere is no spoon.");
-  assert.equal(nodLast("There is no spoon.\n\nneon1 automates intake."), "neon1 automates intake.\n\nThere is no spoon.");
-  assert.equal(nodLast("Yes, from 6pm.\n\nWeekends too."), "Yes, from 6pm.\n\nWeekends too.");
-  assert.equal(nodLast("Opening hours are 8am to 8pm.\n\nMore."), "Opening hours are 8am to 8pm.\n\nMore.");
-  assert.equal(nodLast("- Listen: first\n\n- Next"), "- Listen: first\n\n- Next");
-  assert.equal(nodLast("One paragraph only."), "One paragraph only.");
-  assert.equal(nodLast("Yes, it can.\n\nneon1 works on site."), "Yes, it can.\n\nneon1 works on site.");
-});
-
-test("serious questions lose any film nod, and a late knock, knock is dropped", async () => {
-  const { dropNods, dropLateKnock } = await import("../src/chat.mjs");
-  assert.equal(dropNods("neon1 never sells your data.\n\nA truce with the machines."), "neon1 never sells your data.");
-  assert.equal(dropNods("Only strictly necessary cookies. Knock, knock."), "Only strictly necessary cookies.");
-  assert.equal(dropNods("The portal keeps files private.\n\nOnly invited people see them."), "The portal keeps files private.\n\nOnly invited people see them.");
-  assert.equal(dropLateKnock("Here is the answer.\n\nknock, knock."), "Here is the answer.");
-  assert.equal(dropLateKnock("Here is the answer. Knock, knock."), "Here is the answer.");
-});
-
-test("the film line whose cues match the question is picked, once per conversation", async () => {
-  const { filmLines, pickLine, lineNote } = await import("../src/chat.mjs");
-  const list = filmLines(`- **"Never send a human to do a machine's job."** — Smith. Means: let machines do it. Cues: retype, by hand, automat.
-- **"Knock, knock."** — the screen. Means: a start. Cues: hello, hi.
-- **"Déjà vu."** — Neo. Means: something changed. Cues: again, after the update.`);
-  assert.equal(list.length, 3);
-  assert.match(pickLine("We retype the form by hand", { list }).line, /machine's job/);
-  assert.match(pickLine("Can you automate invoices?", { list }).line, /machine's job/);
-  assert.match(pickLine("It broke after the update, again", { list }).line, /Déjà vu/);
-  assert.equal(pickLine("What do you offer?", { list }), null);
-  assert.equal(pickLine("this is it", { list }), null);
-  assert.equal(pickLine("hi", { list, first: false }), null);
-  assert.equal(pickLine("We retype it", { list, earlier: "Never send a human to do a machine's job." }), null);
-  assert.match(lineNote(list[0]), /^FIT: .*let machines do it/);
-});
-
-test("only the picked film line stays, at any length, and a missing one closes the reply", async () => {
-  const { filmLines, onlyFit } = await import("../src/chat.mjs");
-  const list = filmLines(`- **"You take the blue pill, the story ends. You take the red pill, you stay in Wonderland."** — Morpheus. Means: a choice. Cues: worth it.
-- **"Wake up, Neo."** — the screen. Means: a nudge. Cues: weird.
-- **"Never send a human to do a machine's job."** — Smith. Means: automate. Say: "Let the machine do it". Cues: retype.`);
-  assert.equal(onlyFit("It stays private. You take the red pill, you stay in Wonderland.", null, list), "It stays private.");
-  assert.equal(onlyFit("neon1 does cloud work.\n\nWake up.", null, list), "neon1 does cloud work.");
-  assert.equal(onlyFit("Wake up to find it fixed every morning.", null, list), "Wake up to find it fixed every morning.");
-  assert.equal(onlyFit("neon1 can automate it.", list[2], list), 'neon1 can automate it.\n\n"Let the machine do it."');
-  assert.equal(onlyFit("Never send a human to do a machine's job. neon1 can automate it.", list[2], list), "Never send a human to do a machine's job. neon1 can automate it.");
 });

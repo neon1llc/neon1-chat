@@ -2,6 +2,21 @@
 
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
+## Unreleased
+
+### Added
+- A prospect question set (`app/eval/questions.json`, 52 questions) with checkable rules for each, and a runner that checks prompt assembly offline, grades a deployed endpoint (at most one question every 20 seconds against neon1.tech, stopping at the first 429), or asks Bedrock with this checkout's prompt. The first baseline against production is `app/eval/baseline-2026-11-14.json`.
+- `SCOPE` in `app/src/chat.mjs`, one switch for how far Neo goes beyond neon1's pages: `general-help` (the default) or `neon1-only`.
+
+### Changed
+- Neo is a business-information assistant that finishes the task first: it answers general technology questions as general information, and when it can't answer, it says what's missing and offers Pradeep by email or the free 15-minute call instead of refusing. The rules on reply length, varied openings, list names, and contact links are gone. Off-topic and general questions no longer count toward a misuse cooldown.
+- Every rate-limit, daily-budget, and error message offers Pradeep by email and the free call, with links the chat window renders, and a cooldown for volume says that on shared Wi-Fi other people's messages count too.
+- A sentence with a dollar figure the pricing page doesn't publish is removed from a reply before the visitor sees it.
+
+### Removed
+- The film-line handling left after Neo's lines were retired (the nod patterns, `dropNods`, the line picker and its note, and the related reply filters), which could also cut ordinary short sentences.
+- `scripts/eval.mjs` and `scripts/eval-cases.mjs`, replaced by `app/eval/`.
+
 ## v0.1.2 - 2026-11-13
 
 ### Changed
