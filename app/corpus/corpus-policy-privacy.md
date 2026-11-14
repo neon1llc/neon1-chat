@@ -2,7 +2,7 @@
 
 What neon1.tech and the 1NEON portal collect, why, and what you can do about it.
 
-*Last updated November 11, 2026.* This update says plainly that Amazon Bedrock doesn't keep Neo's questions or use them to train models. It adds no new use of your information.
+*Last updated November 13, 2026.* This update spells out which records a deletion request can't remove: signatures, issued invoices, and payments, which stay locked for seven years. It adds no new use of your information.
 
 neon1 LLC ("neon1", "I", "me") runs the website neon1.tech and the 1NEON client portal at neon1.tech/1NEON. This policy explains what information I collect, why, and what you can do about it.
 
@@ -52,9 +52,10 @@ I disclose information only to these providers, when the law requires it, or to 
 
 Portal data is stored in the United States on AWS, encrypted in transit and at rest. Each organization's data is kept separate from every other organization's.
 
-- **Account and project data:** kept as the record of our work together, including after an engagement ends, so either of us can refer back to it. Your organization can ask me to delete it at any time, and I will, unless the law requires me to keep something.
+- **Account and project data:** kept as the record of our work together, including after an engagement ends, so either of us can refer back to it. Your organization can ask me to delete it at any time, and I will, except for the signed and financial records below and anything else the law requires me to keep.
 - **Deleted items:** projects moved to the trash are hidden from everyone but kept, and erased if your organization asks. Deleted files are removed right away. Database backups roll off after 35 days, and earlier copies of deleted or replaced files after 90 days.
-- **Audit records:** kept for up to 3 years.
+- **Signed and financial records:** every signature (an approved option, the service agreement, an accepted handover), issued invoice, and payment is locked for seven years from the day it's made, because tax and contract law expect those records kept. A deletion request removes everything else, and I tell you in writing which locked records remain and when each one expires.
+- **Audit records:** the log of sign-ins and changes is kept for up to 3 years, then deleted.
 - **Messages on their way:** emails and texts wait in a short queue until they're sent. A record that one was delivered, or that one failed after its retries, is kept for 30 days so I can find and fix delivery problems, then removed.
 
 ## Your choices and rights

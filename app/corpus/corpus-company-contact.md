@@ -16,7 +16,7 @@ Tell me what's on your mind, or ask for an opinion on how your operations run to
 
 - **Where:** remote from anywhere, or on site within about 30 miles of Queens, NY.
 - **When:** weekends 8am to 8pm and weekday evenings, Eastern time.
-- **Size:** small jobs of a week or two up to projects of four to six weeks, with at most two clients at a time.
+- **Size:** a week or two up to six weeks, with at most two clients at a time.
 - **First call:** free and 15 minutes. The main pain points and your options.
 - **After:** a short proposal with options and estimates. Nothing starts until you pick one.
 
