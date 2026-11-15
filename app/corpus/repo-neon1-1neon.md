@@ -28,8 +28,9 @@ Locally there's no sign-in. Pick a demo account from the switcher on the sign-in
 [dev.neon1.tech/1NEON](https://dev.neon1.tech/1NEON/) is a private copy of the portal, behind dev.neon1.tech's sign-in. It runs `infra/envs/dev`: its own API, table, documents bucket, and sign-in pool on auth-dev.neon1.tech, with no texts, no malware scan, and locked records kept one day.
 
 - **Deploys:** pushing the `dev` branch ships the functions and the app in about a minute. `dev-sync` merges main into `dev` after every push to main. Dev is never tagged; changelog entries wait under `## Unreleased`, and each work branch goes to main on its own.
-- **Data:** `AWS_PROFILE=neon1 node scripts/dev-data.mjs --yes` replaces dev's table and documents with a copy of production's (production is only read). Queued messages, sessions, and sign-in links are left out, so everyone signs in to dev again.
-- **neon1 only:** because that copy names real clients, dev (`APP_ENV=dev`, see `apps/api/src/dev-guard.ts`) admits only operators and neon1.tech addresses, sends mail only to them, and creates no accounts for anyone else. The dev pool holds neon1 admins only.
+- **Data:** dev holds made-up data only, never a copy of production's. `AWS_PROFILE=neon1 npx tsx apps/api/src/dev-sample.ts --yes` empties dev's table and documents and fills them with the fictional organizations, people (`.example` addresses), projects, invoices, and payment records local development uses, plus one harmless text file. Sign in to dev again afterwards.
+- **Payments:** dev takes Stripe test-mode keys only (`/1neon/dev/stripe/secret-key` and `/1neon/dev/stripe/webhook-secret` in SSM, a test-mode webhook to `https://dev.neon1.tech/1NEON/api/billing/stripe`), so cards, bank transfers, and webhooks work end to end with Stripe's test numbers and no real money. A live key on dev turns online payment off.
+- **neon1 only:** so a test can never reach a real person, dev (`APP_ENV=dev`, see `apps/api/src/dev-guard.ts`) admits only operators and neon1.tech addresses, sends mail only to them, and creates no accounts for anyone else. The dev pool holds neon1 admins only.
 - **Signing in:** use the email code. A production passkey shows up because passkeys belong to neon1.tech, but the dev pool doesn't know it; add a dev passkey from your profile after signing in.
 
 ## Deploy
