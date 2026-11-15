@@ -15,8 +15,6 @@ Each option in a proposal says which of two ways it's priced.
 - **A fixed price** is for well-understood work. It's the whole price for the work described and changes only if you approve a change to the work.
 - **An estimate** is for work with an unknown in it. It's a range of hours at the rate the proposal states. You pay for the hours I work, each listed in [1NEON](../products/1neon.md). The total never passes the high end unless you approve a change first.
 
-Either way, the proposal shows the work behind the price line by line.
-
 ## What projects usually cost
 
 As of November 2026. A guide, not a quote.
@@ -25,10 +23,8 @@ As of November 2026. A guide, not a quote.
 |---|---|---|
 | A small fix or setup, a few hours | $150 to $750 | A shared inbox sorted with rules and reply templates, or a new office laptop set up and secured |
 | A workflow project, one to four weeks | $1,000 to $3,000 | Orders from email, voicemail, and a web form landing in one list, with a daily summary for the staff |
-| A larger build or a move, several weeks or more | From $3,000, in phases | A small portal in your own cloud account, or a move to a new system with your data intact |
+| A larger build or a move, several weeks or more | From $3,000, split into phases priced and approved one at a time | A small portal in your own cloud account, or a move to a new system with your data intact |
 | Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
-
-Larger work is split into phases, each priced and approved on its own.
 
 ## A worked example
 
@@ -67,11 +63,11 @@ A project usually starts with a deposit: half of a fixed price, or half of an es
 
 ## Room to adjust
 
-These ranges aren't a floor. I sometimes price below them for a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without, and the proposal says so. The 15-minute first call is free, and saying no to a proposal costs nothing.
+These ranges aren't a floor. I sometimes price below them for a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without, and the proposal says so. Saying no to a proposal costs nothing.
 
 ## Why ranges here and hours in the proposal
 
-A website can't see your setup, so one number here would be wrong for most readers. Every proposal shows the hours behind each price, and every estimate hour is listed in 1NEON as it's logged.
+A website can't see your setup, so one number here would be wrong for most readers. Every proposal shows the hours behind each price.
 
 ## How this compares
 
