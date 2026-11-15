@@ -27,6 +27,8 @@ make apply STACK=site      # applies exactly that plan
 
 Pushing to `main` runs the checks, then plans and applies `site` and `dns` with the role from the repository variable `AWS_TERRAFORM_ROLE_ARN`. CI only plans `github`, because that role can't change IAM. Apply `github` by hand, as described in [github/README.md](github/README.md). A new stack needs a line in the workflow matrix and access in that role's policy.
 
+Changes move through neon1's four [release levels](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md#release-levels): Implemented, Verified, Released, and Qualified. Every stack's plan or apply passing and the tag mark Released. A plan that replaces or destroys a resource is read before it is applied, and Qualified needs a tested recovery, such as restoring neon1.tech from this repository.
+
 
 ## How the four repositories fit together
 
@@ -44,12 +46,3 @@ Manual steps: applying `github` (its role can't change IAM), confirming each ala
 Everything here is production-specific: one account, `us-east-1`, and the names above. A staging account would need its own state bucket, `EXPECTED_ACCOUNT`, and variable values; nothing here assumes it exists.
 
 Rollback: revert the commit on main and let CI apply it (or apply `github` by hand). State is versioned in `neon1-tfstate`, so a bad state write can be restored from an earlier object version.
-
-## Branch rules
-
-All four repos carry the same two rulesets on `main`, set in each repo's GitHub settings (Rules), not in Terraform:
-
-- "main: no force push or deletion" blocks force pushes and deleting `main`, for everyone.
-- "main: required checks" requires the repo's CI checks before anything lands on `main`: `ci-secrets`, `ci-app`, and `ci-terraform` in neon1-1NEON and neon1-chat, and `check` in neon1-site and here. Repository admins bypass it, so a solo maintainer can still push directly; Dependabot, the corpus refresh, and any other writer need green checks. Deploys also wait on their checks for the same commit, so a bypassed push that fails a check still doesn't ship.
-
-Emergency: an admin can switch a ruleset to "Disabled" in the repo's settings, make the fix, and switch it back. Renaming a CI job means updating the required check name in the same change.

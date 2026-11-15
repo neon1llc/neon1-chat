@@ -4,7 +4,7 @@ Staff spent minutes searching Microsoft 365, or asked a senior colleague.
 
 *accounting firm · cloud & AI*
 
-As neon1, designed with Xenoss and handed over to them, 2026
+Partner engagement: As neon1, subcontracted by Xenoss, 2026
 
 **~5 min → 14 s** lookup · recall 72% → 94%
 
@@ -23,7 +23,7 @@ The ask: let staff ask normal questions, return the approved answer with its doc
 
 ## The work
 
-This was my first project with an AWS partner, [Xenoss](https://xenoss.io), who helped with design and maintenance. I handled ingestion, embeddings, retrieval, and answer quality.
+This was my first project with an AWS partner, [Xenoss](https://xenoss.io), which held the contract and brought me in as a subcontractor. We designed it together, Xenoss maintains it, and I handled ingestion, embeddings, retrieval, and answer quality.
 
 - Only approved Microsoft 365 libraries sync into versioned, encrypted S3, with source, version, and access details.
 - Bedrock Knowledge Bases, Titan embeddings, and OpenSearch Serverless run hybrid search, so exact form numbers match as well as reworded questions.
@@ -40,13 +40,13 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), who 
 | Answers fully supported by their source  | 78%          | 92%    |
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
-Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure.
+Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Times after launch come from the start and end the system records for each lookup, as metrics only, with no question or answer text. Where the old way left no record, such as a lookup before launch or how often senior staff were interrupted, the figure is the staff's own estimate from a short survey.
 
 These results describe that test set, not a guarantee: 8% of answers weren't fully supported, so each answer carries citations to check.
 
 In the client's words:
 
-> "The work helped quicken the direction that we were moving on for some time, working toward a completely centralized single cloud for our org, assets and products used. And using AI safely and intentionally. The knowledge base project was a push forward for us on both fronts. Thanks Pradeep!"
+> "For a while now we've been working on getting the whole firm onto one cloud: our files, our client documents, and the software we run on. We also wanted to start using AI, but carefully, and on our terms. The knowledge base moved us forward on both."
 >
 > Boris M., Boris M Tax
 
