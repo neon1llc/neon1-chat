@@ -2,9 +2,9 @@
 
 Where neon1 uses AI tools in its own work, where a person stays responsible, and how your information is kept out of them.
 
-*Last updated November 9, 2026.*
+*Last updated November 15, 2026.*
 
-I use AI tools in my own work, mainly for research and review. This page says where I use them, where I don't, and what stays my responsibility.
+I use AI tools in my own work, mainly for research and review.
 
 ## Where I use it
 

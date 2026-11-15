@@ -20,4 +20,4 @@ You can count on five things:
 
 ## The line on the landing
 
-*1 is glad to be of service.* The 1 is me, Pradeep, neon1's sole owner and your dedicated deputy. [The names](names.md) tells where it comes from.
+*1 is glad to be of service.* [Where it comes from](names.md).

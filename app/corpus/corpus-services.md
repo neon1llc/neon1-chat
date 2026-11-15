@@ -13,7 +13,7 @@ Most of my work is for owner-run businesses: the orders, intake, invoices, and r
 | **Your office or home** has Wi-Fi that misses rooms, cameras that don't alert, or devices nobody wrote down | **Networks and devices.** Coverage checked room by room, devices on their own network, everything documented | 1 to 2 weeks for one office. A small fix or setup costs $150 to $750 | [Getting ready for a first call](../guides/first-call.md) |
 | **Your team or group** needs to spot phishing and fraud, or your company is heading into a SOC 2 audit | **Security training and readiness.** A plain-language session on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks. Priced in a proposal after the free call | [How a session goes](../guides/use-case-security-awareness.md) |
 
-Prices are the ranges in [how I price my work](../company/pricing.md). Your exact price comes in a proposal, after we've talked.
+Prices are the ranges in [how I price my work](../company/pricing.md).
 
 ## Who does what
 

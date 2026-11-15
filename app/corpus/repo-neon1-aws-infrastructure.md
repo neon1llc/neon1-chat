@@ -42,10 +42,18 @@ The SSM parameters are the shared contract. 1NEON publishes `app_bucket_domain` 
 
 Manual steps:
 
-- Applying `github`, since its role can't change IAM.
 - Confirming each alarm email subscription once from the inbox.
 - Rotating the origin secret, described in neon1-chat's README.
 
 Everything here is production-specific: one account, `us-east-1`, and the names above. A staging account would need its own state bucket, `EXPECTED_ACCOUNT`, and variable values.
 
 To roll back, revert the commit on main and let CI apply it, or apply `github` by hand. State is versioned in `neon1-tfstate`, so a bad state write can be restored from an earlier object version.
+
+## Branch rules
+
+All four repos carry the same two rulesets on `main`. They're set in each repo's GitHub settings (Rules), not in Terraform.
+
+- **main: no force push or deletion** blocks force pushes and deleting `main`, for everyone.
+- **main: required checks** requires the repo's CI checks before anything lands on `main`: `ci-secrets`, `ci-app`, and `ci-terraform` in neon1-1NEON and neon1-chat, and `check` in neon1-site and here. Repository admins bypass it, so I can still push directly. Dependabot, the corpus refresh, and any other writer need green checks. Deploys wait on their checks for the same commit, so a bypassed push that fails a check still doesn't ship.
+
+In an emergency, an admin can switch a ruleset to "Disabled" in the repo's settings, make the fix, and switch it back. Renaming a CI job means updating the required check name in the same change.

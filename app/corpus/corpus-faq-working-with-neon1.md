@@ -14,6 +14,10 @@ Saturdays and Sundays from 8am to 8pm, and weekday evenings from 6pm to 9pm, Eas
 
 I work in planned appointments on weekday evenings and weekends, with no 24/7 or emergency response. For anything your business can't run without for a day, I take the work only when someone on your side runs it day to day. The handover is written for that person: how it works, how to check it, how to restore it, and whom to call for each part. A care plan sets my response times in writing, within my working hours. A security incident in progress or an outage needs a provider with emergency coverage first. Email [hello@neon1.tech](mailto:hello@neon1.tech) for anything else.
 
+## Can I start without a call?
+
+Yes. [Start a free 1NEON account](https://neon1.tech/1NEON/?signup=1), write down what your project needs, and I'll reply with what I'd do. [Free 1NEON accounts](https://neon1.tech/knowledge/guides/free-accounts/) has the details.
+
 ## How long does a project take?
 
 Small jobs take a week or two, medium ones two to four weeks, and bigger projects four to six. I take on up to two clients at a time so each one gets proper attention.

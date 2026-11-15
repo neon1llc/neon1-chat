@@ -6,9 +6,7 @@ Security readiness for every space, in plain language.
 
 **Security steps for each kind of space.** Plain-language guidance for a phone, a home network, a classroom, a small office, or a company heading into SOC 2: five things worth doing first, then what's next. It's open on [GitHub](https://github.com/neon1llc/ready-secure-go).
 
-- **Who it's for:** households, teachers, small offices, and companies preparing for a security review, who want to know what to do first without the jargon.
 - **What's in it:** ten spaces, from Me to Builders, each with five first steps; a readiness check; practices by level; playbooks for when something goes wrong; teach kits; and printable handouts. It was called neon1 Ready until November 2026.
-- **An example:** a family opens Home & Family and gets five first steps, such as turning on two-step sign-in for email.
 - **Licenses:** written material under CC BY-SA 4.0, code under MIT.
 
 ## Companion guides

@@ -36,4 +36,4 @@ The best measure is what people do: turning on two-factor sign-in in the session
 
 ## After handover
 
-The material changes as threats do. [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. Companies heading into an audit get SOC 2 readiness work. [Get in touch](../company/contact.md) to ask about a session for your group.
+The material changes as threats do. [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. Companies heading into an audit get SOC 2 readiness work.
