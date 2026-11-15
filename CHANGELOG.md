@@ -3,9 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
-## Unreleased
+## v0.2.3 - 2026-11-15
 
+### Changed
 - Cut wording that repeats a table, list, or linked page.
+- Each release's changelog entry is published as its GitHub release.
 
 ## v0.2.2 - 2026-11-15
 
