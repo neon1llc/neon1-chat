@@ -77,6 +77,8 @@ terraform -chdir=infra apply tfplan
 
 The `/chat/api/*` route on neon1.tech belongs to the neon1-aws-infrastructure site stack. It reads `/neon1-chat/prod/api_domain` and `/neon1-chat/prod/origin_secret`, so apply this stack first.
 
+Changes move through neon1's four [release levels](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md#release-levels): Implemented, Verified, Released, and Qualified. `scripts/verify-release.mjs` passing and the release tag mark Released. Qualified also needs `npm run eval -- live` against neon1.tech after the release, with every miss reviewed.
+
 
 ## Rotating the origin secret
 
