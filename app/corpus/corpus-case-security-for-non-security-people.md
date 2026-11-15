@@ -4,9 +4,9 @@ People knew they were exposed online, but not where to start.
 
 *schools, families, & teams · security*
 
-As neon1, 2025
+neon1 engagement, 2025
 
-**30+ people** per seminar · every level
+**parents to executives** · every level
 
 | | In short |
 |---|---|
@@ -21,7 +21,7 @@ Teachers, parents, engineers, and executives knew their accounts, homes, and bus
 
 ## The work
 
-I've run sessions from small groups of parents to Manhattan seminars for 30 or more. Topics include:
+I've run sessions for groups of parents, teachers, engineers, and executives. Most were hosted by small and medium businesses for their own people; others I held in a rented WeWork room for people who came through my Retro NY meetups. Topics include:
 
 - Securing home and business networks, cameras, and connected devices.
 - Fraud, phishing, data brokers, and what's sold on the dark web.

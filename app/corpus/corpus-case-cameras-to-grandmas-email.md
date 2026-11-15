@@ -4,7 +4,7 @@ A house with no cameras, and passwords reused everywhere.
 
 *family & friends · home tech*
 
-For my own family
+Founder experience: For my own family, 2025
 
 **small jobs welcome** · patience included
 
