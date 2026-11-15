@@ -84,17 +84,17 @@ export function validate(body) {
 // What the window shows for each refusal; it words the history case itself
 const REFUSED = {
   [CODES.invalid]: "That message couldn't be read.",
-  [CODES.question]: `Please keep your question under ${LIMITS.chars.toLocaleString("en-US")} characters.`,
-  [CODES.conversation]: "This conversation has grown longer than Neo can follow. Please start a new one.",
+  [CODES.question]: `Keep your question under ${LIMITS.chars.toLocaleString("en-US")} characters.`,
+  [CODES.conversation]: "This conversation is too long for Neo to follow. Start a new one.",
 };
 
 // A cooldown in words, with roughly how long it lasts but never how many messages it took
 export function cooldownText({ retry, reason }) {
   const wait = retry >= 20 * 3600 ? "until tomorrow" : retry >= 3000 ? `for about ${Math.round(retry / 3600)} hour${retry >= 5400 ? "s" : ""}` : `for about ${Math.max(1, Math.round(retry / 60))} minute${retry >= 90 ? "s" : ""}`;
-  if (reason === "repeat") return withHuman(`That's the same question again. Neo will pause ${wait}; the earlier answer is above.`);
-  if (reason === "misuse") return withHuman(`Neo is stepping back from this conversation ${wait}.`);
+  if (reason === "repeat") return withHuman(`That's the same question again. Neo will pause ${wait}. The earlier answer is above.`);
+  if (reason === "misuse") return withHuman(`Neo is pausing this conversation ${wait}.`);
   // Volume limits count a whole network, so on shared Wi-Fi someone else may have used them up
-  return withHuman(`Neo has had too many messages from your network just now and will be back ${wait}. On shared Wi-Fi that can include other people's messages.`);
+  return withHuman(`Neo has had too many messages from your network and will be back ${wait}. On shared Wi-Fi, other people's messages count too.`);
 }
 
 class Timeout extends Error {
@@ -127,7 +127,7 @@ export async function handler(event, deps = {}) {
     return await route(event, deps);
   } catch (err) {
     logError("handler_error", err);
-    return failure(500, "error", withHuman("Neo couldn't answer just now. Please try again in a moment."), 30);
+    return failure(500, "error", withHuman("Neo couldn't answer. Try again in a moment."), 30);
   }
 }
 
@@ -159,7 +159,7 @@ async function route(event, deps) {
   const settings = config();
   if (!settings.perMinute || !settings.perHour || !settings.perDay) {
     logError("config_error", { name: "InvalidCaps" });
-    return failure(503, "unavailable", withHuman("Neo is unavailable just now. Please try again later."), 300);
+    return failure(503, "unavailable", withHuman("Neo is unavailable. Try again later."), 300);
   }
   const ip = viewerIp(event);
   const question = messages.at(-1).content;
@@ -168,12 +168,12 @@ async function route(event, deps) {
     blocked = await before(deadline, (signal) => allow(ip, { ...settings, question, client: deps.dynamo, signal }));
   } catch (err) {
     logError("limit_error", err);
-    return failure(503, "unavailable", withHuman("Neo is busy just now. Please try again in a minute."), 60);
+    return failure(503, "unavailable", withHuman("Neo is busy. Try again in a minute."), 60);
   }
   if (blocked) {
     // Strikes are logged by level and reason only, so alarms and reviews can see abuse without an address
     if (blocked.reason && !blocked.waiting) console.log(JSON.stringify({ event: "strike", reason: blocked.reason, level: blocked.level }));
-    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has answered as many questions as it can for today and is resting until tomorrow."), blocked.retry);
+    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has reached its limit for today and will be back tomorrow."), blocked.retry);
     return failure(429, "cooldown", cooldownText(blocked), blocked.retry);
   }
   // One model call; only sizes and timing go to the logs
@@ -199,11 +199,11 @@ async function route(event, deps) {
   } catch (err) {
     logError("chat_error", err);
     if (err instanceof Timeout || err?.name === "AbortError" || err?.name === "TimeoutError") {
-      return failure(504, "timeout", withHuman("Neo took too long to answer. Please try again in a moment."), 10);
+      return failure(504, "timeout", withHuman("Neo took too long. Try again in a moment."), 10);
     }
     if (err?.name === "ThrottlingException" || err?.name === "ServiceQuotaExceededException") {
-      return failure(503, "busy", withHuman("Neo is busy just now. Please try again in a minute."), 60);
+      return failure(503, "busy", withHuman("Neo is busy. Try again in a minute."), 60);
     }
-    return failure(502, "unavailable", withHuman("Neo couldn't answer just now. Please try again in a moment."), 30);
+    return failure(502, "unavailable", withHuman("Neo couldn't answer. Try again in a moment."), 30);
   }
 }
