@@ -2,30 +2,20 @@
 
 # AWS CLI Plus
 
-AWS CLI Plus (`aws-clip`) makes multi-profile AWS CLI work safer and easier to
-understand. It discovers the profiles already known to AWS CLI v2, follows each
-profile's authentication path, verifies the active account and principal, and
-puts account-bound guards in front of risky commands.
+AWS CLI Plus (`aws-clip`) makes multi-profile AWS CLI work safer. It finds the profiles AWS CLI v2 already knows, logs in through each profile's own path, checks the active account and principal, and guards risky commands by account.
 
-It does not replace AWS CLI. AWS CLI v2 remains responsible for configuration,
-credentials, IAM Identity Center, local login, service coverage, retries,
-requests, and output formatting. Use `aws` directly for ordinary one-off work.
-Use `aws-clip` when profile isolation, identity visibility, production account
-checks, or explicit approval materially reduces operational risk.
+It doesn't replace AWS CLI. AWS CLI v2 still handles configuration, credentials, IAM Identity Center, login, service coverage, retries, requests, and output. Use `aws` directly for ordinary one-off work. Use `aws-clip` when profile isolation, identity checks, production account guards, or explicit approval lower your risk.
 
 ## Install
 
-Requirements:
-
-- AWS CLI v2 on `PATH`, or its executable path configured explicitly
-- Go 1.22 or newer when building from source
+You need AWS CLI v2 on `PATH` (or its path set in config) and Go 1.22 or newer to build.
 
 ```sh
 make build
 ./bin/aws-clip doctor
 ```
 
-Or install into the active Go binary directory:
+Or install into your Go binary directory:
 
 ```sh
 go install ./cmd/aws-clip
@@ -34,21 +24,16 @@ aws-clip doctor
 
 ## Start with a profile
 
-List the profiles AWS CLI has already merged from its normal configuration:
+List the profiles AWS CLI has already merged from its configuration:
 
 ```sh
 aws-clip profiles
 aws-clip profiles --format json
 ```
 
-The text view shows Region, authentication path, configured SSO account and
-role when available, selection, and protection status. It never prints access
-key IDs, credential-process commands, SSO start URLs, login-session names, or
-credential values. The JSON response has `schema_version: 1` and an ordered
-`profiles` array; an unavailable Region is `null`.
+The text view shows Region, authentication path, SSO account and role when configured, selection, and protection status. It never prints access key IDs, credential-process commands, SSO start URLs, login-session names, or credential values. The JSON response has `schema_version: 1` and an ordered `profiles` array. An unavailable Region is `null`.
 
-`aws-clip` does not create profiles. Use AWS CLI's own configuration commands,
-then select a profile explicitly:
+`aws-clip` doesn't create profiles. Create one with AWS CLI, then select it explicitly:
 
 ```sh
 aws configure sso --profile development
@@ -56,63 +41,42 @@ aws-clip --profile development login
 aws-clip --profile development context
 ```
 
-Profile selection can also come from `AWS_CLIP_PROFILE` or the user
-configuration file. Lifecycle and guarded execution commands do not fall back
-to AWS CLI's default profile.
+You can also select a profile with `AWS_CLIP_PROFILE` or the configuration file. Login and guarded commands never fall back to AWS CLI's default profile.
 
-## Login and logout
+## Log in and out
 
-`login` first asks STS whether the selected profile already resolves valid
-credentials. A valid session is reused. Otherwise it follows safe AWS profile
-metadata, including `source_profile` chains:
+`login` asks STS whether the profile already has valid credentials and reuses them. Otherwise it follows the profile's metadata, including `source_profile` chains:
 
-- IAM Identity Center profiles run `aws sso login` for the owning profile
-- AWS local login profiles run `aws login` for the owning profile
-- role profiles use the login path of their source profile
-- configured profiles with no declared provider can bootstrap AWS local login
-  after an identity probe fails and the installed AWS CLI supports it
-- static keys, credential processes, web identity, instance/container roles,
-  and the default provider chain remain the owning provider's responsibility
+- IAM Identity Center profiles run `aws sso login` for the owning profile.
+- AWS local login profiles run `aws login` for the owning profile.
+- Role profiles use their source profile's login path.
+- Configured profiles with no declared provider can bootstrap AWS local login after an identity probe fails, if your AWS CLI supports it.
+- Static keys, credential processes, web identity, instance or container roles, and the default provider chain stay with their own provider.
 
-After authentication, `aws-clip` verifies STS identity again and reports the
-account and principal. It never exports or stores session credentials.
+After login, `aws-clip` checks STS identity again and reports the account and principal. It never exports or stores session credentials.
 
 ```sh
 aws-clip --profile production login
-```
-
-Local-login logout is scoped to its login profile:
-
-```sh
 aws-clip --profile development logout
 ```
 
-AWS CLI's SSO logout clears every cached SSO session, not only the selected
-profile. `aws-clip` makes that wider effect explicit:
+Local-login logout affects only its login profile. AWS CLI's SSO logout clears every cached SSO session, so `aws-clip` asks you to say so:
 
 ```sh
 aws-clip --profile development logout --approve all-sso-sessions
 ```
 
-Profiles backed by external or static providers have no AWS CLI login/logout
-action; the diagnostic names the provider that must be refreshed.
+Profiles backed by external or static providers have no login or logout action. The message names the provider to refresh.
 
 ## Verify the active context
 
-`context` calls `aws sts get-caller-identity` through the selected AWS CLI
-profile and reports only non-secret operational context:
+`context` calls `aws sts get-caller-identity` through the selected profile and reports non-secret context only:
 
 ```sh
 aws-clip --profile production --region us-east-1 context
 aws-clip --profile production context --format json
 ```
 
-The result includes profile, observed account ID, principal ARN, user ID,
-derived role or user name, effective Region, configured credential source,
-source profile, and account-guard state. JSON output is a stable
-`schema_version: 1` contract. The observed STS account, rather than the profile
-name, is the value used for safety decisions.
+It reports profile, observed account ID, principal ARN, user ID, role or user name, effective Region, credential source, source profile, and account-guard state. JSON output is a stable `schema_version: 1` contract. Safety decisions use the observed STS account, not the profile name.
 
-Region precedence is wrapper flag, `AWS_CLIP_REGION`, user configuration,
-`AWS_REGION`, `AWS_DEFAULT_REGION`, then the selected AWS profile. Unset retry
-and timeout settings continue to defer to AWS CLI.
+Region precedence: wrapper flag, `AWS_CLIP_REGION`, user configuration, `AWS_REGION`, `AWS_DEFAULT_REGION`, then the AWS profile. Unset retry and timeout settings defer to AWS CLI.

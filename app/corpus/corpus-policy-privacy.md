@@ -2,7 +2,7 @@
 
 What neon1 collects on neon1.tech, in Neo, in the 1NEON portal, and in client work, where it goes, how long it's kept, and what you can do about it.
 
-*Last updated November 15, 2026.* This edition brings everything about your data into one policy. It adds what was missing: the contact form, online payments through Stripe, scanning of uploaded files, what a signature records, how long server logs are kept, the private test environment, downloading your data, and what I do with information on your own systems during a project. It changes no retention period and adds no new use of your information.
+*Last updated November 15, 2026.* This edition adds prospect accounts: what I collect when you make your own 1NEON account, the bot check on the sign-up form (Cloudflare Turnstile), the check-in emails, and that a prospect account is deleted 30 days after its last change. Nothing changes for clients.
 
 neon1 LLC ("neon1", "I", "me") runs the website neon1.tech, Neo (the assistant on the website), and the 1NEON client portal at neon1.tech/1NEON, and does technology work for clients. This policy covers all of them. The [cookie and browser storage notice](https://neon1.tech/1NEON/cookies) is part of it and lists every cookie and saved item in detail. How the systems themselves are built is described in [How neon1 is built](https://neon1.tech/knowledge/company/architecture/).
 
@@ -10,7 +10,7 @@ neon1 LLC ("neon1", "I", "me") runs the website neon1.tech, Neo (the assistant o
 
 - The website has no analytics, ads, or trackers, and sets no cookies.
 - I collect only what's needed to answer you, run your projects, and get paid, and I never sell, rent, or advertise with it.
-- Your projects and files are never deleted on a schedule. They're deleted when your organization asks.
+- Clients' projects and files are never deleted on a schedule. They're deleted when your organization asks. A prospect account you make yourself is deleted 30 days after its last change, unless we're working together.
 - Tests and development never use your information. They run on made-up data.
 - Payment card and bank details go to Stripe, not to me.
 - You can download your organization's data at any time, and ask me to correct or delete it.
@@ -44,7 +44,7 @@ Please don't type anything sensitive into Neo.
 
 ### The 1NEON portal
 
-The portal is available only to people invited by me or by an administrator of their organization. It holds:
+The portal is available to people invited by me or by an administrator of their organization, and to prospects who make their own account (below). It holds:
 
 - **Account details:** your email address, and optionally your name, job title, phone number, and profile photo.
 - **Sign-in data:** your sign-in methods (an emailed code or a passkey, with an authenticator app as an optional second step; there's no password) and security events, such as sign-in times, the IP address and browser used, and when a sign-in method was added or removed. Passkeys and email codes are handled by Amazon Cognito.
@@ -59,6 +59,18 @@ The portal is available only to people invited by me or by an administrator of t
 **Neo inside the portal.** A signed-in version of Neo can help inside 1NEON, but it's turned off today. If I turn it on, I'll update this policy first. When it's on and you ask it a question, it sends your question and what it reads in 1NEON as you, such as the projects, items, options, file names, and comments you can already see, to an Anthropic model that Amazon runs in Bedrock in the United States, so it can answer. It sends nothing about organizations you can't see, nothing when you aren't asking, and it can't change anything until you approve it.
 
 Please don't put passwords, keys, or other secrets in the portal.
+
+### Prospect accounts
+
+You can make your own 1NEON account from neon1.tech to describe your projects' needs before we work together. When you sign up, I collect:
+
+- **What you type:** your email address, your name, and your organization's name, and that you accepted the terms of use (with the date of the edition you saw).
+- **A bot check:** the sign-up form runs Cloudflare Turnstile, which looks at your browser and connection to tell a person from an automated script. Cloudflare receives your IP address and browser details for that check only. Turnstile runs only on the sign-up form.
+- **A one-way fingerprint of your IP address,** used to limit how many sign-ups come from one place, and kept with your account's sign-up record. The address itself isn't stored.
+- **What you add:** the projects, needs, comments, and files you put in the account, as in any portal account.
+
+Only you and I see a prospect account. I use it to understand your needs, advise you, suggest options, and offer to talk. I don't add you to a mailing list. The portal emails you your sign-in codes, and, if nothing in the account changes, a short check-in after 7 and 14 days and a final notice after 21. If you don't confirm your email within a day of signing up, the unfinished sign-up is removed.
+
 
 ### Work on your own systems
 
@@ -98,6 +110,7 @@ I use a small number of service providers, all based in the United States, each 
 | Stripe | Takes online payments | Your payment details, which you enter on Stripe's page, plus the amount, invoice number, a short description, and your email address |
 | Google (Google Workspace) | My business email and calendar | Emails you send me, contact form messages, and bookings |
 | Calendly | Booking calls from the website | What you enter when you book |
+| Cloudflare (Turnstile) | Tells people from automated scripts on the 1NEON sign-up form | Your IP address and browser details while you fill in the sign-up form |
 
 I disclose information only to these providers, when the law requires it, or to protect the rights and safety of people using neon1's services. If I add a provider that receives your information, I'll update this list first.
 
@@ -107,7 +120,7 @@ Portal data and files are stored on AWS in its US East (N. Virginia) region, enc
 
 ## How long I keep it
 
-Your projects and files are never deleted on a schedule. The table lists everything else.
+Clients' projects and files are never deleted on a schedule. The table lists everything else.
 
 | Information | How long it's kept |
 |---|---|
@@ -121,6 +134,9 @@ Your projects and files are never deleted on a schedule. The table lists everyth
 | Portal server logs (request time, route, IP address, status, and errors, never what you sent) | 90 days |
 | Neo's logs (timing, length, and errors, never the text) | 14 days |
 | Contact form counters | A day after their first count |
+| Prospect accounts (everything in them, including files) | Deleted 30 days after the last change anyone in the account made, unless we're working together or I've told you I'm keeping it. You can ask me to delete one sooner |
+| An unconfirmed sign-up (what you typed, and the sign-in account it started) | One day |
+| Sign-up counters (one-way fingerprints of addresses and emails) | Two days |
 | Neo's question fingerprints | Ten minutes |
 | Emails and contact form messages | As correspondence, while useful for our work or required by law, or until you ask me to delete them |
 | Information copied from your systems for a project | Deleted when the project ends, unless you ask me to keep it |
