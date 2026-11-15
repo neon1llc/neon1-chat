@@ -37,7 +37,7 @@ export const REFUSAL =
 // A guarantee or promise in neon1's name; "no one can guarantee" and the like are fine
 export const PROMISE = [
   /\b(I|neon1|we) (can |will )?(guarantee|promise)s?\b/iu,
-  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no)\s)\bguarantee[ds]?\b/iu,
+  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no|or)\s)(?<!\bno \w+ (is|are)\s)\bguarantee[ds]?\b/iu,
 ];
 
 // Film lines Neo no longer says

@@ -83,6 +83,14 @@ test("ensureHuman appends the human route on urgent and hostile turns that lack 
   }
 });
 
+test("ensureHuman keeps the human route on a long reply that has to be shortened", () => {
+  const long = "Disconnect the computer from the network. ".repeat(60).trim();
+  const out = ensureHuman(long, "Someone clicked a phishing link", 1200);
+  assert.ok(out.length <= 1200, String(out.length));
+  assert.match(out, /\n\nPradeep can help directly: .*hello@neon1\.tech/s);
+  assert.ok(out.includes(BOOKING));
+});
+
 test("ensureHuman leaves other turns and replies that already have a route alone", () => {
   assert.equal(ensureHuman("MFA is a second step.", "What is MFA?"), "MFA is a second step.");
   assert.equal(ensureHuman("Disconnect it. Email hello@neon1.tech.", "We got phished"), "Disconnect it. Email hello@neon1.tech.");

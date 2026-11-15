@@ -3,6 +3,12 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Fixed
+- A long reply to an urgent or security message is shortened before the human line is added, so the line is never cut off.
+- The eval grader no longer fails replies that deny a claim, such as "no discount is guaranteed" or "the pages don't state that the portal is SOC 2 certified."
+
 ## v0.2.3 - 2026-11-15
 
 ### Changed

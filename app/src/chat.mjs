@@ -175,11 +175,13 @@ const NEEDS_HUMAN =
 
 /**
  * Where such a turn's reply has no email or booking link, a closing line offers Pradeep. Replies
- * that already carry either link are left alone.
+ * that already carry either link are left alone. With `max`, the reply is shortened first so the
+ * closing line always fits, since clipping after it would cut the route off a long answer.
  */
-export function ensureHuman(text, question = "") {
+export function ensureHuman(text, question = "", max = Infinity) {
   if (!NEEDS_HUMAN.test(question) || text.includes(EMAIL) || text.includes(BOOKING)) return text;
-  return `${text}\n\nPradeep can help directly: ${HUMAN}.`;
+  const tail = `\n\nPradeep can help directly: ${HUMAN}.`;
+  return `${Number.isFinite(max) ? clip(text, max - tail.length) : text}${tail}`;
 }
 
 // ---- One question, one reply ----
@@ -225,7 +227,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   const sources = `${directives}\n${corpus}`;
   const priced = onlyPublishedPrices(finish(plain, res.stopReason), publishedPrices(corpus));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
-  const out = clip(cleanLinks(ensureHuman(priced, asked), allowedLinks(sources)), LIMITS.reply);
+  const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);
 
   return { text: out, flagged, attempts: 1, usage: res.usage ?? {}, stopReason: res.stopReason };
 }
