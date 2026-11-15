@@ -37,6 +37,8 @@ Locally there's no sign-in. Pick a demo account from the switcher on the sign-in
 
 Pushing to `main` deploys. GitHub Actions applies `infra/envs/prod` and ships the functions and the app with AWS roles assumed through OIDC, so the repo holds no AWS keys.
 
+Changes move through neon1's four [release levels](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md#release-levels): Implemented, Verified, Released, and Qualified. The deploy's verify step and the release tag mark Released. Changes to money, signed terms, sign-in, or exports should be Verified on dev before they merge to main, and Qualified needs real client use and a tested restore.
+
 ## License
 
 The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so please don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses.

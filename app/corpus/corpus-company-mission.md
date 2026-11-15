@@ -10,7 +10,7 @@ Help people and small organizations get their technology working together and wo
 
 I'm Pradeep. neon1 is my practice, mostly for owner-run businesses, and also for technical teams, families, and individuals.
 
-When we work together, you can count on five things:
+You can count on five things:
 
 - **The truth.** What I think will help, what it costs, and what it won't do, said plainly before you decide.
 - **Exactly what you need.** Options from the quickest fix to the fuller build, each priced up front. Often the right answer is a setting, a cleanup, or leaving it alone.

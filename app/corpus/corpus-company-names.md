@@ -4,7 +4,7 @@ Where neon1, its slogan and its products get their names.
 
 ## neon1
 
-The name nods to Neo from *The Matrix*, who brought peace between man and machine. Neo means new. Neon is unmissable. It's always written with a lowercase n.
+The name nods to Neo from *The Matrix*, who brought peace between man and machine. Neo means new, and neon is unmissable. It's always written with a lowercase n.
 
 ## "1 is glad to be of service."
 

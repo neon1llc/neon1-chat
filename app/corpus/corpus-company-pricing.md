@@ -6,20 +6,20 @@ How a neon1 project is priced: a fixed price or a capped estimate, what most pro
 
 - Most small fixes cost a few hundred dollars, and most workflow projects $1,000 to $3,000. Each proposal shows the hours behind every price, a fixed price or an estimate with a ceiling, and what you pay up front. Nothing is added without your approval, and on an estimate, if the work takes fewer hours, you pay for fewer.
 
-You should be able to tell whether neon1 fits your budget before you book a call. This page gives the ranges most projects fall into, how a price is put together, and what can and can't change it. The exact figure for your work comes in a proposal, after we've talked, because two jobs that sound alike rarely are.
+These are the usual ranges. The exact figure comes in a proposal, after we've talked.
 
 ## Two ways to price a project
 
-Every option in a proposal is priced one of two ways, and says which.
+Each option in a proposal says which of two ways it's priced.
 
-- **A fixed price** is for work that's well understood: I've done it before, and nothing about your setup hides a surprise. It's the whole price for the work described, and it changes only if you approve a change to the work.
-- **An estimate** is for work with something unknown in it, such as how an old system stores its data. It's a range of hours at the rate the proposal states. You pay for the hours I actually work, each one listed in [1NEON](../products/1neon.md) with its date and what it was for, and the total never passes the high end unless you approve a change first.
+- **A fixed price** is for well-understood work. It's the whole price for the work described and changes only if you approve a change to the work.
+- **An estimate** is for work with an unknown in it. It's a range of hours at the rate the proposal states. You pay for the hours I work, each listed in [1NEON](../products/1neon.md). The total never passes the high end unless you approve a change first.
 
-Either way, the proposal shows the work behind the price line by line, so you can see what each part costs and leave out what you don't need.
+Either way, the proposal shows the work behind the price line by line.
 
 ## What projects usually cost
 
-These are the ranges most of my work falls into, as of November 2026. They're a guide for planning, not a quote.
+As of November 2026. A guide, not a quote.
 
 | Kind of work | Usually | For example |
 |---|---|---|
@@ -28,11 +28,11 @@ These are the ranges most of my work falls into, as of November 2026. They're a 
 | A larger build or a move, several weeks or more | From $3,000, in phases | A small portal in your own cloud account, or a move to a new system with your data intact |
 | Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
 
-Larger work is split into phases, each priced and approved on its own, so you never commit to more than you can see.
+Larger work is split into phases, each priced and approved on its own.
 
 ## A worked example
 
-The [proposal for Maple Street Bakery](../examples/proposal-options.md), a fictional bakery, shows how one problem gets three prices. The owner and her counter lead retype about 40 orders a night from email, voicemail, and Instagram.
+The [proposal for Maple Street Bakery](../examples/proposal-options.md), a fictional bakery, gives one problem three prices. Staff retype about 40 orders a night from email, voicemail, and Instagram.
 
 | Option | What it does | Estimate |
 |---|---|---|
@@ -40,15 +40,15 @@ The [proposal for Maple Street Bakery](../examples/proposal-options.md), a ficti
 | B. Solid setup | Every order in one list however it arrived, a bake sheet for the kitchen, a dry run on a past week of real orders, and a runbook | $2,200 to $2,800 |
 | C. Fuller build | Everything in B, plus an online order page with payment and reminders | $3,200 to $3,900 |
 
-She chose B. Half of its low end, $1,100, was the deposit. The work came in inside the estimate, and the final invoice asked for the hours worked less that deposit. The figures are illustrative, like the bakery.
+She chose B. Half its low end, $1,100, was the deposit. The final invoice was the hours worked less that deposit. The figures are illustrative.
 
 ## What the price includes
 
-A price covers the whole result, not only the time spent changing settings:
+A price covers the whole result:
 
-- Working out what's needed, and testing it with your real cases before anything goes live
-- A runbook in plain language, a walkthrough for your staff, and every account left in your name
-- A fix at no charge if something I delivered doesn't work as agreed and you tell me within 30 days of handover
+- Working out what's needed, and testing it with your real cases before it goes live
+- A plain runbook, a walkthrough for your staff, and every account left in your name
+- A free fix if something I delivered doesn't work as agreed and you tell me within 30 days of handover
 
 ## What's paid separately
 
@@ -57,32 +57,32 @@ A price covers the whole result, not only the time spent changing settings:
 
 ## When the price can change
 
-Only with your approval. If the work turns out bigger than described, I tell you before it costs more, and a revised proposal shows the new work and its price; nothing is added until you approve it. If an estimate's work takes fewer hours, you pay for fewer, and if a deposit came to more than the finished work, I refund the difference.
+Only with your approval. If the work turns out bigger, I tell you before it costs more, and a revised proposal shows the new price. If an estimate's work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference.
 
-You can also change your mind after approving an option, up until you accept the handover. Pick another option, say why, and sign again. What you've already paid counts toward the new option, nothing is billed twice, and both decisions stay on record. The [1NEON help](../faq/1neon-help.md) walks through it.
+You can change your mind after approving an option until you accept the handover. Pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice. The [1NEON help](../faq/1neon-help.md) walks through it.
 
 ## Paying
 
-A project usually starts with a deposit: half of a fixed price, or half of an estimate's low end. The rest is billed when you accept the handover. Invoices come through 1NEON and are due within 15 days. You can pay by bank transfer or card online, or by check, Zelle, or wire, with no surcharge for any of them. The [service agreement](../policies/service-agreement.md), signed once before any paid work, sets this out in full.
+A project usually starts with a deposit: half of a fixed price, or half of an estimate's low end. The rest is billed when you accept the handover. Invoices come through 1NEON and are due within 15 days. You can pay by bank transfer or card online, or by check, Zelle, or wire, with no surcharge. The [service agreement](../policies/service-agreement.md), signed once before any paid work, sets this out.
 
 ## Room to adjust
 
-These ranges are where most work lands, not a floor. I sometimes price below them: a first project with a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without. When I do, the proposal says so, so you know what the work would usually cost. The first call, 15 minutes, is free, and saying no to a proposal costs nothing.
+These ranges aren't a floor. I sometimes price below them for a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without, and the proposal says so. The 15-minute first call is free, and saying no to a proposal costs nothing.
 
 ## Why ranges here and hours in the proposal
 
-A website can't see your setup, so any single number here would be wrong for most readers. Ranges let you judge fit before we talk; a proposal written after a call can be exact. Nothing is held back for the call, either: every proposal shows the hours behind each price, and every hour worked on an estimate is listed in 1NEON as it's logged.
+A website can't see your setup, so one number here would be wrong for most readers. Every proposal shows the hours behind each price, and every estimate hour is listed in 1NEON as it's logged.
 
 ## How this compares
 
-For context, from published 2026 figures for the United States and New York:
+Published 2026 figures for the United States and New York:
 
 - General IT consulting firms quote about $150 to $300 an hour, and a one-time assessment at $1,500 to $5,000.
 - Modeled contract rates in New York run about $90 to $115 an hour for a business systems analyst, and $114 to $170 for a software engineer.
-- A simple automation from a freelancer runs about $500 to $1,500; a multi-step one from an agency, $3,000 to $8,000.
+- A simple automation from a freelancer runs about $500 to $1,500, and a multi-step one from an agency $3,000 to $8,000.
 - Managed IT for a small New York office runs about $85 to $200 per person each month.
 
-My ranges sit at the accessible end of that market on purpose. The work is for small businesses, and it's priced for them.
+My ranges sit at the low end of that market on purpose.
 
 ## Sources
 

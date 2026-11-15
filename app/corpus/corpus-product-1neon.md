@@ -2,11 +2,11 @@
 
 The neon1 client portal that comes with a client engagement, where each project runs from the first call to handover.
 
-The neon1 client portal at [neon1.tech/1NEON](https://neon1.tech/1NEON/). Each project runs through four layers: Needs, Execute, Observe, and Normalize. Proposals, signed decisions, files, invoices, and results stay together from the first call to handover.
+The neon1 client portal at [neon1.tech/1NEON](https://neon1.tech/1NEON/). Each project runs through four layers: Needs, Execute, Observe, and Normalize. Proposals, signed decisions, files, invoices, and results stay together from first call to handover.
 
 - **Available now,** as part of working with neon1. It comes with a client engagement and isn't sold on its own.
 - **Who it helps:** the people at a client organization who follow a project, send files, and approve options, and the administrators who decide who can see what.
-- **For example,** I issue a proposal with two options for a project, numbered 0039-r1. The person named as decision maker compares them and signs their approval of 0039-r1-B with a typed name, and 1NEON keeps their signature, the time, and a copy of the option's terms as they saw them. The deposit invoice follows in the same project, and they can pay it by bank transfer or card.
+- **For example,** I issue a proposal numbered 0039-r1 with two options. The decision maker compares them and signs approval of 0039-r1-B with a typed name. 1NEON keeps the signature, the time, and a copy of the option's terms as they saw them. The deposit invoice follows in the same project, payable by bank transfer or card.
 
 ## Current limits
 

@@ -4,7 +4,7 @@ Staff spent minutes searching Microsoft 365, or asked a senior colleague.
 
 *accounting firm · cloud & AI*
 
-Partner engagement: As neon1, subcontracted by Xenoss, 2026
+neon1 subcontracted engagement, 2026
 
 **~5 min → 14 s** lookup · recall 72% → 94%
 
@@ -19,15 +19,15 @@ Partner engagement: As neon1, subcontracted by Xenoss, 2026
 
 The firm's knowledge was spread across Microsoft 365: policies, manuals, Word files, PDFs, and client documents. A routine lookup took 2 to 10 minutes, often by asking a senior colleague. Drafts, old versions, and restricted files sat next to the right answer, so a simple chatbot would have been risky.
 
-The ask: let staff ask normal questions, return the approved answer with its document, and never make the AI more authoritative than the source.
+The ask: staff ask normal questions and get the approved answer with its document, and the AI is never more authoritative than the source.
 
 ## The work
 
-This was my first project with an AWS partner, [Xenoss](https://xenoss.io), which held the contract and brought me in as a subcontractor. We designed it together, Xenoss maintains it, and I handled ingestion, embeddings, retrieval, and answer quality.
+This was my first project with an AWS partner, [Xenoss](https://xenoss.io), which held the contract and brought me in as a subcontractor. We designed it together and Xenoss maintains it. I handled ingestion, embeddings, retrieval, and answer quality.
 
 - Only approved Microsoft 365 libraries sync into versioned, encrypted S3, with source, version, and access details.
 - Bedrock Knowledge Bases, Titan embeddings, and OpenSearch Serverless run hybrid search, so exact form numbers match as well as reworded questions.
-- Each question is checked against what that person may see before retrieval, and the assistant answers from the passages, with citations, or says it doesn't know. How well it kept to that is measured below.
+- Each question is checked against what that person may see before retrieval. The assistant answers from the passages, with citations, or says it doesn't know.
 - Terraform and GitHub Actions deploy it, and CloudWatch tracks ingestion, retrieval, and answer time.
 
 ## The results
@@ -40,9 +40,9 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), whic
 | Answers fully supported by their source  | 78%          | 92%    |
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
-Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Times after launch come from the start and end the system records for each lookup, as metrics only, with no question or answer text. Where the old way left no record, such as a lookup before launch or how often senior staff were interrupted, the figure is the staff's own estimate from a short survey.
+Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Times after launch come from the start and end the system records for each lookup, as metrics only, with no question or answer text. Where the old way left no record, such as lookups before launch or interruptions of senior staff, the figure is the staff's own estimate from a short survey.
 
-These results describe that test set, not a guarantee: 8% of answers weren't fully supported, so each answer carries citations to check.
+These results describe that test set, not a guarantee. 8% of answers weren't fully supported, so each answer carries citations to check.
 
 In the client's words:
 
