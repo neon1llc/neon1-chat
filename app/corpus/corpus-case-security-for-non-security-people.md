@@ -17,18 +17,18 @@ neon1 engagement, 2025
 
 ## The problem
 
-Teachers, parents, engineers, and executives knew their accounts, homes, and businesses were exposed, but the advice they'd seen was too technical or too vague to act on.
+Teachers, parents, engineers, and executives knew their accounts, homes, and businesses were exposed, but the advice they'd seen was too technical or too vague to use.
 
 ## The work
 
-I've run sessions for groups of parents, teachers, engineers, and executives. Most were hosted by small and medium businesses for their own people; others I held in a rented WeWork room for people who came through my Retro NY meetups. Topics include:
+I've run sessions for groups of parents, teachers, engineers, and executives. Most were hosted by small and medium businesses for their own people. Others I held in a rented WeWork room for people who came through my Retro NY meetups. Topics include:
 
 - Securing home and business networks, cameras, and connected devices.
 - Fraud, phishing, data brokers, and what's sold on the dark web.
 - Account hygiene, password managers, and two-factor sign-in.
 - The security of physical spaces, not just screens.
 
-Each session fits that audience's devices and accounts, with time to change real settings together.
+Each session fits the audience's devices and accounts, with time to change real settings together.
 
 ## The results
 
@@ -36,4 +36,4 @@ The best measure is what people do: turning on two-factor sign-in in the session
 
 ## After handover
 
-Threats change, so the material does too. [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. Companies heading into an audit get SOC 2 readiness work. [Get in touch](../company/contact.md) to ask about a session for your group.
+The material changes as threats do. [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. Companies heading into an audit get SOC 2 readiness work. [Get in touch](../company/contact.md) to ask about a session for your group.

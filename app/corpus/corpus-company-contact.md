@@ -22,6 +22,6 @@ Tell me what's on your mind, or ask for an opinion on how your operations run to
 
 ## Availability and urgent issues
 
-Work happens in planned appointments on weekday evenings and weekends. There's no 24/7 or emergency response. If something can't wait, such as a security incident in progress, an outage your business can't run without, or fraud on an account, contact a provider who offers emergency coverage, and your bank or the service involved, first. Ongoing care after a project, and any response times that come with it, are agreed in writing before they start.
+I work in planned appointments on weekday evenings and weekends. There's no 24/7 or emergency response. If something can't wait, such as a security incident in progress, an outage, or fraud on an account, contact a provider with emergency coverage, and your bank or the service involved, first. Ongoing care after a project, with any response times, is agreed in writing before it starts.
 
-Please leave passwords, health details, and payment information out of any first message.
+Leave passwords, health details, and payment information out of any first message.

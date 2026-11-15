@@ -17,7 +17,7 @@ neon1 engagement, 2025
 
 ## The problem
 
-An automotive business ran its application, database, and files on two local servers, and both locations had to keep working through the move. Their technical lead supported those servers and knew them best.
+An automotive business ran its application, database, and files on two local servers, and both locations had to keep working through the move. Their technical lead knew the servers best.
 
 ## The work
 

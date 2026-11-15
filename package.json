@@ -1,11 +1,13 @@
 {
   "name": "neon1-chat",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "The neon1.tech assistant: answers visitors from neon1's public pages.",
   "license": "SEE LICENSE IN LICENSE-CODE",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "node --test app/test/*.test.mjs",
     "corpus": "node scripts/build-corpus.mjs",

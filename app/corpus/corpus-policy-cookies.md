@@ -2,7 +2,7 @@
 
 The only cookies and browser storage neon1.tech and 1NEON use, and why.
 
-*Last updated November 15, 2026.* This update makes the notice part of the [privacy and data policy](https://neon1.tech/1NEON/privacy), and says sign-in with Google is turned off today. Nothing new is saved, and there's no new tracking.
+*Last updated November 15, 2026.* This update makes the notice part of the [privacy and data policy](https://neon1.tech/1NEON/privacy), says sign-in with Google is turned off today, and adds `1neon.email`, which keeps the email you signed in with when you tick Remember me. There's no new tracking.
 
 This notice is part of the [privacy and data policy](https://neon1.tech/1NEON/privacy) and lists, in detail, every cookie and item neon1 saves in your browser. Neither neon1.tech nor the 1NEON portal uses analytics, advertising, or tracking of any kind.
 
@@ -35,6 +35,7 @@ The portal also saves, on your device only:
 | Saved item | What it's for | How long it lasts |
 |---|---|---|
 | `1neon.last` (local storage) | Whether you were last signed in, so a reload starts on the right background | Until you clear it |
+| `1neon.email` (local storage) | With Remember me ticked, the email you signed in with, so it's filled in next time. Unticked, it's cleared | Until you sign in with Remember me unticked, or clear it |
 | `1neon.lastOrg` (local storage) | The organization you last had open, so pages outside one (your profile, the FAQs) keep its menu | Until you clear it |
 | `1neon.signin` (session storage) | Your email and the sign-in step in progress, so a reload mid sign-in returns to the code step. The code itself is never saved | 5 minutes, or until the tab closes |
 | `neon1.rain` (local storage) | The same rain settings as the website, on the sign-in screen | Until you clear it |
