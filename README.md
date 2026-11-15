@@ -21,7 +21,7 @@ Neo's voice and standing directives live in [neon1-corpus](https://github.com/ne
 - `general-help` (the default) answers general technology questions, such as how tools connect, security and compliance concepts, and cloud costs.
 - `neon1-only` keeps Neo to neon1's pages and sends other questions to Pradeep.
 
-Either way, facts about neon1 come only from the corpus. The only dollar figures Neo may give are on the pricing page, and any other figure is removed from the reply. Neo never commits neon1 to work, timelines, or outcomes.
+Either way, facts about neon1 come only from the corpus. The only dollar figures Neo may give are on the pricing page. Neo never commits neon1 to work, timelines, or outcomes.
 
 ## How it handles abuse
 
@@ -85,7 +85,6 @@ The function's own timeout is 20 seconds, and each AWS client retries at most on
 
 - `npm run eval -- live <url>` grades a deployed endpoint. Against neon1.tech it waits at least 20 seconds between questions and stops at the first 429, so it never works around the limits.
 - `npm run eval -- bedrock` asks the model directly with this checkout's prompt. `--directives <file>` tries a draft of Neo's directives from neon1-corpus.
-- `npm run eval:offline` and `npm test` make no model call. They check that every question assembles into the request Neo would send and that the corpus has the facts each question expects.
 
 Baselines are saved beside the set, such as `app/eval/baseline-2026-11-14.json`.
 
