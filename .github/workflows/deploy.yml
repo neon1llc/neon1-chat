@@ -186,3 +186,16 @@ jobs:
             git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "v$version"
             echo "tagged v$version" >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      # The release's notes on GitHub are its changelog entry, so the Releases page reads newest first.
+      # A failure here only warns: the release is already live and tagged
+      - name: Publish the release notes
+        if: env.superseded != 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^## v\([0-9][0-9.]*[0-9a-z.-]*\).*/\1/p' CHANGELOG.md | head -1)
+          if gh release view "v$version" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo "v$version already has release notes"; exit 0; fi
+          awk -v v="v$version" '$0 ~ "^## "v"( |$)" {f=1; if ($4) print "Released "$4"."; next} /^## / {f=0} f' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          gh release create "v$version" -R "$GITHUB_REPOSITORY" --verify-tag --title "v$version" --notes-file "$RUNNER_TEMP/notes.md" \
+            || echo "::warning::v$version has no release notes yet"
