@@ -25,33 +25,24 @@ test("drops sentences claiming work for a kind of client", () => {
   assert.equal(neon1Voice(caseStudy), caseStudy);
 });
 
-test("keeps a reply that would otherwise be empty, and skips non-Latin text", () => {
+test("keeps a reply that would otherwise be empty", () => {
   const only = "neon1 has set up similar systems for restaurants.";
   assert.equal(neon1Voice(only), only);
-  const zh = "我们不修理硬件。";
+});
+
+test("rewrites the first person the model still uses: I'd, us, my, Spanish, French, and Chinese", () => {
+  assert.equal(neon1Voice("I’d start by checking which rooms drop signal."), "Pradeep would start by checking which rooms drop signal.");
+  assert.equal(neon1Voice("so you can run it without us."), "so you can run it without Pradeep.");
+  assert.equal(neon1Voice("That's within my scope, and the proposal comes after we talk."), "That's within neon1's scope, and the proposal comes after you talk with Pradeep.");
+  assert.equal(neon1Voice("Sí, puedo ayudarte con eso."), "Sí, neon1 puede ayudarte con eso.");
+  assert.equal(neon1Voice("Oui, je peux vous aider."), "Oui, neon1 peut vous aider.");
+  assert.equal(neon1Voice("我们不修理硬件。我可以帮您连接收银系统。"), "neon1 不修理硬件。neon1 可以帮您连接收银系统。");
+});
+
+test("leaves Neo's own first person alone in other languages", () => {
+  const zh = "如果您告诉我是哪个收银系统，我可以说明它通常如何与其他工具连接。";
   assert.equal(neon1Voice(zh), zh);
+  const es = "No puedo ver el calendario.";
+  assert.equal(neon1Voice(es), es);
 });
 
-// The second pass, with a fake model client
-import { voicePass } from "../src/chat.mjs";
-const fake = (reply) => ({ send: async () => ({ output: { message: { content: [{ text: reply }] } } }) });
-
-test("voicePass uses a rewrite that keeps links and prices", async () => {
-  const before = "I help with workflows, from $1,000 to $3,000. [Book the call](https://example.com/x).";
-  const after = "neon1 helps with workflows, from $1,000 to $3,000. [Book the call](https://example.com/x).";
-  assert.equal(await voicePass(before, { client: fake(after) }), after);
-});
-
-test("voicePass keeps the first reply when the rewrite drifts or fails", async () => {
-  const before = "I help with workflows, from $1,000 to $3,000.";
-  assert.equal(await voicePass(before, { client: fake("neon1 helps with workflows, from $500.") }), before);
-  assert.equal(await voicePass(before, { client: { send: async () => { throw new Error("x"); } } }), before);
-  assert.equal(await voicePass("neon1 helps.", { client: fake("changed") }), "neon1 helps.");
-});
-
-test("voicePass makes no call when the only first person is Neo's own", async () => {
-  let calls = 0;
-  const counting = { send: async () => { calls++; return { output: { message: { content: [{ text: "x" }] } } }; } };
-  assert.equal(await voicePass("I can't see the calendar. Tell me which software you use.", { client: counting }), "I can't see the calendar. Tell me which software you use.");
-  assert.equal(calls, 0);
-});

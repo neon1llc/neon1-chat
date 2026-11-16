@@ -3,6 +3,13 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Changed
+- Neo makes one model call per question again. The voice pass (a second call that rewrote "I" as "neon1") is gone: measured on November 16 it added about 2.5 seconds where it ran, left the rubric grade unchanged, and changed meaning in 2 of 10 rewrites. Fixed rules now rewrite more first person instead: "I'd start", "without us", "my scope", and the common Spanish, French, and Chinese forms.
+- Neo describes no neon1 practice the pages don't state, gives every published price range that could fit a cost question, points to the matching case study or sample proposal, answers credential questions with the published experience and open-source tools, points compliance questions about 1NEON to the security and privacy policies, treats connecting two tools as workflow work with the free call as the next step, never says neon1 doesn't set up hardware, and names no automation tool other than Zapier or Make.
+- Eval: `app/eval/voice.mjs` is removed with the voice pass; its November 16 results stay in `app/eval/runs/`.
+
 ## v0.2.9 - 2026-11-16
 
 ### Changed
