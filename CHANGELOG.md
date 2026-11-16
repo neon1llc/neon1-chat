@@ -3,12 +3,18 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Changed
+- Neo's replies keep neon1's voice: when a reply uses "I" or "we" for neon1's work, a short second pass with the same model rewrites it as "neon1" or "Pradeep", and the rewrite is used only if it changes no link or price. `VOICE_PASS=0` turns it off.
+- A sentence claiming neon1 did similar work for a kind of client no case study names is dropped before the reply is shown.
+- Neo offers the free call or email when the visitor's next step is a person, not at the end of every reply.
+- Eval: the rubric judge knows that some case studies were subcontracted through Xenoss, and where Neo's directives are published.
+
 ## v0.2.7 - 2026-11-16
 
 ### Changed
 - Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives the first steps and says neon1 has no emergency response. It names no client and claims no kind of client the case studies don't describe. A HIPAA or patient-data answer is framed as general information, points to a lawyer, and names the BAA.
-- Before a reply is shown, first person about neon1's work ("I've set up", "I help") becomes "neon1" or "Pradeep", and a sentence claiming neon1 did similar work for a kind of client no case study names is dropped.
-- `VOICE_PASS=1` turns on a short second model pass that rewrites only first person about neon1's work, kept only when it changes no link or price. Off by default.
 - Replies sample at temperature 0.3, down from 0.7, so facts drift less from one answer to the next.
 - Eval: the rubric judge knows neon1's service list, including SOC 2 readiness work.
 
