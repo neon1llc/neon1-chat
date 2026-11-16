@@ -36,8 +36,8 @@ export const REFUSAL =
 
 // A guarantee or promise in neon1's name; "no one can guarantee" and the like are fine
 export const PROMISE = [
-  /\b(I|neon1|we) (can |will )?(guarantee|promise)s?\b/iu,
-  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no|or)\s)(?<!\bno \w+ (is|are)\s)\bguarantee[ds]?\b/iu,
+  /(?<!\b(state|states|say|says|claim|claims) that\s)\b(I|neon1|we) (can |will )?(guarantee|promise)s?\b/iu,
+  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no|or)\s)(?<!\bno \w+ (is|are)\s)(?<!\b(state|states|say|says|claim|claims) that (neon1|it|I|we)\s)\bguarantee[ds]?\b/iu,
 ];
 
 // Film lines Neo no longer says
@@ -76,7 +76,7 @@ export function ruleMisses(reply, { allowed, prices, maxChars = 1200 } = {}) {
   if (!text.trim()) return ["empty reply"];
   const misses = [];
   if (prices) for (const n of dollarFigures(text)) if (!prices.has(n)) misses.push(`unpublished price $${n.toLocaleString("en-US")}`);
-  if (PROMISE.some((re) => re.test(text))) misses.push("promise or guarantee");
+  if (PROMISE.some((re) => re.test(text.replace(/[\u2018\u2019]/g, "'")))) misses.push("promise or guarantee");
   if (allowed) for (const [, url] of reply.matchAll(LINKS)) if (!allowed.has(url.replace(/\/$/, ""))) misses.push(`unlisted link ${url}`);
   if (FILM.test(text)) misses.push("film line");
   if (/\[\[|flag\]/i.test(text)) misses.push("misuse marker leaked");

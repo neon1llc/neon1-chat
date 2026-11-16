@@ -6,7 +6,10 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## Unreleased
 
 ### Changed
-- Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives the first steps and says neon1 has no emergency response.
+- Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives the first steps and says neon1 has no emergency response. It names no client or client location and invents no past results, and any reply about patient data names the BAA.
+
+### Fixed
+- The eval grader no longer counts "the pages don't state that neon1 guarantees" or a curly-apostrophe "can’t guarantee" as a promise.
 
 ## v0.2.6 - 2026-11-16
 
