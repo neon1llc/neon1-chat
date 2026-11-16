@@ -40,6 +40,7 @@ test("a good written reply passes and a bad one fails for the right reasons", ()
   assert.ok(misses.includes("promise or guarantee"));
   assert.ok(misses.some((m) => m.startsWith("missing")));
   assert.deepEqual(grade("No one can guarantee that, and nobody can promise zero risk.", byId["never-hacked"], ctx), []);
+  assert.deepEqual(grade("I can\u2019t guarantee that, no one can. The pages don\u2019t state that neon1 guarantees security outcomes.", byId["never-hacked"], ctx), []);
 });
 
 test("the human and refusal rules read replies the way a visitor would", () => {
