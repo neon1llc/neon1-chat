@@ -179,14 +179,15 @@ const VOICE = [
   [/\b(Yes|yes), I can help\b/g, "$1, neon1 can help"],
   [/(^|[.!?]\s+)I can help (you )?(connect|set up|fix|get|map|design|debug|with that)\b/gm, "$1neon1 can help $2$3"],
   [/(^|[.!?]\s+)I help\b/gm, "$1neon1 helps"],
-  [/\bI (do|don't|don’t) (debug|repair|fix|build)\b/g, "neon1 $1 $2"],
-  [/\bI work on site\b/g, "Pradeep works on site"],
-  [/\bI can (come|work) (to your office|on site)\b/g, "Pradeep can $1 $2"],
+  [/\bI do (debug|repair|fix|build)\b/g, "neon1 does $1"],
+  [new RegExp(`\\bI don${AP}t (debug|repair|fix|build)\\b`, "g"), "neon1 doesn't $1"],
+  [/\bI work (remotely|on[ -]site)\b/g, "Pradeep works $1"],
+  [/\bI can (come|work) (to your office|on[ -]site)\b/g, "Pradeep can $1 $2"],
   [/\bwithout me\b/g, "without Pradeep"],
 ];
 // A sentence claiming neon1 did work for a kind of client: these are dropped
 const CLIENT_CLAIM =
-  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (clients|businesses|teams|owners|other|similar|many)\b/i;
+  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (clients|businesses|teams|owners|other|similar|many)\b/i;
 
 export function neon1Voice(text) {
   if (!/[a-z]/i.test(text)) return text;
