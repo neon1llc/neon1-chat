@@ -167,6 +167,39 @@ export function onlyPublishedPrices(text, prices) {
   return kept || `I can only give the price ranges neon1 publishes; the exact figure for your work comes in a proposal after a free call. You can ${HUMAN}.`;
 }
 
+// ---- neon1's voice: neon1 or Pradeep for the work, and no invented clients ----
+
+// The model often copies the sources' first person ("I've set up...") for neon1's work, and adds
+// "similar work for bakeries" claims no case study makes. Prompt rules alone haven't held, so the
+// common forms are rewritten or dropped here. English only; Neo's "I" about itself is left alone.
+const AP = "['’]";
+const VOICE = [
+  [new RegExp(`\\bI${AP}ve (set up|helped|built|connected|done|worked|moved|automated|created|designed|configured)\\b`, "g"), "neon1 has $1"],
+  [new RegExp(`\\bI${AP}ll (suggest|recommend|propose|work|use|need|map|set up|build|help)\\b`, "g"), "Pradeep will $1"],
+  [/\b(Yes|yes), I can help\b/g, "$1, neon1 can help"],
+  [/(^|[.!?]\s+)I can help (you )?(connect|set up|fix|get|map|design|debug|with that)\b/gm, "$1neon1 can help $2$3"],
+  [/(^|[.!?]\s+)I help\b/gm, "$1neon1 helps"],
+  [/\bI (do|don't|don’t) (debug|repair|fix|build)\b/g, "neon1 $1 $2"],
+  [/\bI work on site\b/g, "Pradeep works on site"],
+  [/\bI can (come|work) (to your office|on site)\b/g, "Pradeep can $1 $2"],
+  [/\bwithout me\b/g, "without Pradeep"],
+];
+// A sentence claiming neon1 did work for a kind of client: these are dropped
+const CLIENT_CLAIM =
+  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (clients|businesses|teams|owners|other|similar|many)\b/i;
+
+export function neon1Voice(text) {
+  if (!/[a-z]/i.test(text)) return text;
+  let out = VOICE.reduce((t, [re, to]) => t.replace(re, to), text);
+  const kept = out
+    .split("\n")
+    .map((line) => (CLIENT_CLAIM.test(line) ? line.split(/(?<=[.?!])\s+/).filter((s) => !CLIENT_CLAIM.test(s)).join(" ") : line))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  return kept || out;
+}
+
 // ---- A human route on the turns that need one ----
 
 // Urgent, security-incident, health-data, and hostile messages: the latest visitor message
@@ -225,7 +258,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // Prices and links are checked against the sources last, so nothing the model invents reaches
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
-  const priced = onlyPublishedPrices(finish(plain, res.stopReason), publishedPrices(corpus));
+  const priced = onlyPublishedPrices(neon1Voice(finish(plain, res.stopReason)), publishedPrices(corpus));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
   const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);
 
