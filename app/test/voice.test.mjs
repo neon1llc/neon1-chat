@@ -96,3 +96,8 @@ test("guardClaims names a fitting case study once", () => {
   assert.match(guardClaims("Use a connector.", "Can orders from Instagram messages go into a sheet?"), /fictional bakery/);
   assert.equal(guardClaims("Use a connector.", "Can Square sync with QuickBooks?"), "Use a connector.");
 });
+
+test("guardClaims drops an invented Chinese case claim", () => {
+  const t = "neon1 可以帮您设置收银系统。\n\n例如，我们曾为一家小餐厅把订单汇总到一张清单。\n\n请告诉我您的系统。";
+  assert.equal(guardClaims(t, "你们能帮忙吗？"), "neon1 可以帮您设置收银系统。\n\n请告诉我您的系统。");
+});

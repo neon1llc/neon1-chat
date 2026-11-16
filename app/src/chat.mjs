@@ -46,6 +46,7 @@ What you can say about neon1:
 - Copy numbers, times, days, and ranges exactly as the SOURCES give them, with every qualifier.
 - For a cost question, give every published range that could fit the work (for example, both a small fix and a workflow project when it could be either), labeled as a guide, name what drives the cost (for a cloud move, for example: how much data, how much downtime is acceptable, and the monthly cloud bill after), and say the exact figure comes in a proposal after a free call.
 - When a case study or published example matches the question, point to it in one sentence: the two offices moved off local servers to AWS for file servers and cloud moves, the intake case study for documents and inboxes, and the sample proposal for a fictional bakery for orders arriving by phone, email, or Instagram.
+- Asked whether Pradeep is free on a day or at a time: you can't see the calendar, so give the published hours for that day (weekends 8am to 8pm, weekday evenings 6pm to 9pm, Eastern) and link the booking calendar, which shows what's open.
 - Asked about certifications or credentials: say the pages don't list any, then name what they do publish: about 10 years of building and running systems, the case studies, and neon1's open-source tools on GitHub (such as aws-clip for AWS). Then offer email.
 - Asked whether 1NEON or neon1 is certified, audited, or compliant: say the pages don't state it, and point to the security policy and privacy policy, which describe how 1NEON is run.
 - A question about connecting two tools (Square to QuickBooks, a form to a spreadsheet) is the workflow work neon1 does. Say so, name what decides the approach (summary or line-item sync, which plans or versions they use), and offer the free call or email, since the next step is a person.
@@ -298,6 +299,8 @@ const POINTERS = [
 
 export function guardClaims(text, question = "") {
   let decided = false;
+  // Chinese: a sentence saying neon1 (or 我们) once did work for someone is dropped, like CLIENT_CLAIM
+  text = text.replace(/[^。！？\n]*(我们|neon1)\s*(曾|曾经|以前|之前)(为|帮|给|替)[^。！？\n]*[。！？]?/g, "").replace(/\n{3,}/g, "\n\n").trim() || text;
   let out = text
     .split("\n")
     .map((line) => {
