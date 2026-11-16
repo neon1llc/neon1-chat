@@ -80,7 +80,7 @@ ${corpus}`;
 // sampling lets Neo word things differently each time; grounding comes from the prompt, not from 0
 const MODEL_ID = process.env.MODEL_ID ?? "qwen.qwen3-next-80b-a3b";
 const MAX_TOKENS = Number(process.env.MAX_TOKENS ?? 600);
-const TEMPERATURE = Number(process.env.TEMPERATURE ?? 0.7);
+const TEMPERATURE = Number(process.env.TEMPERATURE ?? 0.3);
 
 // Amazon and Anthropic models on Bedrock cache the system prompt; others don't accept the marker
 const CACHE = /amazon\.|anthropic\./.test(MODEL_ID);

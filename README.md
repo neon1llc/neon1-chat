@@ -10,7 +10,7 @@ Neo, the assistant on [neon1.tech](https://neon1.tech) and in 1NEON. It answers 
 
 The whole corpus (about 12,000 tokens) goes in the system prompt, so there's no search index to run. Qwen3 Next 80B on Amazon Bedrock writes the reply for under a fifth of a cent a question. An earlier version of the eval picked it over gpt-oss-120b, Nova 2 Lite, Nemotron Super, DeepSeek V3.2, Kimi K2.5, and Mistral Large 3. It passed every case across repeated runs at about the price of gpt-oss-120b, which once repeated a planted price.
 
-To change models, update `chat_model_id` in the function's permissions boundary in neon1-aws-infrastructure (applied by hand), then `model` here. Replies sample at temperature 0.7, so wording varies. The prompt keeps them grounded. This app never logs or stores message text.
+To change models, update `chat_model_id` in the function's permissions boundary in neon1-aws-infrastructure (applied by hand), then `model` here. Replies sample at temperature 0.3: wording varies a little, and facts drift less than at 0.7. The prompt keeps them grounded. This app never logs or stores message text.
 
 ## Neo's character
 
