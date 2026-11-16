@@ -3,7 +3,7 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
-## Unreleased
+## v0.2.10 - 2026-11-16
 
 ### Changed
 - Neo makes one model call per question again. The voice pass (a second call that rewrote "I" as "neon1") is gone: measured on November 16 it added about 2.5 seconds where it ran, left the rubric grade unchanged, and changed meaning in 2 of 10 rewrites. Fixed rules now rewrite more first person instead: "I'd start", "without us", "my scope", and the common Spanish, French, and Chinese forms.
