@@ -207,8 +207,9 @@ export function neon1Voice(text) {
 // default: it is a second model call per question. Its output is used only if it keeps every link
 // and dollar figure and stays close in length; otherwise the first reply stands.
 export const VOICE_PASS = process.env.VOICE_PASS === "1";
-const VOICE_RULES = `You fix one thing in a reply written by Neo, the AI assistant on neon1.tech. neon1 is Pradeep's one-person technology practice. Wherever the reply uses I, I've, I'll, I'd, me, my, we, us, or our (or the same words in another language) for neon1's work, services, schedule, clients, or experience, rewrite it with "neon1" or "Pradeep" and correct grammar. Keep "I" where Neo speaks about itself as the assistant: what it can see, say, check, or answer. Change nothing else: same language, wording, facts, numbers, links, line breaks, and order. Return only the reply.`;
-const FIRST_PERSON = /\b(I|I've|I'll|I'd|I’ve|I’ll|I’d|me|my|we|we'd|we'll|we’d|we’ll|us|our)\b|我们|puedo|podemos|nous|je peux/i;
+const VOICE_RULES = `You fix one thing in a reply written by Neo, the AI assistant on neon1.tech. neon1 is Pradeep's one-person technology practice. Wherever the reply uses I, I've, I'll, I'd, me, my, we, us, or our (or the same words in another language) for neon1's work, services, schedule, clients, or experience, rewrite it with "neon1" or "Pradeep" and correct grammar. Keep "I" where Neo speaks about itself as the assistant: what it can see, say, check, or answer; never replace "I" with "Neo", and never turn Neo's own limits into neon1's. Change nothing else: same language, wording, facts, numbers, links, line breaks, and order. Return only the reply.`;
+// Only first person about the work triggers the pass, so Neo's "I can't see the calendar" costs no call
+const FIRST_PERSON = /\bI(?:['’](?:ve|ll|d))?\s+(?:can |will |could |would |do |also )?(?:help|helped|set|build|built|connect|fix|work|worked|map|design|debug|check|assess|focus|assist|come|suggest|recommend|propose|offer|handle|leave|make)\b|\b(we|we['’]d|we['’]ll|our)\b|\bwithout me\b|我们|puedo|podemos|nous/i;
 
 export async function voicePass(text, { client, signal } = {}) {
   if (!FIRST_PERSON.test(text)) return text;
