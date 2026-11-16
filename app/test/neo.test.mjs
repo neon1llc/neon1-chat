@@ -61,7 +61,9 @@ test("a sentence with an unpublished price goes; published ranges stay", () => {
 test("a reply that invents a price loses it before the visitor sees it", async () => {
   const client = { send: async () => ({ output: { message: { content: [{ text: "S3 storage costs $0.023 per GB. neon1's workflow projects are usually $1,000 to $3,000." }] } }, stopReason: "end_turn" }) };
   const { text } = await reply([{ role: "user", content: "costs?" }], { corpus, client });
-  assert.equal(text, "neon1's workflow projects are usually $1,000 to $3,000.");
+  // The invented S3 price is gone; a cost answer with a range ends with the route to Pradeep
+  assert.match(text, /^neon1's workflow projects are usually \$1,000 to \$3,000\.\n\nPradeep can help directly/);
+  assert.ok(!text.includes("0.023"));
 });
 
 test("every limit and failure message offers a person", () => {

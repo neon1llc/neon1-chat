@@ -20,7 +20,8 @@ import { BOOKING, loadCorpus, publishedPrices } from "../src/chat.mjs";
 // wording, and it follows a rubric closely. About a cent a question, under a dollar a full run.
 // JUDGE_MODEL overrides it, e.g. openai.gpt-oss-120b-1:0 at about a tenth of the price
 export const JUDGE_MODEL = process.env.JUDGE_MODEL ?? "us.anthropic.claude-sonnet-4-6";
-const JUDGE_TOKENS = 900;
+// Room for every criterion with its quote: at 900 a long rubric cut the JSON off and read as unreadable
+const JUDGE_TOKENS = 1600;
 
 // ---- The rubric ----
 

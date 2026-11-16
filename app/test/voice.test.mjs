@@ -101,3 +101,8 @@ test("guardClaims drops an invented Chinese case claim", () => {
   const t = "neon1 可以帮您设置收银系统。\n\n例如，我们曾为一家小餐厅把订单汇总到一张清单。\n\n请告诉我您的系统。";
   assert.equal(guardClaims(t, "你们能帮忙吗？"), "neon1 可以帮您设置收银系统。\n\n请告诉我您的系统。");
 });
+
+test("ensureHuman offers Pradeep on a cost question answered with a range", () => {
+  assert.match(ensureHuman("An AWS migration usually costs $3,000 or more. The figure comes in a proposal after a free call.", "What does an AWS migration usually cost?"), /hello@neon1\.tech/);
+  assert.equal(ensureHuman("It depends on the data.", "What does an AWS migration usually cost?"), "It depends on the data.");
+});
