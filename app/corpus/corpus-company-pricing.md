@@ -59,7 +59,7 @@ You can change your mind after approving an option until you accept the handover
 
 ## Paying
 
-A project usually starts with a deposit of half a fixed price, or half an estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](../policies/service-agreement.md) sets this out.
+A project usually starts with a deposit of half a fixed price, or half an estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
 
 ## Room to adjust
 

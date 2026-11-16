@@ -29,4 +29,4 @@ Teachers used it in class, and parents left with specific steps. That showed the
 
 ## After handover
 
-That's how neon1 began, and community work is still part of it. Schools and community groups can ask through [contact](../company/contact.md).
+That's how neon1 began, and community work is still part of it. Schools and community groups can ask through [contact](../engagement/contact.md).

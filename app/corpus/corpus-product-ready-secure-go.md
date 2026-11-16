@@ -25,4 +25,4 @@ Its scope is stable. Updates fix accuracy and sources, with no new modules for n
 
 ## Next step
 
-[Security awareness and readiness](../services/index.md) sessions cover the same ground in person, and [a password manager for your family](../guides/password-manager-for-family.md) is a good first step. [Get in touch](../company/contact.md) to ask about a session.
+[Security awareness and readiness](../engagement/index.md) sessions cover the same ground in person, and [a password manager for your family](../guides/password-manager-for-family.md) is a good first step. [Get in touch](../engagement/contact.md) to ask about a session.
