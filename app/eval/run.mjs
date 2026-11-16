@@ -5,6 +5,8 @@
 //   node app/eval/run.mjs live <url> [options]         ask a deployed endpoint, e.g. https://neon1.tech/chat/api/chat
 //   node app/eval/run.mjs bedrock [options]            call Bedrock directly with this checkout's prompt (AWS credentials)
 //   node app/eval/run.mjs regrade <results.json>       grade saved replies again with the current rules; no network
+//   node app/eval/run.mjs judge <results.json>         grade saved replies for meaning with the rubric judge (judge.mjs;
+//                                                      AWS credentials, about a cent a question)
 //
 // Options: --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
 // for the results (JSON), --only <id,id> to ask some questions, --limit <n> to stop after n, and
@@ -13,9 +15,14 @@
 // A live run is read-only, one request at a time, and stops at the first 429: the endpoint's rate
 // limits and daily budget are respected, never worked around. Results are written after every
 // question, so a stopped run still records how far it got.
+//
+// judge options: --requests <file> writes the judge's requests and stops, and --answers <file>
+// reads the judge's answers (a JSON object of id to answer text) instead of calling Bedrock, so the
+// judging can run wherever the credentials are. --model <id> picks another judge model.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { grade, kind, loadQuestions } from "./grade.mjs";
+import { grade, kind, loadQuestions, ruleMisses } from "./grade.mjs";
+import { JUDGE_MODEL, buildJudgeRequest, judge, readVerdict } from "./judge.mjs";
 import { LIMITS, check } from "../src/contract.mjs";
 import { allowedLinks, buildRequest, loadCorpus, loadDirectives, publishedPrices, reply as askModel } from "../src/chat.mjs";
 
@@ -26,8 +33,8 @@ const option = (name, fallback) => {
   return i >= 0 && args[i + 1] !== undefined ? args[i + 1] : fallback;
 };
 
-if (!["offline", "live", "bedrock", "regrade"].includes(mode)) {
-  console.error("Usage: node app/eval/run.mjs offline | live <url> [--gap 20] [--out file] | bedrock [--out file] | regrade <results.json>");
+if (!["offline", "live", "bedrock", "regrade", "judge"].includes(mode)) {
+  console.error("Usage: node app/eval/run.mjs offline | live <url> [--gap 20] [--out file] | bedrock [--out file] | regrade <results.json> | judge <results.json>");
   process.exit(2);
 }
 
@@ -47,6 +54,7 @@ const ctx = { allowed: allowedLinks(`${directives}\n${corpus}`), prices: publish
 
 if (mode === "offline") process.exit(offline());
 if (mode === "regrade") process.exit(regrade(args[1]));
+if (mode === "judge") process.exit(await judging(args[1]));
 process.exit(await asking());
 
 // ---- Offline: is every question assembled into the request Neo would send? ----
@@ -160,6 +168,70 @@ function regrade(file) {
   writeFileSync(file, `${JSON.stringify(saved, null, 2)}\n`);
   console.log(`${saved.summary.passed}/${saved.summary.asked} pass under the current rules`);
   return 0;
+}
+
+// ---- Judge: the same replies, graded for meaning ----
+
+// Each graded reply gets a `rubric` record: the judge's verdict per criterion with the words it
+// rests on, plus the rule checks that need no judgment. A reply passes the rubric when every
+// required criterion is met and no rule is broken. The keyword grades stay as they were, so a file
+// carries both scores side by side
+async function judging(file) {
+  const saved = JSON.parse(readFileSync(file, "utf8"));
+  const byId = Object.fromEntries(loadQuestions().map((q) => [q.id, q]));
+  const model = option("--model", JUDGE_MODEL);
+  const graded = saved.results.filter((r) => r.graded && byId[r.id]);
+
+  const requestsOut = option("--requests", null);
+  if (requestsOut) {
+    const requests = Object.fromEntries(graded.map((r) => [r.id, buildJudgeRequest(byId[r.id], r.reply, { model })]));
+    writeFileSync(requestsOut, `${JSON.stringify(requests, null, 2)}\n`);
+    console.log(`${graded.length} judge requests written to ${requestsOut}`);
+    return 0;
+  }
+  const answersIn = option("--answers", null);
+  const answers = answersIn ? JSON.parse(readFileSync(answersIn, "utf8")) : null;
+
+  for (const r of graded) {
+    const q = byId[r.id];
+    let verdict;
+    try {
+      verdict = answers ? readVerdict(q, answers[r.id]) : await judge(q, r.reply, { model });
+    } catch (err) {
+      verdict = { pass: false, misses: ["rubric: judge call failed"], criteria: [], summary: "", error: err?.name ?? "Error" };
+    }
+    const rules = ruleMisses(r.reply, ctx);
+    const misses = [...verdict.misses, ...rules];
+    r.rubric = { pass: !misses.length, misses, criteria: verdict.criteria, summary: verdict.summary, ...(verdict.error ? { error: verdict.error } : {}) };
+    console.log(`${r.rubric.pass ? "ok  " : "FAIL"} [${r.group}] ${r.id}${misses.length ? `: ${misses.join("; ")}` : ""}`);
+  }
+  saved.run.judged = { at: new Date().toISOString(), model: answersIn ? `${model} (answers from ${answersIn})` : model };
+  saved.rubricSummary = summarizeRubric(saved.results);
+  writeFileSync(file, `${JSON.stringify(saved, null, 2)}\n`);
+  const s = saved.rubricSummary;
+  console.log(`\nrubric ${s.passed}/${s.asked} pass; keywords ${saved.summary.passed}/${saved.summary.asked}`);
+  return 0;
+}
+
+function summarizeRubric(results) {
+  const judged = results.filter((r) => r.rubric);
+  const byGroup = {};
+  const byKind = {};
+  for (const r of judged) {
+    byGroup[r.group] ??= { asked: 0, passed: 0 };
+    byGroup[r.group].asked++;
+    if (r.rubric.pass) byGroup[r.group].passed++;
+    for (const k of new Set(r.rubric.misses.map(kind))) byKind[k] = (byKind[k] ?? 0) + 1;
+  }
+  const passed = judged.filter((r) => r.rubric.pass).length;
+  return {
+    asked: judged.length,
+    passed,
+    failed: judged.length - passed,
+    passRate: judged.length ? Number((passed / judged.length).toFixed(3)) : null,
+    byKind: Object.fromEntries(Object.entries(byKind).sort((a, b) => b[1] - a[1])),
+    byGroup,
+  };
 }
 
 // One question to the endpoint, as the chat window sends it

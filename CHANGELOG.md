@@ -3,6 +3,15 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Added
+- Eval: a rubric grade next to the keyword grade. `npm run eval -- judge <results.json>` asks a second model (Claude Sonnet 4.6 on Bedrock) whether each reply meets plain criteria built from the question's expected behavior, and records the words each verdict rests on. Security questions carry their own rubric lines.
+- A fresh production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
+
+### Changed
+- Eval: the keyword checks and the rule checks (prices, links, promises, length) are separate functions, so the rubric grade reuses the rules without the keyword patterns.
+
 ## v0.2.4 - 2026-11-15
 
 ### Fixed

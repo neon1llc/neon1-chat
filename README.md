@@ -57,7 +57,10 @@ npm run corpus                             # refresh app/corpus from the latest 
 npm run eval:offline                       # the prospect question set, assembled into the prompt (no model call)
 npm run eval -- live https://neon1.tech/chat/api/chat --out results.json  # ask a deployed Neo, one question every 20 seconds
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval -- bedrock  # this checkout's prompt against the model (a few cents)
+AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval -- judge results.json  # grade saved replies for meaning (under a dollar)
 ```
+
+Each run gets two grades. The keyword grade checks each reply against patterns in `questions.json`. The rubric grade (`app/eval/judge.mjs`) asks Claude Sonnet 4.6 on Bedrock, a different model family from Neo's, whether the reply meets a few plain criteria: it answers the question, gets the expected points across in any wording, claims nothing about neon1 the pages don't support, frames general information as general, offers a person when it should, and doesn't dead-end. The judge quotes the words each verdict rests on. Rule checks that need no judgment (published prices, real links, no promises, length) apply to both grades.
 
 The corpus is every document in the latest release of [neon1-corpus](https://github.com/neon1llc/neon1-corpus), where neon1's public words are written once (site copy, services, case studies, products, 1NEON help, and the privacy policy, terms, and cookie notice), plus the public repositories' READMEs. `SOURCES` in `scripts/build-corpus.mjs` is the one list, with a size bound and required content for each source and a bound on the total.
 
