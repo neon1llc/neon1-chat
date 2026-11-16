@@ -311,6 +311,9 @@ const POINTERS = [
   },
 ];
 
+// Room kept free for the closing contact line ensureHuman may add after these guards
+const HUMAN_ROOM = 200;
+
 export function guardClaims(text, question = "") {
   let decided = false;
   // Chinese: a sentence saying neon1 (or 我们) once did work for someone is dropped, like CLIENT_CLAIM
@@ -347,6 +350,9 @@ export function guardClaims(text, question = "") {
   if (/[a-z]/i.test(question) && !/[\u4e00-\u9fff¿¡ñ]/.test(question)) {
     for (const p of POINTERS) {
       if (!p.when.test(question) || p.has.test(out)) continue;
+      // Only when it fits: the reply is clipped to its limit later, and a pointer pushed past it
+      // would cut off the contact line that comes after it
+      if (out.length + p.say.length + 2 > LIMITS.reply - HUMAN_ROOM) break;
       const parts = out.split("\n\n");
       const last = parts.at(-1);
       if (parts.length > 1 && (last.includes(EMAIL) || last.includes(BOOKING))) parts.splice(-1, 0, p.say);

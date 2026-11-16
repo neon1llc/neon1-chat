@@ -3,6 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## v0.2.11 - 2026-11-16
+
+### Fixed
+- A long reply that got a case-study pointer could lose its closing line with Pradeep's email and the free call to the length limit. The pointer is now skipped when it wouldn't leave room for that line.
+
 ## v0.2.10 - 2026-11-16
 
 ### Changed
