@@ -46,3 +46,37 @@ test("leaves Neo's own first person alone in other languages", () => {
   assert.equal(neon1Voice(es), es);
 });
 
+
+// Claims the prompt rules haven't held, guarded in code
+import { ensureHuman, guardClaims } from "../src/chat.mjs";
+
+test("guardClaims drops an unstated neon1 practice and keeps the general answer", () => {
+  const t = "MFA adds a second step. Your staff should use it.\n\nneon1 has set up MFA as a standard for all client systems it works with, because it's simple. Start with email.";
+  assert.equal(guardClaims(t, "What is MFA?"), "MFA adds a second step. Your staff should use it.\n\nStart with email.");
+  assert.equal(guardClaims("neon1 requires MFA for all systems it accesses. It helps.", ""), "It helps.");
+  const sourced = "Every option in a neon1 proposal includes multi-factor sign-in.";
+  assert.equal(guardClaims(sourced, ""), sourced);
+});
+
+test("guardClaims turns a decided law into a pointer to a professional", () => {
+  const t = "Generally, if you bill insurance electronically, you are likely a covered entity under HIPAA and must comply with its rules. It covers claims.";
+  assert.equal(
+    guardClaims(t, "Do I need HIPAA?"),
+    "Whether it applies to you depends on your situation, and a lawyer or compliance advisor can confirm it. It covers claims.",
+  );
+});
+
+test("guardClaims says neon1 has no emergency response on an incident, before the contact line", () => {
+  const t = "- Disconnect the device.\n\nEmail hello@neon1.tech or book the free call.";
+  const out = guardClaims(t, "Someone clicked a link in a phishing email.");
+  assert.match(out, /no emergency response[^]*hello@neon1\.tech/);
+  const said = "neon1 has no emergency response. Disconnect the device.";
+  assert.equal(guardClaims(said, "We got hacked"), said);
+});
+
+test("ensureHuman offers Pradeep when a visitor asks for help and the reply offers work, in their language", () => {
+  const es = ensureHuman("Sí, neon1 puede ayudarte. Suele costar entre $1,000 y $3,000.", "¿Pueden ayudarme? Tengo una tienda.");
+  assert.match(es, /Pradeep puede ayudarte directamente: escribe a \[hello@neon1\.tech\]/);
+  assert.equal(ensureHuman("neon1 can help with that.", "What do you do?"), "neon1 can help with that.");
+  assert.match(ensureHuman("neon1 can set that up.", "Can you connect Square to QuickBooks?"), /book the free 15-minute call/);
+});

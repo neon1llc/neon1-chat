@@ -44,7 +44,7 @@ What you can say about neon1:
 - Facts about neon1 (services, prices, process, hours, policies, people, clients, and 1NEON) come only from the SOURCES. Don't add one they don't state, and don't give a reason they don't give. The owner, Pradeep, wrote them in the first person; speak about neon1 in the third person and about yourself, Neo, in the first. Never write "I", "I've", "I'll", or "we" about neon1's work, clients, or services: write "neon1 has set up..." or "Pradeep can help". "I" is only for you, Neo ("I can't see the calendar").
 - Don't describe how neon1 or Pradeep works (what neon1 requires, what Pradeep does first, its tools or habits) beyond what the SOURCES state. For a general question (what MFA is, how a sync works), answer it as general information without adding claims about neon1's own practice.
 - Copy numbers, times, days, and ranges exactly as the SOURCES give them, with every qualifier.
-- For a cost question, give every published range that could fit the work (for example, both a small fix and a workflow project when it could be either), labeled as a guide, and say the exact figure comes in a proposal after a free call.
+- For a cost question, give every published range that could fit the work (for example, both a small fix and a workflow project when it could be either), labeled as a guide, name what drives the cost (for a cloud move, for example: how much data, how much downtime is acceptable, and the monthly cloud bill after), and say the exact figure comes in a proposal after a free call.
 - When a case study or published example matches the question, point to it in one sentence: the two offices moved off local servers to AWS for file servers and cloud moves, the intake case study for documents and inboxes, and the sample proposal for a fictional bakery for orders arriving by phone, email, or Instagram.
 - Asked about certifications or credentials: say the pages don't list any, then name what they do publish: about 10 years of building and running systems, the case studies, and neon1's open-source tools on GitHub (such as aws-clip for AWS). Then offer email.
 - Asked whether 1NEON or neon1 is certified, audited, or compliant: say the pages don't state it, and point to the security policy and privacy policy, which describe how 1NEON is run.
@@ -231,15 +231,79 @@ export function neon1Voice(text) {
 const NEEDS_HUMAN =
   /\b(phish\w*|clicked|hacked|breach\w*|ransomware|compromised|scam\w*|fraud\w*|stolen|leaked|infected|malware|virus|emergency|urgent\w*|incident|asap|patients?|hipaa|phi|health (data|records?)|medical records?|useless|stupid|idiot\w*|worthless|garbage|pathetic|terrible|shut up|waste of)\b/i;
 
+// A visitor asking whether neon1 can help ("can you", "pueden", 你们能), and a reply that offers
+// neon1's work or quotes a published range: the next step is a person, so the route is offered
+const ASKS_HELP = /\b(can|could|would) (you|neon1)\b|\bis that something you\b|\bpueden?\b|\bpouvez\b|你们(能|可以)|能不能/i;
+const OFFERS_WORK = /\bneon1 (can|could|would|puede|peut|helps|does)\b|neon1 (可以|能)|\$\d/;
+
+// The closing line in the visitor's language, read from the question's words or script
+function humanTail(question) {
+  const mail = `[${EMAIL}](mailto:${EMAIL})`;
+  if (/[\u4e00-\u9fff]/.test(question)) return `如需进一步帮助，可发邮件至 ${mail}，或[预约免费的 15 分钟电话](${BOOKING})。`;
+  if (/[¿¡ñ]|\b(pueden|puede|tengo|ayud\w*|hola|cuánto|negocio)\b/i.test(question)) return `Pradeep puede ayudarte directamente: escribe a ${mail} o [reserva la llamada gratuita de 15 minutos](${BOOKING}).`;
+  if (/\b(bonjour|combien|pouvez|vous|est-ce)\b/i.test(question)) return `Pradeep peut vous aider directement : écrivez à ${mail} ou [réservez l'appel gratuit de 15 minutes](${BOOKING}).`;
+  return `Pradeep can help directly: ${HUMAN}.`;
+}
+
 /**
- * Where such a turn's reply has no email or booking link, a closing line offers Pradeep. Replies
- * that already carry either link are left alone. With `max`, the reply is shortened first so the
- * closing line always fits, since clipping after it would cut the route off a long answer.
+ * Where an urgent, incident, health-data, or hostile turn, or a "can you help" turn whose reply
+ * offers neon1's work, has no email or booking link, a closing line offers Pradeep in the
+ * visitor's language. Replies that already carry either are left alone. With `max`, the reply is
+ * shortened first so the closing line always fits, since clipping after it would cut the route off.
  */
 export function ensureHuman(text, question = "", max = Infinity) {
-  if (!NEEDS_HUMAN.test(question) || text.includes(EMAIL) || text.includes(BOOKING)) return text;
-  const tail = `\n\nPradeep can help directly: ${HUMAN}.`;
+  if (text.includes(EMAIL) || text.includes(BOOKING)) return text;
+  if (!NEEDS_HUMAN.test(question) && !(ASKS_HELP.test(question) && OFFERS_WORK.test(text))) return text;
+  const tail = `\n\n${humanTail(question)}`;
   return `${Number.isFinite(max) ? clip(text, max - tail.length) : text}${tail}`;
+}
+
+// ---- Claims the prompt rules haven't held: neon1's own practice, legal applicability, incidents ----
+
+// A sentence describing a neon1 practice the pages don't state ("neon1 requires MFA for all systems
+// it accesses", "neon1 has set up MFA as a standard for all client systems") is dropped
+const PRACTICE_CLAIM =
+  /\bneon1 (requires|always|insists)\b|\bneon1 (has set up|sets up|uses|makes|enforces)\b[^.!?\n]*\b(as (a|the) standard|standard (for|on|practice)|for (all|every) (client|its|of its)|on (all|every) client)|\bone of the first things (Pradeep|neon1) does\b/i;
+// A sentence deciding that a law applies to the visitor becomes a pointer to a professional
+const LAW_DECIDED =
+  /\byou (are|['’]re) (likely |probably |considered |therefore )?(a )?covered entit|\b(you|and) must comply with\b|\byou (are|['’]re) (likely |probably )?(required to comply|subject to (HIPAA|PCI|GDPR))/i;
+const LAW_POINTER = "Whether it applies to you depends on your situation, and a lawyer or compliance advisor can confirm it.";
+// An incident in progress: neon1 has no emergency response, and the reply says so
+const INCIDENT = /\b(clicked|hacked|breach\w*|ransomware|compromised|infected|malware|phish\w*)\b/i;
+const NO_EMERGENCY = "neon1 has no emergency response, so for an incident in progress, contact your email, IT, or security provider first.";
+
+export function guardClaims(text, question = "") {
+  let decided = false;
+  let out = text
+    .split("\n")
+    .map((line) => {
+      if (!PRACTICE_CLAIM.test(line) && !LAW_DECIDED.test(line)) return line;
+      return line
+        .split(/(?<=[.?!])\s+/)
+        .map((sentence) => {
+          if (PRACTICE_CLAIM.test(sentence)) return "";
+          if (LAW_DECIDED.test(sentence)) {
+            if (decided) return "";
+            decided = true;
+            return LAW_POINTER;
+          }
+          return sentence;
+        })
+        .filter(Boolean)
+        .join(" ");
+    })
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  if (INCIDENT.test(question) && /[a-z]/i.test(out) && !/\bemergenc/i.test(out)) {
+    // Before the closing contact line when there is one, so the route stays last
+    const parts = out.split("\n\n");
+    const last = parts.at(-1);
+    if (parts.length > 1 && (last.includes(EMAIL) || last.includes(BOOKING))) parts.splice(-1, 0, NO_EMERGENCY);
+    else parts.push(NO_EMERGENCY);
+    out = parts.join("\n\n");
+  }
+  return out || text;
 }
 
 // ---- One question, one reply ----
@@ -284,8 +348,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
   const voiced = neon1Voice(finish(plain, res.stopReason));
-  const priced = onlyPublishedPrices(voiced, publishedPrices(corpus));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
+  const priced = onlyPublishedPrices(guardClaims(voiced, asked), publishedPrices(corpus));
   const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);
 
   return { text: out, flagged, attempts: 1, usage: res.usage ?? {}, stopReason: res.stopReason };

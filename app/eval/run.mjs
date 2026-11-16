@@ -220,6 +220,8 @@ async function judging(file) {
     let verdict;
     try {
       verdict = answers ? readVerdict(q, answers[r.id]) : await judge(q, r.reply, { model });
+      // An unreadable judge answer is the judge's failure, not the reply's: ask once more
+      if (!answers && verdict.error === "unreadable") verdict = await judge(q, r.reply, { model });
     } catch (err) {
       verdict = { pass: false, misses: ["rubric: judge call failed"], criteria: [], summary: "", error: err?.name ?? "Error" };
     }
