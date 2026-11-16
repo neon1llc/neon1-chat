@@ -279,6 +279,14 @@ export function ensureHuman(text, question = "", max = Infinity) {
 // it accesses", "neon1 has set up MFA as a standard for all client systems") is dropped
 const PRACTICE_CLAIM =
   /\bneon1 (requires|always|insists)\b|\bneon1 (has set up|sets up|uses|makes|enforces)\b[^.!?\n]*\b(as (a|the) standard|standard (for|on|practice)|for (all|every) (client|its|of its)|on (all|every) client)|\bone of the first things (Pradeep|neon1) does\b/i;
+// A sentence claiming past neon1 work that names no published case study is dropped: the model
+// invents examples ("neon1 has set up Google Workspace workflows", "in one case study...")
+const PAST_WORK =
+  /\bneon1 (has|had) (set up|built|moved|connected|done|worked|automated|created|designed|migrated)\b|\b(in|for example, in|like in) one (of neon1['’]s )?case stud(y|ies)\b|\bthe case study (where|in which)\b/i;
+const CASE_TITLE =
+  /answers in seconds|cameras to grandma|intake, out of the shared inbox|out of the shared inbox|one view of the (business|shop)|security for non-security people|two offices off local servers|where neon1 started|sample proposal|fictional bakery/i;
+const inventedPast = (sentence) => PAST_WORK.test(sentence) && !CASE_TITLE.test(sentence);
+
 // A sentence deciding that a law applies to the visitor becomes a pointer to a professional
 const LAW_DECIDED =
   /\byou (are|['’]re) (likely |probably |considered |therefore )?(a )?covered entit|\b(you|and) must comply with\b|\byou (are|['’]re) (likely |probably )?(required to comply|subject to (HIPAA|PCI|GDPR))/i;
@@ -310,11 +318,11 @@ export function guardClaims(text, question = "") {
   let out = text
     .split("\n")
     .map((line) => {
-      if (!PRACTICE_CLAIM.test(line) && !LAW_DECIDED.test(line)) return line;
+      if (!PRACTICE_CLAIM.test(line) && !LAW_DECIDED.test(line) && !inventedPast(line)) return line;
       return line
         .split(/(?<=[.?!])\s+/)
         .map((sentence) => {
-          if (PRACTICE_CLAIM.test(sentence)) return "";
+          if (PRACTICE_CLAIM.test(sentence) || inventedPast(sentence)) return "";
           if (LAW_DECIDED.test(sentence)) {
             if (decided) return "";
             decided = true;

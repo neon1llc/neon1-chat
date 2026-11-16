@@ -106,3 +106,10 @@ test("ensureHuman offers Pradeep on a cost question answered with a range", () =
   assert.match(ensureHuman("An AWS migration usually costs $3,000 or more. The figure comes in a proposal after a free call.", "What does an AWS migration usually cost?"), /hello@neon1\.tech/);
   assert.equal(ensureHuman("It depends on the data.", "What does an AWS migration usually cost?"), "It depends on the data.");
 });
+
+test("guardClaims drops past work that names no published case study", () => {
+  const t = "Yes, neon1 can work with Google Workspace. neon1 has set up workflows that connect Gmail to Sheets for clients. What do you use?";
+  assert.equal(guardClaims(t, "Can you work with Google Workspace?"), "Yes, neon1 can work with Google Workspace. What do you use?");
+  const titled = "neon1 has moved two offices off local servers, as Two offices off local servers describes.";
+  assert.equal(guardClaims(titled, "x"), titled);
+});
