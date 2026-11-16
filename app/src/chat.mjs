@@ -201,6 +201,36 @@ export function neon1Voice(text) {
   return kept || out;
 }
 
+// ---- An optional second pass for voice (VOICE_PASS=1) ----
+
+// A short rewrite with the same model that changes only first person about neon1's work. Off by
+// default: it is a second model call per question. Its output is used only if it keeps every link
+// and dollar figure and stays close in length; otherwise the first reply stands.
+export const VOICE_PASS = process.env.VOICE_PASS === "1";
+const VOICE_RULES = `You fix one thing in a reply written by Neo, the AI assistant on neon1.tech. neon1 is Pradeep's one-person technology practice. Wherever the reply uses I, I've, I'll, I'd, me, my, we, us, or our (or the same words in another language) for neon1's work, services, schedule, clients, or experience, rewrite it with "neon1" or "Pradeep" and correct grammar. Keep "I" where Neo speaks about itself as the assistant: what it can see, say, check, or answer. Change nothing else: same language, wording, facts, numbers, links, line breaks, and order. Return only the reply.`;
+const FIRST_PERSON = /\b(I|I've|I'll|I'd|I’ve|I’ll|I’d|me|my|we|we'd|we'll|we’d|we’ll|us|our)\b|我们|puedo|podemos|nous|je peux/i;
+
+export async function voicePass(text, { client, signal } = {}) {
+  if (!FIRST_PERSON.test(text)) return text;
+  try {
+    const res = await client.send(
+      new ConverseCommand({
+        modelId: MODEL_ID,
+        system: [{ text: VOICE_RULES }],
+        messages: [{ role: "user", content: [{ text }] }],
+        inferenceConfig: { maxTokens: MAX_TOKENS, temperature: 0 },
+      }),
+      { abortSignal: signal },
+    );
+    const out = (res.output?.message?.content ?? []).map((b) => b.text ?? "").join("").trim();
+    const same = (re) => JSON.stringify([...text.matchAll(re)].map((m) => m[0]).sort()) === JSON.stringify([...out.matchAll(re)].map((m) => m[0]).sort());
+    const close = out.length > text.length * 0.8 && out.length < text.length * 1.25;
+    return out && close && same(/\]\([^)]+\)/g) && same(/\$[\d,]+/g) ? out : text;
+  } catch {
+    return text;
+  }
+}
+
 // ---- A human route on the turns that need one ----
 
 // Urgent, security-incident, health-data, and hostile messages: the latest visitor message
@@ -259,7 +289,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // Prices and links are checked against the sources last, so nothing the model invents reaches
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
-  const priced = onlyPublishedPrices(neon1Voice(finish(plain, res.stopReason)), publishedPrices(corpus));
+  const voiced = neon1Voice(finish(plain, res.stopReason));
+  const priced = onlyPublishedPrices(VOICE_PASS ? await voicePass(voiced, { client, signal }) : voiced, publishedPrices(corpus));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
   const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);
 
