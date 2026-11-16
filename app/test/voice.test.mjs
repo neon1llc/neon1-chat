@@ -113,3 +113,8 @@ test("guardClaims drops past work that names no published case study", () => {
   const titled = "neon1 has moved two offices off local servers, as Two offices off local servers describes.";
   assert.equal(guardClaims(titled, "x"), titled);
 });
+
+test("guardClaims skips a case pointer that would push the contact line past the limit", () => {
+  const long = `${"Orders land in one list. ".repeat(40)}\n\nEmail hello@neon1.tech.`;
+  assert.equal(guardClaims(long, "Can orders from Instagram go into a sheet?"), long);
+});
