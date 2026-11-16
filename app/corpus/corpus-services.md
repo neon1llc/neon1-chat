@@ -6,14 +6,14 @@ Most of my work is for owner-run businesses: the orders, intake, invoices, and r
 
 ## Which one sounds like you
 
-| If this sounds like you | What I'd do | A first project, and its usual cost | Where to start |
+| If this sounds like you | What I'd do | A first project | Where to start |
 |---|---|---|---|
-| **You run a small business**, and orders, forms, or invoices get typed into more than one place | **Business workflows.** Connect one flow end to end, with the steps written down | 2 to 4 weeks. Most workflow projects cost $1,000 to $3,000 | [How a workflow project goes](../guides/use-case-workflows.md) |
-| **You lead a technical team**, and your cloud setup, deploys, or documents need an engineer for a few weeks | **Cloud and AI engineering.** One service moved to infrastructure as code with checked, reversible deploys, or a document assistant on one approved library | 4 to 6 weeks. Larger builds start from $3,000, in phases | [How a cloud project goes](../guides/use-case-cloud.md) |
-| **Your office or home** has Wi-Fi that misses rooms, cameras that don't alert, or devices nobody wrote down | **Networks and devices.** Coverage checked room by room, devices on their own network, everything documented | 1 to 2 weeks for one office. A small fix or setup costs $150 to $750 | [Getting ready for a first call](../guides/first-call.md) |
-| **Your team or group** needs to spot phishing and fraud, or your company is heading into a SOC 2 audit | **Security training and readiness.** A plain-language session on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks. Priced in a proposal after the free call | [How a session goes](../guides/use-case-security-awareness.md) |
+| **You run a small business**, and orders, forms, or invoices get typed into more than one place | **Business workflows.** Connect one flow end to end, with the steps written down | 2 to 4 weeks | [How a workflow project goes](../guides/use-case-workflows.md) |
+| **You lead a technical team**, and your cloud setup, deploys, or documents need an engineer for a few weeks | **Cloud and AI engineering.** One service moved to infrastructure as code with checked, reversible deploys, or a document assistant on one approved library | 4 to 6 weeks, in phases for larger builds | [How a cloud project goes](../guides/use-case-cloud.md) |
+| **Your office or home** has Wi-Fi that misses rooms, cameras that don't alert, or devices nobody wrote down | **Networks and devices.** Coverage checked room by room, devices on their own network, everything documented | 1 to 2 weeks for one office | [Getting ready for a first call](../guides/first-call.md) |
+| **Your team or group** needs to spot phishing and fraud, or your company is heading into a SOC 2 audit | **Security training and readiness.** A plain-language session on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks | [How a session goes](../guides/use-case-security-awareness.md) |
 
-Prices are the ranges in [how I price my work](../company/pricing.md).
+Each project is priced in a proposal you can say no to. [How I price my work](../company/pricing.md) explains how.
 
 ## Who does what
 
@@ -33,4 +33,4 @@ Prices are the ranges in [how I price my work](../company/pricing.md).
 | Networks and devices | [From cameras to Grandma's email](../case-studies/cameras-to-grandmas-email.md), founder experience |
 | Security training and readiness | [Security for non-security people](../case-studies/security-for-non-security-people.md), a neon1 engagement |
 
-The first 15-minute call is free. [Book a call](../company/contact.md) and bring the one problem that costs you the most.
+Start with a [free 1NEON account](https://neon1.tech/1NEON/?signup=1), or [book a call](../company/contact.md) and bring the one problem that costs you the most.
