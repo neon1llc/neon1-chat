@@ -3,6 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Changed
+- Neo points someone who describes something broken on neon1.tech, 1NEON, or Neo to the Report a bug page, with one short apology and no troubleshooting. The eval gains a question for it (53 now). Needs a neon1-corpus release with the contact page's new section, then a judged eval run, before it ships.
+
 ## v0.2.11 - 2026-11-16
 
 ### Fixed
