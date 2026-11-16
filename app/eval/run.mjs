@@ -7,6 +7,8 @@
 //   node app/eval/run.mjs regrade <results.json>       grade saved replies again with the current rules; no network
 //   node app/eval/run.mjs judge <results.json>         grade saved replies for meaning with the rubric judge (judge.mjs;
 //                                                      AWS credentials, about a cent a question)
+//   node app/eval/run.mjs gate <results.json>          the release check: a judged run against the newest judged
+//                                                      baseline (--baseline <file> picks another); exits 1 on a fail
 //
 // Options: --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
 // for the results (JSON), --only <id,id> to ask some questions, --limit <n> to stop after n, and
@@ -23,6 +25,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { grade, kind, loadQuestions, ruleMisses } from "./grade.mjs";
 import { JUDGE_MODEL, buildJudgeRequest, judge, readVerdict } from "./judge.mjs";
+import { gate, latestBaseline } from "./gate.mjs";
 import { LIMITS, check } from "../src/contract.mjs";
 import { allowedLinks, buildRequest, loadCorpus, loadDirectives, publishedPrices, reply as askModel } from "../src/chat.mjs";
 
@@ -33,8 +36,8 @@ const option = (name, fallback) => {
   return i >= 0 && args[i + 1] !== undefined ? args[i + 1] : fallback;
 };
 
-if (!["offline", "live", "bedrock", "regrade", "judge"].includes(mode)) {
-  console.error("Usage: node app/eval/run.mjs offline | live <url> [--gap 20] [--out file] | bedrock [--out file] | regrade <results.json> | judge <results.json>");
+if (!["offline", "live", "bedrock", "regrade", "judge", "gate"].includes(mode)) {
+  console.error("Usage: node app/eval/run.mjs offline | live <url> [--gap 20] [--out file] | bedrock [--out file] | regrade <results.json> | judge <results.json> | gate <results.json> [--baseline file]");
   process.exit(2);
 }
 
@@ -55,7 +58,24 @@ const ctx = { allowed: allowedLinks(`${directives}\n${corpus}`), prices: publish
 if (mode === "offline") process.exit(offline());
 if (mode === "regrade") process.exit(regrade(args[1]));
 if (mode === "judge") process.exit(await judging(args[1]));
+if (mode === "gate") process.exit(gating(args[1]));
 process.exit(await asking());
+
+// ---- Gate: the release check (gate.mjs), rubric as the gate and keywords as the floor ----
+function gating(file) {
+  const baseFile = option("--baseline", latestBaseline());
+  if (!file || !baseFile) {
+    console.error(!file ? "gate needs a judged results file" : "no judged baseline found; pass --baseline <file>");
+    return 2;
+  }
+  const result = gate(JSON.parse(readFileSync(file, "utf8")), JSON.parse(readFileSync(baseFile, "utf8")));
+  const { rubric, keyword } = result.scores;
+  console.log(`baseline ${baseFile}\nrubric ${rubric.now} (baseline ${rubric.baseline}); keywords ${keyword.now} (baseline ${keyword.baseline})`);
+  for (const r of result.regressions) console.log(`  regressed  ${r.id}: ${r.misses.join("; ")}`);
+  for (const p of result.problems) console.log(`  FAIL  ${p}`);
+  console.log(result.pass ? "gate: pass" : "gate: fail");
+  return result.pass ? 0 : 1;
+}
 
 // ---- Offline: is every question assembled into the request Neo would send? ----
 
