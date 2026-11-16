@@ -31,4 +31,4 @@ Commands and settings may change before a stable release.
 
 ## Next step
 
-If you need deploy pipelines for production now, that work is part of [cloud and AI engineering](../services/index.md), done as a project with the tools you already use. [Get in touch](../company/contact.md) to talk it through.
+If you need deploy pipelines for production now, that work is part of [cloud and AI engineering](../engagement/index.md), done as a project with the tools you already use. [Get in touch](../engagement/contact.md) to talk it through.

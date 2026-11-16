@@ -15,13 +15,17 @@ Tell me what's on your mind, or ask for an opinion on how your operations run to
 ## What to expect
 
 - **Where:** remote across the US, or on site within about 30 miles of Queens, NY. Outside the US, ask.
-- **When:** weekends 8am to 8pm and weekday evenings 6pm to 9pm, Eastern time.
-- **Size:** a week or two up to six weeks, with at most two clients at a time.
+- **When:** Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Eastern time.
+- **Size:** a week or two up to six weeks, with a few clients at a time, so each gets my full attention.
 - **First call:** free and 15 minutes. The main pain points and your options.
 - **After:** a short proposal with options and estimates. Nothing starts until you pick one.
 
 ## Availability and urgent issues
 
 I work in planned appointments on weekday evenings and weekends. There's no 24/7 or emergency response. If something can't wait, such as a security incident in progress, an outage, or fraud on an account, contact a provider with emergency coverage, and your bank or the service involved, first. Ongoing care after a project, with any response times, is agreed in writing before it starts.
+
+## Report a bug
+
+Something broken on neon1.tech, 1NEON, or Neo? [Report a bug](https://neon1.tech/report-bug/) says where it happened and what happened, with an optional email and screenshots. Don't include passwords, health details, or payment information.
 
 Leave passwords, health details, and payment information out of any first message.

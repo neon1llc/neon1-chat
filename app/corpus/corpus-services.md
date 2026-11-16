@@ -13,7 +13,7 @@ Most of my work is for owner-run businesses: the orders, intake, invoices, and r
 | **Your office or home** has Wi-Fi that misses rooms, cameras that don't alert, or devices nobody wrote down | **Networks and devices.** Coverage checked room by room, devices on their own network, everything documented | 1 to 2 weeks for one office | [Getting ready for a first call](../guides/first-call.md) |
 | **Your team or group** needs to spot phishing and fraud, or your company is heading into a SOC 2 audit | **Security training and readiness.** A plain-language session on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks | [How a session goes](../guides/use-case-security-awareness.md) |
 
-Each project is priced in a proposal you can say no to. [How I price my work](../company/pricing.md) explains how.
+Each project is priced in a proposal you can say no to. [How I price my work](pricing.md) explains how.
 
 ## Who does what
 
@@ -33,4 +33,4 @@ Each project is priced in a proposal you can say no to. [How I price my work](..
 | Networks and devices | [From cameras to Grandma's email](../case-studies/cameras-to-grandmas-email.md), founder experience |
 | Security training and readiness | [Security for non-security people](../case-studies/security-for-non-security-people.md), a neon1 engagement |
 
-Start with a [free 1NEON account](https://neon1.tech/1NEON/?signup=1), or [book a call](../company/contact.md) and bring the one problem that costs you the most.
+Start with a [free 1NEON account](https://neon1.tech/1NEON/?signup=1), or [book a call](contact.md) and bring the one problem that costs you the most.

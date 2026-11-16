@@ -8,7 +8,7 @@ Yes, within about 30 miles of Queens, NY. Otherwise I work remotely across the U
 
 ## When do you work?
 
-Weekends 8am to 8pm, and weekday evenings 6pm to 9pm, Eastern. The booking calendar shows what's open.
+Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Eastern. The booking calendar shows what's open.
 
 ## Can I start without a call?
 
@@ -18,7 +18,7 @@ Yes. [Start a free 1NEON account](https://neon1.tech/1NEON/?signup=1), write dow
 
 ## How do you treat our data and accounts?
 
-I use only the access the job needs, keep your information confidential, and remove my access when we're done. We sign a short [service agreement](../policies/service-agreement.md) once, before any paid work.
+I use only the access the job needs, keep your information confidential, and remove my access when we're done. We sign a short [service agreement](../engagement/service-agreement.md) once, before any paid work.
 
 Each project is then a [proposal](../examples/proposal-options.md) with options, and the one you choose is what we both agree to. Personal or health data needs the right agreement first, such as a Business Associate Agreement.
 
@@ -30,13 +30,13 @@ For anything your business can't go a day without, I take the work only when som
 
 ## How long does a project take?
 
-Small jobs take a week or two, medium ones two to four weeks, and bigger ones four to six. I take up to two clients at a time.
+Small jobs take a week or two, medium ones two to four weeks, and bigger ones four to six. I take a few clients at a time, so each gets my full attention.
 
 ## How is the cost worked out?
 
 After we talk, I send a short proposal with a few options, each with what it covers, its upkeep, and its cost. You pick, and the cost changes only if you approve a change.
 
-Every option has the same security baseline: multi-factor sign-in, the least access the job needs, encryption that fits the data, a tested restore, and a way back from every big change. A smaller option does less, not worse. See [how I price my work](../company/pricing.md).
+Every option has the same security baseline: multi-factor sign-in, the least access the job needs, encryption that fits the data, a tested restore, and a way back from every big change. A smaller option does less, not worse. See [how I price my work](../engagement/pricing.md).
 
 ## How do invoices work?
 

@@ -10,4 +10,4 @@ I publish a client's work only with their permission, and in the form they choos
 - **Figures.** Results come from the client's own records, or from a short survey where no record exists. The study says which.
 - **Private details.** Client data, people's names, and attendee numbers don't appear.
 
-Back to [About neon1](about.md), or [contact me](contact.md) with a question.
+Back to [About neon1](../company/about.md), or [contact me](contact.md) with a question.

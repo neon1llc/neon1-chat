@@ -2,7 +2,7 @@
 
 The terms for using neon1.tech and the 1NEON portal.
 
-*Last updated November 15, 2026.* This update lets you make your own free 1NEON account, and adds the limits and conduct rules that come with it (section 3). It adds no new obligations for invited clients.
+*Last updated November 16, 2026.* This update lets you make your own free 1NEON account, and adds the limits and conduct rules that come with it (section 3). A suspended free account waits for my review instead of being deleted on schedule. It adds no new obligations for invited clients.
 
 These terms cover your use of neon1.tech and the 1NEON client portal, which are run by neon1 LLC ("neon1", "I", "me"). Paid work is governed by a separate agreement or signed proposal. If that agreement conflicts with these terms, the agreement wins.
 
@@ -37,9 +37,9 @@ Anyone can make a free account from neon1.tech to describe their projects' needs
 - **What it's for.** Describing your needs and sharing files that help me understand them, so I can advise you, suggest options, and propose a conversation. Nothing in it is an offer, a quote, or an agreement to any work until we sign an agreement or proposal.
 - **Limits.** A free account holds a few projects and items, and a small number of documents and pictures (sizes and kinds are shown when you upload). Some features, such as inviting people, approvals, proposals, billing, and the assistant, open once we agree to work together. I may change these limits.
 - **Who sees it.** Only you and I see what you put in a free account.
-- **Quiet accounts.** If nothing in the account changes for a week, I may email you to check in. After 21 days without changes I'll send a final notice, and after 30 days the account, its projects, and its files are deleted, unless we're working together or I've told you I'm keeping it. You can sign up again any time.
+- **Quiet accounts.** If nothing in the account changes for a week, I may email you to check in. After 21 days without changes I'll send a final notice, and after 30 days the account, its projects, and its files are deleted, unless we're working together or I've told you I'm keeping it. **Keep it** on Home adds 30 days to the date shown, once. You can sign up again any time.
 - **Becoming a client.** If we agree to work together, I convert your account into a client account. Your content stays, and these terms' client sections apply.
-- **Suspension.** I may pause or delete a free account that breaks these terms, looks automated, or puts the portal or others at risk, without notice where security requires it.
+- **Suspension.** I may pause or delete a free account that breaks these terms, looks automated, or puts the portal or others at risk, without notice where security requires it. A suspended account isn't deleted on the 30-day schedule; it waits until I've reviewed it.
 
 ## 4. Availability and changes
 
