@@ -10,6 +10,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 - A fresh production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
 
 ### Changed
+- Neo answers a general question before mentioning neon1, speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, and doesn't decide whether a law such as HIPAA applies to the visitor.
 - Eval: the keyword checks and the rule checks (prices, links, promises, length) are separate functions, so the rubric grade reuses the rules without the keyword patterns.
 
 ## v0.2.4 - 2026-11-15
