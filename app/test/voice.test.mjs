@@ -62,8 +62,9 @@ test("guardClaims turns a decided law into a pointer to a professional", () => {
   const t = "Generally, if you bill insurance electronically, you are likely a covered entity under HIPAA and must comply with its rules. It covers claims.";
   assert.equal(
     guardClaims(t, "Do I need HIPAA?"),
-    "Whether it applies to you depends on your situation, and a lawyer or compliance advisor can confirm it. It covers claims.",
+    "HIPAA usually applies to healthcare providers who bill insurance or send health information electronically, but whether it applies to your office depends on your situation, and a lawyer or compliance advisor can confirm it. It covers claims.",
   );
+  assert.match(guardClaims("You must comply with PCI rules.", "Do I need PCI?"), /^Whether it applies to you depends/);
 });
 
 test("guardClaims says neon1 has no emergency response on an incident, before the contact line", () => {
@@ -79,4 +80,19 @@ test("ensureHuman offers Pradeep when a visitor asks for help and the reply offe
   assert.match(es, /Pradeep puede ayudarte directamente: escribe a \[hello@neon1\.tech\]/);
   assert.equal(ensureHuman("neon1 can help with that.", "What do you do?"), "neon1 can help with that.");
   assert.match(ensureHuman("neon1 can set that up.", "Can you connect Square to QuickBooks?"), /book the free 15-minute call/);
+});
+
+test("drops outcome percentages and borrowed client claims, and rewrites more first person", () => {
+  assert.equal(neon1Voice("Turn off idle servers. neon1 has helped small businesses review AWS, often reducing bills by 30% to 60%. Email us."), "Turn off idle servers. Email us.");
+  assert.equal(neon1Voice("I can help connect it, just like neon1 has done for other small businesses. What do you use?"), "neon1 can help connect it. What do you use?");
+  assert.equal(neon1Voice("I work with Microsoft 365. I take on two clients at a time."), "neon1 works with Microsoft 365. neon1 takes on two clients at a time.");
+});
+
+test("guardClaims names a fitting case study once", () => {
+  const out = guardClaims("Cloud storage helps.\n\nEmail hello@neon1.tech.", "Should we move our file server to the cloud?");
+  assert.match(out, /Two offices off local servers[^]*hello@neon1\.tech/);
+  const has = "The two offices case study fits.";
+  assert.equal(guardClaims(has, "Should we move our file server to the cloud?"), has);
+  assert.match(guardClaims("Use a connector.", "Can orders from Instagram messages go into a sheet?"), /fictional bakery/);
+  assert.equal(guardClaims("Use a connector.", "Can Square sync with QuickBooks?"), "Use a connector.");
 });

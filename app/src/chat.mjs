@@ -195,6 +195,14 @@ const VOICE = [
   [/\bI can do (that|this)\b/g, "neon1 can do $1"],
   [/\bmy (scope|services|clients|schedule|hours|work)\b/g, "neon1's $1"],
   [/\bafter we talk\b/g, "after you talk with Pradeep"],
+  [/(^|[.!?]\s+)I work with\b/gm, "$1neon1 works with"],
+  [/(^|[.!?]\s+|, and )I (built|set up|moved|connected|automated)\b/gm, "$1neon1 $2"],
+  [/(^|[.!?]\s+)I can help\b/gm, "$1neon1 can help"],
+  [/(^|[.!?]\s+)I take (on )?\b/gm, "$1neon1 takes $2"],
+  [new RegExp(`\\bI can${AP}t commit\\b`, "g"), "neon1 can't commit"],
+  [new RegExp(`\\bI${AP}ll send\\b`, "g"), "Pradeep will send"],
+  [/\bmy (current )?workload\b/g, "Pradeep's $1workload"],
+  [/,? (just )?(like|as) neon1 has done for (other |many |similar )?[^.!?\n]*(?=[.!?])/g, ""],
   // Spanish and French: the common ways the model offers neon1's help in the first person
   [/\b(Sí|sí), (puedo|podemos) ayudar(te|le|les)?\b/g, "$1, neon1 puede ayudar$3"],
   [/(^|[.!?¡¿]\s*)(Puedo|Podemos) ayudar(te|le|les)\b/gm, "$1neon1 puede ayudar$3"],
@@ -210,7 +218,7 @@ const VOICE_ZH = [
 ];
 // A sentence claiming neon1 did work for a kind of client: these are dropped
 const CLIENT_CLAIM =
-  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (clients|businesses|teams|owners|other|similar|many)\b/i;
+  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (small |local )?(clients|businesses|teams|owners|other|similar|many)\b|\bneon1\b[^.!?\n]*\b\d+ ?(%|percent)|\b\d+ ?(%|percent)[^.!?\n]*\bneon1\b/i;
 
 export function neon1Voice(text) {
   let out = VOICE_ZH.reduce((t, [re, to]) => t.replace(re, to), text);
@@ -268,9 +276,25 @@ const PRACTICE_CLAIM =
 const LAW_DECIDED =
   /\byou (are|['’]re) (likely |probably |considered |therefore )?(a )?covered entit|\b(you|and) must comply with\b|\byou (are|['’]re) (likely |probably )?(required to comply|subject to (HIPAA|PCI|GDPR))/i;
 const LAW_POINTER = "Whether it applies to you depends on your situation, and a lawyer or compliance advisor can confirm it.";
+const HIPAA_POINTER = "HIPAA usually applies to healthcare providers who bill insurance or send health information electronically, but whether it applies to your office depends on your situation, and a lawyer or compliance advisor can confirm it.";
 // An incident in progress: neon1 has no emergency response, and the reply says so
 const INCIDENT = /\b(clicked|hacked|breach\w*|ransomware|compromised|infected|malware|phish\w*)\b/i;
 const NO_EMERGENCY = "neon1 has no emergency response, so for an incident in progress, contact your email, IT, or security provider first.";
+
+// A published case study or example that fits the question, named in one sentence when the reply
+// doesn't already point to it. English questions only; the names are the pages' own titles
+const POINTERS = [
+  {
+    when: /\b(file server|local servers?|servers?\b[^.?]*\bcloud|move[^.?]*\b(to|into) (the )?(cloud|AWS)|migrat\w*)/i,
+    has: /two offices/i,
+    say: "One neon1 case study, Two offices off local servers, describes a move like this: an app, database, and files taken off two local servers.",
+  },
+  {
+    when: /\binstagram\b|\borders?\b[^.?]*\b(phone|email|text|DMs?|messages?)\b/i,
+    has: /bakery/i,
+    say: "neon1's sample proposal for a fictional bakery shows how orders from email, voicemail, and Instagram can land in one list, with three options and prices.",
+  },
+];
 
 export function guardClaims(text, question = "") {
   let decided = false;
@@ -285,7 +309,7 @@ export function guardClaims(text, question = "") {
           if (LAW_DECIDED.test(sentence)) {
             if (decided) return "";
             decided = true;
-            return LAW_POINTER;
+            return /HIPAA/i.test(sentence) || /HIPAA/i.test(question) ? HIPAA_POINTER : LAW_POINTER;
           }
           return sentence;
         })
@@ -302,6 +326,17 @@ export function guardClaims(text, question = "") {
     if (parts.length > 1 && (last.includes(EMAIL) || last.includes(BOOKING))) parts.splice(-1, 0, NO_EMERGENCY);
     else parts.push(NO_EMERGENCY);
     out = parts.join("\n\n");
+  }
+  if (/[a-z]/i.test(question) && !/[\u4e00-\u9fff¿¡ñ]/.test(question)) {
+    for (const p of POINTERS) {
+      if (!p.when.test(question) || p.has.test(out)) continue;
+      const parts = out.split("\n\n");
+      const last = parts.at(-1);
+      if (parts.length > 1 && (last.includes(EMAIL) || last.includes(BOOKING))) parts.splice(-1, 0, p.say);
+      else parts.push(p.say);
+      out = parts.join("\n\n");
+      break;
+    }
   }
   return out || text;
 }
