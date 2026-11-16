@@ -28,7 +28,7 @@ const FLAGGED = /^\s*\[{1,2}\s*flag\s*\]{1,2}\s*/i;
 export const SCOPE = "general-help";
 
 const SCOPES = {
-  "general-help": `General questions are welcome: software and how tools connect (accounting, point of sale, online stores, email, social media), security and compliance concepts, cloud and AWS, and other technology a small business runs into. Answer the question itself first, plainly and briefly, as general information: say "usually" or "generally" where details vary, and suggest confirming specifics with the vendor. Don't name a third-party product, app, or connector the visitor didn't name unless you're sure it exists and does what you say; describe the kind of tool instead (for example, a sync app from the vendor's marketplace). Don't give setup times or vendor details you aren't sure of. Never present general information as a fact about neon1 or as a promise of what neon1 will do, and don't recast a general question as a neon1 project or price: give a price range or project length only when the visitor asks about cost or time. When the answer depends on which tool or plan they use, ask which one. Then, where it fits, say in one sentence how neon1 could help, from the SOURCES, and offer Pradeep's email or the free call. For a request that isn't about technology or running a business (a poem, a role-play, homework, trivia), say in one line what you can help with.`,
+  "general-help": `General questions are welcome: software and how tools connect (accounting, point of sale, online stores, email, social media), security and compliance concepts, cloud and AWS, and other technology a small business runs into. Answer the question itself first, plainly and briefly, as general information: say "usually" or "generally" where details vary, and suggest confirming specifics with the vendor. Don't name a third-party product, app, or connector the visitor didn't name unless you're sure it exists and does what you say; describe the kind of tool instead (for example, a sync app from the vendor's marketplace). Don't give setup times or vendor details you aren't sure of. Never present general information as a fact about neon1 or as a promise of what neon1 will do, and don't recast a general question as a neon1 project or price: give a price range or project length only when the visitor asks about cost or time. When the answer depends on which tool or plan they use, ask which one. Then, where it fits, say in one sentence how neon1 could help, from the SOURCES. Offer Pradeep's email or the free call when the visitor's next step is a person (a project, a quote, timing, or something you can't answer), not at the end of every reply. For a request that isn't about technology or running a business (a poem, a role-play, homework, trivia), say in one line what you can help with.`,
   "neon1-only": `Answer about neon1 only: its services, process, prices, case studies, products, 1NEON, and policies. For a general technology question, say in one sentence that the site doesn't cover it, name who could answer it (the vendor, an accountant, a lawyer), and offer Pradeep.`,
 };
 
@@ -167,6 +167,71 @@ export function onlyPublishedPrices(text, prices) {
   return kept || `I can only give the price ranges neon1 publishes; the exact figure for your work comes in a proposal after a free call. You can ${HUMAN}.`;
 }
 
+// ---- neon1's voice: neon1 or Pradeep for the work, and no invented clients ----
+
+// The model often copies the sources' first person ("I've set up...") for neon1's work, and adds
+// "similar work for bakeries" claims no case study makes. Prompt rules alone haven't held, so the
+// common forms are rewritten or dropped here. English only; Neo's "I" about itself is left alone.
+const AP = "['’]";
+const VOICE = [
+  [new RegExp(`\\bI${AP}ve (set up|helped|built|connected|done|worked|moved|automated|created|designed|configured)\\b`, "g"), "neon1 has $1"],
+  [new RegExp(`\\bI${AP}ll (suggest|recommend|propose|work|use|need|map|set up|build|help)\\b`, "g"), "Pradeep will $1"],
+  [/\b(Yes|yes), I can help\b/g, "$1, neon1 can help"],
+  [/(^|[.!?]\s+)I can help (you )?(connect|set up|fix|get|map|design|debug|with that)\b/gm, "$1neon1 can help $2$3"],
+  [/(^|[.!?]\s+)I help\b/gm, "$1neon1 helps"],
+  [/\bI do (debug|repair|fix|build)\b/g, "neon1 does $1"],
+  [new RegExp(`\\bI don${AP}t (debug|repair|fix|build)\\b`, "g"), "neon1 doesn't $1"],
+  [/\bI work (remotely|on[ -]site)\b/g, "Pradeep works $1"],
+  [/\bI can (come|work) (to your office|on[ -]site)\b/g, "Pradeep can $1 $2"],
+  [/\bwithout me\b/g, "without Pradeep"],
+];
+// A sentence claiming neon1 did work for a kind of client: these are dropped
+const CLIENT_CLAIM =
+  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (clients|businesses|teams|owners|other|similar|many)\b/i;
+
+export function neon1Voice(text) {
+  if (!/[a-z]/i.test(text)) return text;
+  let out = VOICE.reduce((t, [re, to]) => t.replace(re, to), text);
+  const kept = out
+    .split("\n")
+    .map((line) => (CLIENT_CLAIM.test(line) ? line.split(/(?<=[.?!])\s+/).filter((s) => !CLIENT_CLAIM.test(s)).join(" ") : line))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  return kept || out;
+}
+
+// ---- A second pass for voice (on by default; VOICE_PASS=0 turns it off) ----
+
+// A short rewrite with the same model that changes only first person about neon1's work. It is a
+// second model call, made only when a reply has first person about the work. Its output is used only if it keeps every link
+// and dollar figure and stays close in length; otherwise the first reply stands.
+export const VOICE_PASS = process.env.VOICE_PASS !== "0";
+const VOICE_RULES = `You fix one thing in a reply written by Neo, the AI assistant on neon1.tech. neon1 is Pradeep's one-person technology practice. Wherever the reply uses I, I've, I'll, I'd, me, my, we, us, or our (or the same words in another language) for neon1's work, services, schedule, clients, or experience, rewrite it with "neon1" or "Pradeep" and correct grammar. Keep "I" where Neo speaks about itself as the assistant: what it can see, say, check, or answer; never replace "I" with "Neo", and never turn Neo's own limits into neon1's. Change nothing else: same language, wording, facts, numbers, links, line breaks, and order. Return only the reply.`;
+// Only first person about the work triggers the pass, so Neo's "I can't see the calendar" costs no call
+const FIRST_PERSON = /\bI(?:['’](?:ve|ll|d))?\s+(?:can |will |could |would |do |also )?(?:help|helped|set|build|built|connect|fix|work|worked|map|design|debug|check|assess|focus|assist|come|suggest|recommend|propose|offer|handle|leave|make)\b|\b(we|we['’]d|we['’]ll|our)\b|\bwithout me\b|我们|puedo|podemos|nous/i;
+
+export async function voicePass(text, { client, signal } = {}) {
+  if (!FIRST_PERSON.test(text)) return text;
+  try {
+    const res = await client.send(
+      new ConverseCommand({
+        modelId: MODEL_ID,
+        system: [{ text: VOICE_RULES }],
+        messages: [{ role: "user", content: [{ text }] }],
+        inferenceConfig: { maxTokens: MAX_TOKENS, temperature: 0 },
+      }),
+      { abortSignal: signal },
+    );
+    const out = (res.output?.message?.content ?? []).map((b) => b.text ?? "").join("").trim();
+    const same = (re) => JSON.stringify([...text.matchAll(re)].map((m) => m[0]).sort()) === JSON.stringify([...out.matchAll(re)].map((m) => m[0]).sort());
+    const close = out.length > text.length * 0.8 && out.length < text.length * 1.25;
+    return out && close && same(/\]\([^)]+\)/g) && same(/\$[\d,]+/g) ? out : text;
+  } catch {
+    return text;
+  }
+}
+
 // ---- A human route on the turns that need one ----
 
 // Urgent, security-incident, health-data, and hostile messages: the latest visitor message
@@ -225,7 +290,8 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // Prices and links are checked against the sources last, so nothing the model invents reaches
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
-  const priced = onlyPublishedPrices(finish(plain, res.stopReason), publishedPrices(corpus));
+  const voiced = neon1Voice(finish(plain, res.stopReason));
+  const priced = onlyPublishedPrices(VOICE_PASS ? await voicePass(voiced, { client, signal }) : voiced, publishedPrices(corpus));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
   const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);
 
