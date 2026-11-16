@@ -32,19 +32,15 @@ const option = (name, fallback) => {
   return i >= 0 && args[i + 1] !== undefined ? args[i + 1] : fallback;
 };
 
-// ---- Prices, US dollars per million tokens (Bedrock on-demand, us-east-1) ----
+// ---- Prices, US dollars per million tokens (Bedrock on-demand standard tier, us-east-1, price list of 2026-11-01) ----
 // Qwen3 Next 80B answers and runs the pass; Sonnet 4.6 judges. Override with env vars if they change
-const QWEN_IN = Number(process.env.QWEN_IN ?? 0.15);
+const QWEN_IN = Number(process.env.QWEN_IN ?? 0.14);
 const QWEN_OUT = Number(process.env.QWEN_OUT ?? 1.2);
 const cost = (u = {}) => ((u.inputTokens ?? 0) * QWEN_IN + (u.outputTokens ?? 0) * QWEN_OUT) / 1e6;
 
 // The voice pass's system prompt starts with these words; every other call is an answer
 const isVoiceCall = (input) => /^You fix one thing in a reply written by Neo/.test(input.system?.[0]?.text ?? "");
 
-if (mode === "ask") process.exit(await ask());
-if (mode === "judge") process.exit(await judgePairs(args[1]));
-console.error("Usage: node app/eval/voice.mjs ask --out <pairs.json> | judge <pairs.json> [--rubric]");
-process.exit(2);
 
 // ---- Ask: one answer call per question, the reply with and without the pass ----
 
@@ -227,3 +223,9 @@ async function judgePairs(file) {
   console.log(`\n${JSON.stringify(saved.judged, null, 2)}`);
   return 0;
 }
+
+// ---- Run the asked mode, last, so every constant above is initialized ----
+if (mode === "ask") process.exit(await ask());
+if (mode === "judge") process.exit(await judgePairs(args[1]));
+console.error("Usage: node app/eval/voice.mjs ask --out <pairs.json> | judge <pairs.json> [--rubric]");
+process.exit(2);
