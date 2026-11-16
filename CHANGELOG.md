@@ -3,6 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+### Changed
+- Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives the first steps and says neon1 has no emergency response.
+
 ## v0.2.6 - 2026-11-16
 
 ### Added
@@ -11,7 +16,6 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 - A fresh production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
 
 ### Changed
-- Neo answers a general question before mentioning neon1, speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, and doesn't decide whether a law such as HIPAA applies to the visitor.
 - Eval: the keyword checks and the rule checks (prices, links, promises, length) are separate functions, so the rubric grade reuses the rules without the keyword patterns.
 
 ## v0.2.5 - 2026-11-16
