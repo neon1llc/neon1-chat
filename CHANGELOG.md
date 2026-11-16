@@ -7,6 +7,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 
 ### Added
 - Eval: a rubric grade next to the keyword grade. `npm run eval -- judge <results.json>` asks a second model (Claude Sonnet 4.6 on Bedrock) whether each reply meets plain criteria built from the question's expected behavior, and records the words each verdict rests on. Security questions carry their own rubric lines.
+- Eval: `npm run eval -- gate <results.json>` is the release check for Neo's answers. A judged run must pass at least as many questions as the newest judged baseline on the rubric grade, with the keyword grade as a floor.
 - A fresh production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
 
 ### Changed
