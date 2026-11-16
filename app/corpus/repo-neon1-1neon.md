@@ -27,7 +27,7 @@ Locally there's no sign-in. Pick a demo account on the sign-in screen.
 
 [dev.neon1.tech/1NEON](https://dev.neon1.tech/1NEON/) is a private copy behind dev.neon1.tech's sign-in. It runs `infra/envs/dev` with its own API, table, documents bucket, and sign-in pool on auth-dev.neon1.tech. It sends no texts, runs no malware scan, and keeps locked records one day.
 
-- **Deploys:** pushing the `dev` branch ships the functions and app in about a minute. `dev-sync` merges main into `dev` after every push to main. Dev is never tagged. Changelog entries wait under `## Unreleased`, and each work branch goes to main on its own.
+- **Deploys:** pushing the `dev` branch ships the functions and app in about a minute. `dev-sync` runs inside every production deploy, beside the release job: it merges main into `dev` and rebuilds the dev backend, so a dev failure shows red on the deploy run. Dev is never tagged. Changelog entries wait under `## Unreleased`, and each work branch goes to main on its own.
 - **Data:** dev holds made-up data only. `AWS_PROFILE=neon1 npx tsx apps/api/src/dev-sample.ts --yes` empties dev's table and documents, then fills them with the fictional organizations, people (`.example` addresses), projects, invoices, and payments local development uses, plus one text file. Sign in again afterwards.
 - **Payments:** dev takes Stripe test-mode keys only (`/1neon/dev/stripe/secret-key` and `/1neon/dev/stripe/webhook-secret` in SSM, a test-mode webhook to `https://dev.neon1.tech/1NEON/api/billing/stripe`). Cards, bank transfers, and webhooks work end to end with Stripe's test numbers. A live key on dev turns online payment off.
 - **neon1 only:** dev (`APP_ENV=dev`, see `apps/api/src/dev-guard.ts`) admits only operators and neon1.tech addresses, mails only them, and creates no other accounts, so a test can't reach a real person. The dev pool holds neon1 admins only.
@@ -41,4 +41,4 @@ Changes move through neon1's [release levels](https://github.com/neon1llc/neon1-
 
 ## License
 
-The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so please don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses.
+The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so please don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses. `NOTICE` credits the bundled place and mailbox-domain lists.
