@@ -40,8 +40,6 @@ A corpus release reaches neon1.tech without a site change. The deploy workflow's
 
 Everything is static HTML written at build time, so search engines, link previews, and readers without JavaScript get whole pages. Nothing on a page fetches corpus content at run time. `make static` (part of `make check`) fails if a page script references the corpus or GitHub.
 
-## Content Security Policy
+## Light and dark
 
-CloudFront serves the page with a strict policy: scripts, styles, fonts, and connections only from neon1.tech, and images from neon1.tech or `data:` URLs. Keep scripts and styles in their own files, since inline `<script>`, `<style>`, `style=""` attributes, and `on…` handlers are blocked. Setting styles from JavaScript (`el.style.x = …`) is fine. A new outside origin needs a policy change in neon1-aws-infrastructure first.
-
-`robots.txt`, `sitemap.xml`, and `.well-known/security.txt` are published with the page, along with square icons at fixed URLs: `/favicon.ico`, `/favicon-48.png`, and `/apple-touch-icon.png`. The structured data names `/media/neon1-logo-512.png` as the logo and keeps the wide link-preview card for `og:image`. `make icons` redraws all four from the bar's mark. Update the security contact's `Expires` date before it passes.
+Everything below the landing's rain comes in awake (light) or matrix (dark). `js/theme.js` runs in each page's head before the stylesheets, sets `html[data-site-theme]` from the visitor's pick (localStorage `neon1.theme`), else awake, and wires the switch in the bar (the `frame:theme` block). Pages color the light surface with the tokens at the top of `css/frame.css` (`--page`, `--surface`, `--ink-rgb`, `--brand-rgb`, and the rest); the matrix block there redefines them, so a new rule that uses the tokens works in both themes. A fixed color on the light surface shows up wrong in matrix. The rain, the hero, and the white rabbit keep their own colors. 1NEON has its own theme setting (`data-theme`), which the site's attribute never touches.
