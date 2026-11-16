@@ -3,6 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## v0.2.9 - 2026-11-16
+
+### Changed
+- Neo's corpus is refreshed from neon1-corpus v0.47.0: softer pricing wording, with price ranges given only when a visitor asks about cost, and the updated services and FAQ pages.
+
 ## v0.2.8 - 2026-11-16
 
 ### Changed

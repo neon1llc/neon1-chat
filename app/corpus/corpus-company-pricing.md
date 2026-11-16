@@ -1,12 +1,12 @@
 # How I price my work (https://neon1.tech/)
 
-How a neon1 project is priced: a fixed price or a capped estimate, what most projects cost, what the price includes, when it can change, how paying works, and why the website shows ranges while each proposal shows the hours.
+How a neon1 project is priced: a fixed price or a capped estimate, rough ranges, what the price includes, when it can change, and how paying works.
 
 **The short version**
 
-- Most small fixes cost a few hundred dollars, and most workflow projects $1,000 to $3,000. Each proposal shows the hours behind every price, a fixed price or an estimate with a ceiling, and what you pay up front. Nothing is added without your approval, and on an estimate, if the work takes fewer hours, you pay for fewer.
+- Each project is priced in a proposal after we talk, as a fixed price or an estimate with a ceiling, and you can say no at no cost. The ranges here are a rough guide, not a quote. Nothing is added without your approval, and if the work takes fewer hours, you pay for fewer.
 
-These are the usual ranges. The exact figure comes in a proposal, after we've talked.
+Every setup is different, so these are rough ranges. The real figure comes in a proposal after we talk, and saying no costs nothing.
 
 ## Two ways to price a project
 
@@ -17,13 +17,13 @@ Each option in a proposal says which of two ways it's priced.
 
 ## What projects usually cost
 
-As of November 2026. A guide, not a quote.
+As of November 2026. A rough guide, not a quote.
 
-| Kind of work | Usually | For example |
+| Kind of work | Often around | For example |
 |---|---|---|
 | A small fix or setup, a few hours | $150 to $750 | A shared inbox sorted with rules and reply templates, or a new office laptop set up and secured |
 | A workflow project, one to four weeks | $1,000 to $3,000 | Orders from email, voicemail, and a web form landing in one list, with a daily summary for the staff |
-| A larger build or a move, several weeks or more | From $3,000, split into phases priced and approved one at a time | A small portal in your own cloud account, or a move to a new system with your data intact |
+| A larger build or a move, several weeks or more | $3,000 or more, in phases you approve one at a time | A small portal in your own cloud account, or a move to a new system with your data intact |
 | Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
 
 ## A worked example
@@ -36,7 +36,7 @@ The [proposal for Maple Street Bakery](../examples/proposal-options.md), a ficti
 | B. Solid setup | Every order in one list however it arrived, a bake sheet for the kitchen, a dry run on a past week of real orders, and a runbook | $2,200 to $2,800 |
 | C. Fuller build | Everything in B, plus an online order page with payment and reminders | $3,200 to $3,900 |
 
-She chose B. Half its low end, $1,100, was the deposit. The final invoice was the hours worked less that deposit. The figures are illustrative.
+She chose B. The figures are illustrative.
 
 ## What the price includes
 
@@ -59,7 +59,7 @@ You can change your mind after approving an option until you accept the handover
 
 ## Paying
 
-A project usually starts with a deposit: half of a fixed price, or half of an estimate's low end. The rest is billed when you accept the handover. Invoices come through 1NEON and are due within 15 days. You can pay by bank transfer or card online, or by check, Zelle, or wire, with no surcharge. The [service agreement](../policies/service-agreement.md), signed once before any paid work, sets this out.
+A project usually starts with a deposit of half a fixed price, or half an estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](../policies/service-agreement.md) sets this out.
 
 ## Room to adjust
 
@@ -77,8 +77,6 @@ Published 2026 figures for the United States and New York:
 - Modeled contract rates in New York run about $90 to $115 an hour for a business systems analyst, and $114 to $170 for a software engineer.
 - A simple automation from a freelancer runs about $500 to $1,500, and a multi-step one from an agency $3,000 to $8,000.
 - Managed IT for a small New York office runs about $85 to $200 per person each month.
-
-My ranges sit at the low end of that market on purpose.
 
 ## Sources
 
