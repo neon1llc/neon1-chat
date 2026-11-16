@@ -51,18 +51,30 @@ const LINKS = /\]\(([^)\s]+)\)/g;
  * ctx: { allowed: Set of source URLs without a trailing slash, prices: Set of published figures,
  *        maxChars: the reply bound }
  */
-export function grade(reply, q, { allowed, prices, maxChars = 1200 } = {}) {
+export function grade(reply, q, ctx = {}) {
+  const text = plain(reply ?? "");
+  if (!text.trim()) return ["empty reply"];
+  return [...keywordMisses(reply, q), ...ruleMisses(reply, ctx)];
+}
+
+// The question's own patterns, the human route, and the refusal pattern: the checks the rubric
+// judge (judge.mjs) replaces with criteria read for meaning
+export function keywordMisses(reply, q) {
   const text = plain(reply ?? "");
   const misses = [];
-  if (!text.trim()) return ["empty reply"];
-
-  // The question's own rules
   for (const re of q.mustRe ?? []) if (!re.test(text)) misses.push(`missing /${re.source}/`);
   for (const re of q.notRe ?? []) if (re.test(text)) misses.push(`contains /${re.source}/`);
   if (q.human && !HUMAN.test(text)) misses.push("no human offered");
   if (q.answers && REFUSAL.test(text)) misses.push("generic refusal");
+  return misses;
+}
 
-  // Every reply: published prices only, no promises, real links, Neo's own voice, within bounds
+// Every reply, whichever grader reads it: published prices only, no promises, real links, Neo's
+// own voice, within bounds. These need no judgment, so they stay rules
+export function ruleMisses(reply, { allowed, prices, maxChars = 1200 } = {}) {
+  const text = plain(reply ?? "");
+  if (!text.trim()) return ["empty reply"];
+  const misses = [];
   if (prices) for (const n of dollarFigures(text)) if (!prices.has(n)) misses.push(`unpublished price $${n.toLocaleString("en-US")}`);
   if (PROMISE.some((re) => re.test(text))) misses.push("promise or guarantee");
   if (allowed) for (const [, url] of reply.matchAll(LINKS)) if (!allowed.has(url.replace(/\/$/, ""))) misses.push(`unlisted link ${url}`);
@@ -89,5 +101,6 @@ export function kind(miss) {
   if (miss.startsWith("unpublished price")) return "unpublished price";
   if (miss.startsWith("unlisted link")) return "unlisted link";
   if (/characters, over/.test(miss)) return "too long";
+  if (miss.startsWith("rubric: ")) return `rubric ${miss.slice(8)}`;
   return miss;
 }

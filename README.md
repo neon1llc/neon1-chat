@@ -57,7 +57,11 @@ npm run corpus                             # refresh app/corpus from the latest 
 npm run eval:offline                       # the prospect question set, assembled into the prompt (no model call)
 npm run eval -- live https://neon1.tech/chat/api/chat --out results.json  # ask a deployed Neo, one question every 20 seconds
 AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval -- bedrock  # this checkout's prompt against the model (a few cents)
+AWS_PROFILE=neon1 AWS_REGION=us-east-1 npm run eval -- judge results.json  # grade saved replies for meaning (under a dollar)
+npm run eval -- gate results.json            # the release check: a judged run against the newest judged baseline
 ```
+
+Each run gets two grades. The keyword grade checks each reply against patterns in `questions.json`. The rubric grade (`app/eval/judge.mjs`) asks Claude Sonnet 4.6 on Bedrock, a different model family from Neo's, whether the reply meets a few plain criteria: it answers the question, gets the expected points across in any wording, claims nothing about neon1 the pages don't support, frames general information as general, offers a person when it should, and doesn't dead-end. The judge quotes the words each verdict rests on. Rule checks that need no judgment (published prices, real links, no promises, length) apply to both grades.
 
 The corpus is every document in the latest release of [neon1-corpus](https://github.com/neon1llc/neon1-corpus), where neon1's public words are written once (site copy, services, case studies, products, 1NEON help, and the privacy policy, terms, and cookie notice), plus the public repositories' READMEs. `SOURCES` in `scripts/build-corpus.mjs` is the one list, with a size bound and required content for each source and a bound on the total.
 
@@ -111,7 +115,7 @@ terraform -chdir=infra apply tfplan
 
 The `/chat/api/*` route on neon1.tech belongs to the neon1-aws-infrastructure site stack. It reads `/neon1-chat/prod/api_domain` and `/neon1-chat/prod/origin_secret`, so apply this stack first.
 
-Changes move through neon1's four [release levels](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md#release-levels): Implemented, Verified, Released, and Qualified. A passing `scripts/verify-release.mjs` and the release tag mark Released. Qualified also needs `npm run eval -- live` against neon1.tech after the release, with every miss reviewed.
+Changes move through neon1's four [release levels](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md#release-levels): Implemented, Verified, Released, and Qualified. A passing `scripts/verify-release.mjs` and the release tag mark Released. Before a release that changes the prompt, the model, or the corpus, a `bedrock` run of this checkout, judged, must pass `npm run eval -- gate`: the rubric grade is the gate and the keyword grade the floor, so neither may pass fewer questions than the newest judged baseline. Questions that passed before and fail now are listed for review either way. Qualified also needs `npm run eval -- live` against neon1.tech after the release, judged, with every miss reviewed; that run becomes the next baseline.
 
 ## Rotating the origin secret
 
