@@ -10,7 +10,7 @@
 //   node app/eval/run.mjs gate <results.json>          the release check: a judged run against the newest judged
 //                                                      baseline (--baseline <file> picks another); exits 1 on a fail
 //
-// Options: --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
+// Options: --set holdout for the held-out questions (holdout.json; judge needs it too), --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
 // for the results (JSON), --only <id,id> to ask some questions, --limit <n> to stop after n, and
 // --directives <file> to assemble the prompt with a draft of Neo's directives (offline and bedrock).
 //
@@ -42,7 +42,10 @@ if (!["offline", "live", "bedrock", "regrade", "judge", "gate"].includes(mode)) 
 }
 
 // The question set, narrowed if asked
-let questions = loadQuestions();
+// --set holdout asks the held-out questions (holdout.json), which Neo's rules are never tuned against
+const SET = option("--set", "questions");
+const SET_FILE = new URL(`./${SET === "holdout" ? "holdout" : "questions"}.json`, import.meta.url);
+let questions = loadQuestions(SET_FILE);
 const only = option("--only", "");
 if (only) questions = questions.filter((q) => only.split(",").includes(q.id));
 const limit = Number(option("--limit", 0));
@@ -175,7 +178,7 @@ async function asking() {
 // grades and summary in place and notes when, keeping every reply and the run's record as they were
 function regrade(file) {
   const saved = JSON.parse(readFileSync(file, "utf8"));
-  const byId = Object.fromEntries(loadQuestions().map((q) => [q.id, q]));
+  const byId = Object.fromEntries(loadQuestions(SET_FILE).map((q) => [q.id, q]));
   for (const r of saved.results) {
     if (!r.graded) continue;
     const before = r.pass;
@@ -198,7 +201,7 @@ function regrade(file) {
 // carries both scores side by side
 async function judging(file) {
   const saved = JSON.parse(readFileSync(file, "utf8"));
-  const byId = Object.fromEntries(loadQuestions().map((q) => [q.id, q]));
+  const byId = Object.fromEntries(loadQuestions(SET_FILE).map((q) => [q.id, q]));
   const model = option("--model", JUDGE_MODEL);
   const graded = saved.results.filter((r) => r.graded && byId[r.id]);
 
@@ -217,6 +220,8 @@ async function judging(file) {
     let verdict;
     try {
       verdict = answers ? readVerdict(q, answers[r.id]) : await judge(q, r.reply, { model });
+      // An unreadable judge answer is the judge's failure, not the reply's: ask once more
+      if (!answers && verdict.error === "unreadable") verdict = await judge(q, r.reply, { model });
     } catch (err) {
       verdict = { pass: false, misses: ["rubric: judge call failed"], criteria: [], summary: "", error: err?.name ?? "Error" };
     }

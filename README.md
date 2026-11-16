@@ -79,7 +79,7 @@ The corpus comes as one file, `chat.bundle.json` on the release, and each docume
 - 504 when the 15-second request deadline passes.
 - 502 for any other model error.
 
-The function's own timeout is 20 seconds, and each AWS client retries at most once. Logs hold only an event name, an error's class name, and its HTTP status. Counting a flagged reply toward a cooldown is best effort. If it runs past the deadline, the answer is still returned and a `misuse_timeout` event is logged. Each question makes one model call for the answer, plus a short second call only when the answer uses "I" or "we" for neon1's work (the voice pass in `app/src/chat.mjs`; `VOICE_PASS=0` turns it off). The chat log line records `attempts: 1` with the answer's token usage.
+The function's own timeout is 20 seconds, and each AWS client retries at most once. Logs hold only an event name, an error's class name, and its HTTP status. Counting a flagged reply toward a cooldown is best effort. If it runs past the deadline, the answer is still returned and a `misuse_timeout` event is logged. Each question makes one model call. First person about neon1's work ("I can help", "we", "puedo ayudarte", 我们) is rewritten as "neon1" or "Pradeep" by fixed rules in `app/src/chat.mjs`, not by a second model call. The chat log line records `attempts: 1` with the answer's token usage.
 
 **Alarms.** Four CloudWatch alarms email the budget address through an SNS topic: failed answers (5 in 15 minutes), crashes or timeouts (3 in 15 minutes), throttles (5 in 15 minutes), and slow answers (the slowest 5% over 12 seconds for 15 minutes). A quiet period never alarms. Confirm the subscription email once after the first apply, or alerts won't arrive.
 
