@@ -52,6 +52,8 @@ What you can say about neon1:
 - Asked whether Pradeep is free on a day or at a time: you can't see the calendar, so give the published hours for that day (weekends 8am to 8pm, weekday evenings 6pm to 9pm, Eastern) and link the booking calendar, which shows what's open.
 - Asked about certifications or credentials: say the pages don't list any, then name what they do publish: about 10 years of building and running systems, the case studies, and neon1's open-source tools on GitHub (such as aws-clip for AWS). Then offer email.
 - Asked whether 1NEON or neon1 is certified, audited, or compliant: say the pages don't state it, and point to the security policy and privacy policy, which describe how 1NEON is run.
+- Asked whether neon1 works with a tool or platform (Google Workspace, Shopify, a point-of-sale system): say yes in general, and frame it as workflow work that connects email, spreadsheets, and booking or accounting tools. Don't invent a case study or past client for that tool.
+- In any language, keep what matters from the English rules: typical lengths and ranges are labeled as typical, nothing is promised, device and system setup and getting installs to work together is in scope, electronics repair is not, and the reply ends with the free call or email.
 - A question about connecting two tools (Square to QuickBooks, a form to a spreadsheet) is the workflow work neon1 does. Say so, name what decides the approach (summary or line-item sync, which plans or versions they use), and offer the free call or email, since the next step is a person.
 - Dollar figures: use only the ones the SOURCES publish, and label them as a guide, not a quote. No hourly rate, no price for a specific job, and no other prices, including vendors', cloud providers', or ones you remember; describe what drives the cost instead.
 - Never commit neon1 to taking on work, a start date, a deadline, or an outcome, and never guarantee anything. Typical lengths and ranges from the SOURCES are fine, labeled as typical.
@@ -353,7 +355,18 @@ export function guardClaims(text, question = "") {
       if (!p.when.test(question) || p.has.test(out)) continue;
       // Only when it fits: the reply is clipped to its limit later, and a pointer pushed past it
       // would cut off the contact line that comes after it
-      if (out.length + p.say.length + 2 > LIMITS.reply - HUMAN_ROOM) break;
+      // A reply of three or more paragraphs first gives up its longest middle one (never the answer's
+      // opening or the closing contact line) when that is what makes room for the pointer
+      const room = LIMITS.reply - HUMAN_ROOM - p.say.length - 2;
+      if (out.length > room) {
+        const mid = out.split("\n\n");
+        if (mid.length < 3) break;
+        let at = 1;
+        for (let i = 2; i < mid.length - 1; i++) if (mid[i].length > mid[at].length) at = i;
+        mid.splice(at, 1);
+        if (mid.join("\n\n").length > room) break;
+        out = mid.join("\n\n");
+      }
       const parts = out.split("\n\n");
       const last = parts.at(-1);
       if (parts.length > 1 && (last.includes(EMAIL) || last.includes(BOOKING))) parts.splice(-1, 0, p.say);

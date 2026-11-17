@@ -3,6 +3,13 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
+## Unreleased
+
+## v0.3.1 - 2026-11-17
+
+### Changed
+- Neo's case-study pointer (the fictional bakery's sample proposal for Instagram or order questions) now fits more often: a reply of three or more paragraphs gives up its longest middle paragraph instead of dropping the pointer. A question about working with a tool gets the workflow framing without an invented case study, and replies in other languages keep the "typical" labels, the scope limits, and the contact line.
+
 ## v0.3.0 - 2026-11-16
 
 ### Changed
