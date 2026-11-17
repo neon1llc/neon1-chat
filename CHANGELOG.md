@@ -5,6 +5,8 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 
 ## Unreleased
 
+## v0.3.1 - 2026-11-17
+
 ### Changed
 - Neo's case-study pointer (the fictional bakery's sample proposal for Instagram or order questions) now fits more often: a reply of three or more paragraphs gives up its longest middle paragraph instead of dropping the pointer. A question about working with a tool gets the workflow framing without an invented case study, and replies in other languages keep the "typical" labels, the scope limits, and the contact line.
 
