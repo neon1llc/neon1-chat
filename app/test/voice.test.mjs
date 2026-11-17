@@ -118,3 +118,11 @@ test("guardClaims skips a case pointer that would push the contact line past the
   const long = `${"Orders land in one list. ".repeat(40)}\n\nEmail hello@neon1.tech.`;
   assert.equal(guardClaims(long, "Can orders from Instagram go into a sheet?"), long);
 });
+
+test("guardClaims drops the longest middle paragraph so a case pointer fits ahead of the contact line", () => {
+  const body = ["Usually, yes.", "Details that run on. ".repeat(30), "Which tools do you use?", "Email hello@neon1.tech."].join("\n\n");
+  const out = guardClaims(body, "Can orders from Instagram go into a sheet?");
+  assert.match(out, /fictional bakery/);
+  assert.ok(out.endsWith("Email hello@neon1.tech."));
+  assert.ok(out.length <= 1200);
+});
