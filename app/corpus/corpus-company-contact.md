@@ -18,7 +18,7 @@ Tell me what's on your mind, or ask for an opinion on how your operations run to
 - **When:** Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Eastern time.
 - **Size:** a week or two up to six weeks, with a few clients at a time, so each gets my full attention.
 - **First call:** free and 15 minutes. The main pain points and your options.
-- **After:** a short proposal with options and estimates. Nothing starts until you pick one.
+- **After:** a short proposal with one recommendation, or options when there's a real choice. Nothing starts until you approve it.
 
 ## Availability and urgent issues
 

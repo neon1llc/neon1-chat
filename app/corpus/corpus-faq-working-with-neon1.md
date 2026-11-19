@@ -20,7 +20,7 @@ Yes. [Start a free 1NEON account](https://neon1.tech/1NEON/?signup=1), write dow
 
 I use only the access the job needs, keep your information confidential, and remove my access when we're done. We sign a short [service agreement](../engagement/service-agreement.md) once, before any paid work.
 
-Each project is then a [proposal](../examples/proposal-options.md) with options, and the one you choose is what we both agree to. Personal or health data needs the right agreement first, such as a Business Associate Agreement.
+Each project is then a [proposal](../examples/proposal.md): one recommendation, or options when there's a real choice. What you approve is what we both agree to. Personal or health data needs the right agreement first, such as a Business Associate Agreement.
 
 ## What if something urgent comes up?
 
