@@ -21,14 +21,14 @@ As of November 2026. A rough guide, not a quote.
 
 | Kind of work | Often around | For example |
 |---|---|---|
-| A small fix or setup, a few hours | $150 to $750 | A shared inbox sorted with rules and reply templates, or a new office laptop set up and secured |
-| A workflow project, one to four weeks | $1,000 to $3,000 | Orders from email, voicemail, and a web form landing in one list, with a daily summary for the staff |
-| A larger build or a move, several weeks or more | $3,000 or more, in phases you approve one at a time | A small portal in your own cloud account, or a move to a new system with your data intact |
+| A small fix or setup, a few hours | $150 to $750 | A broken sync or script repaired, or one system's access and settings reviewed and tightened |
+| A focused project, one to four weeks | $1,000 to $3,000 | Two systems kept in sync with an exception report, or a network segmented with its diagram and inventory |
+| A larger build or a move, several weeks or more | $3,000 or more, in phases you approve one at a time | A portal or integration service in your own cloud account, a migration with a tested fallback, or controls and evidence before an audit |
 | Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
 
 ## A worked example
 
-The [proposal for Maple Street Bakery](../examples/proposal-options.md), a fictional bakery, gives one problem three prices. Staff retype about 40 orders a night from email, voicemail, and Instagram.
+The [proposal for Maple Street Bakery](../examples/proposal-options.md), a fictional bakery, shows how a small project with a real choice gets three priced options. Staff retype about 40 orders a night from email, voicemail, and Instagram.
 
 | Option | What it does | Estimate |
 |---|---|---|

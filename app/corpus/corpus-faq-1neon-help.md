@@ -10,13 +10,10 @@ Signed in? Tap **?** at the top right of any page for help with that page.
 The portal where we run your projects together: what you need, the work, the results, and the handover. [Watch it](https://neon1.tech/1NEON/live).
 
 ### Can I try it first?
-Yes, with no account. The [guided walkthrough](https://neon1.tech/1NEON/live) takes about three minutes and plays a made-up project on the real portal, and the full story takes about 17 minutes. The [sample project](https://neon1.tech/1NEON/example) is one made-up project to read. The [interactive demo](https://neon1.tech/1NEON/demo/) is a working copy where you pick who to be, and changes stay in your browser until **Start over**. Short walkthroughs show one thing: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
+Yes, with no account. The [guided walkthrough](https://neon1.tech/1NEON/live) takes about three minutes and plays a made-up project on the real portal, and the full story takes about 17 minutes. The [sample project](https://neon1.tech/1NEON/example) is one made-up project to read. The [interactive demo](https://neon1.tech/1NEON/demo/) is a working copy where you pick who to be, and changes stay in your browser until **Start over**. [From free account to client](https://neon1.tech/1NEON/live?play=free) follows one free account from sign-up to client. Short walkthroughs show one thing: [joining from an invitation](https://neon1.tech/1NEON/live?play=invite), [adding a passkey](https://neon1.tech/1NEON/live?play=passkey), [adding an authenticator app](https://neon1.tech/1NEON/live?play=authenticator), and [texts and text codes](https://neon1.tech/1NEON/live?play=texts).
 
 ### How do I get in?
-With an invite, or a free account you start yourself. Open the link in your invite email and enter your email address. Sign in with a code sent to your email, or with a passkey. No password needed. [Watch it](https://neon1.tech/1NEON/live?play=invite).
-
-### Can I start without an invite?
-Yes. Choose **New here? Start a free account** on the [sign-in page](https://neon1.tech/1NEON/?signup=1), and confirm your email with a code. [Free 1NEON accounts](https://neon1.tech/knowledge/guides/free-accounts/) says what it holds.
+Start a free account from **Start for free** on the sign-in screen, or open the link in an invite email from neon1 or your organization. Sign in with a code sent to your email, or with a passkey. No password needed. Watch [starting a free account](https://neon1.tech/1NEON/live?play=free) or [joining from an invite](https://neon1.tech/1NEON/live?play=invite). [Free 1NEON accounts](https://neon1.tech/knowledge/guides/free-accounts/) says what it holds.
 
 ### I didn't get the sign-in code.
 Check spam or promotions, wait a minute, and choose **Send a new code**. Codes work for a few minutes, in the browser that asked. [Watch it](https://neon1.tech/1NEON/live?play=invite).
@@ -115,7 +112,10 @@ neon1's 1 to 5 rating of each option, where more dots is always better. **Cost**
 ## Files
 
 ### How do I send a file?
-Use **Upload** next to a file I asked for, or upload in **Files** and pick its project. [Watch it](https://neon1.tech/1NEON/live?play=listen).
+Use **Upload** next to a file I asked for, or upload in **Files**. Files filed at **Organization level** belong to your whole organization. Choose a project to file under it, in one of its layers or at **Project level** for the project as a whole. [Watch it](https://neon1.tech/1NEON/live?play=listen).
+
+### Can I move a file later?
+Yes. Choose **Move** on a file, and pick Organization level, a project, or a layer of a project. The file itself isn't touched, only where it's listed.
 
 ### Are files safe?
 Every file is virus-checked before anyone can download it and stays private to your organization.

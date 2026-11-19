@@ -4,7 +4,7 @@ A grade school wanted real STEM tools on a small budget.
 
 *grade school · community*
 
-Founder experience: As a volunteer, before neon1, 2025
+Personal or volunteer work: As a volunteer, before neon1, 2025
 
 **free for the school** · where it began
 

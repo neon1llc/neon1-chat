@@ -1,6 +1,6 @@
-# Intake, out of the shared inbox (https://neon1.tech/)
+# Patient intake portal (https://neon1.tech/)
 
-Intake ran through one inbox, with staff chasing and retyping documents.
+Patient intake ran through a shared inbox and a slow EHR, with staff chasing documents by email.
 
 *dermatology practice · workflows*
 
@@ -10,10 +10,10 @@ neon1 subcontracted engagement, 2026
 
 | | In short |
 |---|---|
-| **The problem** | Intake ran through one inbox, with staff chasing and retyping documents. |
+| **The problem** | Intake ran through a shared inbox, with staff chasing documents by email. |
 | **The work** | An AWS portal where patients upload once and staff see what's complete. |
 | **The results** | Compared four weeks before and after. |
-| **After handover** | I maintain it and tune it as the practice grows. |
+| **After handover** | Maintained with Xenoss, and an EHR interface when the vendor allows it. |
 
 ## The problem
 
@@ -25,7 +25,7 @@ I mapped the process with staff, separating patient waiting time from staff hand
 
 - CloudFront, WAF, and a private S3 site serve the portal. API Gateway, Cognito, and Python Lambda run the workflow.
 - Each intake has one state in DynamoDB. Documents upload to an encrypted S3 vault, locked until a malware scan passes.
-- Staff see one queue of what's complete and missing. Completed documents file into the EHR by patient ID and MRN.
+- Staff see one queue of what's complete and missing, and link each intake to the patient's EHR record by ID and MRN. The EHR vendor's interface wasn't available, so the portal was built not to depend on it.
 - Emails never include patient details, and access, encryption, and audit logging were set up front.
 
 ## The results
@@ -37,8 +37,8 @@ I mapped the process with staff, separating patient waiting time from staff hand
 | Finding and opening a document               | ~2 min 18 s        | ~12 s      |
 | Intakes needing a missing-document follow-up | ~34%               | ~10%       |
 
-Four weeks before and after, same definitions. At about 250 intakes a month, that's roughly 67 staff hours saved. The portal records when each intake starts and when it's complete, as metrics only, with no patient details. The practice keeps them for its own dashboards and emails, and can turn them off. Where the old inbox left no record, such as staff time per intake before launch, the figure is the staff's own estimate from a short survey.
+Four weeks before and after, same definitions. At about 250 intakes a month, that's roughly 67 staff hours saved. The portal records when each intake starts and when it's complete, as metrics only, with no patient details. The practice keeps them for its own dashboards and emails, and can turn them off. Staff time per intake comes from a time study of sampled intakes, before and after, and leaves out time spent waiting on patients.
 
 ## After handover
 
-The EHR stays the clinical record. Xenoss and I maintain the portal, watch the measures, and tune it as both locations grow.
+The EHR stays the clinical record. Xenoss and I maintain the portal, watch the measures, and tune it as both locations grow. Next is a direct EHR interface, once the vendor enables one and the volume justifies it.

@@ -1,36 +1,52 @@
 # Services (https://neon1.tech/)
 
-Mostly workflow projects for owner-run businesses, plus cloud engineering, office networks, and security training.
+Workflow automation, cloud and AI engineering, networks and connected systems, and security readiness, from a focused assessment to a complete implementation.
 
-Most of my work is for owner-run businesses: the orders, intake, invoices, and records that get typed into more than one place, or that live in one person's head. A typical first project connects one of those flows end to end in **2 to 4 weeks**, with the steps written down for your staff. I also take three other kinds of work.
+neon1 is my independent engineering and technology consulting practice. I assess, design, build, integrate, and improve technology systems for businesses, technical teams, and individuals. Work ranges from a focused assessment to a complete implementation, and I do it myself.
 
-## Which one sounds like you
+## Four services
 
-| If this sounds like you | What I'd do | A first project | Where to start |
-|---|---|---|---|
-| **You run a small business**, and orders, forms, or invoices get typed into more than one place | **Business workflows.** Connect one flow end to end, with the steps written down | 2 to 4 weeks | [How a workflow project goes](../guides/use-case-workflows.md) |
-| **You lead a technical team**, and your cloud setup, deploys, or documents need an engineer for a few weeks | **Cloud and AI engineering.** One service moved to infrastructure as code with checked, reversible deploys, or a document assistant on one approved library | 4 to 6 weeks, in phases for larger builds | [How a cloud project goes](../guides/use-case-cloud.md) |
-| **Your office or home** has Wi-Fi that misses rooms, cameras that don't alert, or devices nobody wrote down | **Networks and devices.** Coverage checked room by room, devices on their own network, everything documented | 1 to 2 weeks for one office | [Getting ready for a first call](../guides/first-call.md) |
-| **Your team or group** needs to spot phishing and fraud, or your company is heading into a SOC 2 audit | **Security training and readiness.** A plain-language session on phishing, fraud, and passwords, or a SOC 2 readiness review that lists what to fix before the audit | 1 to 3 weeks | [How a session goes](../guides/use-case-security-awareness.md) |
-
-Each project is priced in a proposal you can say no to. [How I price my work](pricing.md) explains how.
-
-## Who does what
-
-| Service | What you keep doing | What I don't do |
+| Service | What it covers | Common reasons to call |
 |---|---|---|
-| Business workflows | Your staff run the new flow day to day, with written steps | Keep your accounts or data. They're yours, with a clean way out at any time |
-| Cloud and AI engineering | Your team runs it after handover, and anything you can't go a day without has someone on your side who runs it | Promise round-the-clock response. Care plans set response times within working hours |
-| Networks and devices | You keep the equipment, its accounts, and the written-down setup | Repair electronics. On-site work is within about 30 miles of Queens, NY |
-| Security training and readiness | Your people change their own settings, with help | Issue a SOC 2 report or give legal advice. The audit opinion belongs to an independent CPA firm |
+| **Workflow automation** | Systems integration, APIs and events, data synchronization and quality, custom applications, reporting, and AI-assisted document processing | Systems of record disagree, exceptions are handled by hand, reporting needs data no single system holds, or a process has outgrown its tools |
+| **Cloud and AI engineering** | Cloud architecture, infrastructure as code, delivery pipelines, migrations, production readiness, observability, cost, and AI applications with access control and evaluation | A launch or migration with a rollback requirement, an architecture or cost review, or an AI feature that must cite sources and respect permissions |
+| **Networks and connected systems** | Network design and segmentation, multi-site and remote access, cameras, sensors, and other connected devices, monitoring, local storage, and backup | A flat network that should be segmented, a new location, devices to integrate and monitor, or a home network built to a higher standard |
+| **Security readiness** | Technical risk assessment, identity and access, hardening, cloud and network security, backup and recovery, and control and evidence work before a review | A customer security questionnaire, an upcoming SOC 2, HIPAA, or PCI DSS review, access that needs tightening, or recovery that was never tested |
 
-## Similar past work
+Each service has its own page: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md).
 
-| Service | Similar work |
-|---|---|
-| Business workflows | [One view of the business](../case-studies/one-view-of-the-shop.md), a neon1 engagement, and [Intake, out of the shared inbox](../case-studies/intake-out-of-the-inbox.md), a neon1 subcontracted engagement |
-| Cloud and AI engineering | [Two offices off local servers](../case-studies/two-offices-off-local-servers.md), a neon1 engagement, and [Answers in seconds, with sources](../case-studies/answers-in-seconds.md), a neon1 subcontracted engagement |
-| Networks and devices | [From cameras to Grandma's email](../case-studies/cameras-to-grandmas-email.md), founder experience |
-| Security training and readiness | [Security for non-security people](../case-studies/security-for-non-security-people.md), a neon1 engagement |
+## Ways to engage
 
-Start with a [free 1NEON account](https://neon1.tech/1NEON/?signup=1), or [book a call](contact.md) and bring the one problem that costs you the most.
+| Engagement | What you get | Usually priced as |
+|---|---|---|
+| **Assessment** | A written review of one system, architecture, or risk area: findings, priorities, and costed next steps you can take on with me, with someone else, or yourself | A fixed price |
+| **Advisory** | A second opinion on a design, vendor, or build-or-buy decision | A fixed price or capped hours |
+| **Scoped project** | A defined result, built, tested against agreed acceptance criteria, and handed over | A fixed price, or an estimate with a ceiling |
+| **Phased project** | Larger work in phases, each approved and accepted before the next starts | Per phase |
+| **Ongoing care** | Updates, checks, and set response times within my working hours | A monthly [care plan](../templates/care-plan.md) |
+
+A proposal makes one recommendation, or sets out options when there's a real choice to make. [How I price my work](pricing.md) explains the pricing.
+
+## Who keeps what
+
+| Service | You keep | Outside my scope |
+|---|---|---|
+| Workflow automation | Your systems of record, accounts, data, and a runbook for each integration | Replacing systems that work, or running integrations as a 24/7 managed service |
+| Cloud and AI engineering | Repositories, infrastructure code, and production on-call | Round-the-clock operations, or migrations that need a team |
+| Networks and connected systems | The equipment, its admin accounts, the network diagram, and the asset inventory | Licensed electrical or alarm-system work, safety-critical systems, and electronics repair |
+| Security readiness | Your controls, evidence, and risk decisions | Audit opinions, certifications, penetration tests, and legal advice |
+
+On-site work is within about 30 miles of Queens, NY. Everything else is remote.
+
+## Past work
+
+Each case study says what kind of work it was.
+
+| Service | Work | Kind |
+|---|---|---|
+| Workflow automation | [Patient intake portal](../case-studies/intake-out-of-the-inbox.md) and [operations integration and monitoring](../case-studies/one-view-of-the-shop.md) | neon1 subcontracted engagement, and neon1 engagement |
+| Cloud and AI engineering | [Permission-aware document assistant](../case-studies/answers-in-seconds.md) and [two-site server migration](../case-studies/two-offices-off-local-servers.md) | neon1 subcontracted engagement, and neon1 engagement |
+| Networks and connected systems | The device network in [operations integration and monitoring](../case-studies/one-view-of-the-shop.md) | neon1 engagement |
+| Security readiness | Access, network, and recovery work inside the projects above, and [security awareness sessions](../case-studies/security-for-non-security-people.md) | neon1 engagements |
+
+[Book a call](contact.md) with the problem, the systems involved, and what a good result looks like. Or start with a [free 1NEON account](https://neon1.tech/1NEON/?signup=1) and write it down there.

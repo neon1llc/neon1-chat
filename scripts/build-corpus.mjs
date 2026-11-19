@@ -1,5 +1,12 @@
 // scripts/build-corpus.mjs - Rebuild app/corpus from neon1's public sources only.
 // Usage: node scripts/build-corpus.mjs     (GITHUB_TOKEN, if set, is used for GitHub API lookups)
+//        node scripts/build-corpus.mjs --bundle <chat.bundle.json> --label <name>
+//
+// --bundle reads the neon1-corpus chat bundle from a file instead of the latest release, so a
+// corpus branch can be tried here before it is released (export it with `node tools/export.mjs
+// --target chat` in neon1-corpus). --label names where it came from in the manifest. Everything
+// else is fetched and checked as usual, and a bundle with the same documents builds the same digest
+// as the release that carries them.
 //
 // Every source is already public: the latest release of neon1-corpus, where neon1's public words
 // are written once (the site's copy, services, case studies, policies, and 1NEON help), and the
@@ -13,6 +20,7 @@
 // that are gone (a document dropped from the corpus, or a source removed from the list) disappear
 // with the swap.
 
+import { readFileSync } from "node:fs";
 import { mkdir, rename, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
@@ -56,8 +64,10 @@ const HOME = "https://neon1.tech/";
 
 // All sources together, so the prompt (and its cost per question) stays bounded. Raised from 100,000
 // for corpus v0.23.0 (operational FAQ answers and fuller policies, about 110,000), then from 120,000
-// for corpus v0.35.1 (about 126,000, with the 1NEON help grown); cached, so cost moves little
-export const TOTAL_MAX = 140000;
+// for corpus v0.35.1 (about 126,000, with the 1NEON help grown), then from 140,000 for the
+// commercial-positioning corpus, which adds where-else-to-get-help and the capability statement
+// (about 145,000); cached, so cost moves little
+export const TOTAL_MAX = 150000;
 
 // ---- Cutting long READMEs ----
 
@@ -84,7 +94,7 @@ const sha256 = (text) => createHash("sha256").update(text).digest("hex");
  * Fetch every source and build the new corpus in memory, or throw if any required source fails.
  * Returns { files, manifest }. `fetch` and `now` are injectable so tests never touch the network.
  */
-export async function build({ fetch = globalThis.fetch, now = new Date(), log = console.log, token = process.env.GITHUB_TOKEN } = {}) {
+export async function build({ fetch = globalThis.fetch, now = new Date(), log = console.log, token = process.env.GITHUB_TOKEN, bundle: local = null } = {}) {
   // Each request is bounded; a hung source fails the build instead of hanging the job
   const get = async (url, headers = {}) => {
     const res = await fetch(url, { headers: { ...AGENT, ...headers }, signal: AbortSignal.timeout(20000) });
@@ -137,13 +147,22 @@ export async function build({ fetch = globalThis.fetch, now = new Date(), log = 
   // The latest neon1-corpus release, one file per document in the bundle's order. Each document's
   // text must match the digest the bundle gives it, and the set as a whole must hold the must list
   async function corpus(src) {
-    const release = await api(`${src.repo}/releases/latest`, "application/vnd.github+json");
-    const tag = release.ok ? JSON.parse(release.text).tag_name : "";
-    if (!/^v\d+\.\d+\.\d+$/.test(tag ?? "")) throw new Error(`${src.repo}: can't resolve the latest release (HTTP ${release.status})`);
-    const from = `https://github.com/${OWNER}/${src.repo}/releases/download/${tag}/${src.asset}`;
-    const res = await get(from);
-    if (!res.ok) throw new Error(`${src.repo}: HTTP ${res.status} from ${from}`);
-    const bundle = JSON.parse(res.text);
+    let tag, from, text;
+    if (local) {
+      // A bundle from a file: the label stands in for the release tag
+      tag = local.label;
+      from = `${src.url}#${local.label}`;
+      text = local.text;
+    } else {
+      const release = await api(`${src.repo}/releases/latest`, "application/vnd.github+json");
+      tag = release.ok ? JSON.parse(release.text).tag_name : "";
+      if (!/^v\d+\.\d+\.\d+$/.test(tag ?? "")) throw new Error(`${src.repo}: can't resolve the latest release (HTTP ${release.status})`);
+      from = `https://github.com/${OWNER}/${src.repo}/releases/download/${tag}/${src.asset}`;
+      const res = await get(from);
+      if (!res.ok) throw new Error(`${src.repo}: HTTP ${res.status} from ${from}`);
+      text = res.text;
+    }
+    const bundle = JSON.parse(text);
     if (!Array.isArray(bundle.files) || !bundle.files.length) throw new Error(`${src.repo} ${tag}: the bundle lists no documents`);
 
     for (const doc of bundle.files) {
@@ -216,7 +235,14 @@ export async function publish({ files, manifest }, out = OUT) {
 
 // Run as a script: build, then publish only a complete, valid corpus
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-  const built = await build();
+  const flag = (name) => {
+    const i = process.argv.indexOf(name);
+    return i >= 0 ? process.argv[i + 1] : null;
+  };
+  const file = flag("--bundle");
+  const label = flag("--label") ?? "local bundle";
+  const bundle = file ? { label, text: readFileSync(file, "utf8") } : null;
+  const built = await build({ bundle });
   const changed = await publish(built);
   console.log(changed ? `corpus updated: ${built.manifest.digest}` : `corpus unchanged: ${built.manifest.digest}`);
 }

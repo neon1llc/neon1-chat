@@ -1,9 +1,11 @@
 # About neon1 (https://neon1.tech/)
 
-Who does the work, a few case studies, and how the practice is set up.
+Who does the work, the experience behind it, and how the practice is set up.
 
-I'm [Pradeep](https://www.linkedin.com/in/pradeep-tathineni/), an engineer with about 10 years of building and running systems. I've moved offices off closet servers, built assistants that answer from a company's own documents, and shown parents and executives how to lock down their accounts.
+I'm [Pradeep Tathineni](https://www.linkedin.com/in/pradeep-tathineni/), and neon1 is my independent engineering and technology consulting practice, formed in New York in July 2025 ([the state record](registration.md)).
 
-neon1 LLC is my independent practice, established July 2025 in New York ([the state record](registration.md)). I take a few clients at a time and do the work myself, so the person you talk to is the person who builds it. See [when I work and what I don't take on](../faq/working-with-neon1.md), then [contact me](../engagement/contact.md).
+Before neon1, I spent more than eight years as a cloud and DevOps engineer, mostly on AWS: data migration and validation for a government science program, application modernization and release automation in financial services, infrastructure hardening for a national news organization, and monitoring and reporting at a cybersecurity company. That work belonged to my employers and their clients, not to neon1. My [LinkedIn profile](https://www.linkedin.com/in/pradeep-tathineni/) lists the roles.
 
-Some case studies of my work are [answers in seconds, with sources](../case-studies/answers-in-seconds.md), [intake, out of the shared inbox](../case-studies/intake-out-of-the-inbox.md), and [two offices off local servers](../case-studies/two-offices-off-local-servers.md). I publish a client's work only with their permission, in the form they choose; see [how that works](../engagement/publishing-client-work.md).
+Through neon1 I've built a [permission-aware document assistant](../case-studies/answers-in-seconds.md) and a [patient intake portal](../case-studies/intake-out-of-the-inbox.md) as a subcontractor, [migrated a two-site business to AWS](../case-studies/two-offices-off-local-servers.md), and [integrated a business's operations and monitoring](../case-studies/one-view-of-the-shop.md). Each case study says what kind of work it was, and I publish client work only [with permission](../engagement/publishing-client-work.md).
+
+I do the work myself and take a few clients at a time, so the person you talk to is the person who builds it. When a project needs a specialty I don't cover, the proposal names the partner and what they're responsible for. See [when I work and what I don't take on](../faq/working-with-neon1.md), then [contact me](../engagement/contact.md).

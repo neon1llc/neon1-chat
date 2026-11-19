@@ -87,6 +87,7 @@ The function's own timeout is 20 seconds, and each AWS client retries at most on
 
 **Testing answers.** `app/eval/questions.json` holds about 50 synthetic prospect questions (plain-words asks, prices, integrations, security, AWS, out-of-scope requests, hostile messages, and other languages). Each has checkable rules: what a reply must mention, what it must not contain, and whether it must offer a person. Every reply is also checked for unpublished prices, promises, unlisted links, and length.
 
+- `--set skeptical` runs `app/eval/skeptical.json`, skeptical-buyer questions (alternatives, evidence, capacity, certification, engineers who already have help). It is reported apart from the release bar, which is the 53-question set.
 - `npm run eval -- live <url>` grades a deployed endpoint. Against neon1.tech it waits at least 20 seconds between questions and stops at the first 429, so it never works around the limits.
 - `npm run eval -- bedrock` asks the model directly with this checkout's prompt. `--directives <file>` tries a draft of Neo's directives from neon1-corpus.
 

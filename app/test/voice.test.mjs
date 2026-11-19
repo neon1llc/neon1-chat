@@ -1,7 +1,7 @@
 // app/test/voice.test.mjs - neon1's voice in replies: neon1 or Pradeep for the work, no invented clients.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { neon1Voice } from "../src/chat.mjs";
+import { neon1Voice, publishedPercents } from "../src/chat.mjs";
 
 test("rewrites first person about neon1's work", () => {
   assert.equal(neon1Voice("Yes, I can help. I’ve set up workflows like this."), "Yes, neon1 can help. neon1 has set up workflows like this.");
@@ -90,8 +90,8 @@ test("drops outcome percentages and borrowed client claims, and rewrites more fi
 
 test("guardClaims names a fitting case study once", () => {
   const out = guardClaims("Cloud storage helps.\n\nEmail hello@neon1.tech.", "Should we move our file server to the cloud?");
-  assert.match(out, /Two offices off local servers[^]*hello@neon1\.tech/);
-  const has = "The two offices case study fits.";
+  assert.match(out, /Two-site server migration \(a neon1 engagement, 2025\)[^]*hello@neon1\.tech/);
+  const has = "The two-site migration case study fits.";
   assert.equal(guardClaims(has, "Should we move our file server to the cloud?"), has);
   assert.match(guardClaims("Use a connector.", "Can orders from Instagram messages go into a sheet?"), /fictional bakery/);
   assert.equal(guardClaims("Use a connector.", "Can Square sync with QuickBooks?"), "Use a connector.");
@@ -112,6 +112,15 @@ test("guardClaims drops past work that names no published case study", () => {
   assert.equal(guardClaims(t, "Can you work with Google Workspace?"), "Yes, neon1 can work with Google Workspace. What do you use?");
   const titled = "neon1 has moved two offices off local servers, as Two offices off local servers describes.";
   assert.equal(guardClaims(titled, "x"), titled);
+  // The current case study titles count as published work too
+  for (const t of [
+    "neon1 has built a permission-aware document assistant as a subcontractor.",
+    "neon1 has migrated a two-site business to AWS, as the Two-site server migration case study describes.",
+    "neon1 has built a patient intake portal as a subcontractor.",
+    "neon1 has set up operations integration and monitoring for a small local business.",
+  ]) assert.equal(guardClaims(t, "x"), t, t);
+  // A bare "one case study" claim naming no title is still dropped
+  assert.equal(guardClaims("Yes. In one case study, neon1 has set up Gmail workflows for clients.", "x"), "Yes.");
 });
 
 test("guardClaims skips a case pointer that would push the contact line past the limit", () => {
@@ -125,4 +134,37 @@ test("guardClaims drops the longest middle paragraph so a case pointer fits ahea
   assert.match(out, /fictional bakery/);
   assert.ok(out.endsWith("Email hello@neon1.tech."));
   assert.ok(out.length <= 1200);
+});
+
+test("a percentage stays when a source publishes it, and goes when it's invented", () => {
+  const sources = "Recall rose from 72% to 94% on an 80-question test set. About 5 percent of staff time.";
+  const known = publishedPercents(sources);
+  assert.deepEqual([...known].sort((a, b) => a - b), [5, 72, 94]);
+  const measured = "neon1's document assistant took recall from 72% to 94%, as its case study measured.";
+  assert.equal(neon1Voice(measured, known), measured);
+  // An invented figure goes, with or without sources; one that no source publishes is never kept
+  assert.equal(neon1Voice("Turn off idle servers. neon1 has cut cloud bills by 40% for others. Email hello@neon1.tech.", known), "Turn off idle servers. Email hello@neon1.tech.");
+  assert.equal(neon1Voice("Turn off idle servers. neon1 often saves 30% to 60%. Email us."), "Turn off idle servers. Email us.");
+  // A published figure beside an invented one still drops the sentence
+  assert.equal(neon1Voice("neon1 improved recall from 72% to 99%. Email us.", known), "Email us.");
+});
+
+test("a sentence claiming neon1 is certified, audited, or a vendor partner is dropped", () => {
+  assert.equal(guardClaims("neon1 is SOC 2 certified. Email hello@neon1.tech.", "Is neon1 certified?"), "Email hello@neon1.tech.");
+  assert.equal(guardClaims("neon1 holds an ISO 27001 certification. See the policies.", "x"), "See the policies.");
+  assert.equal(guardClaims("neon1 is an AWS Advanced Partner. Ask Pradeep.", "x"), "Ask Pradeep.");
+  assert.equal(guardClaims("neon1 is HIPAA compliant. Ask Pradeep.", "x"), "Ask Pradeep.");
+  // Saying the pages don't state it, or what a certification is, stays
+  for (const t of ["The pages don't state whether neon1 is SOC 2 certified.", "A SOC 2 report comes from an independent CPA firm, which neon1 doesn't issue.", "neon1 prepares companies for a SOC 2 review."]) {
+    assert.equal(guardClaims(t, "Is neon1 SOC 2 certified?"), t, t);
+  }
+});
+
+test("a sentence committing neon1 to a date or time frame is dropped", () => {
+  assert.equal(guardClaims("neon1 can start next week. The proposal sets the schedule.", "Can you start soon?"), "The proposal sets the schedule.");
+  assert.equal(guardClaims("Pradeep will have it done by Friday. Email hello@neon1.tech.", "x"), "Email hello@neon1.tech.");
+  assert.equal(guardClaims("neon1 can finish this within 3 weeks. Book the call.", "x"), "Book the call.");
+  for (const t of ["A focused project usually runs one to four weeks, and the proposal sets the schedule.", "neon1 can start with a free call."]) {
+    assert.equal(guardClaims(t, "x"), t, t);
+  }
 });

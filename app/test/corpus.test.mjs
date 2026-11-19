@@ -93,7 +93,28 @@ test("one document over its own bound, or all over the total, fails the build", 
   await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(huge)) }).fetch, log: quiet }), /company-about\.md: \d+ characters, over its bound of 30000/);
   // Each document within its own 20,000, but together past the total
   const many = [1, 2, 3, 4, 5, 6].map((n) => [`page-${n}.md`, `# Page ${n}\n\nneon1 1NEON Needs, Execute, Observe ${"p".repeat(26000)}`]);
-  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(many)) }).fetch, log: quiet }), /over the total bound of 140000/);
+  await assert.rejects(build({ fetch: internet({ "chat.bundle.json": answer(bundle(many)) }).fetch, log: quiet }), /over the total bound of 150000/);
+});
+
+// ---- A bundle from a file, before its release ----
+
+test("a bundle read from a file builds the same text and digest as the release that carries it", async () => {
+  const release = await build({ fetch: internet().fetch, log: quiet });
+  const files = internet();
+  // Only the releases lookup and the bundle download are replaced; the READMEs are fetched as usual
+  const local = await build({ fetch: files.fetch, log: quiet, bundle: { label: "branch docs/example", text: bundle() } });
+  assert.equal(local.manifest.digest, release.manifest.digest);
+  assert.ok(!files.seen.some((u) => u.includes("/releases/")), "no release is looked up");
+  const src = local.manifest.sources.find((s) => s.file === "corpus-company-about.md");
+  assert.match(src.revision, /neon1-corpus branch docs\/example/);
+  assert.match(src.source, /#branch docs\/example#company-about\.md$/);
+});
+
+test("a local bundle is checked like a release: digests and the must list still apply", async () => {
+  const tampered = bundle(DOCS, (d) => (d.file === "company-about.md" ? { ...d, text: `${d.text} changed` } : d));
+  await assert.rejects(build({ fetch: internet().fetch, log: quiet, bundle: { label: "x", text: tampered } }), /text doesn't match its digest/);
+  const plain = [["company-about.md", `# About\n\n${"No marker words. ".repeat(20)}`]];
+  await assert.rejects(build({ fetch: internet().fetch, log: quiet, bundle: { label: "x", text: bundle(plain) } }), /missing expected content/);
 });
 
 // ---- Failed, empty, and retired sources ----

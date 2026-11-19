@@ -1,12 +1,12 @@
-# From cameras to Grandma's email (https://neon1.tech/)
+# Home cameras and family accounts (https://neon1.tech/)
 
 A house with no cameras, and passwords reused everywhere.
 
 *family & friends · home tech*
 
-Founder experience: For my own family, 2025
+Personal or volunteer work: For my own family, 2025
 
-**small jobs welcome** · patience included
+**9 devices** · cameras, DNS filtering, passwords
 
 | | In short |
 |---|---|
@@ -17,11 +17,12 @@ Founder experience: For my own family, 2025
 
 ## The problem
 
-Not every job is a cloud migration. My parents' house had no cameras, and like most families, we reused a few passwords everywhere.
+My parents' house had no cameras, and the family reused a few passwords across accounts.
 
 ## The work
 
-- Placed cameras around entrances and blind spots, then set up recording and alerts.
+- Placed eight cameras, outdoor and indoor, around entrances and blind spots, then set up recording and alerts.
+- Added network-wide ad and tracker blocking with a Pi-hole DNS server.
 - Moved the family onto a password manager, one person at a time, with two-factor sign-in on key accounts.
 
 ## The results
@@ -30,4 +31,4 @@ The test: could everyone use it without calling me? Recordings and alerts work, 
 
 ## After handover
 
-Advice and troubleshooting when something breaks. Small jobs count too: Wi-Fi that misses a room, a new laptop, or a grandparent who can't open their email.
+Advice and troubleshooting when something breaks. Household work ranges from one device to a full home network, and both are welcome.

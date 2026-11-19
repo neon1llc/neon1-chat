@@ -2,13 +2,13 @@
 
 The only cookies and browser storage neon1.tech and 1NEON use, and why.
 
-*Last updated November 16, 2026.* This update adds `neon1.theme`, which keeps the dark or light look you chose on the sign-in and public pages, shared with neon1.tech. There's no new tracking.
+*Last updated November 17, 2026.* Matrix or Sentinel and light or dark mode are saved separately, shared with neon1.tech. Older theme preferences remain readable during migration. There is no new tracking.
 
 This notice is part of the [privacy and data policy](https://neon1.tech/1NEON/privacy) and lists, in detail, every cookie and item neon1 saves in your browser. Neither neon1.tech nor the 1NEON portal uses analytics, advertising, or tracking of any kind.
 
 ## neon1.tech
 
-The website sets no cookies. Your browser saves two small things, on your device only:
+The website sets no cookies. Your browser keeps preferences on your device only. The shared theme and mode choices are listed below with the portal storage:
 
 | Saved item | What it's for | How long it lasts |
 |---|---|---|
@@ -37,13 +37,16 @@ The portal also saves, on your device only:
 | `1neon.email` (local storage) | With Remember me ticked, the email you signed in with, so it's filled in next time. Unticked, it's cleared | Until you sign in with Remember me unticked, or clear it |
 | `1neon.lastOrg` (local storage) | The organization you last had open, so pages outside one (your profile, the FAQs) keep its menu | Until you clear it |
 | `1neon.signup` (local storage) | Whether free-account sign-up was open when you last opened sign-in, so the page shows the right wording at once | Until you clear it |
-| `neon1.theme` (local storage) | That you chose the dark (matrix) or light (awake) look with the switch on sign-in and the public pages. Shared with neon1.tech | Until you clear it |
+| `neon1.theme` and `neon1.theme.business` (local storage) | Older theme choices, read only to migrate to the shared mode | Until you clear them |
+| `neon1.style` (local storage) | Matrix or Sentinel, shared with neon1.tech | Until you clear it |
+| `neon1.mode` (local storage) | Light or dark mode, kept when switching themes and shared with neon1.tech | Until you clear it |
 | `1neon.motion` (local storage) | That you chose **Reduced** motion on your profile, which turns 1NEON's animations off in this browser | Until you choose **Smooth** again, or clear it |
 | `1neon.face-ask.` and an organization's ID (local storage) | Admins only: that you chose **Not now** when Home asked where to see your business, so it stops asking in this browser | Until you clear it |
 | `1neon.signin` (session storage) | Your email and the sign-in step in progress, so a reload mid sign-in returns to the code step. The code itself is never saved | 5 minutes, or until the tab closes |
 | `neon1.rain` (local storage) | The same rain settings as the website, on the sign-in screen | Until you clear it |
 | `1neon.projects.view`, `1neon.projects.view.sort` (local storage) | Whether you last looked at projects as a list or a timeline, and how you sorted them | Until you clear it |
 | `1neon.tour-offered` (session storage) | That the welcome tour was already offered, so it isn't offered again in this tab | Until the tab closes |
+| `1neon.scroll` (session storage) | How far down you had scrolled in each section of the app, so moving between sections and back lands where you were | Until the tab closes, or you sign out |
 | `1neon-export` (the browser's private file storage) | Admins only: the zip from **Download everything** while it's built, so a large export doesn't fill memory. Never sent anywhere; your browser copies it to your downloads | 30 minutes after it's saved; if you close the tab sooner, the next time you open Settings or start an export |
 
 Your other preferences, such as your theme, are saved with your account.

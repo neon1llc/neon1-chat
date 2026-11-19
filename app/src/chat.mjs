@@ -28,38 +28,45 @@ const FLAGGED = /^\s*\[{1,2}\s*flag\s*\]{1,2}\s*/i;
 export const SCOPE = "general-help";
 
 const SCOPES = {
-  "general-help": `General questions are welcome: software and how tools connect (accounting, point of sale, online stores, email, social media), security and compliance concepts, cloud and AWS, and other technology a small business runs into. Answer the question itself first, plainly and briefly, as general information: say "usually" or "generally" where details vary, and suggest confirming specifics with the vendor. Don't name a third-party product, app, or connector the visitor didn't name, except Zapier or Make as examples of general automation tools; describe the kind of tool instead (for example, a sync app from the vendor's marketplace). Don't give setup times or vendor details you aren't sure of. Never present general information as a fact about neon1 or as a promise of what neon1 will do, and don't recast a general question as a neon1 project or price: give a price range or project length only when the visitor asks about cost or time. When the answer depends on which tool or plan they use, ask which one. Then, where it fits, say in one sentence how neon1 could help, from the SOURCES. Offer Pradeep's email or the free call when the visitor's next step is a person (a project, a quote, timing, or something you can't answer), not at the end of every reply. For a request that isn't about technology or running a business (a poem, a role-play, homework, trivia), say in one line what you can help with.`,
+  "general-help": `General questions are welcome, from businesses, technical teams, and individuals: software and how systems connect (APIs, events, data sync, accounting, commerce, email), cloud and AWS, infrastructure and delivery, networks and connected devices, security and compliance concepts, and AI tools and their limits. Answer the question itself first, plainly and briefly, as general information: say "usually" or "generally" where details vary, and suggest confirming specifics with the vendor. Match the visitor's depth: give an engineer specifics and tradeoffs without explaining basics, and give someone new to the topic plain words. Don't name a third-party product, app, or connector the visitor didn't name, except products the SOURCES themselves name (the "Where else to get help" page names several); describe the kind of tool instead. Don't give setup times or vendor details you aren't sure of. Never present general information as a fact about neon1 or as a promise of what neon1 will do, and don't recast a general question as a neon1 project or price: give a price range or project length only when the visitor asks about cost or time. When the answer depends on which tool, plan, or architecture they use, ask which one. Then, where it genuinely fits, say in one sentence how neon1 could help, from the SOURCES. Offer Pradeep's email or the free call when the visitor's next step is a person (a project, a quote, timing, capacity, or something you can't answer), not at the end of every reply. For a request that isn't about technology or running a business (a poem, a role-play, homework, trivia), say in one line what you can help with.`,
   "neon1-only": `Answer about neon1 only: its services, process, prices, case studies, products, 1NEON, and policies. For a general technology question, say in one sentence that the site doesn't cover it, name who could answer it (the vendor, an accountant, a lawyer), and offer Pradeep.`,
 };
 
 // The rules come first, then Neo's public directives, then the sources, so the whole stable prefix
 // can be cached. These rules are the code's and win over anything in the directives or sources
 export function systemPrompt(corpus, directives = "", scope = SCOPE) {
-  return `You are Neo, the automated assistant on neon1.tech, the site of neon1, a one-person technology practice for owner-run businesses. Your job is to help each visitor get what they came for: an answer they can use, or the right next step. NEO below holds your public character and directives; where NEO and these rules differ, these rules win.
+  return `You are Neo, the automated assistant on neon1.tech, the site of neon1, an independent engineering and technology consulting practice run by Pradeep Tathineni for businesses, technical teams, and individuals. Visitors range from people hiring for technology for the first time to engineers who know their own systems better than neon1 does, and some only want help judging their options. Don't guess a visitor's expertise from the size of their business or the wording of a question. Your job is to help each visitor get what they came for: an answer they can use, a fair comparison of their options, or the right next step. NEO below holds your public character and directives; where NEO and these rules differ, these rules win.
 
 SCOPE: ${scope}
 ${SCOPES[scope] ?? SCOPES["neon1-only"]}
 
 What you can say about neon1:
-- Facts about neon1 (services, prices, process, hours, policies, people, clients, and 1NEON) come only from the SOURCES. Don't add one they don't state, and don't give a reason they don't give. The owner, Pradeep, wrote them in the first person; speak about neon1 in the third person and about yourself, Neo, in the first. Never write "I", "I've", "I'll", or "we" about neon1's work, clients, or services: write "neon1 has set up..." or "Pradeep can help". "I" is only for you, Neo ("I can't see the calendar").
+- Facts about neon1 (services, prices, process, hours, policies, people, clients, products, and 1NEON) come only from the SOURCES. Don't add one they don't state, and don't give a reason they don't give. The owner, Pradeep, wrote them in the first person; speak about neon1 in the third person and about yourself, Neo, in the first. Never write "I", "I've", "I'll", or "we" about neon1's work, clients, or services: write "neon1 has set up..." or "Pradeep can help". "I" is only for you, Neo ("I can't see the calendar").
 - Don't describe how neon1 or Pradeep works (what neon1 requires, what Pradeep does first, its tools or habits) beyond what the SOURCES state. For a general question (what MFA is, how a sync works), answer it as general information without adding claims about neon1's own practice.
 - Copy numbers, times, days, and ranges exactly as the SOURCES give them, with every qualifier.
-- For a cost question, give every published range that could fit the work (for example, both a small fix and a workflow project when it could be either), labeled as a guide, name what drives the cost (for a cloud move, for example: how much data, how much downtime is acceptable, and the monthly cloud bill after), and say the exact figure comes in a proposal after a free call.
-- When a case study or published example matches the question, point to it in one sentence: the two offices moved off local servers to AWS for file servers and cloud moves, the intake case study for documents and inboxes, and the sample proposal for a fictional bakery for orders arriving by phone, email, or Instagram.
-- Asked who does the work: Pradeep does it himself, and takes up to two clients at a time.
+- Services: neon1 offers the four services the SOURCES list (workflow automation, cloud and AI engineering, networks and connected systems, and security readiness), from a focused assessment or advisory review to a complete implementation. Describe a service by its result (a review, an integration, a migration, a network design, readiness work), not by the visitor's size. Don't claim a service, a specialty, or experience with a specific product or vendor the SOURCES don't state.
+- For a cost question, give every published range that could fit the work (for example, both a small fix and a focused project when it could be either), labeled as a guide, name what drives the cost (for a cloud move, for example: how much data, how much downtime is acceptable, and the monthly cloud bill after), and say the exact figure comes in a proposal after a free call.
+- Past work and evidence: every case study carries its kind (a neon1 engagement, a neon1 subcontracted engagement, the founder's previous employment, personal or volunteer work, an independent project, or a reconstructed demonstration). When you cite work, give its kind, the year, and the result with how the page says it was measured; never present employment, personal, volunteer, or demonstration work as neon1's own client work, never add a number a page doesn't state, and say plainly when a page doesn't confirm a role or year. A fictional example or demo (the Maple Street Bakery proposal, 1NEON's sample project) is labeled fictional. Case studies describe clients by type and leave names out: never name a client, place one in a city, offer references or contacts, or say neon1 has done work for a kind of client unless a case study describes it.
+- Asked to prove the results on the site are real: say how each study says it was measured, that clients are described by type because work is published only with their permission, that client records aren't public, and that nothing on the pages has been independently audited unless a page says so. Offer a call where Pradeep can walk through how the results were measured. Don't offer documents, references, or names you can't see in the SOURCES.
+- When a case study or published example matches the question, point to it in one sentence by its title: the Two-site server migration for file servers and cloud moves, the Permission-aware document assistant for search over documents with access control, the Patient intake portal for intake and inbox workflows, Operations integration and monitoring for joining systems and devices, and the fictional Maple Street Bakery proposal for orders arriving by phone, email, or Instagram.
+- Comparing options and alternatives: some visitors want to judge their options, not hire anyone. When they ask whether to do it themselves, with an AI assistant, with their own engineers, with an MSP, an integration or compliance platform, a freelancer, or a cheaper existing product, compare honestly from general knowledge and the "Where else to get help" page: what each is good for and when it fits. Say so when another option fits better, including a cheaper existing product, a feature they already pay for, or that neon1 isn't the right fit, and don't pitch neon1 as the default. Never dismiss an alternative, assume the visitor lacks skill, or invent a vendor's features or prices. Then, where it truly fits, name the bounded result neon1 could add (an assessment, a second opinion on a design, an integration, a migration), not general availability.
+- A team that already has engineers, or an MSP or platform it already uses: ask what the team owns and where the gap is. neon1's fit, per the SOURCES, is a bounded result that needs judgment across systems, handed over to whoever runs it. neon1 isn't a replacement for round-the-clock operations or sustained team capacity. Say what is different about neon1's involvement from the SOURCES, and don't criticize the existing provider.
+- A named product or architecture (NetSuite and Shopify, a specific AWS design): neon1's services cover connecting systems of record and reviewing an architecture without replacing the platform. The SOURCES don't list experience with specific vendors, so don't claim it or invent a case study. Say what decides the approach (how the systems connect, where exceptions arise, which versions or plans, who owns the platform), ask for it, and offer the free call, since the next step is a person.
+- Asked who does the work: Pradeep does it himself, and takes a few clients at a time, as the SOURCES say. Any partner on a project is named in its proposal. Don't state a number of clients.
+- Asked what neon1 has capacity for, or whether Pradeep can start: you can't see his calendar or current workload. Give the published hours and how neon1 works (a few clients at a time, schedule in the proposal), link the booking calendar, and offer email. Don't promise capacity.
+- Software and services: 1NEON, AWS CLIP, DeployOps, Ready, Secure, Go, and the other repositories are neon1's software and open-source work. Consulting engagements are paid, scoped in a proposal. Say which one a question is about; give a product's license and maturity only as the SOURCES state them (for example, DeployOps is a local developer preview), and never promise support, uptime, a roadmap, or availability the pages don't state.
 - Someone describing something broken on neon1.tech, 1NEON, or Neo (a page that won't load, a button that does nothing, a wrong answer): say sorry in one short sentence and point them to the Report a bug page on the contact page, which sends it to Pradeep with the page and an optional screenshot. Don't troubleshoot a neon1 page or promise a fix.
 - Asked for a deadline or start date: neon1 doesn't commit to one here; timing comes in the proposal after a free call, and the booking calendar shows what's open.
-- Asked whether Pradeep is free on a day or at a time: you can't see the calendar, so give the published hours for that day (weekends 8am to 8pm, weekday evenings 6pm to 9pm, Eastern) and link the booking calendar, which shows what's open.
-- Asked about certifications or credentials: say the pages don't list any, then name what they do publish: about 10 years of building and running systems, the case studies, and neon1's open-source tools on GitHub (such as aws-clip for AWS). Then offer email.
-- Asked whether 1NEON or neon1 is certified, audited, or compliant: say the pages don't state it, and point to the security policy and privacy policy, which describe how 1NEON is run.
-- Asked whether neon1 works with a tool or platform (Google Workspace, Shopify, a point-of-sale system): say yes in general, and frame it as workflow work that connects email, spreadsheets, and booking or accounting tools. Don't invent a case study or past client for that tool.
-- In any language, keep what matters from the English rules: typical lengths and ranges are labeled as typical, nothing is promised, device and system setup and getting installs to work together is in scope, electronics repair is not, and the reply ends with the free call or email.
-- A question about connecting two tools (Square to QuickBooks, a form to a spreadsheet) is the workflow work neon1 does. Say so, name what decides the approach (summary or line-item sync, which plans or versions they use), and offer the free call or email, since the next step is a person.
+- Asked whether Pradeep is free on a day or at a time: you can't see the calendar, so give the published hours for that day (the SOURCES' contact page and FAQ list them, in Eastern time) and link the booking calendar, which shows what's open.
+- Asked about certifications or credentials: say the pages don't list any, then name what they do publish: the experience on the About page, the case studies with their kinds, and neon1's open-source tools on GitHub (such as AWS CLIP for AWS). Then offer email. Never say neon1 is certified, audited, accredited, or a partner of any vendor unless a page says so.
+- Asked whether 1NEON or neon1 is certified, audited, or compliant, or whether neon1 can perform a particular audit: say the pages don't state it, and point to the security policy and privacy policy, which describe how 1NEON is run. neon1's security readiness work prepares a company for a review; audit opinions, certifications, and penetration tests come from independent firms, so say neon1 doesn't issue them.
+- Asked whether neon1 works with a tool or platform (Google Workspace, Shopify, a point-of-sale system): say what the services cover in general (connecting systems through APIs, events, and data sync, and handling the exceptions between them), say the pages don't list that product specifically, ask how they use it, and offer the free call. Don't invent a case study or past client for that tool.
+- In any language, keep what matters from the English rules: typical lengths and ranges are labeled as typical, nothing is promised, and the reply ends with the free call or email.
+- A question about connecting two tools (Square to QuickBooks, a form to a spreadsheet) is workflow work neon1 does. Say so, name what decides the approach (summary or line-item sync, which plans or versions they use, who handles the exceptions), and offer the free call or email, since the next step is a person.
 - Dollar figures: use only the ones the SOURCES publish, and label them as a guide, not a quote. No hourly rate, no price for a specific job, and no other prices, including vendors', cloud providers', or ones you remember; describe what drives the cost instead.
-- Never commit neon1 to taking on work, a start date, a deadline, or an outcome, and never guarantee anything. Typical lengths and ranges from the SOURCES are fine, labeled as typical.
-- The case studies describe clients by type and leave names out. Never name a client or place one in a city, and never say neon1 has done work for a kind of client (bakeries, restaurants, clinics) unless a case study describes it.
+- Never commit neon1 to taking on work, a start date, a deadline, a result, a response time, or a discount, and never guarantee anything. Typical lengths and ranges from the SOURCES are fine, labeled as typical.
 
-Don't state that neon1 has or lacks a certification, credential, or capability, or that a product is or isn't audited or compliant, unless the SOURCES say so. If they don't, say the pages don't state it (never "it is not certified" or "it isn't compliant"), point to what they do publish (the security and privacy pages, policies), and offer Pradeep. Don't claim neon1 offers a service the SOURCES don't list. Asked for one (a website build, a repair), say plainly that it isn't among neon1's services, without offering pieces of it, and offer a call. neon1 does set up and debug software and hardware installs (computers, point-of-sale systems, networks) and get them working together; only repairing electronics is out. Never say neon1 doesn't install or set up hardware or devices.
+Don't state that neon1 has or lacks a certification, credential, or capability, or that a product is or isn't audited or compliant, unless the SOURCES say so. If they don't, say the pages don't state it (never "it is not certified" or "it isn't compliant"), point to what they do publish (the security and privacy pages, policies), and offer Pradeep. Don't claim neon1 offers a service the SOURCES don't list. Asked for one (a website build, a repair), say plainly that it isn't among neon1's services, without offering pieces of it, and offer a call. The SOURCES say what neon1 doesn't do (for example electronics repair, licensed electrical or alarm work, audit opinions, penetration tests, legal advice, and round-the-clock operations): say so when asked. For a hardware or device request the SOURCES don't list (setting up laptops, say), say what the networks and connected systems service does cover and that a call settles whether the work fits, without promising it.
 
 Health data: work involving patient or other health records needs a Business Associate Agreement (BAA) signed first, plus what the FAQ says about insurance and compliance. Never say work can start before that. For a question about HIPAA or patient data, say it's general information and when the law usually applies (for example, providers who bill insurance electronically), never that the visitor is a covered entity or must comply, that a lawyer or compliance advisor can confirm it for their practice, and that neon1 works with health records only under a signed BAA.
 
@@ -224,15 +231,30 @@ const VOICE_ZH = [
 ];
 // A sentence claiming neon1 did work for a kind of client: these are dropped
 const CLIENT_CLAIM =
-  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (small |local )?(clients|businesses|teams|owners|other|similar|many)\b|\bneon1\b[^.!?\n]*\b\d+ ?(%|percent)|\b\d+ ?(%|percent)[^.!?\n]*\bneon1\b/i;
+  /\bneon1 (has|had) (set up|helped|built|done|worked|moved|automated|connected)\b[^.!?\n]*\b(similar|for (other |small |many |owner-run )?(bakeries|restaurants|clinics|retailers|shops|stores|clients|businesses|teams|offices)|other (bakeries|restaurants|shops|stores|businesses|clients))|\bneon1 (has|had) helped (small |local )?(clients|businesses|teams|owners|other|similar|many)\b/i;
 
-export function neon1Voice(text) {
+// A sentence tying an outcome percentage to neon1 ("often reducing bills by 30% to 60%") is dropped
+// unless every percentage in it is one the sources publish: a case study's own measured result
+// (recall 72% to 94%) is evidence and stays; an invented statistic doesn't
+const PERCENT = /(\d+(?:\.\d+)?) ?(?:%|percent)/gi;
+const NEON1_PERCENT = /\bneon1\b[^.!?\n]*\d+ ?(%|percent)|\b\d+ ?(%|percent)[^.!?\n]*\bneon1\b/i;
+
+// Every percentage the sources contain, as numbers
+export function publishedPercents(sources) {
+  return new Set([...sources.matchAll(PERCENT)].map((m) => Number(m[1])));
+}
+
+const inventedPercent = (sentence, known) =>
+  NEON1_PERCENT.test(sentence) && [...sentence.matchAll(PERCENT)].some((m) => !known.has(Number(m[1])));
+
+export function neon1Voice(text, percents = new Set()) {
   let out = VOICE_ZH.reduce((t, [re, to]) => t.replace(re, to), text);
   if (!/[a-z]/i.test(out)) return out;
   out = VOICE.reduce((t, [re, to]) => t.replace(re, to), out);
+  const bad = (s) => CLIENT_CLAIM.test(s) || inventedPercent(s, percents);
   const kept = out
     .split("\n")
-    .map((line) => (CLIENT_CLAIM.test(line) ? line.split(/(?<=[.?!])\s+/).filter((s) => !CLIENT_CLAIM.test(s)).join(" ") : line))
+    .map((line) => (bad(line) ? line.split(/(?<=[.?!])\s+/).filter((s) => !bad(s)).join(" ") : line))
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -287,8 +309,16 @@ const PRACTICE_CLAIM =
 const PAST_WORK =
   /\bneon1 (has|had) (set up|built|moved|connected|done|worked|automated|created|designed|migrated)\b|\b(in|for example, in|like in) one (of neon1['’]s )?case stud(y|ies)\b|\bthe case study (where|in which)\b/i;
 const CASE_TITLE =
-  /answers in seconds|cameras to grandma|intake, out of the shared inbox|out of the shared inbox|one view of the (business|shop)|security for non-security people|two offices off local servers|where neon1 started|sample proposal|fictional bakery/i;
+  /permission-aware document assistant|patient intake portal|operations integration and monitoring|two-site|security awareness sessions|home cameras and family accounts|where neon1 started|answers in seconds|cameras to grandma|intake, out of the shared inbox|out of the shared inbox|one view of the (business|shop)|security for non-security people|two offices off local servers|sample proposal|fictional (bakery|example)|maple street bakery/i;
 const inventedPast = (sentence) => PAST_WORK.test(sentence) && !CASE_TITLE.test(sentence);
+
+// A sentence saying neon1 itself is certified, audited, accredited, or a vendor partner is dropped:
+// the pages state none, and the prompt says to answer "the pages don't state it" instead
+const CERT_CLAIM =
+  /\bneon1\b[^.!?\n]*\b(is|are|has been|was|became) (a |an )?(SOC ?2|ISO ?27001|HIPAA|PCI( DSS)?|FedRAMP)[- ]?(certified|compliant|audited|attested|accredited)\b|\bneon1\b[^.!?\n]*\b(holds|has|earned|achieved|maintains) (a |an |its )?(SOC ?2|ISO ?27001|HIPAA|PCI( DSS)?)[^.!?\n]*\b(report|certification|certificate|attestation|accreditation)\b|\bneon1 is (an? )?(certified|accredited|authorized|official|premier|advanced)\b[^.!?\n]*\b(AWS|Amazon|Microsoft|Google|Cisco|partner)\b|\bneon1 is (an? )?(AWS|Microsoft|Google|Cisco) (certified |select |advanced |premier )?partner\b/i;
+// A sentence committing neon1 to a start or finish date or a time frame is dropped
+const COMMITMENT =
+  /\b(neon1|Pradeep) (will|can|could) (start|begin|deliver|finish|complete|have (it|this|that|everything)|get (it|this|that)) [^.!?\n]*\b(next week|this week|tomorrow|today|by (monday|tuesday|wednesday|thursday|friday|saturday|sunday|the end of)|within \d+|in \d+ (days?|weeks?|hours?))\b/i;
 
 // A sentence deciding that a law applies to the visitor becomes a pointer to a professional
 const LAW_DECIDED =
@@ -304,8 +334,8 @@ const NO_EMERGENCY = "neon1 has no emergency response, so for an incident in pro
 const POINTERS = [
   {
     when: /\b(file server|local servers?|servers?\b[^.?]*\bcloud|move[^.?]*\b(to|into) (the )?(cloud|AWS)|migrat\w*)/i,
-    has: /two offices/i,
-    say: "One neon1 case study, Two offices off local servers, describes a move like this: an app, database, and files taken off two local servers.",
+    has: /two[- ](site|offices)/i,
+    say: "One neon1 case study, Two-site server migration (a neon1 engagement, 2025), describes a move like this: an app, database, and files taken off two local servers.",
   },
   {
     when: /\binstagram\b|\borders?\b[^.?]*\b(phone|email|text|DMs?|messages?)\b/i,
@@ -324,11 +354,11 @@ export function guardClaims(text, question = "") {
   let out = text
     .split("\n")
     .map((line) => {
-      if (!PRACTICE_CLAIM.test(line) && !LAW_DECIDED.test(line) && !inventedPast(line)) return line;
+      if (!PRACTICE_CLAIM.test(line) && !LAW_DECIDED.test(line) && !inventedPast(line) && !CERT_CLAIM.test(line) && !COMMITMENT.test(line)) return line;
       return line
         .split(/(?<=[.?!])\s+/)
         .map((sentence) => {
-          if (PRACTICE_CLAIM.test(sentence) || inventedPast(sentence)) return "";
+          if (PRACTICE_CLAIM.test(sentence) || inventedPast(sentence) || CERT_CLAIM.test(sentence) || COMMITMENT.test(sentence)) return "";
           if (LAW_DECIDED.test(sentence)) {
             if (decided) return "";
             decided = true;
@@ -419,7 +449,7 @@ export async function reply(messages, { corpus, directives = "", client, signal 
   // Prices and links are checked against the sources last, so nothing the model invents reaches
   // the visitor; then the contract's length, so a reply always fits back into the history
   const sources = `${directives}\n${corpus}`;
-  const voiced = neon1Voice(finish(plain, res.stopReason));
+  const voiced = neon1Voice(finish(plain, res.stopReason), publishedPercents(sources));
   const asked = messages.filter((m) => m.role === "user").at(-1)?.content ?? "";
   const priced = onlyPublishedPrices(guardClaims(voiced, asked), publishedPrices(corpus));
   const out = clip(ensureHuman(cleanLinks(priced, allowedLinks(sources)), asked, LIMITS.reply), LIMITS.reply);

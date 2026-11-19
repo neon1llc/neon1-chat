@@ -1,4 +1,4 @@
-# Two offices off local servers (https://neon1.tech/)
+# Two-site server migration (https://neon1.tech/)
 
 The app, database, and files lived on two local servers both offices used.
 

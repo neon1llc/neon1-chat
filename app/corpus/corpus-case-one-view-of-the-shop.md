@@ -1,4 +1,4 @@
-# One view of the business (https://neon1.tech/)
+# Operations integration and monitoring (https://neon1.tech/)
 
 A small business's point-of-sale, order tracking, and cameras each had their own screen, and none showed the business as a whole.
 

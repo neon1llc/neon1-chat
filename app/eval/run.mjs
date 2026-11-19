@@ -10,7 +10,7 @@
 //   node app/eval/run.mjs gate <results.json>          the release check: a judged run against the newest judged
 //                                                      baseline (--baseline <file> picks another); exits 1 on a fail
 //
-// Options: --set holdout for the held-out questions (holdout.json; judge needs it too), --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
+// Options: --set holdout for the held-out questions (holdout.json) or --set skeptical for the skeptical-buyer set (skeptical.json; judge needs it too), --gap <seconds> between questions (live; at least 20 against neon1.tech), --out <file>
 // for the results (JSON), --only <id,id> to ask some questions, --limit <n> to stop after n, and
 // --directives <file> to assemble the prompt with a draft of Neo's directives (offline and bedrock).
 //
@@ -42,9 +42,10 @@ if (!["offline", "live", "bedrock", "regrade", "judge", "gate"].includes(mode)) 
 }
 
 // The question set, narrowed if asked
-// --set holdout asks the held-out questions (holdout.json), which Neo's rules are never tuned against
+// --set holdout asks the held-out questions (holdout.json), which Neo's rules are never tuned against;
+// --set skeptical asks the skeptical-buyer set (skeptical.json), reported apart from the release bar
 const SET = option("--set", "questions");
-const SET_FILE = new URL(`./${SET === "holdout" ? "holdout" : "questions"}.json`, import.meta.url);
+const SET_FILE = new URL(`./${["holdout", "skeptical"].includes(SET) ? SET : "questions"}.json`, import.meta.url);
 let questions = loadQuestions(SET_FILE);
 const only = option("--only", "");
 if (only) questions = questions.filter((q) => only.split(",").includes(q.id));

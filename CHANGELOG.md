@@ -5,6 +5,19 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 
 ## Unreleased
 
+### Changed
+- Neo follows neon1's commercial positioning: an independent engineering and technology consulting practice for businesses, technical teams, and individuals, with four services of equal standing (workflow automation, cloud and AI engineering, networks and connected systems, security readiness). The rules no longer assume an owner-run business or a non-technical visitor, state a client count or a number of years of experience, or describe general help as small-business help. Neo matches the visitor's depth.
+- Neo compares options honestly when a visitor is judging alternatives: doing it themselves or with AI tools, in-house engineers, an MSP, an integration or compliance platform, a freelancer, hiring, or a cheaper existing product. It says when another option fits better, including that neon1 isn't the right fit, and names a bounded result neon1 could add (an assessment, a second opinion, an integration, a migration) instead of general availability.
+- Neo gives past work with its kind (neon1 engagement, subcontracted engagement, personal or volunteer work, fictional demonstration), the year, and how the result was measured. It answers "can you prove it" with how each study was measured and why client names and records aren't public, and doesn't offer references. It says capacity is something it can't see, makes no claim of certification, audit, or vendor partnership, and says audit opinions, certifications, and penetration tests come from independent firms.
+- Code guards: a sentence claiming neon1 is certified, audited, or a vendor partner is dropped, as is one committing neon1 to a start or finish date. An outcome percentage is kept when a source publishes it (a case study's measured recall) and dropped when it isn't, so evidence answers survive and invented statistics don't. Case-study and pointer titles follow the retitled studies (Permission-aware document assistant, Patient intake portal, Operations integration and monitoring, Two-site server migration, Security awareness sessions, Home cameras and family accounts).
+- Corpus build: `node scripts/build-corpus.mjs --bundle <chat.bundle.json> --label <name>` builds from a bundle file, to try a neon1-corpus branch before its release; the total bound rises from 140,000 to 150,000 characters for the alternatives page and the capability statement. The corpus is built from the neon1-corpus commercial-positioning branch with those two pages added to the chat bundle, and needs that branch released (with `chat` listed as a consumer of both pages) before the weekly refresh reproduces it.
+
+### Added
+- Eval: 23 skeptical-buyer questions (`--set skeptical`, `app/eval/skeptical.json`): the 11 from the commercial brief (AI instead of neon1, a team that has engineers, NetSuite and Shopify exceptions, an existing MSP, an AWS architecture review, proof of results, audit certification, software versus services, capacity, the best option when it isn't neon1, a cheaper product) plus alternatives, evidence, 24/7 coverage, individuals, client types, an engineer-level retrieval question, software support, and a planted certification request. Reported apart from the release bar.
+
+### Fixed
+- Eval: 18 of the 53 questions in `questions.json` expected the old positioning (owner-run businesses, "at most two clients at a time", "about 10 years", a "workflow project" range name, the retired case-study titles, the old network and training pages). Their expectations now match the current corpus; the questions themselves are unchanged. The judge's background facts and case-study list follow the same corpus.
+
 ## v0.3.1 - 2026-11-17
 
 ### Changed
