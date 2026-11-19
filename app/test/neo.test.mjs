@@ -131,7 +131,9 @@ test("the prompt carries the alternatives, evidence, capacity, and no-credential
   assert.match(p, /Past work and evidence: every case study carries its kind/);
   assert.match(p, /never present employment, personal, volunteer, or demonstration work as neon1's own client work/);
   assert.match(p, /Asked what neon1 has capacity for/);
-  assert.match(p, /never say neon1 is certified, audited, accredited, or a partner of any vendor/i);
+  assert.match(p, /name only what the SOURCES list, as they list it and with its year/);
+  assert.match(p, /neon1 itself is not certified, audited, or a vendor partner unless a page says so/);
+  assert.doesNotMatch(p, /Maple Street/);
   assert.match(p, /audit opinions, certifications, and penetration tests come from independent firms/);
   assert.match(p, /Don't claim a service, a specialty, or experience with a specific product or vendor the SOURCES don't state/);
   // The injection and privacy handling is unchanged

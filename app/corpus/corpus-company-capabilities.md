@@ -39,6 +39,7 @@ neon1 is an independent engineering and technology consulting practice run by Pr
 | **Business address** | 418 Broadway, Ste R, Albany, NY 12207 |
 | **Service area** | Remote across the US, or on site within about 30 miles of Queens, NY. Outside the US, ask |
 | **Owner** | Pradeep Tathineni |
+| **Certification** | AWS Certified Cloud Practitioner (2025) |
 | **Email** | hello@neon1.tech |
 | **Phone** | [(424) 32-neon1](tel:+14243263661), that's (424) 326-3661 |
 | **Website** | [neon1.tech](https://neon1.tech) |
@@ -52,7 +53,6 @@ NAICS codes:
 | 541512 | Computer Systems Design Services |
 | 541511 | Custom Computer Programming Services |
 | 541519 | Other Computer Related Services |
-| 611430 | Professional and Management Development Training |
 
 ## Sources
 

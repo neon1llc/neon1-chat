@@ -33,7 +33,7 @@ A proposal makes one recommendation, or sets out options when there's a real cho
 |---|---|---|
 | Workflow automation | Your systems of record, accounts, data, and a runbook for each integration | Replacing systems that work, or running integrations as a 24/7 managed service |
 | Cloud and AI engineering | Repositories, infrastructure code, and production on-call | Round-the-clock operations, or migrations that need a team |
-| Networks and connected systems | The equipment, its admin accounts, the network diagram, and the asset inventory | Licensed electrical or alarm-system work, safety-critical systems, and electronics repair |
+| Networks and connected systems | The equipment, its admin accounts, the network diagram, and the asset inventory | Cabling and physical installation, licensed electrical or alarm-system work, safety-critical systems, and electronics repair |
 | Security readiness | Your controls, evidence, and risk decisions | Audit opinions, certifications, penetration tests, and legal advice |
 
 On-site work is within about 30 miles of Queens, NY. Everything else is remote.

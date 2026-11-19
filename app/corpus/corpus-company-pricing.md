@@ -26,17 +26,16 @@ As of November 2026. A rough guide, not a quote.
 | A larger build or a move, several weeks or more | $3,000 or more, in phases you approve one at a time | A portal or integration service in your own cloud account, a migration with a tested fallback, or controls and evidence before an audit |
 | Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
 
-## A worked example
+## Examples across the four services
 
-The [proposal for Maple Street Bakery](../examples/proposal-options.md), a fictional bakery, shows how a small project with a real choice gets three priced options. Staff retype about 40 orders a night from email, voicemail, and Instagram.
+Fictional, with illustrative figures. Three are single recommendations, and one offers a real choice.
 
-| Option | What it does | Estimate |
-|---|---|---|
-| A. Quick fix | An order form that feeds one order list | $400 to $600 |
-| B. Solid setup | Every order in one list however it arrived, a bake sheet for the kitchen, a dry run on a past week of real orders, and a runbook | $2,200 to $2,800 |
-| C. Fuller build | Everything in B, plus an online order page with payment and reminders | $3,200 to $3,900 |
-
-She chose B. The figures are illustrative.
+| Service | Situation | Recommended work | Priced as |
+|---|---|---|---|
+| Workflow automation | A retailer's online store and point-of-sale disagree on stock, and staff reconcile them weekly | Sync the two systems on a shared item ID, with an exception report for anything that fails | An estimate, $2,400 to $3,000 |
+| Cloud and AI engineering | A software team wants an independent look at one AWS account before a pricing renewal | A written review of architecture, access, and cost, with a costed list of changes the team can make itself | A fixed price, $1,500 |
+| Networks and connected systems | A two-site business runs cameras, point-of-sale, and guest Wi-Fi on one flat network | Segment both sites and link them by VPN, with a diagram, an asset inventory, and recovery steps. Cabling by a licensed installer | A fixed price, $2,800 |
+| Security readiness | A company faces a customer's security questionnaire in six weeks | First, a fixed-price review of access, backups, and configuration. Then a choice: fix the top findings together, or have the team fix them with written guidance | $1,200, then an estimate of $3,000 to $4,500 or a fixed $600 |
 
 ## What the price includes
 

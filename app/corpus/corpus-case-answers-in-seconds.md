@@ -40,15 +40,11 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), whic
 | Answers fully supported by their source  | 78%          | 92%    |
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
-Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Lookups were timed from question to a usable, source-checked answer, before and after. After launch, the system records each lookup's start and end as metrics only, with no question or answer text. Interruptions come from a two-week staff tally before and after, and leave out judgment calls that still belong with senior staff.
+Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Lookup times before launch were timed automatically and checked against the staff's own estimates in a short survey. After launch, the system records the start and end of each lookup, as metrics only, with no question or answer text. Interruptions of senior staff left no record, so that figure comes from the survey.
 
 These results describe that test set, not a guarantee, so each answer carries citations to check.
 
-In the client's words:
-
-> "For a while now we've been working on getting the whole firm onto one cloud: our files, our client documents, and the software we run on. We also wanted to start using AI, but carefully, and on our terms. The knowledge base moved us forward on both."
->
-> Boris M., Boris M Tax
+Boris M., who owns Boris M Tax, said the firm had been moving its files, client documents, and software onto one cloud, and wanted to start using AI carefully and on its own terms. In his view, the knowledge base moved the firm forward on both. This is my summary of our conversation, with his agreement to publish it.
 
 ## After handover
 

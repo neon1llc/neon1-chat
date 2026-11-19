@@ -92,7 +92,8 @@ test("guardClaims names a fitting case study once", () => {
   assert.match(out, /Two-site server migration \(a neon1 engagement, 2025\)[^]*hello@neon1\.tech/);
   const has = "The two-site migration case study fits.";
   assert.equal(guardClaims(has, "Should we move our file server to the cloud?"), has);
-  assert.match(guardClaims("Use a connector.", "Can orders from Instagram messages go into a sheet?"), /fictional bakery/);
+  // The Instagram pointer to the bakery proposal is gone with the proposal
+  assert.equal(guardClaims("Use a connector.", "Can orders from Instagram messages go into a sheet?"), "Use a connector.");
   assert.equal(guardClaims("Use a connector.", "Can Square sync with QuickBooks?"), "Use a connector.");
 });
 
@@ -124,13 +125,13 @@ test("guardClaims drops past work that names no published case study", () => {
 
 test("guardClaims skips a case pointer that would push the contact line past the limit", () => {
   const long = `${"Orders land in one list. ".repeat(40)}\n\nEmail hello@neon1.tech.`;
-  assert.equal(guardClaims(long, "Can orders from Instagram go into a sheet?"), long);
+  assert.equal(guardClaims(long, "Should we move our file server to the cloud?"), long);
 });
 
 test("guardClaims drops the longest middle paragraph so a case pointer fits ahead of the contact line", () => {
   const body = ["Usually, yes.", "Details that run on. ".repeat(30), "Which tools do you use?", "Email hello@neon1.tech."].join("\n\n");
-  const out = guardClaims(body, "Can orders from Instagram go into a sheet?");
-  assert.match(out, /fictional bakery/);
+  const out = guardClaims(body, "Should we move our file server to the cloud?");
+  assert.match(out, /Two-site server migration/);
   assert.ok(out.endsWith("Email hello@neon1.tech."));
   assert.ok(out.length <= 1200);
 });
@@ -193,8 +194,8 @@ test("a Spanish 'can you help' turn gets the route, however the reply names neon
 
 test("guardClaims drops several long middle paragraphs so a case pointer fits ahead of the contact line", () => {
   const body = ["Usually, yes.", "First detail runs on. ".repeat(18), "Second detail runs on. ".repeat(17), "Which tools do you use?", "Email hello@neon1.tech."].join("\n\n");
-  const out = guardClaims(body, "Can orders from Instagram go into a sheet?");
-  assert.match(out, /fictional bakery/);
+  const out = guardClaims(body, "Should we move our file server to the cloud?");
+  assert.match(out, /Two-site server migration/);
   assert.ok(out.startsWith("Usually, yes.") && out.endsWith("Email hello@neon1.tech."));
   assert.ok(out.length <= 1200, String(out.length));
 });

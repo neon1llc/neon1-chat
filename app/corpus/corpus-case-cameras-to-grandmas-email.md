@@ -17,7 +17,7 @@ Personal or volunteer work: For my own family, 2025
 
 ## The problem
 
-My parents' house had no cameras, and the family reused a few passwords across accounts.
+My parents' house had no cameras, and the family reused a few passwords across accounts. I did this work in February 2025, for my own family, before neon1 was formed.
 
 ## The work
 

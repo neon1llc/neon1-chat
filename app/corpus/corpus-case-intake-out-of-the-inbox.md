@@ -37,7 +37,7 @@ I mapped the process with staff, separating patient waiting time from staff hand
 | Finding and opening a document               | ~2 min 18 s        | ~12 s      |
 | Intakes needing a missing-document follow-up | ~34%               | ~10%       |
 
-Four weeks before and after, same definitions. At about 250 intakes a month, that's roughly 67 staff hours saved. The portal records when each intake starts and when it's complete, as metrics only, with no patient details. The practice keeps them for its own dashboards and emails, and can turn them off. Staff time per intake comes from a time study of sampled intakes, before and after, and leaves out time spent waiting on patients.
+Four weeks before and after, same definitions. At about 250 intakes a month, that's roughly 67 staff hours saved. The portal records when each intake starts and when it's complete, as metrics only, with no patient details. The practice keeps them for its own dashboards and emails, and can turn them off. Where the old inbox left no record, such as staff time per intake before launch, the figure is the staff's own estimate from a short survey.
 
 ## After handover
 
