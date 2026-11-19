@@ -15,7 +15,7 @@
     "regraded": "2026-11-14T02:50:18.796Z",
     "judged": {
       "at": "2026-11-16T04:33:22.948Z",
-      "model": "us.anthropic.claude-sonnet-4-6 (answers from /tmp/claude-0/-home-user/fb5be620-574a-5999-9507-064429011654/scratchpad/old-answers.json)"
+      "model": "us.anthropic.claude-sonnet-4-6"
     }
   },
   "summary": {
