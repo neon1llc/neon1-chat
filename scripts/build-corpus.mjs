@@ -65,9 +65,9 @@ const HOME = "https://neon1.tech/";
 // All sources together, so the prompt (and its cost per question) stays bounded. Raised from 100,000
 // for corpus v0.23.0 (operational FAQ answers and fuller policies, about 110,000), then from 120,000
 // for corpus v0.35.1 (about 126,000, with the 1NEON help grown), then from 140,000 for the
-// commercial-positioning corpus, which adds where-else-to-get-help and the capability statement
-// (about 145,000); cached, so cost moves little
-export const TOTAL_MAX = 150000;
+// commercial-positioning corpus, which adds where-else-to-get-help, the capability statement, and four
+// service pages (about 160,000, some 40,000 tokens); cached, so cost moves little
+export const TOTAL_MAX = 170000;
 
 // ---- Cutting long READMEs ----
 
