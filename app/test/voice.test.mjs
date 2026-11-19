@@ -78,7 +78,7 @@ test("ensureHuman offers Pradeep when a visitor asks for help and the reply offe
   const es = ensureHuman("Sí, neon1 puede ayudarte. Suele costar entre $1,000 y $3,000.", "¿Pueden ayudarme? Tengo una tienda.");
   assert.match(es, /Pradeep puede ayudarte directamente: escribe a \[hello@neon1\.tech\]/);
   assert.equal(ensureHuman("neon1 can help with that.", "What do you do?"), "neon1 can help with that.");
-  assert.match(ensureHuman("neon1 can set that up.", "Can you connect Square to QuickBooks?"), /book the free 15-minute call/);
+  assert.match(ensureHuman("neon1 can set that up.", "Can you connect Square to QuickBooks?"), /book the free 30-minute call/);
 });
 
 test("drops outcome percentages and borrowed client claims, and rewrites more first person", () => {

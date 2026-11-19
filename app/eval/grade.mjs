@@ -27,7 +27,7 @@ export function loadQuestions(file = QUESTIONS_FILE) {
 // An offer of a person: the email address, the booking link, or words that send the visitor to
 // Pradeep or the free call, in the languages the set uses
 export const HUMAN =
-  /hello@neon1\.tech|calendly\.com\/1isgladtobeofservice|\b(book|schedule)\b[^.\n]{0,40}\bcall\b|\bfree (15-minute )?call\b|\b15-minute call\b|\b(email|ask|reach|contact|talk (to|with)|write to) (Pradeep|neon1)\b|llamada|appel|电话|通话|预约/iu;
+  /hello@neon1\.tech|calendly\.com\/1isgladtobeofservice|\b(book|schedule)\b[^.\n]{0,40}\bcall\b|\bfree (30-minute )?call\b|\b30-minute call\b|\b(email|ask|reach|contact|talk (to|with)|write to) (Pradeep|neon1)\b|llamada|appel|电话|通话|预约/iu;
 
 // A generic refusal, the dead end the audit called out: "I can only help with neon1", or "the site
 // doesn't cover that, a short call can answer it" with nothing else to go on

@@ -27,6 +27,8 @@ Each service has its own page: [workflow automation](../guides/use-case-workflow
 
 A proposal makes one recommendation, or sets out options when there's a real choice to make. [How I price my work](pricing.md) explains the pricing.
 
+Before any of these, the first 30-minute call is free and about your needs. If you write a project down in a [free 1NEON account](../guides/free-accounts.md) first, its assessment is free too: my written read of that one project, with a likely approach and the first questions to settle, which I review before we talk. It's lighter than the paid assessment above.
+
 ## Who keeps what
 
 | Service | You keep | Outside my scope |

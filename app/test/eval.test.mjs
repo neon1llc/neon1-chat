@@ -45,7 +45,7 @@ test("a good written reply passes and a bad one fails for the right reasons", ()
 
 test("the human and refusal rules read replies the way a visitor would", () => {
   assert.match("You can email hello@neon1.tech.", HUMAN);
-  assert.match("Book a free 15-minute call to talk it through.", HUMAN);
+  assert.match("Book a free 30-minute call to talk it through.", HUMAN);
   assert.doesNotMatch("neon1 connects tools that don't talk to each other.", HUMAN);
   assert.match("I can only help with neon1. For example, ask about the process.", REFUSAL);
   assert.doesNotMatch("I can help with that.", REFUSAL);

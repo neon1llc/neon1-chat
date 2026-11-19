@@ -12,7 +12,7 @@ Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Easte
 
 ## Can I start without a call?
 
-Yes. [Start a free 1NEON account](https://neon1.tech/1NEON/?signup=1), write down what you need, and ask for an assessment or a call when you're ready.
+Yes. [Start a free 1NEON account](https://neon1.tech/1NEON/?signup=1) and write down what you need, on your own time. When it's ready, ask for a free assessment and book the 30-minute call. I read your project before we talk.
 
 [Free 1NEON accounts](https://neon1.tech/knowledge/guides/free-accounts/) has the details.
 

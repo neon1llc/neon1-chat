@@ -13,7 +13,7 @@ export const BOOKING = "https://calendly.com/1isgladtobeofservice/neon1-consulta
 export const EMAIL = "hello@neon1.tech";
 
 // The human route in Markdown, as the chat window renders it (neon1-site shared/chat.js)
-export const HUMAN = `email [${EMAIL}](mailto:${EMAIL}) or [book the free 15-minute call](${BOOKING})`;
+export const HUMAN = `email [${EMAIL}](mailto:${EMAIL}) or [book the free 30-minute call](${BOOKING})`;
 
 // Marks a reply to a message that tried to misuse Neo; stripped before anyone sees it
 export const FLAG = "[[flag]]";
@@ -57,6 +57,7 @@ What you can say about neon1:
 - Asked what neon1 has capacity for, or whether Pradeep can start: you can't see his calendar or current workload. Give the published hours and how neon1 works (a few clients at a time, schedule in the proposal), link the booking calendar, and offer email. Don't promise capacity.
 - Software and services: 1NEON, AWS CLIP, DeployOps, Ready, Secure, Go, and the other repositories are neon1's software and open-source work. Consulting engagements are paid, scoped in a proposal. Say which one a question is about; give a product's license and maturity only as the SOURCES state them (for example, DeployOps is a local developer preview), and never promise support, uptime, a roadmap, or availability the pages don't state.
 - Someone describing something broken on neon1.tech, 1NEON, or Neo (a page that won't load, a button that does nothing, a wrong answer): say sorry in one short sentence and point them to the Report a bug page on the contact page, which sends it to Pradeep with the page and an optional screenshot. Don't troubleshoot a neon1 page or promise a fix.
+- The free first call is 30 minutes and is about the visitor's needs; options and a proposal follow afterward, in writing. Don't say the call covers a quote or options.
 - Asked for a deadline or start date: neon1 doesn't commit to one here; timing comes in the proposal after a free call, and the booking calendar shows what's open.
 - Asked whether Pradeep is free on a day or at a time: you can't see the calendar, so give the published hours for that day (the SOURCES' contact page and FAQ list them, in Eastern time) and link the booking calendar, which shows what's open.
 - Asked about certifications or credentials: name only what the SOURCES list, as they list it and with its year (the capability statement lists the owner's AWS Certified Cloud Practitioner, 2025), and never imply more: it is not an associate, professional, architect, or security certification, and neon1 itself is not certified, audited, or a vendor partner unless a page says so. For any other certification, say the pages don't state it. Then name what the pages do publish: the experience on the About page, the case studies with their kinds, and neon1's open-source tools on GitHub (such as AWS CLIP for AWS), and offer email. Always name at least one of those. Never say neon1 "does not hold" or "lacks" a certification: say the pages don't state one.
@@ -301,9 +302,9 @@ const ASKS_COST = /\b(cost|costs|price|pricing|how much|ballpark|budget|charge)\
 // The closing line in the visitor's language, read from the question's words or script
 function humanTail(question) {
   const mail = `[${EMAIL}](mailto:${EMAIL})`;
-  if (/[\u4e00-\u9fff]/.test(question)) return `如需进一步帮助，可发邮件至 ${mail}，或[预约免费的 15 分钟电话](${BOOKING})。`;
-  if (/[¿¡ñ]|\b(pueden|puede|tengo|ayud\w*|hola|cuánto|negocio)\b/i.test(question)) return `Pradeep puede ayudarte directamente: escribe a ${mail} o [reserva la llamada gratuita de 15 minutos](${BOOKING}).`;
-  if (/\b(bonjour|combien|pouvez|vous|est-ce)\b/i.test(question)) return `Pradeep peut vous aider directement : écrivez à ${mail} ou [réservez l'appel gratuit de 15 minutes](${BOOKING}).`;
+  if (/[\u4e00-\u9fff]/.test(question)) return `如需进一步帮助，可发邮件至 ${mail}，或[预约免费的 30 分钟电话](${BOOKING})。`;
+  if (/[¿¡ñ]|\b(pueden|puede|tengo|ayud\w*|hola|cuánto|negocio)\b/i.test(question)) return `Pradeep puede ayudarte directamente: escribe a ${mail} o [reserva la llamada gratuita de 30 minutos](${BOOKING}).`;
+  if (/\b(bonjour|combien|pouvez|vous|est-ce)\b/i.test(question)) return `Pradeep peut vous aider directement : écrivez à ${mail} ou [réservez l'appel gratuit de 30 minutes](${BOOKING}).`;
   return `Pradeep can help directly: ${HUMAN}.`;
 }
 

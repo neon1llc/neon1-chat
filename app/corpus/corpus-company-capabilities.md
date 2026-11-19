@@ -2,7 +2,7 @@
 
 neon1 on one page for a buyer, partner, or procurement office: what it does, how it differs, work it has delivered, and the company's details.
 
-neon1 is an independent engineering and technology consulting practice run by Pradeep Tathineni, an engineer with more than eight years in cloud infrastructure, automation, and software delivery. It assesses, designs, builds, integrates, and improves technology systems for businesses, technical teams, and individuals.
+neon1 is an independent engineering and technology consulting practice run by Pradeep Tathineni, its lead engineer, with more than eight years in cloud infrastructure, automation, and software delivery. It assesses, designs, builds, integrates, and improves technology systems for businesses, technical teams, and individuals.
 
 ## Core capabilities
 
