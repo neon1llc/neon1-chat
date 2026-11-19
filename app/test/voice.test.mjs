@@ -1,7 +1,7 @@
 // app/test/voice.test.mjs - neon1's voice in replies: neon1 or Pradeep for the work, no invented clients.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { neon1Voice, publishedPercents } from "../src/chat.mjs";
+import { ensureHuman, guardClaims, neon1Voice, publishedPercents } from "../src/chat.mjs";
 
 test("rewrites first person about neon1's work", () => {
   assert.equal(neon1Voice("Yes, I can help. I’ve set up workflows like this."), "Yes, neon1 can help. neon1 has set up workflows like this.");
@@ -48,7 +48,6 @@ test("leaves Neo's own first person alone in other languages", () => {
 
 
 // Claims the prompt rules haven't held, guarded in code
-import { ensureHuman, guardClaims } from "../src/chat.mjs";
 
 test("guardClaims drops an unstated neon1 practice and keeps the general answer", () => {
   const t = "MFA adds a second step. Your staff should use it.\n\nneon1 has set up MFA as a standard for all client systems it works with, because it's simple. Start with email.";
@@ -167,4 +166,35 @@ test("a sentence committing neon1 to a date or time frame is dropped", () => {
   for (const t of ["A focused project usually runs one to four weeks, and the proposal sets the schedule.", "neon1 can start with a free call."]) {
     assert.equal(guardClaims(t, "x"), t, t);
   }
+});
+
+test("rewrites 'we', 'our', and more first-person verbs for neon1's work", () => {
+  assert.equal(neon1Voice("We don’t build websites. We do the work ourselves."), "neon1 doesn't build websites. neon1 does the work itself.");
+  assert.equal(neon1Voice("We’ve helped an office. We focus on tools, and our services are four."), "neon1 has helped an office. neon1 focuses on tools, and neon1's services are four.");
+  assert.equal(neon1Voice("I do this work myself, and I provide a written guide."), "Pradeep does this work himself, and neon1 provides a written guide.");
+  assert.equal(neon1Voice("I don’t replace your MSP. I’m not a replacement."), "neon1 doesn't replace your MSP. neon1 isn't a replacement.");
+  assert.equal(neon1Voice("We can review the design."), "neon1 can review the design.");
+  // Neo's own "I" stays
+  const own = "I can't see the calendar, so I can only say what's published. I don't know which plan you're on.";
+  assert.equal(neon1Voice(own), own);
+});
+
+test("a certification absence, or a story about a client, is not stated", () => {
+  assert.equal(guardClaims("neon1 offers readiness work. For your file, you may note that neon1 does not hold these certifications.", "Is neon1 SOC 2 certified?"), "neon1 offers readiness work. The pages don't state any certification.");
+  assert.equal(guardClaims("neon1 doesn't issue SOC 2 reports; an independent CPA firm does.", "x"), "neon1 doesn't issue SOC 2 reports; an independent CPA firm does.");
+  assert.equal(guardClaims("Readiness helps. For example, one client had 12 systems with no sync. Their audit passed on the first try. Ask Pradeep.", "x"), "Readiness helps. Ask Pradeep.");
+});
+
+test("a Spanish 'can you help' turn gets the route, however the reply names neon1", () => {
+  const out = ensureHuman("Neon1 puede integrar su sistema de ventas con la contabilidad.", "¿Pueden ayudarme con las facturas?");
+  assert.match(out, /Pradeep puede ayudarte directamente/);
+  assert.equal(ensureHuman("Las facturas suelen depender del sistema.", "¿Pueden ayudarme con las facturas?"), "Las facturas suelen depender del sistema.");
+});
+
+test("guardClaims drops several long middle paragraphs so a case pointer fits ahead of the contact line", () => {
+  const body = ["Usually, yes.", "First detail runs on. ".repeat(18), "Second detail runs on. ".repeat(17), "Which tools do you use?", "Email hello@neon1.tech."].join("\n\n");
+  const out = guardClaims(body, "Can orders from Instagram go into a sheet?");
+  assert.match(out, /fictional bakery/);
+  assert.ok(out.startsWith("Usually, yes.") && out.endsWith("Email hello@neon1.tech."));
+  assert.ok(out.length <= 1200, String(out.length));
 });

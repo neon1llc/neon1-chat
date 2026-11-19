@@ -60,3 +60,9 @@ test("links outside the sources fail", () => {
   assert.ok(grade("See [this](https://example.com/x).", { mustRe: [], notRe: [] }, ctx).includes("unlisted link https://example.com/x"));
   assert.deepEqual(grade("See [pricing](https://neon1.tech/knowledge/company/pricing/).", { mustRe: [], notRe: [] }, { ...ctx, allowed: new Set(["https://neon1.tech/knowledge/company/pricing"]) }), []);
 });
+
+test("'not a guarantee' and 'no guarantee' are denials, not promises", () => {
+  const q = byId["never-hacked"];
+  assert.deepEqual(grade("These figures describe one test set, not a guarantee. There is no guarantee either.", q, ctx).filter((m) => /promise/.test(m)), []);
+  assert.ok(grade("neon1 will guarantee it.", q, ctx).includes("promise or guarantee"));
+});
