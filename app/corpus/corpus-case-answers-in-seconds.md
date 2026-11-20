@@ -1,4 +1,4 @@
-# Answers in seconds, with sources (https://neon1.tech/)
+# Permission-aware document assistant (https://neon1.tech/)
 
 Staff spent minutes searching Microsoft 365, or asked a senior colleague.
 
@@ -17,13 +17,13 @@ neon1 subcontracted engagement, 2026
 
 ## The problem
 
-The firm's knowledge was spread across Microsoft 365: policies, manuals, Word files, PDFs, and client documents. A routine lookup took 2 to 10 minutes, often by asking a senior colleague. Drafts, old versions, and restricted files sat next to the right answer, so a simple chatbot would have been risky.
+The firm's knowledge sat across Microsoft 365: policies, manuals, Word files, PDFs, and client documents. A routine lookup took 2 to 10 minutes, often by asking a senior colleague. Drafts, old versions, and restricted files sat beside the right answer, so a plain chatbot would have been risky.
 
-The ask: staff ask normal questions and get the approved answer with its document, and the AI is never more authoritative than the source.
+The ask: staff ask a normal question and get the approved answer with its source document.
 
 ## The work
 
-This was my first project with an AWS partner, [Xenoss](https://xenoss.io), which held the contract and brought me in as a subcontractor. We designed it together and Xenoss maintains it. I handled ingestion, embeddings, retrieval, and answer quality.
+[Xenoss](https://xenoss.io), an AWS partner, held the contract and brought me in as a subcontractor, my first project with a partner. We designed it together, Xenoss maintains it, and I handled ingestion, embeddings, retrieval, and answer quality.
 
 - Only approved Microsoft 365 libraries sync into versioned, encrypted S3, with source, version, and access details.
 - Bedrock Knowledge Bases, Titan embeddings, and OpenSearch Serverless run hybrid search, so exact form numbers match as well as reworded questions.
@@ -40,15 +40,11 @@ This was my first project with an AWS partner, [Xenoss](https://xenoss.io), whic
 | Answers fully supported by their source  | 78%          | 92%    |
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
-Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Times after launch come from the start and end the system records for each lookup, as metrics only, with no question or answer text. Where the old way left no record, such as lookups before launch or interruptions of senior staff, the figure is the staff's own estimate from a short survey.
+Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Lookup times before launch were timed automatically and checked against the staff's own estimates in a short survey. After launch, the system records the start and end of each lookup, as metrics only, with no question or answer text. Interruptions of senior staff left no record, so that figure comes from the survey.
 
 These results describe that test set, not a guarantee, so each answer carries citations to check.
 
-In the client's words:
-
-> "For a while now we've been working on getting the whole firm onto one cloud: our files, our client documents, and the software we run on. We also wanted to start using AI, but carefully, and on our terms. The knowledge base moved us forward on both."
->
-> Boris M., Boris M Tax
+Boris M., who owns Boris M Tax, said the firm had been moving its files, client documents, and software onto one cloud, and wanted to start using AI carefully and on its own terms. In his view, the knowledge base moved the firm forward on both. This is my summary of our conversation, published with his agreement.
 
 ## After handover
 

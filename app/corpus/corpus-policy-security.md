@@ -2,30 +2,21 @@
 
 How to report a security problem in neon1.tech, the 1NEON portal, or a neon1 repository, and what happens after you do.
 
-*Last updated November 15, 2026.*
+*Last updated November 20, 2026.*
 
-If you think you've found a security problem in neon1.tech, the 1NEON portal, Neo, or any [neon1llc repository](https://github.com/neon1llc), thank you. Please tell me privately so it can be fixed before anyone else finds it.
-
-## The short version
-
-- Email [security@neon1.tech](mailto:security@neon1.tech) privately rather than opening a public issue.
-- I'll reply within a few days, keep you posted, and credit you if you'd like. There's no bug bounty.
-- If you act in good faith and follow this policy, I won't pursue legal action over your research.
+If you think you've found a security problem in neon1.tech, the 1NEON portal, Neo, or any [neon1llc repository](https://github.com/neon1llc), thank you. Please tell me privately so it can be fixed first.
 
 ## How to report
 
-Email [security@neon1.tech](mailto:security@neon1.tech). If that bounces, use [hello@neon1.tech](mailto:hello@neon1.tech). Helpful details include:
+Email [security@neon1.tech](mailto:security@neon1.tech) privately rather than opening a public issue. If that bounces, use [hello@neon1.tech](mailto:hello@neon1.tech). Helpful details:
 
-- What you found and where (the URL, repository, or file)
-- Steps to reproduce it
+- What you found and where, and steps to reproduce it
 - What someone could do with it
 - How you'd like to be credited, if at all
 
 ## What happens next
 
-- I'll acknowledge your report within a few days.
-- I'll keep you updated while I investigate and fix it.
-- Once it's fixed, I'll credit you publicly if you want.
+I'll acknowledge your report within a few days, keep you updated while I investigate and fix it, and credit you publicly if you want. There's no bug bounty.
 
 ## Please don't
 
@@ -36,7 +27,7 @@ Email [security@neon1.tech](mailto:security@neon1.tech). If that bounces, use [h
 
 ## In return
 
-If you act in good faith and follow this policy, I won't pursue legal action over your research, and I'll work with you to understand and fix the problem.
+If you act in good faith and follow this policy, I won't pursue legal action over your research, and I'll work with you to fix the problem.
 
 ## Scope
 

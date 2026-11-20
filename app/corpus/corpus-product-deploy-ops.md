@@ -2,11 +2,11 @@
 
 Deploy pipelines with checks, approvals, and rollback: a local developer preview, not production-supported.
 
-*Public · v0.14.0 · local developer preview, not production-supported*
+*Public · v0.15.0 · local developer preview, not production-supported*
 
 **Deploy pipelines with checks, approvals, and rollback.** The code is on [GitHub](https://github.com/neon1llc/deploy-ops) under the Apache-2.0 license.
 
-- **Who it's for:** small technical teams that deploy by hand today, or whose pipelines grew piece by piece.
+- **Who it's for:** small technical teams that deploy by hand, or whose pipelines grew piece by piece.
 - **What it does:** builds, deploys, releases only the app when only the app changed, promotes between stages, runs an HTTP check, and rolls back.
 
 ## What's been run
@@ -18,7 +18,7 @@ Deploy pipelines with checks, approvals, and rollback: a local developer preview
 
 ## Try the demo
 
-The demo needs Python 3 and no cloud account. From a clone of the repository:
+The demo needs Python 3 and no cloud account. From a clone:
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate && python -m pip install -r requirements-dev.txt -e .
@@ -31,4 +31,4 @@ Commands and settings may change before a stable release.
 
 ## Next step
 
-If you need deploy pipelines for production now, that work is part of [cloud and AI engineering](../engagement/index.md), done as a project with the tools you already use. [Get in touch](../engagement/contact.md) to talk it through.
+For production deploy pipelines now, I do that as [cloud and AI engineering](../engagement/index.md) work with the tools you already use. [Contact me](../engagement/contact.md).

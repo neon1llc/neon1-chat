@@ -8,7 +8,7 @@ The name nods to Neo from *The Matrix*, who brought peace between man and machin
 
 ## "1 is glad to be of service."
 
-The slogan nods to Robin Williams' Andrew from *Bicentennial Man*, a machine who spends two centuries being of service while searching for his humanity. The 1 is me, Pradeep, neon1's sole owner and your dedicated deputy.
+The slogan nods to Robin Williams' Andrew from *Bicentennial Man*, a machine who spends two centuries being of service while searching for his humanity. The 1 is me, Pradeep, neon1's sole owner.
 
 ## The legal names
 

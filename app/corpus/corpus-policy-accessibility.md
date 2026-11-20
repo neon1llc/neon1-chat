@@ -2,9 +2,9 @@
 
 neon1.tech aims for WCAG 2.2 AA. What's in place, what isn't yet, and how to report a barrier.
 
-*Last updated November 15, 2026.*
+*Last updated November 20, 2026.*
 
-I want everyone to be able to use neon1.tech, the 1NEON portal, and the documents in the Knowledge Center, including people who use a screen reader, a keyboard, magnification, voice control, or reduced motion.
+neon1.tech, the 1NEON portal, and the Knowledge Center documents should work for people who use a screen reader, a keyboard, magnification, voice control, or reduced motion.
 
 ## The goal
 
