@@ -2,7 +2,7 @@
 
 Workflow automation, cloud and AI engineering, networks and connected systems, and security readiness, from a focused assessment to a complete implementation.
 
-neon1 is my independent engineering and technology consulting practice. I assess, design, build, integrate, and improve technology systems for businesses, technical teams, and individuals, from a focused assessment to a complete implementation. I do the work myself.
+neon1 is my independent engineering and technology consulting practice. I assess, design, build, integrate, and improve technology systems for businesses, technical teams, and individuals, from a focused assessment to a complete implementation.
 
 ## Four services
 
