@@ -85,7 +85,7 @@ export function validate(body) {
 const REFUSED = {
   [CODES.invalid]: "That message couldn't be read.",
   [CODES.question]: `Keep your question under ${LIMITS.chars.toLocaleString("en-US")} characters.`,
-  [CODES.conversation]: "This conversation is too long for Neo to follow. Start a new one.",
+  [CODES.conversation]: "This conversation is too long. Start a new one.",
 };
 
 // A cooldown in words, with roughly how long it lasts but never how many messages it took
@@ -94,7 +94,7 @@ export function cooldownText({ retry, reason }) {
   if (reason === "repeat") return withHuman(`That's the same question again. Neo will pause ${wait}. The earlier answer is above.`);
   if (reason === "misuse") return withHuman(`Neo is pausing this conversation ${wait}.`);
   // Volume limits count a whole network, so on shared Wi-Fi someone else may have used them up
-  return withHuman(`Neo has had too many messages from your network and will be back ${wait}. On shared Wi-Fi, other people's messages count too.`);
+  return withHuman(`Too many messages came from your network, so Neo will be back ${wait}. On shared Wi-Fi, other people's count too.`);
 }
 
 class Timeout extends Error {
@@ -173,7 +173,7 @@ async function route(event, deps) {
   if (blocked) {
     // Strikes are logged by level and reason only, so alarms and reviews can see abuse without an address
     if (blocked.reason && !blocked.waiting) console.log(JSON.stringify({ event: "strike", reason: blocked.reason, level: blocked.level }));
-    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has reached its limit for today and will be back tomorrow."), blocked.retry);
+    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has reached today's limit and will be back tomorrow."), blocked.retry);
     return failure(429, "cooldown", cooldownText(blocked), blocked.retry);
   }
   // One model call; only sizes and timing go to the logs

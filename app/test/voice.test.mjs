@@ -62,7 +62,7 @@ test("guardClaims turns a decided law into a pointer to a professional", () => {
   const t = "Generally, if you bill insurance electronically, you are likely a covered entity under HIPAA and must comply with its rules. It covers claims.";
   assert.equal(
     guardClaims(t, "Do I need HIPAA?"),
-    "HIPAA usually applies to healthcare providers who bill insurance or send health information electronically, but whether it applies to your office depends on your situation, and a lawyer or compliance advisor can confirm it. It covers claims.",
+    "HIPAA usually applies to providers who bill insurance or send health information electronically. Whether it applies to your office depends on your situation, and a lawyer or compliance advisor can confirm it. It covers claims.",
   );
   assert.match(guardClaims("You must comply with PCI rules.", "Do I need PCI?"), /^Whether it applies to you depends/);
 });

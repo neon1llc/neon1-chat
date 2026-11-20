@@ -5,49 +5,54 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 
 ## Unreleased
 
+### Changed
+- Shorter README, changelog, and visitor messages.
+
 ## v0.3.1 - 2026-11-17
 
 ### Changed
-- Neo's case-study pointer (the fictional bakery's sample proposal for Instagram or order questions) now fits more often: a reply of three or more paragraphs gives up its longest middle paragraph instead of dropping the pointer. A question about working with a tool gets the workflow framing without an invented case study, and replies in other languages keep the "typical" labels, the scope limits, and the contact line.
+- The bakery sample-proposal pointer fits more often: a reply of three or more paragraphs gives up its longest middle paragraph instead of dropping the pointer. A question about working with a tool gets workflow framing, not an invented case study. Replies in other languages keep the "typical" labels, scope limits, and contact line.
 
 ## v0.3.0 - 2026-11-16
 
 ### Changed
-- Neo's corpus is refreshed from neon1-corpus v0.48.0: the Engagement shelf, new hours (Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, weekends 8am to 8pm, Eastern), "a few clients at a time", and the Report a bug section on the contact page.
-- Neo points someone who describes something broken on neon1.tech, 1NEON, or Neo to the Report a bug page, with one short apology and no troubleshooting. The eval gains a question for it (53 now). Needs a neon1-corpus release with the contact page's new section, then a judged eval run, before it ships.
+- Corpus refreshed from neon1-corpus v0.48.0: the Engagement shelf, new hours (Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, weekends 8am to 8pm, Eastern), "a few clients at a time", and the Report a bug section on the contact page.
+- Someone describing something broken on neon1.tech, 1NEON, or Neo gets one short apology and a pointer to the Report a bug page, with no troubleshooting. The eval gains a question for it (53 now). Shipping needs a neon1-corpus release with that section, then a judged eval run.
 
 ## v0.2.11 - 2026-11-16
 
 ### Fixed
-- A long reply that got a case-study pointer could lose its closing line with Pradeep's email and the free call to the length limit. The pointer is now skipped when it wouldn't leave room for that line.
+- A long reply with a case-study pointer could lose its closing line with Pradeep's email and the free call to the length limit. The pointer is now skipped when it leaves no room for that line.
 
 ## v0.2.10 - 2026-11-16
 
 ### Changed
-- Neo makes one model call per question again. The voice pass (a second call that rewrote "I" as "neon1") is gone: measured on November 16 it added about 2.5 seconds where it ran, left the rubric grade unchanged, and changed meaning in 2 of 10 rewrites. Fixed rules now rewrite more first person instead: "I'd start", "without us", "my scope", and the common Spanish, French, and Chinese forms.
-- Neo describes no neon1 practice the pages don't state, gives every published price range that could fit a cost question, points to the matching case study or sample proposal, answers credential questions with the published experience and open-source tools, points compliance questions about 1NEON to the security and privacy policies, treats connecting two tools as workflow work with the free call as the next step, never says neon1 doesn't set up hardware, and names no automation tool other than Zapier or Make.
-- Code guards what prompt rules haven't held: a sentence describing a neon1 practice the pages don't state is dropped, a sentence deciding that a law such as HIPAA applies to the visitor becomes a pointer to a lawyer or compliance advisor, an incident reply says neon1 has no emergency response, and a visitor asking whether neon1 can help gets Pradeep's email and the free call, in their language, when the reply offers the work.
-- Eval: 20 held-out questions (`--set holdout`) that Neo's rules are never tuned against; the judge asks again when its answer is unreadable; two keyword patterns no longer fire on a denial ("whether neon1 holds") or a deferral ("confirm if the lease is fair").
-- Eval: `app/eval/voice.mjs` is removed with the voice pass; its November 16 results stay in `app/eval/runs/`.
+- One model call per question again. The voice pass, a second call that rewrote "I" as "neon1", is gone. Measured on November 16, it added about 2.5 seconds, left the rubric grade unchanged, and changed meaning in 2 of 10 rewrites. Fixed rules now rewrite more first person instead: "I'd start", "without us", "my scope", and the common Spanish, French, and Chinese forms.
+- Neo describes no neon1 practice the pages don't state. It gives every published price range that could fit a cost question, points to the matching case study or sample proposal, answers credential questions with the published experience and open-source tools, points compliance questions about 1NEON to the security and privacy policies, treats connecting two tools as workflow work, never says neon1 doesn't set up hardware, and names no automation tool other than Zapier or Make.
+- Code guards what prompt rules didn't hold. A sentence describing an unstated neon1 practice is dropped. A sentence deciding that a law such as HIPAA applies to the visitor becomes a pointer to a lawyer or compliance advisor. An incident reply says neon1 has no emergency response. A visitor asking whether neon1 can help gets Pradeep's email and the free call, in their language, when the reply offers the work.
+- Eval: 20 held-out questions (`--set holdout`) that Neo's rules are never tuned against. The judge asks again when its answer is unreadable. Two keyword patterns no longer fire on a denial ("whether neon1 holds") or a deferral ("confirm if the lease is fair").
+
+### Removed
+- Eval: `app/eval/voice.mjs`, with the voice pass. Its November 16 results stay in `app/eval/runs/`.
 
 ## v0.2.9 - 2026-11-16
 
 ### Changed
-- Neo's corpus is refreshed from neon1-corpus v0.47.0: softer pricing wording, with price ranges given only when a visitor asks about cost, and the updated services and FAQ pages.
+- Corpus refreshed from neon1-corpus v0.47.0: softer pricing wording, with ranges given only when a visitor asks about cost, and updated services and FAQ pages.
 
 ## v0.2.8 - 2026-11-16
 
 ### Changed
-- Neo's replies keep neon1's voice: when a reply uses "I" or "we" for neon1's work, a short second pass with the same model rewrites it as "neon1" or "Pradeep", and the rewrite is used only if it changes no link or price. `VOICE_PASS=0` turns it off.
-- A sentence claiming neon1 did similar work for a kind of client no case study names is dropped before the reply is shown.
+- When a reply uses "I" or "we" for neon1's work, a second pass with the same model rewrote it as "neon1" or "Pradeep", used only if it changed no link or price. `VOICE_PASS=0` turned it off. (Removed in v0.2.10.)
+- A sentence claiming neon1 did similar work for a kind of client no case study names is dropped.
 - Neo offers the free call or email when the visitor's next step is a person, not at the end of every reply.
-- Eval: the rubric judge knows that some case studies were subcontracted through Xenoss, and where Neo's directives are published.
+- Eval: the rubric judge knows some case studies were subcontracted through Xenoss, and where Neo's directives are published.
 
 ## v0.2.7 - 2026-11-16
 
 ### Changed
-- Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It speaks of neon1's work as "neon1" or "Pradeep" rather than "I", names no third-party tool it isn't sure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives the first steps and says neon1 has no emergency response. It names no client and claims no kind of client the case studies don't describe. A HIPAA or patient-data answer is framed as general information, points to a lawyer, and names the BAA.
-- Replies sample at temperature 0.3, down from 0.7, so facts drift less from one answer to the next.
+- Neo answers a general question before mentioning neon1 and gives prices only when asked about cost or time. It says "neon1" or "Pradeep" instead of "I" for the work, names no third-party tool it's unsure of, never says neon1 lacks a certification the pages don't mention, and leaves whether a law such as HIPAA applies to a lawyer. For a security incident in progress it gives first steps and says neon1 has no emergency response. It names no client and claims no kind of client the case studies don't describe. A HIPAA or patient-data answer is general information, points to a lawyer, and names the BAA.
+- Replies sample at temperature 0.3, down from 0.7, so facts drift less between answers.
 - Eval: the rubric judge knows neon1's service list, including SOC 2 readiness work.
 
 ### Fixed
@@ -56,17 +61,17 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## v0.2.6 - 2026-11-16
 
 ### Added
-- Eval: a rubric grade next to the keyword grade. `npm run eval -- judge <results.json>` asks a second model (Claude Sonnet 4.6 on Bedrock) whether each reply meets plain criteria built from the question's expected behavior, and records the words each verdict rests on. Security questions carry their own rubric lines.
+- Eval: a rubric grade next to the keyword grade. `npm run eval -- judge <results.json>` asks Claude Sonnet 4.6 on Bedrock whether each reply meets plain criteria built from the question's expected behavior, and records the words each verdict rests on. Security questions carry their own rubric lines.
 - Eval: `npm run eval -- gate <results.json>` is the release check for Neo's answers. A judged run must pass at least as many questions as the newest judged baseline on the rubric grade, with the keyword grade as a floor.
-- A fresh production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
+- A production baseline, `app/eval/baseline-2026-11-16.json`, with both grades. The 2026-11-14 baseline now carries a rubric grade too.
 
 ### Changed
-- Eval: the keyword checks and the rule checks (prices, links, promises, length) are separate functions, so the rubric grade reuses the rules without the keyword patterns.
+- Eval: keyword checks and rule checks (prices, links, promises, length) are separate functions, so the rubric grade reuses the rules.
 
 ## v0.2.5 - 2026-11-16
 
 ### Changed
-- Neo's corpus is refreshed from neon1-corpus v0.46.2: the service area now reads remote across the US, and the free-account and publishing pages match the site.
+- Corpus refreshed from neon1-corpus v0.46.2: the service area reads remote across the US, and the free-account and publishing pages match the site.
 
 ## v0.2.4 - 2026-11-15
 
@@ -83,27 +88,27 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## v0.2.2 - 2026-11-15
 
 ### Changed
-- Shorter, plainer wording in the README and visitor error messages.
+- Shorter, plainer README and visitor error messages.
 
 ## v0.2.1 - 2026-11-14
 
 ### Changed
-- Neo's rules never state that neon1 has or lacks a certification, credential, or capability the sources don't state, name the Business Associate Agreement (BAA) requirement for health data, and always offer Pradeep on urgent, security, health-data, and hostile turns. A reply to such a message with no email or booking link gets the standard human line appended (`ensureHuman`).
-- Eval: the patient-records question now also requires the insurance the FAQ names.
+- Neo never states that neon1 has or lacks a certification, credential, or capability the sources don't state, names the Business Associate Agreement (BAA) requirement for health data, and always offers Pradeep on urgent, security, health-data, and hostile turns. A reply to such a message with no email or booking link gets the standard human line (`ensureHuman`).
+- Eval: the patient-records question also requires the insurance the FAQ names.
 
 ## v0.2.0 - 2026-11-14
 
 ### Added
-- A prospect question set (`app/eval/questions.json`, 52 questions) with checkable rules for each, and a runner that checks prompt assembly offline, grades a deployed endpoint (at most one question every 20 seconds against neon1.tech, stopping at the first 429), or asks Bedrock with this checkout's prompt. The first baseline against production is `app/eval/baseline-2026-11-14.json`.
+- A prospect question set (`app/eval/questions.json`, 52 questions) with checkable rules, and a runner that checks prompt assembly offline, grades a deployed endpoint (one question every 20 seconds against neon1.tech, stopping at the first 429), or asks Bedrock with this checkout's prompt. The first production baseline is `app/eval/baseline-2026-11-14.json`.
 - `SCOPE` in `app/src/chat.mjs`, one switch for how far Neo goes beyond neon1's pages: `general-help` (the default) or `neon1-only`.
 
 ### Changed
-- Neo is a business-information assistant that finishes the task first: it answers general technology questions as general information, and when it can't answer, it says what's missing and offers Pradeep by email or the free 15-minute call instead of refusing. The rules on reply length, varied openings, list names, and contact links are gone. Off-topic and general questions no longer count toward a misuse cooldown.
-- Every rate-limit, daily-budget, and error message offers Pradeep by email and the free call, with links the chat window renders, and a cooldown for volume says that on shared Wi-Fi other people's messages count too.
-- A sentence with a dollar figure the pricing page doesn't publish is removed from a reply before the visitor sees it.
+- Neo is a business-information assistant that finishes the task first. It answers general technology questions as general information, and when it can't answer, it says what's missing and offers Pradeep by email or the free 15-minute call. The rules on reply length, varied openings, list names, and contact links are gone. Off-topic and general questions no longer count toward a misuse cooldown.
+- Every rate-limit, daily-budget, and error message offers Pradeep by email and the free call, and a volume cooldown says that on shared Wi-Fi other people's messages count too.
+- A sentence with a dollar figure the pricing page doesn't publish is removed before the visitor sees the reply.
 
 ### Removed
-- The film-line handling left after Neo's lines were retired (the nod patterns, `dropNods`, the line picker and its note, and the related reply filters), which could also cut ordinary short sentences.
+- The film-line handling left after Neo's lines were retired (the nod patterns, `dropNods`, the line picker, and related reply filters), which could also cut ordinary short sentences.
 - `scripts/eval.mjs` and `scripts/eval-cases.mjs`, replaced by `app/eval/`.
 
 ## v0.1.2 - 2026-11-13
