@@ -40,6 +40,6 @@ A corpus release reaches neon1.tech without a site change. The deploy workflow's
 
 Everything is static HTML written at build time, so search engines, link previews, and readers without JavaScript get whole pages. Nothing on a page fetches corpus content at run time. `make static` (part of `make check`) fails if a page script references the corpus or GitHub.
 
-## Light and dark
+## Theme family and mode
 
-Everything below the landing's rain comes in awake (light) or matrix (dark). `js/theme.js` runs in each page's head before the stylesheets, sets `html[data-site-theme]` from the visitor's pick (localStorage `neon1.theme`), else awake, and wires the switch in the bar (the `frame:theme` block). Pages color the light surface with the tokens at the top of `css/frame.css` (`--page`, `--surface`, `--ink-rgb`, `--brand-rgb`, and the rest); the matrix block there redefines them, so a new rule that uses the tokens works in both themes. A fixed color on the light surface shows up wrong in matrix. The rain, the hero, and the white rabbit keep their own colors. 1NEON has its own theme setting (`data-theme`), which the site's attribute never touches.
+The site stores family (Matrix or Sentinel) and mode (light or dark) separately in `neon1.style` and `neon1.mode`. Sentinel and light are the defaults. `js/theme.js` applies the chosen look before paint and shares explicit choices with 1NEON on the same origin. Switching family on the landing, or with the footer's look buttons on any page, updates the page in place; Matrix effects load only when chosen, and the fade between pages follows the family chosen in the page. Pages use the tokens in `css/frame.css` and `css/sentinel.css` so colors follow both axes.

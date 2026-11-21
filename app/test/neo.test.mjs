@@ -15,7 +15,7 @@ test("the human route is the one on neon1's contact page", () => {
   const contact = readFileSync(new URL("../corpus/corpus-company-contact.md", import.meta.url), "utf8");
   assert.ok(contact.includes(`mailto:${EMAIL}`));
   assert.ok(contact.includes(BOOKING));
-  assert.match(contact, /free and 30 minutes/, "the route promises what the page does: a free 30-minute call");
+  assert.match(contact, /free, 30 minutes/, "the route promises what the page does: a free 30-minute call");
   assert.match(HUMAN, /\[hello@neon1\.tech\]\(mailto:hello@neon1\.tech\)/);
 });
 

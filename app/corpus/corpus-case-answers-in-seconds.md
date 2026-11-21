@@ -17,13 +17,13 @@ neon1 subcontracted engagement, 2026
 
 ## The problem
 
-The firm's knowledge was spread across Microsoft 365: policies, manuals, Word files, PDFs, and client documents. A routine lookup took 2 to 10 minutes, often by asking a senior colleague. Drafts, old versions, and restricted files sat next to the right answer, so a simple chatbot would have been risky.
+The firm's knowledge sat across Microsoft 365: policies, manuals, Word files, PDFs, and client documents. A routine lookup took 2 to 10 minutes, often by asking a senior colleague. Drafts, old versions, and restricted files sat beside the right answer, so a plain chatbot would have been risky.
 
-The ask: staff ask normal questions and get the approved answer with its document, and the AI is never more authoritative than the source.
+The ask: staff ask a normal question and get the approved answer with its source document.
 
 ## The work
 
-This was my first project with an AWS partner, [Xenoss](https://xenoss.io), which held the contract and brought me in as a subcontractor. We designed it together and Xenoss maintains it. I handled ingestion, embeddings, retrieval, and answer quality.
+[Xenoss](https://xenoss.io), an AWS partner, held the contract and brought me in as a subcontractor, my first project with a partner. We designed it together, Xenoss maintains it, and I handled ingestion, embeddings, retrieval, and answer quality.
 
 - Only approved Microsoft 365 libraries sync into versioned, encrypted S3, with source, version, and access details.
 - Bedrock Knowledge Bases, Titan embeddings, and OpenSearch Serverless run hybrid search, so exact form numbers match as well as reworded questions.
@@ -44,7 +44,7 @@ Measured on 80 representative questions, including ones it should refuse, judged
 
 These results describe that test set, not a guarantee, so each answer carries citations to check.
 
-Boris M., who owns Boris M Tax, said the firm had been moving its files, client documents, and software onto one cloud, and wanted to start using AI carefully and on its own terms. In his view, the knowledge base moved the firm forward on both. This is my summary of our conversation, with his agreement to publish it.
+Boris M., who owns Boris M Tax, said the firm had been moving its files, client documents, and software onto one cloud, and wanted to start using AI carefully and on its own terms. In his view, the knowledge base moved the firm forward on both. This is my summary of our conversation, published with his agreement.
 
 ## After handover
 

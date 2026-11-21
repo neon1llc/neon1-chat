@@ -6,55 +6,37 @@ How a neon1 project is priced: a fixed price or a capped estimate, rough ranges,
 
 - Each project is priced in a proposal after we talk, as a fixed price or an estimate with a ceiling, and you can say no at no cost. The ranges here are a rough guide, not a quote. Nothing is added without your approval, and if the work takes fewer hours, you pay for fewer.
 
-Every setup is different, so these are rough ranges. The real figure comes in a proposal after we talk, and saying no costs nothing.
+Every setup is different, so these are rough ranges. The real figure comes in a proposal after we talk.
 
-## Two ways to price a project
+## Two ways to price
 
-Each option in a proposal says which of two ways it's priced.
+Each option in a proposal says which.
 
-- **A fixed price** is for well-understood work. It's the whole price for the work described and changes only if you approve a change to the work.
-- **An estimate** is for work with an unknown in it. It's a range of hours at the rate the proposal states. You pay for the hours I work, each listed in [1NEON](../products/1neon.md). The total never passes the high end unless you approve a change first.
+- **Fixed price,** for well-understood work: the whole price for the work described, changed only if you approve a change to the work.
+- **Estimate,** for work with an unknown in it: a range of hours at the proposal's rate. You pay for the hours I work, each listed in [1NEON](../products/1neon.md), and the total never passes the high end without your approval.
 
 ## What projects usually cost
 
-As of November 2026. A rough guide, not a quote.
+As of November 2026.
 
 | Kind of work | Often around | For example |
 |---|---|---|
-| A small fix or setup, a few hours | $150 to $750 | A broken sync or script repaired, or one system's access and settings reviewed and tightened |
-| A focused project, one to four weeks | $1,000 to $3,000 | Two systems kept in sync with an exception report, or a network segmented with its diagram and inventory |
-| A larger build or a move, several weeks or more | $3,000 or more, in phases you approve one at a time | A portal or integration service in your own cloud account, a migration with a tested fallback, or controls and evidence before an audit |
-| Care after a project | A monthly plan | Updates, checks, and a set response time, written into a [care plan](../templates/care-plan.md) |
+| A small fix or setup, a few hours | $150 to $750 | A broken sync repaired, or one system's access tightened |
+| A focused project, one to four weeks | $1,000 to $3,000 | Two systems kept in sync, or a network segmented with its diagram |
+| A larger build or move, several weeks or more | $3,000 or more, in phases you approve one at a time | A portal in your own cloud account, a migration with a tested fallback, or controls before an audit |
+| Care after a project | A monthly plan | Updates, checks, and a set response time in a [care plan](../templates/care-plan.md) |
 
-## Examples across the four services
+Fictional examples: syncing a retailer's store and point-of-sale on a shared item ID with an exception report is an estimate of $2,400 to $3,000. An independent review of one AWS account before a renewal is a fixed $1,500. Segmenting a two-site business's network and linking the sites by VPN, with a diagram and recovery steps, is a fixed $2,800. A security questionnaire review is a fixed $1,200, then a choice between an estimate of $3,000 to $4,500 to fix the findings together or a fixed $600 for written guidance.
 
-Fictional, with illustrative figures. Three are single recommendations, and one offers a real choice.
+## What's included, and what isn't
 
-| Service | Situation | Recommended work | Priced as |
-|---|---|---|---|
-| Workflow automation | A retailer's online store and point-of-sale disagree on stock, and staff reconcile them weekly | Sync the two systems on a shared item ID, with an exception report for anything that fails | An estimate, $2,400 to $3,000 |
-| Cloud and AI engineering | A software team wants an independent look at one AWS account before a pricing renewal | A written review of architecture, access, and cost, with a costed list of changes the team can make itself | A fixed price, $1,500 |
-| Networks and connected systems | A two-site business runs cameras, point-of-sale, and guest Wi-Fi on one flat network | Segment both sites and link them by VPN, with a diagram, an asset inventory, and recovery steps. Cabling by a licensed installer | A fixed price, $2,800 |
-| Security readiness | A company faces a customer's security questionnaire in six weeks | First, a fixed-price review of access, backups, and configuration. Then a choice: fix the top findings together, or have the team fix them with written guidance | $1,200, then an estimate of $3,000 to $4,500 or a fixed $600 |
+A price covers the whole result: working out what's needed, testing it with your real cases, a runbook, a walkthrough for your staff, every account left in your name, and a free fix if something I delivered doesn't work as agreed and you tell me within 30 days of handover.
 
-## What the price includes
-
-A price covers the whole result:
-
-- Working out what's needed, and testing it with your real cases before it goes live
-- A plain runbook, a walkthrough for your staff, and every account left in your name
-- A free fix if something I delivered doesn't work as agreed and you tell me within 30 days of handover
-
-## What's paid separately
-
-- **Subscriptions and hardware** are yours, billed to you by the vendor where possible. The proposal lists each one with an estimate before you approve.
-- **Anything I buy for you** is paid back at exactly what the receipt shows, with no markup, and only after you've agreed to it.
+Separately, subscriptions and hardware are yours, billed by the vendor where possible, and the proposal lists each with an estimate. Anything I buy for you is paid back at exactly what the receipt shows, with no markup, and only after you've agreed to it.
 
 ## When the price can change
 
-Only with your approval. If the work turns out bigger, I tell you before it costs more, and a revised proposal shows the new price. If an estimate's work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference.
-
-You can change your mind after approving an option until you accept the handover. Pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice. The [1NEON help](../faq/1neon-help.md) walks through it.
+Only with your approval. If the work turns out bigger, I tell you before it costs more, and a revised proposal shows the new price. If an estimate's work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference. Until you accept the handover, you can pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice.
 
 ## Paying
 
@@ -62,20 +44,11 @@ A project usually starts with a deposit of half a fixed price, or half an estima
 
 ## Room to adjust
 
-These ranges aren't a floor. I sometimes price below them for a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without, and the proposal says so. Saying no to a proposal costs nothing.
-
-## Why ranges here and hours in the proposal
-
-A website can't see your setup, so one number here would be wrong for most readers. Every proposal shows the hours behind each price.
+These ranges aren't a floor. I sometimes price below them for a neighborhood business, a nonprofit, or work that helps people who'd otherwise go without, and the proposal says so. Every proposal shows the hours behind each price.
 
 ## How this compares
 
-Published 2026 figures for the United States and New York:
-
-- General IT consulting firms quote about $150 to $300 an hour, and a one-time assessment at $1,500 to $5,000.
-- Modeled contract rates in New York run about $90 to $115 an hour for a business systems analyst, and $114 to $170 for a software engineer.
-- A simple automation from a freelancer runs about $500 to $1,500, and a multi-step one from an agency $3,000 to $8,000.
-- Managed IT for a small New York office runs about $85 to $200 per person each month.
+Published 2026 figures: general IT consulting firms quote about $150 to $300 an hour, a simple automation from a freelancer runs about $500 to $1,500, and managed IT for a small New York office runs about $85 to $200 per person each month.
 
 ## Sources
 

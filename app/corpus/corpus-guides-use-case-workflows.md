@@ -2,8 +2,6 @@
 
 Integrating business systems, automating processes, and building the software in between: when it's worth doing, what I deliver, and when something else fits better.
 
-Integrate existing systems, automate operations that cross them, and build the software a business needs where its products stop.
-
 ## When it's worth doing
 
 - Two or more systems of record disagree, such as inventory, orders, customers, or invoices, and exceptions are reconciled by hand.
@@ -39,11 +37,5 @@ Admin access to the systems involved, vendor API terms and limits, a person who 
 ## Limits
 
 I don't replace a system of record that works, or hold your accounts or data. Vendor API limits and data quality set what's possible, so discovery checks both before a price is fixed.
-
-## Related work
-
-- [Patient intake portal](../case-studies/intake-out-of-the-inbox.md), a neon1 subcontracted engagement.
-- [Operations integration and monitoring](../case-studies/one-view-of-the-shop.md), a neon1 engagement.
-- The [filled-out examples](https://neon1.tech/knowledge/#examples) show an intake, proposal, and handover for a fictional client.
 
 [Book a call](../engagement/contact.md) with the systems involved and where the process breaks.

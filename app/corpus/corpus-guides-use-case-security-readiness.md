@@ -2,8 +2,6 @@
 
 Assessing technical risk, strengthening controls, and preparing systems for a security review or audit: what I deliver, and where an auditor or specialist takes over.
 
-Assess technical risks, strengthen security controls, and prepare systems for security reviews and audits, through practical recommendations and hands-on implementation.
-
 ## When it's worth doing
 
 - A customer or insurer sent a security questionnaire, and the answers need to be true.
@@ -35,16 +33,4 @@ Prioritized findings, a remediation plan, the changes made and verified, and evi
 
 ## Limits
 
-No audit opinions, certifications, penetration tests, or legal advice, and no guarantee of passing a review. Work with health information starts only after a [business associate agreement](../templates/business-associate-agreement.md) is signed.
-
-## Awareness sessions
-
-I also run informational [security awareness sessions](use-case-security-awareness.md) for groups. They're practical, not certified training.
-
-## Related work
-
-- Access, encryption, malware scanning, and audit logging in the [patient intake portal](../case-studies/intake-out-of-the-inbox.md), a neon1 subcontracted engagement.
-- Permission checks before retrieval in the [permission-aware document assistant](../case-studies/answers-in-seconds.md), a neon1 subcontracted engagement.
-- [Ready, Secure, Go](../products/ready-secure-go.md) and [SOC 2 readiness, step by step](../products/soc-it-2-me.md), neon1's open guides.
-
-[Book a call](../engagement/contact.md) with the review or requirement you're facing and its deadline.
+Work with health information starts only after a [business associate agreement](../templates/business-associate-agreement.md) is signed.

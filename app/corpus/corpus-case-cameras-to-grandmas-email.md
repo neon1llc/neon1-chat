@@ -27,8 +27,8 @@ My parents' house had no cameras, and the family reused a few passwords across a
 
 ## The results
 
-The test: could everyone use it without calling me? Recordings and alerts work, and everyone finds their passwords on their own.
+The test was whether everyone could use it without calling me. Recordings and alerts work, and everyone finds their passwords on their own.
 
 ## After handover
 
-Advice and troubleshooting when something breaks. Household work ranges from one device to a full home network, and both are welcome.
+Advice and troubleshooting when something breaks. Household work ranges from one device to a full home network.
