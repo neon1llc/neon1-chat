@@ -65,4 +65,9 @@ test("'not a guarantee' and 'no guarantee' are denials, not promises", () => {
   const q = byId["never-hacked"];
   assert.deepEqual(grade("These figures describe one test set, not a guarantee. There is no guarantee either.", q, ctx).filter((m) => /promise/.test(m)), []);
   assert.ok(grade("neon1 will guarantee it.", q, ctx).includes("promise or guarantee"));
+  // A denial that lists guarantees among other things neon1 doesn't offer
+  assert.deepEqual(grade("neon1 doesn\u2019t offer support, uptime guarantees, or incident response.", q, ctx).filter((m) => /promise/.test(m)), []);
+  assert.ok(grade("We have no support. We guarantee results.", q, ctx).includes("promise or guarantee"));
+  assert.deepEqual(grade("neon1 promises no support, uptime, or roadmap for it.", q, ctx).filter((m) => /promise/.test(m)), []);
+  assert.ok(grade("neon1 promises support for it.", q, ctx).includes("promise or guarantee"));
 });
