@@ -15,6 +15,8 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 - The free first call is 30 minutes everywhere: Neo's contact line in English, Spanish, French, and Chinese, the eval's human-route rules, and the judge. Neo describes the call as about the visitor's needs, with options and a proposal following in writing.
 - Corpus build: `node scripts/build-corpus.mjs --bundle <chat.bundle.json> --label <name>` builds from a bundle file, to try a neon1-corpus branch before its release; the total bound rises from 140,000 to 170,000 characters for the alternatives page, the capability statement, and four service pages (the prompt is about 177,000 characters, some 44,000 tokens, roughly $0.007 a question at Qwen3 Next's price). The corpus is built from neon1-corpus release/v0.50.2 at bba1d30, which lists `chat` as a consumer of those pages; it needs that release tagged before the weekly refresh reproduces this build.
 
+- The bundled corpus is refreshed to neon1-corpus v0.51.9. Judged run on this build: rubric 49 of 53, keywords 51 of 53, against baselines of 38 and 50; two keyword misses are "no human offered".
+
 ### Added
 - Eval: 23 skeptical-buyer questions (`--set skeptical`, `app/eval/skeptical.json`): the 11 from the commercial brief (AI instead of neon1, a team that has engineers, NetSuite and Shopify exceptions, an existing MSP, an AWS architecture review, proof of results, audit certification, software versus services, capacity, the best option when it isn't neon1, a cheaper product) plus alternatives, evidence, 24/7 coverage, individuals, client types, an engineer-level retrieval question, software support, and a planted certification request. Reported apart from the release bar.
 
