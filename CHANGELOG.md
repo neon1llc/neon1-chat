@@ -6,7 +6,8 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## v0.4.0 - 2026-11-23
 
 ### Changed
-- The bundled corpus is rebuilt from neon1-corpus v0.52.0: the chat tab named neon1 in the 1NEON help and the account guide, how a change ships worded around review, and grouped publication dates.
+- The bundled corpus is rebuilt from neon1-corpus v0.52.1, which drops the farm example from the capability statement's community work.
+- Earlier in this release, the bundled corpus was rebuilt from neon1-corpus v0.52.0: the chat tab named neon1 in the 1NEON help and the account guide, how a change ships worded around review, and grouped publication dates.
 - The assistant's table uses the AWS-owned encryption key, so reads make no KMS requests.
 - Neo follows neon1's commercial positioning: an independent engineering and technology consulting practice for businesses, technical teams, and individuals, with four services of equal standing (workflow automation, cloud and AI engineering, networks and connected systems, security readiness). The rules no longer assume an owner-run business or a non-technical visitor, state a client count or a number of years of experience, or describe general help as small-business help. Neo matches the visitor's depth.
 - Neo compares options honestly when a visitor is judging alternatives: doing it themselves or with AI tools, in-house engineers, an MSP, an integration or compliance platform, a freelancer, hiring, or a cheaper existing product. It says when another option fits better, including that neon1 isn't the right fit, and names a bounded result neon1 could add (an assessment, a second opinion, an integration, a migration) instead of general availability.
