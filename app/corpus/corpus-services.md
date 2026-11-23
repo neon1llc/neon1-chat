@@ -19,9 +19,9 @@ Pages: [workflow automation](../guides/use-case-workflows.md), [cloud and AI eng
 
 | Engagement | What you get | Usually priced as |
 |---|---|---|
-| **Assessment** | A written review of one system, architecture, or risk area: findings, priorities, and costed next steps you can take on with me, with someone else, or yourself | A fixed price |
-| **Advisory** | A second opinion on a design, vendor, or build-or-buy decision | A fixed price or capped hours |
-| **Scoped project** | A defined result, built, tested against agreed acceptance criteria, and handed over | A fixed price, or an estimate with a ceiling |
+| **Assessment** | A written review of one system, architecture, or risk area: findings, priorities, and costed next steps you can take on with me, with someone else, or yourself | An estimate |
+| **Advisory** | A second opinion on a design, vendor, or build-or-buy decision | An estimate |
+| **Scoped project** | A defined result, built, tested against agreed acceptance criteria, and handed over | An estimate |
 | **Phased project** | Larger work in phases, each approved and accepted before the next starts | Per phase |
 | **Ongoing care** | Updates, checks, and set response times within my working hours | A monthly [care plan](../templates/care-plan.md) |
 

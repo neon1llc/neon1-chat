@@ -5,10 +5,10 @@ neon1's service agreement, as a client organization signs it once in 1NEON: how 
 **The short version**
 
 - One agreement covers every project. Each option you approve sets that project's scope, price, and timeline.
-- A price is fixed, or an estimate billed by the hour that never passes its high end without your approval. Invoices are due in 15 days.
+- Estimates, set by discovery and billed hourly, never pass their high end without your approval. A small job may be fixed. Invoices are due in 15 days.
 - An admin signs once in 1NEON. Either of us can end it with 14 days' notice.
 
-Edition 2.0
+Edition 2.1
 
 This agreement is between neon1 LLC, doing business as neon1 ("neon1", "I", "me"), and the organization named where it is signed in 1NEON ("you"). It covers every project I do for you while it is in effect.
 
@@ -22,7 +22,7 @@ Prices for equipment, software, and services from other vendors are estimates. Y
 
 ## Paying
 
-I send invoices through 1NEON. Each one is due within 15 days unless it says otherwise. An option's price is either fixed or an estimate, and the proposal says which. A fixed price is the whole price for the work described. An estimate is billed for the hours I work, at the rate it states. Each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. An option may ask for a deposit when it is approved, as the proposal states. A deposit counts toward the final invoice. If the work done comes to less than a deposit you paid, I refund the difference. You can pay by bank transfer (ACH), card, check, Zelle, or wire. If an invoice is more than 30 days overdue, I may pause work until it is paid, after telling you.
+I send invoices through 1NEON. Each one is due within 15 days unless it says otherwise. A proposal prices the work as an estimate that discovery sets, billed for the hours I work, at the rate it states. Each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. Unforeseen work or purchases are agreed with you before I add them. When a proposal states a fixed price, for a small, well-defined job, that price is the whole price for the work described. An option may ask for a deposit when it is approved, as the proposal states. A deposit counts toward the final invoice. If the work done comes to less than a deposit you paid, I refund the difference. You can pay by bank transfer (ACH), card, check, Zelle, or wire. If an invoice is more than 30 days overdue, I may pause work until it is paid, after telling you.
 
 ## What you provide
 

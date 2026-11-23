@@ -1,19 +1,16 @@
 # How I price my work (https://neon1.tech/)
 
-How a neon1 project is priced: a fixed price or a capped estimate, rough ranges, what the price includes, when it can change, and how paying works.
+How a neon1 project is priced: an estimate set after discovery, rough ranges, what the price includes, how changes are agreed, and how paying works.
 
 **The short version**
 
-- Each project is priced in a proposal after we talk, as a fixed price or an estimate with a ceiling, and you can say no at no cost. The ranges here are a rough guide, not a quote. Nothing is added without your approval, and if the work takes fewer hours, you pay for fewer.
+- Each project is priced in a proposal after we talk, as an estimate that discovery sets, and you can say no at no cost. The ranges here are a rough guide, not a quote. Unforeseen work or purchases are agreed with you before I add them, and if the work takes fewer hours, you pay for fewer.
 
 Every setup is different, so these are rough ranges. The real figure comes in a proposal after we talk.
 
-## Two ways to price
+## How a price is set
 
-Each option in a proposal says which.
-
-- **Fixed price,** for well-understood work: the whole price for the work described, changed only if you approve a change to the work.
-- **Estimate,** for work with an unknown in it: a range of hours at the proposal's rate. You pay for the hours I work, each listed in [1NEON](../products/1neon.md), and the total never passes the high end without your approval.
+Discovery sets the estimate: a range of hours at the proposal's rate. You pay for the hours I work, each listed in [1NEON](../products/1neon.md), and the total never passes the high end without your approval. Unforeseen work or purchases are agreed with you before I add them.
 
 ## What projects usually cost
 
@@ -26,7 +23,7 @@ As of November 2026.
 | A larger build or move, several weeks or more | $3,000 or more, in phases you approve one at a time | A portal in your own cloud account, a migration with a tested fallback, or controls before an audit |
 | Care after a project | A monthly plan | Updates, checks, and a set response time in a [care plan](../templates/care-plan.md) |
 
-Fictional examples: syncing a retailer's store and point-of-sale on a shared item ID with an exception report is an estimate of $2,400 to $3,000. An independent review of one AWS account before a renewal is a fixed $1,500. Segmenting a two-site business's network and linking the sites by VPN, with a diagram and recovery steps, is a fixed $2,800. A security questionnaire review is a fixed $1,200, then a choice between an estimate of $3,000 to $4,500 to fix the findings together or a fixed $600 for written guidance.
+Fictional examples: syncing a retailer's store and point-of-sale on a shared item ID with an exception report is an estimate of $2,400 to $3,000. An independent review of one AWS account before a renewal comes to about $1,500. Segmenting a two-site business's network and linking the sites by VPN, with a diagram and recovery steps, comes to about $2,800. A security questionnaire review comes to about $1,200, then a choice between an estimate of $3,000 to $4,500 to fix the findings together or about $600 for written guidance.
 
 ## What's included, and what isn't
 
@@ -36,11 +33,11 @@ Separately, subscriptions and hardware are yours, billed by the vendor where pos
 
 ## When the price can change
 
-Only with your approval. If the work turns out bigger, I tell you before it costs more, and a revised proposal shows the new price. If an estimate's work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference. Until you accept the handover, you can pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice.
+Only with your approval. If the work turns out bigger, or something unforeseen or a purchase comes up, I tell you before it costs more, and a revised proposal shows the new estimate. If the work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference. Until you accept the handover, you can pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice.
 
 ## Paying
 
-A project usually starts with a deposit of half a fixed price, or half an estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
+A project usually starts with a deposit of half the estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
 
 ## Room to adjust
 

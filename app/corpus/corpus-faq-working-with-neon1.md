@@ -30,7 +30,7 @@ For anything your business can't go a day without, someone on your side must run
 
 ## How is the cost worked out?
 
-After we talk, I send a short proposal: one recommendation, or options when there's a real choice, each with what it covers, its upkeep, and its cost. You approve it, and the cost changes only if you approve a change.
+After we talk, I send a short proposal: one recommendation, or options when there's a real choice, each with what it covers, its upkeep, and an estimate. Discovery sets the estimate. Unforeseen work or purchases are agreed with you before I add them.
 
 Every option has the same security baseline, and a smaller option does less, not worse. The proposal also gives the schedule, and larger projects run in phases you approve one at a time. Ranges, invoices, and payment methods are in [pricing](../engagement/pricing.md).
 
