@@ -34,4 +34,4 @@ The best measure is what people do: turning on two-factor sign-in during the ses
 
 ## After handover
 
-The material changes as threats do, and [Ready, Secure, Go](../products/ready-secure-go.md), neon1's readiness guide, tracks what's worth doing for each kind of space. The sessions are informational, not certified training. Controls and audit preparation are [security readiness](../guides/use-case-security-readiness.md) work. [Contact me](../engagement/contact.md) about a session for your group.
+The sessions are informational, not certified training. Controls and audit preparation are [security readiness](../guides/use-case-security-readiness.md) work. [Contact me](../engagement/contact.md) about a session for your group.

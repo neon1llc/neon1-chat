@@ -3,9 +3,11 @@
 neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.0 (see neon1's [versioning standard](https://github.com/neon1llc/neon1-corpus/blob/main/corpus/standards/versioning.md)). Each release is tagged on the commit that shipped it, once it's live. Corpus refreshes that change no code ship under the current release.
 
 
-## Unreleased
+## v0.4.0 - 2026-11-23
 
 ### Changed
+- The bundled corpus is rebuilt from neon1-corpus v0.52.0: the chat tab named neon1 in the 1NEON help and the account guide, how a change ships worded around review, and grouped publication dates.
+- The assistant's table uses the AWS-owned encryption key, so reads make no KMS requests.
 - Neo follows neon1's commercial positioning: an independent engineering and technology consulting practice for businesses, technical teams, and individuals, with four services of equal standing (workflow automation, cloud and AI engineering, networks and connected systems, security readiness). The rules no longer assume an owner-run business or a non-technical visitor, state a client count or a number of years of experience, or describe general help as small-business help. Neo matches the visitor's depth.
 - Neo compares options honestly when a visitor is judging alternatives: doing it themselves or with AI tools, in-house engineers, an MSP, an integration or compliance platform, a freelancer, hiring, or a cheaper existing product. It says when another option fits better, including that neon1 isn't the right fit, and names a bounded result neon1 could add (an assessment, a second opinion, an integration, a migration) instead of general availability.
 - Neo gives past work with its kind (neon1 engagement, subcontracted engagement, personal or volunteer work, fictional demonstration), the year, and how the result was measured. It answers "can you prove it" with how each study was measured and why client names and records aren't public, and doesn't offer references. It says capacity is something it can't see, makes no claim of certification, audit, or vendor partnership, and says audit opinions, certifications, and penetration tests come from independent firms.

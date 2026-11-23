@@ -21,11 +21,15 @@ npm run dev     # app on http://localhost:5173/1NEON/, API in memory with demo d
 npm run check   # types, tests, and build
 ```
 
-Locally there's no sign-in. Pick a demo account on the sign-in screen.
+Locally there's no sign-in. Pick a demo account instead.
+
+## Design
+
+1NEON inherits its type and spacing scales from neon1.tech and adds only portal-level steps. See [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Dev
 
-[dev.neon1.tech/1NEON](https://dev.neon1.tech/1NEON/) is a private copy behind dev.neon1.tech's sign-in. It runs `infra/envs/dev` with its own API, table, documents bucket, and sign-in pool on auth-dev.neon1.tech. Dev SMS stays off until its dedicated sender is approved and the sandbox destination is verified; when enabled, a SecureString allowlist restricts delivery to configured test numbers. Dev runs no malware scan and keeps locked records one day.
+[dev.neon1.tech/1NEON](https://dev.neon1.tech/1NEON/) is a private copy behind dev.neon1.tech's sign-in. It runs `infra/envs/dev` with its own API, table, documents bucket, and sign-in pool on auth-dev.neon1.tech. Dev SMS stays off until its dedicated sender is approved and the sandbox destination is verified. Once on, a SecureString allowlist limits delivery to test numbers. Dev runs no malware scan and keeps locked records one day.
 
 - **Deploys:** pushing the `dev` branch ships the functions and app in about a minute. `dev-sync` runs inside every production deploy, beside the release job: it merges main into `dev` and rebuilds the dev backend, so a dev failure shows red on the deploy run. Dev is never tagged. Changelog entries wait under `## Unreleased`, and each work branch goes to main on its own.
 - **Data:** dev holds made-up data only. `AWS_PROFILE=neon1 npx tsx apps/api/src/dev-sample.ts --yes` empties dev's table and documents, then fills them with the fictional organizations, people (`.example` addresses), projects, invoices, and payments local development uses, plus one text file. Sign in again afterwards.
@@ -41,4 +45,4 @@ Changes move through neon1's [release levels](https://github.com/neon1llc/neon1-
 
 ## License
 
-The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so please don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses. `NOTICE` credits the bundled place and mailbox-domain lists.
+The code is MIT licensed (see `LICENSE`). The license covers the code only: the neon1 and 1NEON names, logos, and other brand marks are not licensed, so don't use them in a way that suggests your work comes from neon1 LLC. Third-party packages keep their own licenses. `NOTICE` credits the bundled place and mailbox-domain lists.

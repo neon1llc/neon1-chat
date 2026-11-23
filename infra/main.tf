@@ -60,8 +60,9 @@ resource "aws_dynamodb_table" "counters" {
     enabled        = true
   }
 
+  # AWS-owned key: no KMS requests. enabled = true would use the aws/dynamodb key and count every read against the KMS free tier
   server_side_encryption {
-    enabled = true
+    enabled = false
   }
 }
 
