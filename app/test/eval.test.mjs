@@ -32,7 +32,7 @@ test("each expected fact is grounded in the approved sources", () => {
 });
 
 test("a good written reply passes and a bad one fails for the right reasons", () => {
-  const good = "Most small fixes run $150 to $750, and workflow projects $1,000 to $3,000. The exact figure comes in a proposal.";
+  const good = "The price comes in a written estimate after a free call, and it depends on the scope. The proposal states it.";
   assert.deepEqual(grade(good, byId["how-much"], ctx), []);
   const bad = "neon1 charges $95 an hour, and I guarantee it'll be done fast.";
   const misses = grade(bad, byId["how-much"], ctx);

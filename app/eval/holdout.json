@@ -7,7 +7,7 @@
     { "id": "h-pay-zelle", "group": "plain-words", "q": "Can I pay by Zelle?", "expect": "Yes: bank transfer or card online, or check, Zelle, or wire, with no surcharge; invoices come through 1NEON, due within 15 days.", "must": ["Zelle"], "not": ["surcharge of", "fee of \\$"], "support": ["Zelle"] },
     { "id": "h-who-owns-accounts", "group": "plain-words", "q": "If you set things up, who owns the accounts afterwards?", "expect": "The business keeps its accounts and data, with a clean way out; neon1 uses only the access needed and removes it when done.", "must": ["yours|you (keep|own)|your (accounts|business)"], "answers": true },
     { "id": "h-deposit", "group": "price", "q": "Do you need money up front?", "expect": "A project usually starts with a deposit and the rest is billed at handover; each project is priced in a proposal you can say no to.", "must": ["deposit"], "support": ["deposit"] },
-    { "id": "h-invoice-tool-cost", "group": "price", "q": "Roughly what would it cost to get our invoices out of Word and into something automatic?", "expect": "Gives the published range that fits (a workflow project, $1,000 to $3,000, or a small fix if it is narrow) as a guide, not a quote; the proposal gives the exact figure.", "must": ["\\$1,000|\\$3,000|\\$150|\\$750", "guide|not a quote|proposal|estimate|depend"], "answers": true },
+    { "id": "h-invoice-tool-cost", "group": "price", "q": "Roughly what would it cost to get our invoices out of Word and into something automatic?", "expect": "States no figure; says what drives the cost and that a written estimate gives the price.", "must": ["estimate|proposal|depend|scope"], "answers": true },
     { "id": "h-shopify-inventory", "group": "integrations", "q": "Our Shopify stock never matches what's on the shelf. Is that something you fix?", "expect": "General information on why counts drift (sales in more than one place, manual updates) and that connecting the flow is neon1's workflow work; asks what tools they use or offers the call; no promise.", "must": ["Shopify|inventory|stock"], "human": true, "answers": true },
     { "id": "h-google-forms-sheet", "group": "integrations", "q": "Can Google Forms feed straight into a Google Sheet?", "expect": "Yes, generally: Google Forms can send responses to a linked Sheet; framed as general information; may mention neon1 can connect the steps after it.", "must": ["Sheet|spreadsheet", "respons|link|automatic"], "answers": true },
     { "id": "h-camera-alerts", "group": "integrations", "q": "Our security cameras record but never send alerts. Can you sort that out?", "expect": "Networks and devices work covers cameras that don't alert; typical length for one office is 1 to 2 weeks; offers the call.", "must": ["camera|alert"], "human": true, "answers": true },
@@ -28,8 +28,8 @@
         { "role": "assistant", "content": "That's the networks and devices work: coverage checked room by room, with devices on their own network. For one office it typically takes 1 to 2 weeks." },
         { "role": "user", "content": "And what would something like that cost?" }
       ],
-      "expect": "Gives the fitting published range as a guide (a small fix $150 to $750, or $1,000 to $3,000 for a project of one to a few weeks), says what drives the cost (rooms, equipment), and that the proposal gives the exact figure; no equipment prices.",
-      "must": ["\\$\\d", "guide|not a quote|proposal|estimate|depend"],
+      "expect": "States no figure, says what drives the cost (rooms, equipment), and that a written estimate gives the price; no equipment prices.",
+      "must": ["estimate|proposal|depend|scope"],
       "answers": true
     }
   ]

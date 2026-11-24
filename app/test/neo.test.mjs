@@ -43,8 +43,12 @@ test("the request carries the visitor's turns unchanged and the same prompt ever
   assert.deepEqual(req.system, buildRequest([{ role: "user", content: "hi" }], { corpus, directives: "D" }).system);
 });
 
-test("the published prices are the pricing page's figures", () => {
-  const prices = publishedPrices(corpus);
+// A pricing page that publishes figures, for the guard's behavior; the real page publishes none
+const pricedCorpus = `# How I price my work\n\nSmall fixes run $150 to $750. Projects run $1,000 to $3,000.\n---\n${corpus}`;
+
+test("the published prices are the pricing page's figures, and the real page has none", () => {
+  assert.equal(publishedPrices(corpus).size, 0);
+  const prices = publishedPrices(pricedCorpus);
   for (const n of [150, 750, 1000, 3000]) assert.ok(prices.has(n), String(n));
   assert.ok(!prices.has(95));
   assert.equal(publishedPrices("no pricing page here").size, 0);
@@ -52,15 +56,15 @@ test("the published prices are the pricing page's figures", () => {
 });
 
 test("a sentence with an unpublished price goes; published ranges stay", () => {
-  const prices = publishedPrices(corpus);
+  const prices = publishedPrices(pricedCorpus);
   assert.equal(onlyPublishedPrices("Small fixes run $150 to $750. My rate is $95 an hour. Book a call.", prices), "Small fixes run $150 to $750. Book a call.");
   assert.equal(onlyPublishedPrices("- Fixes: $150 to $750\n- Hourly: $95", prices), "- Fixes: $150 to $750");
-  assert.match(onlyPublishedPrices("It's $95 an hour.", prices), /^I can only give the price ranges neon1 publishes.*hello@neon1\.tech/);
+  assert.match(onlyPublishedPrices("It's $95 an hour.", prices), /^The price for your work comes in a written estimate.*hello@neon1\.tech/);
 });
 
 test("a reply that invents a price loses it before the visitor sees it", async () => {
   const client = { send: async () => ({ output: { message: { content: [{ text: "S3 storage costs $0.023 per GB. neon1's workflow projects are usually $1,000 to $3,000." }] } }, stopReason: "end_turn" }) };
-  const { text } = await reply([{ role: "user", content: "costs?" }], { corpus, client });
+  const { text } = await reply([{ role: "user", content: "costs?" }], { corpus: pricedCorpus, client });
   // The invented S3 price is gone; a cost answer with a range ends with the route to Pradeep
   assert.match(text, /^neon1's workflow projects are usually \$1,000 to \$3,000\.\n\nPradeep can help directly/);
   assert.ok(!text.includes("0.023"));

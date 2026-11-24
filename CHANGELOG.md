@@ -6,6 +6,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## v0.4.0 - 2026-11-23
 
 ### Changed
+- With no dollar figures on the pricing page, a reply that names one is trimmed to the route to a written estimate, and the eval questions and tests expect no figure.
 - The bundled corpus is rebuilt from neon1-corpus v0.52.5: price copy explains how a price is set and states no dollar figures, Neo's directive never states a figure, range, or rate, and the service guides say what neon1 covers and brings in.
 - The bundled corpus is rebuilt from neon1-corpus v0.52.3: estimates are the usual price, and the first clients paid nothing.
 - The bundled corpus is rebuilt from neon1-corpus v0.52.2, with the capability statement's community work revised.
