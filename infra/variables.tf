@@ -68,9 +68,9 @@ variable "per_hour" {
 }
 
 variable "per_day" {
-  description = "Questions the whole site may ask in a day."
+  description = "Questions the whole site may ask in a day. At under a fifth of a cent each, 200 keeps a month near $12 at worst."
   type        = number
-  default     = 500
+  default     = 200
 
   validation {
     condition     = floor(var.per_day) == var.per_day && var.per_day >= 1 && var.per_day <= 10000

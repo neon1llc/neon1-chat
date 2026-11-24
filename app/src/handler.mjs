@@ -5,7 +5,7 @@
 // error message, since a provider's message can echo part of the question.
 
 import { timingSafeEqual } from "node:crypto";
-import { HUMAN, loadCorpus, loadDirectives, reply } from "./chat.mjs";
+import { BOOKING, HUMAN, loadCorpus, loadDirectives, reply } from "./chat.mjs";
 import { CODES, LIMITS, check } from "./contract.mjs";
 import { readCorpus } from "./corpus.mjs";
 import { allow, misuse } from "./limits.mjs";
@@ -31,7 +31,7 @@ const config = () => ({
   table: process.env.TABLE_NAME,
   perMinute: whole(process.env.PER_MINUTE, 6),
   perHour: whole(process.env.PER_HOUR, 60),
-  perDay: whole(process.env.PER_DAY, 500),
+  perDay: whole(process.env.PER_DAY, 200),
 });
 
 // JSON responses that are never cached; `extra` adds headers such as retry-after
@@ -173,7 +173,7 @@ async function route(event, deps) {
   if (blocked) {
     // Strikes are logged by level and reason only, so alarms and reviews can see abuse without an address
     if (blocked.reason && !blocked.waiting) console.log(JSON.stringify({ event: "strike", reason: blocked.reason, level: blocked.level }));
-    if (blocked.blocked === "daily") return failure(429, "daily", withHuman("Neo has reached its limit for today and will be back tomorrow."), blocked.retry);
+    if (blocked.blocked === "daily") return failure(429, "daily", `Neo has answered all it can for today. Try again tomorrow, or [book a call](${BOOKING}).`, blocked.retry);
     return failure(429, "cooldown", cooldownText(blocked), blocked.retry);
   }
   // One model call; only sizes and timing go to the logs
