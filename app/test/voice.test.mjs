@@ -156,8 +156,10 @@ test("a sentence claiming neon1 is certified, audited, or a vendor partner is dr
   assert.equal(guardClaims("neon1 is HIPAA compliant. Ask Pradeep.", "x"), "Ask Pradeep.");
   // Saying the pages don't state it, or what a certification is, stays
   for (const t of ["The pages don't state whether neon1 is SOC 2 certified.", "A SOC 2 report comes from an independent CPA firm, which neon1 doesn't issue.", "neon1 prepares companies for a SOC 2 review."]) {
-    assert.equal(guardClaims(t, "Is neon1 SOC 2 certified?"), t, t);
+    // The certification question also gets the pointer to what the pages publish about 1NEON's security
+    assert.ok(guardClaims(t, "Is neon1 SOC 2 certified?").startsWith(t), t);
   }
+  assert.equal(guardClaims("neon1 prepares companies for a SOC 2 review.", "Does neon1 do SOC 2 readiness?"), "neon1 prepares companies for a SOC 2 review.");
 });
 
 test("a sentence committing neon1 to a date or time frame is dropped", () => {
@@ -181,7 +183,9 @@ test("rewrites 'we', 'our', and more first-person verbs for neon1's work", () =>
 });
 
 test("a certification absence, or a story about a client, is not stated", () => {
-  assert.equal(guardClaims("neon1 offers readiness work. For your file, you may note that neon1 does not hold these certifications.", "Is neon1 SOC 2 certified?"), "neon1 offers readiness work. The pages don't state any certification.");
+  const noted = guardClaims("neon1 offers readiness work. For your file, you may note that neon1 does not hold these certifications.", "Is neon1 SOC 2 certified?");
+  assert.ok(noted.startsWith("neon1 offers readiness work. The pages don't state any certification."));
+  assert.match(noted, /\[security disclosure\]\(https:\/\/neon1\.tech\/knowledge\/policies\/security\/\)/);
   assert.equal(guardClaims("neon1 doesn't issue SOC 2 reports; an independent CPA firm does.", "x"), "neon1 doesn't issue SOC 2 reports; an independent CPA firm does.");
   assert.equal(guardClaims("Readiness helps. For example, one client had 12 systems with no sync. Their audit passed on the first try. Ask Pradeep.", "x"), "Readiness helps. Ask Pradeep.");
 });
@@ -198,4 +202,67 @@ test("guardClaims drops several long middle paragraphs so a case pointer fits ah
   assert.match(out, /Two-site server migration/);
   assert.ok(out.startsWith("Usually, yes.") && out.endsWith("Email hello@neon1.tech."));
   assert.ok(out.length <= 1200, String(out.length));
+});
+
+test("a reply that decides HIPAA applies to the visitor becomes a pointer to a professional", () => {
+  const q = "Do I need to be HIPAA compliant if I run a small physical therapy office?";
+  const out = guardClaims("Generally, yes, if you bill insurance electronically, HIPAA applies to you as a covered entity under U.S. law. The law doesn't exempt small businesses. You must safeguard PHI. A lawyer can confirm.", q);
+  assert.match(out, /^HIPAA usually applies to healthcare providers/);
+  assert.doesNotMatch(out, /applies to you\b|doesn't exempt|You must/);
+  assert.match(out, /A lawyer can confirm\.$/);
+  // General information about the law stays
+  const general = "HIPAA usually applies to providers who bill insurance electronically. A BAA is needed before neon1 touches health records.";
+  assert.equal(guardClaims(general, q), general);
+});
+
+test("a flat 'neon1 doesn't set up laptops' becomes 'the pages don't list it'", () => {
+  const out = guardClaims("neon1 doesn't set up laptops or handle hardware installation. A local IT provider does that.", "Give me a fixed price right now for setting up 5 new laptops.");
+  assert.match(out, /^The pages don't list laptop or hardware setup, so a call settles whether it fits\. A local IT provider does that\.\n\nA fixed price or estimate comes in a proposal after the free call\. The pricing page's rough guide is \$150 to \$750/);
+  // The proposal line is not repeated when the reply already says it
+  assert.match(guardClaims("A proposal sets the price.", "Can I get a quote?"), /rough guide is \$150 to \$750/);
+  const both = "A proposal sets the price, and a small fix is often $150 to $750.";
+  assert.equal(guardClaims(both, "Can I get a quote?"), both);
+  // Network work that touches devices stays
+  const net = "neon1 doesn't replace your devices, but the networks service covers how devices connect.";
+  assert.equal(guardClaims(net, "x"), net);
+});
+
+test("a certification question gets the human route when the reply has none", () => {
+  const out = ensureHuman("The pages list one certification: AWS Certified Cloud Practitioner (2025).", "Do you have AWS certifications?");
+  assert.match(out, /Pradeep can help directly/);
+  assert.equal(ensureHuman("It is a fruit.", "Is a tomato a fruit?"), "It is a fruit.");
+});
+
+test("a reply that names the free call gets the booking route, and a mid-sentence offer is third person", () => {
+  const out = ensureHuman("I can't guarantee that. The exact timeline comes in a proposal after a free 30-minute call.", "Will you guarantee the project finishes on time?");
+  assert.match(out, /Pradeep can help directly/);
+  assert.equal(ensureHuman("Usually a day.", "How long does a sync take?"), "Usually a day.");
+  assert.equal(neon1Voice("If you need one now, I can help design and build it."), "If you need one now, neon1 can help design and build it.");
+});
+
+test("a price sentence is dropped unless the visitor raised cost, a rate, or how long a job takes", async () => {
+  const { unaskedPrices } = await import("../src/chat.mjs");
+  const reply = "neon1 can connect those. A small fix usually costs $150 to $750. Book the call.";
+  assert.equal(unaskedPrices(reply, "I own a bakery. Can you help with orders?"), "neon1 can connect those. Book the call.");
+  for (const q of ["How much would that cost?", "What's your hourly rate?", "Do you need money up front?", "What's the smallest job you'd take on?", "How long does a project take?"]) assert.equal(unaskedPrices(reply, q), reply, q);
+  assert.equal(unaskedPrices("No figures here.", "Can you help?"), "No figures here.");
+  // Only figures: nothing to drop to, so the reply stays
+  assert.equal(unaskedPrices("$150 to $750.", "Can you help?"), "$150 to $750.");
+});
+
+test("a reply that offers neon1's work gets the route whatever the question, and 'neon1 uses X in engagements' is dropped", () => {
+  const out = ensureHuman("neon1 offers workflow automation, from a simple assessment to a full implementation.", "Does my accounting software integrate with Gusto?");
+  assert.match(out, /Pradeep can help directly/);
+  assert.equal(ensureHuman("Gusto connects to many tools.", "Does my accounting software integrate with Gusto?"), "Gusto connects to many tools.");
+  assert.equal(guardClaims("IaC is code for infrastructure. For example, neon1 uses Terraform in cloud engagements. Ask Pradeep.", "What is infrastructure as code?"), "IaC is code for infrastructure. Ask Pradeep.");
+});
+
+test("a reply cut at the limit with its contact line still ends with the route", async () => {
+  const { reply, BOOKING, EMAIL } = await import("../src/chat.mjs");
+  const long = `${"neon1 can help with orders. ".repeat(50)}\n\nEmail ${EMAIL} or book ${BOOKING}.`;
+  const client = { send: async () => ({ output: { message: { content: [{ text: long }] } }, stopReason: "end_turn", usage: {} }) };
+  const out = await reply([{ role: "user", content: "Can you help with my orders?" }], { corpus: `${EMAIL} ${BOOKING}`, client });
+  assert.ok(out.text.length <= 1200);
+  assert.ok(out.text.includes(EMAIL) && out.text.includes(BOOKING));
+  assert.deepEqual(neon1Voice("Sí. Hemos ayudado a otros negocios en Queens. Escríbenos."), "Sí. Escríbenos.");
 });

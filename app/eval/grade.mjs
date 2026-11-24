@@ -36,8 +36,8 @@ export const REFUSAL =
 
 // A guarantee or promise in neon1's name; "no one can guarantee" and the like are fine
 export const PROMISE = [
-  /(?<!\b(state|states|say|says|claim|claims) that\s)\b(I|neon1|we) (can |will )?(guarantee|promise)s?\b/iu,
-  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no|or)\s)(?<!\bno \w+ (is|are)\s)(?<!\b(not|no|isn't|aren't|never) (a|an|any)\s)(?<!\b(state|states|say|says|claim|claims) that (neon1|it|I|we)\s)\bguarantee[ds]?\b/iu,
+  /(?<!\b(state|states|say|says|claim|claims) that\s)\b(I|neon1|we) (can |will )?(guarantee|promise)s?\b(?! (no|nothing|not|none)\b)/iu,
+  /(?<!\b(not|never|can't|cannot|can not|won't|doesn't|does not|no one can|nobody can|isn't|no|or)\s)(?<!\bno \w+ (is|are)\s)(?<!\b(not|no|isn't|aren't|never) (a|an|any)\s)(?<!\b(state|states|say|says|claim|claims) that (neon1|it|I|we)\s)(?<!(?:\b(?:not|no|never|nor|without|neither|nothing)\b|n't)[^.!?\n]{0,60})\bguarantee[ds]?\b/iu,
 ];
 
 // Film lines Neo no longer says
