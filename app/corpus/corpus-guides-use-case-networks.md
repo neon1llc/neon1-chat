@@ -1,6 +1,6 @@
 # Networks and connected systems (https://neon1.tech/)
 
-Designing and integrating networks, devices, and connected environments: when it's worth doing, what I deliver, and which work belongs to licensed trades.
+Designing and integrating networks, devices, and connected environments: when it's worth doing, what I deliver, and how I work with installers and licensed trades.
 
 ## When it's worth doing
 
@@ -27,14 +27,8 @@ A network diagram, an asset inventory, the configuration with its ownership and 
 
 Access to the current equipment and accounts, the ISP details, and a decision on who administers the network afterward.
 
-## When something else fits better
+## Who does what
 
-- You need a help desk, device management for every laptop, or someone on call. A managed service provider fits better.
-- The job is cabling, licensed electrical work, or alarm-system installation. A licensed installer does that, and I can work from their side on design and configuration.
-- One device is broken. A repair shop or the manufacturer is faster.
-
-## Limits
-
-I design and configure. Cabling and physical installation are done by a qualified installer, arranged per project. No licensed electrical or alarm-system work, safety-critical systems, or electronics repair. On-site work is within about 30 miles of Queens, NY.
+I design and configure the network. A qualified installer handles cabling and physical installation, and a licensed installer handles electrical or alarm-system work, arranged per project, with the design and configuration built around their side. For a help desk or on-call device management, a managed service provider pairs well with the design I hand over. On-site work is within about 30 miles of Queens, NY.
 
 [Book a call](../engagement/contact.md) with the sites, devices, and what has to stay running.

@@ -8,7 +8,7 @@ Yes, within about 30 miles of Queens, NY. Otherwise I work remotely across the U
 
 ## When do you work?
 
-Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Eastern. The booking calendar shows what's open.
+Monday to Thursday 6pm to 9pm, Friday 6pm to 8pm, and weekends 8am to 8pm, Eastern, for about 10 to 20 project hours a week. Meetings with your team fit those windows. I plan any change to a live system, like a cutover, with your team ahead of time and keep a rollback ready. When a step waits on a vendor or your staff during the day, I work from the written plan and pick up as soon as it clears. The booking calendar shows what's open.
 
 ## Can I start without a call?
 
@@ -24,22 +24,22 @@ What you approve in a [proposal](../examples/proposal.md) is what we both agree 
 
 ## What if something urgent comes up?
 
-I work in planned appointments, with no 24/7 or emergency response. An incident in progress or an outage needs a provider with emergency coverage first.
+I work in planned appointments, and a care plan sets my response times in writing. An outage or incident in progress needs a provider with emergency coverage first. I take it from there, with the cause, the fix, and what to change.
 
-For anything your business can't go a day without, someone on your side must run it day to day. A care plan sets my response times in writing, within my working hours.
+For anything your business can't go a day without, someone on your side runs it day to day.
 
 ## How is the cost worked out?
 
 After we talk, I send a short proposal: one recommendation, or options when there's a real choice, each with what it covers, its upkeep, and an estimate. Discovery sets the estimate. Unforeseen work or purchases are agreed with you before I add them.
 
-Every option has the same security baseline, and a smaller option does less, not worse. The proposal also gives the schedule, and larger projects run in phases you approve one at a time. Ranges, invoices, and payment methods are in [pricing](../engagement/pricing.md).
+Every option has the same security baseline, and a smaller option does less, not worse. The proposal also gives the schedule, and larger projects split into phases, each with its own scope and price, approved before it starts. How a price is set, invoices, and payment methods are in [pricing](../engagement/pricing.md).
 
 ## Do you run security training?
 
 Yes, informational awareness sessions for groups, from parents and teachers to engineers and executives. They're not certified training. For controls, evidence, and audit preparation, see [security readiness](../guides/use-case-security-readiness.md).
 
-## What don't you do?
+## What if a project needs a specialist?
 
-I don't repair electronics, do licensed electrical or alarm work, issue audit opinions or certifications, run penetration tests, or give legal advice. I can't promise a review will pass.
+When a project needs a licensed installer, an independent auditor, or a penetration tester, I bring in a vetted one and write their role into the proposal.
 
-I handle personal or health data only after the right agreements and insurance are in place, and I can help you get those. What I publish is general information. A lawyer, accountant, or auditor decides what applies to you, and I'll work with them on the technical side. My guides and training kits are practical, not compliance determinations.
+I cover workflow automation, cloud and AI engineering, networks and connected systems, and security readiness. I get you ready for a review, and the reviewer makes the call. I work with your lawyer, accountant, or auditor on the technical side, and I take on personal or health data once the right agreements and insurance are in place. What I publish is general information, and a professional decides what applies to you.

@@ -10,4 +10,4 @@ Through neon1 I've built a [permission-aware document assistant](../case-studies
 
 My first clients paid nothing. I chose that, to help people who needed it and to learn.
 
-I take a few clients at a time, so the person you talk to is the person who builds it. When a project needs a specialty I don't cover, the proposal brings in a vetted specialist and defines their role. See [when I work and what I don't take on](../faq/working-with-neon1.md), then [contact me](../engagement/contact.md).
+I take a few clients at a time, so the person you talk to is the person who builds it. When a project needs a specialty, the proposal brings in a vetted specialist and defines their role. See [when I work and what I cover](../faq/working-with-neon1.md), then [contact me](../engagement/contact.md).

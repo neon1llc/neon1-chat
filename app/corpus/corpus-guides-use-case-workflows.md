@@ -1,6 +1,6 @@
 # Workflow automation (https://neon1.tech/)
 
-Integrating business systems, automating processes, and building the software in between: when it's worth doing, what I deliver, and when something else fits better.
+Integrating business systems, automating processes, and building the software in between: when it's worth doing, what I deliver, and how I choose the right tool.
 
 ## When it's worth doing
 
@@ -27,15 +27,8 @@ An integration map and data ownership rules, a working implementation in your ac
 
 Admin access to the systems involved, vendor API terms and limits, a person who knows the process, and sample data that shows the exceptions as well as the normal case.
 
-## When something else fits better
+## The lightest tool that works
 
-- A native integration or marketplace app already covers it.
-- An integration platform such as n8n, Zapier, or Make handles the volume and rules. I'll recommend one, and can set it up.
-- The volume is low and a documented manual step costs less than software.
-- You want a long-term managed integration service with round-the-clock support.
-
-## Limits
-
-I don't replace a system of record that works, or hold your accounts or data. Vendor API limits and data quality set what's possible, so discovery checks both before a price is fixed.
+I start with what you already own: a native integration or marketplace app, then an integration platform such as n8n, Zapier, or Make, which I recommend and can set up. Where volume is low, a documented manual step costs less than software. Custom code covers the rest. Your working systems of record stay in place, and your accounts and data stay yours. Vendor API limits and data quality shape the design, so discovery checks both before the estimate is set.
 
 [Book a call](../engagement/contact.md) with the systems involved and where the process breaks.
