@@ -31,7 +31,7 @@ const config = () => ({
   table: process.env.TABLE_NAME,
   perMinute: whole(process.env.PER_MINUTE, 6),
   perHour: whole(process.env.PER_HOUR, 60),
-  perDay: whole(process.env.PER_DAY, 200),
+  perDay: whole(process.env.PER_DAY, 60),
 });
 
 // JSON responses that are never cached; `extra` adds headers such as retry-after
