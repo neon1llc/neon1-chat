@@ -6,6 +6,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## v0.4.0 - 2026-11-23
 
 ### Changed
+- The bundled corpus is rebuilt from neon1-corpus v0.52.6: Neo's directives link the 1NEON help and the privacy policy by address and send a written certification request to Pradeep as a vendor questionnaire.
 - With no dollar figures on the pricing page, a reply that names one is trimmed to the route to a written estimate, and the eval questions and tests expect no figure.
 - The bundled corpus is rebuilt from neon1-corpus v0.52.5: price copy explains how a price is set and states no dollar figures, Neo's directive never states a figure, range, or rate, and the service guides say what neon1 covers and brings in.
 - The bundled corpus is rebuilt from neon1-corpus v0.52.3: estimates are the usual price, and the first clients paid nothing.
