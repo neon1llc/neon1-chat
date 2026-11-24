@@ -32,7 +32,7 @@ This follows the OWASP Top 10 for LLM applications. Every message is data, the p
 - **Repeats and misuse.** The same question three times in ten minutes is a strike. Messages under 15 characters, such as "thanks", never count. The model marks a reply to any message that tries to change its rules or role, asks it to pretend, or insults someone. General and off-topic questions aren't marked. The marker is removed before the visitor sees the reply, and every third marked message in an hour is a strike from the next message.
 - **Who counts as one visitor.** A salted hash of the IPv4 address, or of the IPv6 /64, since one home or phone gets a whole /64. The table never holds an address. A question's fingerprint lives ten minutes, and every item expires on its own. Strikes are logged by reason and level only.
 - **Concurrency.** At most 5 copies of the function run at once, and the HTTP API throttles the route to 5 requests a second.
-- **Budget.** The Bedrock budget emails at 80% (forecast) and 100% (actual) of $5 a month. It's an alert, not a cap, and covers Bedrock only, not CloudFront, the API, or DynamoDB.
+- **Budget.** The Bedrock budget emails at 80% (forecast) and 100% (actual) of $5 a month. It's an alert, not a cap, and covers Bedrock only, not CloudFront, the API, or DynamoDB. Separately, the account stack emails when Bedrock passes $1 in a day and denies the admin user and the evaluation role at $10 a month, inside a $15 account budget. This function isn't denied, so its own caps are what limit it.
 - **Not yet.** A web application firewall with bot challenges waits until there's client traffic to protect. The site uses no CAPTCHA. If the counters can't be written, every question is refused.
 
 ## The conversation contract
