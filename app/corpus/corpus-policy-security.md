@@ -2,8 +2,6 @@
 
 How to report a security problem in neon1.tech, the 1NEON portal, or a neon1 repository, and what happens after you do.
 
-*Last updated November 20, 2026.*
-
 If you think you've found a security problem in neon1.tech, the 1NEON portal, Neo, or any [neon1llc repository](https://github.com/neon1llc), thank you. Please tell me privately so it can be fixed first.
 
 ## How to report

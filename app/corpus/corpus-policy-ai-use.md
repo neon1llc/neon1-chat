@@ -2,8 +2,6 @@
 
 How AI supports my research, review, and building, what stays with me, and how your information is kept out of it.
 
-*Last updated November 24, 2026.*
-
 I write and publish under my own name, and I make the decisions: what neon1 says, how its systems are built, and what ships. AI is part of how I work. It helps me research, recompose, review, and build faster.
 
 ## Where the work comes from

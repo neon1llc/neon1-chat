@@ -2,7 +2,7 @@
 
 The terms for using neon1.tech and the 1NEON portal.
 
-*Last updated November 20, 2026.* This update lets you make your own free 1NEON account, with the limits and conduct rules in section 3. It adds no new obligations for invited clients.
+This update lets you make your own free 1NEON account, with the limits and conduct rules in section 3. It adds no new obligations for invited clients.
 
 These terms cover your use of neon1.tech and the 1NEON client portal, which are run by neon1 LLC ("neon1", "I", "me"). Paid work is governed by a separate agreement or signed proposal. If that agreement conflicts with these terms, the agreement wins.
 
