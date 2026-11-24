@@ -6,7 +6,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## Unreleased
 
 ### Changed
-- The whole site may ask 60 questions a day, down from 500, which keeps the worst-case month near $11 at about 0.6 cent a question. Past that, Neo says to try again tomorrow and links the call booking. The README gave $12 for 200 a day from an older, smaller prompt, and now states the measured figures.
+- The whole site may ask 60 questions a day, down from 500, which keeps the worst-case month near $11 at about 0.6 cent a question. Past that, Neo says to try again tomorrow and links the call booking. One visitor may ask 15 an hour, down from 60, so no one visitor can use a quarter of the day's cap in an hour. The README gave $12 for 200 a day from an older, smaller prompt, and now states the measured figures.
 
 ## v0.4.0 - 2026-11-23
 

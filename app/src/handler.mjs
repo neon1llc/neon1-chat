@@ -30,7 +30,7 @@ const whole = (v, fallback) => {
 const config = () => ({
   table: process.env.TABLE_NAME,
   perMinute: whole(process.env.PER_MINUTE, 6),
-  perHour: whole(process.env.PER_HOUR, 60),
+  perHour: whole(process.env.PER_HOUR, 15),
   perDay: whole(process.env.PER_DAY, 60),
 });
 

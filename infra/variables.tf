@@ -59,7 +59,7 @@ variable "per_minute" {
 variable "per_hour" {
   description = "Questions one visitor may ask in an hour."
   type        = number
-  default     = 60
+  default     = 15
 
   validation {
     condition     = floor(var.per_hour) == var.per_hour && var.per_hour >= 1 && var.per_hour <= 1000
