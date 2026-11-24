@@ -2,7 +2,7 @@
 
 Deploy pipelines with checks, approvals, and rollback: a local developer preview, not production-supported.
 
-*Public · v0.15.0 · local developer preview, not production-supported*
+*Public · v0.15.1 · local developer preview, not production-supported*
 
 **Deploy pipelines with checks, approvals, and rollback.** The code is on [GitHub](https://github.com/neon1llc/deploy-ops) under the Apache-2.0 license.
 

@@ -25,7 +25,7 @@ Yes, at your first sign-in. Replay it from **?** or your profile. [Watch it](htt
 Outline up to three projects, then ask for an assessment under **Next step** on Home. **Get to know 1NEON** links to a sample project, a walkthrough, the demo, and these FAQs. [Watch it](https://neon1.tech/1NEON/live?play=free).
 
 ### What is an outline?
-What you write about a project before I assess it, in six parts: what it is, how it works today, what done looks like, who and what it touches, a measure, and timing and limits. Every part is optional, and a short answer is enough. **Next step** on Home and the project's **Overview** show what's written, with a tip for each missing part. [Outlining a project](https://neon1.tech/knowledge/guides/outline-a-project/) has examples.
+What you write about a project before I assess it, in six parts: what it is, how it works today, what done looks like, who and what it touches, a measure, and timing and limits. Every part is optional, and a short answer is enough. **Next step** on Home and the project's **Overview** show what's written, with a tip for each missing part. [What to write](https://neon1.tech/knowledge/guides/free-accounts/#what-to-write) has examples.
 
 ### What is Ready for Execute?
 The percent on a project's **Overview**, before the work starts. Each outline part is 10, the assessment 10, options 10, and an approved option 20, so 100% needs a decision. Then the outline carries into the work: its measure is tracked in **Observe**, its people and tools shape the handover in **Normalize**, and what done looks like becomes the checks in Verify. [Watch it](https://neon1.tech/1NEON/live?play=free).

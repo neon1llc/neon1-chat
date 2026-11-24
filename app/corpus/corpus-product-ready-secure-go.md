@@ -2,7 +2,7 @@
 
 Security readiness for every space, in plain language.
 
-*Public · v0.1.7*
+*Public · v0.1.8*
 
 **Security steps for each kind of space.** Plain-language guidance for a phone, a home network, a classroom, a small office, or a company heading into SOC 2: five things to do first, then what's next. It's open on [GitHub](https://github.com/neon1llc/ready-secure-go).
 
@@ -11,13 +11,13 @@ Security readiness for every space, in plain language.
 
 ## Companion guides
 
-Five deeper guides sit alongside it, each on GitHub under the same licenses.
+Five deeper guides sit alongside it, under the same licenses.
 
-- [SOC 2 readiness, step by step](https://github.com/neon1llc/soc-2-readiness): modules, starter controls, and evidence checklists for a company preparing for its first audit.
-- [Incident response for small teams](https://github.com/neon1llc/incident-response-for-small-teams): a runbook, playbooks, and tabletop exercises.
-- [Compliance basics for small businesses](https://github.com/neon1llc/compliance-basics): short explanations of HIPAA, PCI DSS, privacy, accessibility, and more, as a starting point.
-- [A phishing awareness session kit](https://github.com/neon1llc/phishing-awareness-kit): slides, exercises, and a one-page takeaway.
-- [A household tech handbook](https://github.com/neon1llc/household-tech-handbook): for the person who looks after a family's devices and accounts.
+- [SOC 2 readiness, step by step](soc-it-2-me.md): modules, starter controls, and evidence checklists for a company preparing for its first audit.
+- [Incident response for small teams](there-are-no-incidents.md): a runbook, playbooks, and tabletop exercises.
+- [Compliance basics for small businesses](you-have-20-seconds-to-comply.md): short explanations of HIPAA, PCI DSS, privacy, accessibility, and more, as a starting point.
+- [A phishing awareness session kit](phish-out-of-water.md): slides, exercises, and a one-page takeaway.
+- [A household tech handbook](home-is-where-the-smart-is.md): for the person who looks after a family's devices and accounts.
 
 ## Current limits
 
