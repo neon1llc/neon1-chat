@@ -10,4 +10,6 @@ Through neon1 I've built a [permission-aware document assistant](../case-studies
 
 My first clients paid nothing. I chose that, to help people who needed it and to learn.
 
+What I publish builds on years of my own work, and AI now helps me research, recompose, and review it. I make the decisions and approve every release. [How I work with AI](../policies/ai-use.md) has the detail.
+
 I take a few clients at a time, so the person you talk to is the person who builds it. When a project needs a specialty, the proposal brings in a vetted specialist and defines their role. See [when I work and what I cover](../faq/working-with-neon1.md), then [contact me](../engagement/contact.md).

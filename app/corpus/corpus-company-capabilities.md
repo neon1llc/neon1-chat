@@ -13,6 +13,7 @@ Four services: [workflow automation](../guides/use-case-workflows.md), [cloud an
 - **One engineer** from the first call to the handover. Any partner on a project is named in the proposal and on the case study.
 - **Defined scope.** Deliverables, acceptance criteria, and a price are agreed before work starts.
 - **Measured results.** Work is checked against agreed criteria, and published results say how they were measured.
+- **My decisions, AI's speed.** AI helps me research, recompose, review, and build faster. I decide, approve every release, and answer for the result ([how I work with AI](../policies/ai-use.md)).
 - **Open code.** neon1's tools and this site are public on [GitHub](https://github.com/neon1llc). AWS CLIP and 1NEON are MIT and DeployOps is Apache-2.0. The site, Neo, the infrastructure, and the corpus tooling are source-available under FSL-1.1, and neon1's documents are CC BY-ND 4.0.
 
 ## Delivered work

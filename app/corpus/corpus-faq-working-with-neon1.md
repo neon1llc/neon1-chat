@@ -22,6 +22,10 @@ I use only the access the job needs, keep your information confidential, and rem
 
 What you approve in a [proposal](../examples/proposal.md) is what we both agree to. Personal or health data needs the right agreement first, such as a Business Associate Agreement.
 
+## Do you use AI?
+
+Yes. It helps me research, recompose my writing, review, and build faster, and I direct it. I make the decisions, approve every release, and answer for the result. [How I work with AI](../policies/ai-use.md) has the detail.
+
 ## What if something urgent comes up?
 
 I work in planned appointments, and a care plan sets my response times in writing. An outage or incident in progress needs a provider with emergency coverage first. I take it from there, with the cause, the fix, and what to change.
