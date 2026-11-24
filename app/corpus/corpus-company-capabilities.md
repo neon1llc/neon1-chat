@@ -6,14 +6,14 @@ neon1 is an independent engineering and technology consulting practice run by Pr
 
 ## What I do
 
-Four services: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md). Audit opinions come from independent auditors.
+Four services: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks, devices, and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md). Audit opinions come from independent auditors.
 
 ## How engagements work
 
-- **One engineer** from the first call to the handover. Any partner on a project is named in the proposal and on the case study.
+- **Named partners.** Any partner on a project is named in the proposal and on the case study.
 - **Defined scope.** Deliverables, acceptance criteria, and a price are agreed before work starts.
 - **Measured results.** Work is checked against agreed criteria, and published results say how they were measured.
-- **My decisions, AI's speed.** AI helps me research, recompose, review, and build faster. I decide, approve every release, and answer for the result ([how I work with AI](../policies/ai-use.md)).
+- **My decisions, AI's speed.** AI helps me research, polish, review, and build faster. I decide, approve every release, and answer for the result ([how I work with AI](../policies/ai-use.md)).
 - **Open code.** neon1's tools and this site are public on [GitHub](https://github.com/neon1llc). AWS CLIP and 1NEON are MIT and DeployOps is Apache-2.0. The site, Neo, the infrastructure, and the corpus tooling are source-available under FSL-1.1, and neon1's documents are CC BY-ND 4.0.
 
 ## Delivered work
@@ -25,7 +25,7 @@ Four services: [workflow automation](../guides/use-case-workflows.md), [cloud an
 | Automotive business | neon1 engagement | [Two-site server migration](../case-studies/two-offices-off-local-servers.md) to AWS, with the client's technical lead | Both locations moved with no application rewrite, records reconciled, and restore tested |
 | Small local business | neon1 engagement | [Operations integration and monitoring](../case-studies/one-view-of-the-shop.md): point-of-sale, order tracking, and cameras joined on AWS, on a separate device network | The owner acts on problems from anywhere, not only on site |
 | Schools, families, and teams | neon1 engagement | [Security awareness sessions](../case-studies/security-for-non-security-people.md) | Informational sessions, with accounts and devices secured during the session |
-| Schools and families | Community work, late 2024 to 2025, done free by choice | A high school lab with a quarter of its machines dead, and a veteran's medical alert on a failing landline box | Cloud-managed Chromebooks and a shared GitHub classroom, and an LTE wearable that alerts his family |
+| Schools and families | Community work, late 2024 to 2025, done free | A high school lab with a quarter of its machines dead, and a veteran's medical alert on a failing landline box | Cloud-managed Chromebooks and a shared GitHub classroom, and an LTE wearable that alerts his family |
 
 ## Company data
 

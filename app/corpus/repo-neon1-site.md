@@ -34,6 +34,10 @@ Every build reads the newest corpus release (the highest `vX.Y.Z` tag; `make cor
 - Try unreleased corpus edits with `CORPUS_DIR=../neon1-corpus`.
 - Checks need network access once, to fetch the release into `.corpus/`.
 
+### What's new
+
+`/knowledge/company/whats-new/` lists releases and updated documents since the relaunch (`SINCE` in `scripts/whats-new-lib.mjs`, November 5, 2026), newest day first. It is built with the Knowledge Center from the same inputs as the releases page, plus each document's `updated` date from the corpus. Updates with no feed, such as a profile elsewhere, go in `scripts/whats-new-external.json` as `{ "date": "YYYY-MM-DD", "source": "Upwork", "title": "...", "url": "https://..." }`; the build fails on an incomplete row. Raw commits never appear.
+
 ### Publishing a corpus release
 
 A corpus release reaches neon1.tech without a site change. The deploy workflow's watch runs every 15 minutes, or on demand from the Actions tab. It compares the newest corpus release with `/knowledge/corpus.json` on the live site. When they differ, it runs the same checks, browser tests, PDF printing, and release switch as a site deploy, built from `main` and that corpus release. The site's version and tags don't move, and `/knowledge/corpus.json` names the corpus release that's live.
@@ -43,7 +47,3 @@ Everything is static HTML written at build time, so search engines, link preview
 ## Design
 
 `src/app/public/shared/neon1.css` is the parent of every neon1 surface, 1NEON included: one type scale, one spacing scale, and the shared components. [docs/DESIGN.md](docs/DESIGN.md) has the steps, the rules, and what they were built from. `make logic` fails on a text size written as a number.
-
-## Theme family and mode
-
-The site stores family (Matrix or Sentinel) and mode (light or dark) separately in `neon1.style` and `neon1.mode`. Sentinel and light are the defaults. `js/theme.js` applies the chosen look before paint and shares explicit choices with 1NEON on the same origin. Switching family on the landing, or with the footer's look buttons on any page, updates the page in place; Matrix effects load only when chosen, and the fade between pages follows the family chosen in the page. Pages use the tokens in `css/frame.css` and `css/sentinel.css` so colors follow both axes.

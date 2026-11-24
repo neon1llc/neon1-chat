@@ -21,14 +21,27 @@ Integrating business systems, automating processes, and building the software in
 
 ## What you get
 
-An integration map and data ownership rules, a working implementation in your accounts, tests against agreed acceptance criteria including failure cases, monitoring, and a runbook for each integration.
+- An integration map and data ownership rules.
+- A working implementation in your accounts.
+- Tests against agreed acceptance criteria, including failure cases.
+- Monitoring, and a runbook for each integration.
 
 ## What it needs from you
 
-Admin access to the systems involved, vendor API terms and limits, a person who knows the process, and sample data that shows the exceptions as well as the normal case.
+- Admin access to the systems involved.
+- Vendor API terms and limits.
+- A person who knows the process.
+- Sample data that shows the exceptions as well as the normal case.
 
 ## The lightest tool that works
 
-I start with what you already own: a native integration or marketplace app, then an integration platform such as n8n, Zapier, or Make, which I recommend and can set up. Where volume is low, a documented manual step costs less than software. Custom code covers the rest. Your working systems of record stay in place, and your accounts and data stay yours. Vendor API limits and data quality shape the design, so discovery checks both before the estimate is set.
+I start with what you already own, then choose the lightest tool that covers the need:
+
+- **Native integration or marketplace app.**
+- **Integration platform,** such as n8n, Zapier, or Make, which I recommend and can set up.
+- **A documented manual step,** where volume is low and it costs less than software.
+- **Custom code** for the rest.
+
+Your working systems of record stay in place, and your accounts and data stay yours. Vendor API limits and data quality shape the design, so discovery checks both before the estimate is set.
 
 [Book a call](../engagement/contact.md) with the systems involved and where the process breaks.

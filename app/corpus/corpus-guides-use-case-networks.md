@@ -1,4 +1,4 @@
-# Networks and connected systems (https://neon1.tech/)
+# Networks, devices, and connected systems (https://neon1.tech/)
 
 Designing and integrating networks, devices, and connected environments: when it's worth doing, what I deliver, and how I work with installers and licensed trades.
 
@@ -15,7 +15,7 @@ Designing and integrating networks, devices, and connected environments: when it
 
 - **Design.** Topology, VLAN and IP plans, wireless coverage and capacity, and a firewall policy that keeps device classes apart.
 - **Secure access.** Site-to-site and remote-access VPNs, named admin accounts, and no device exposed to the internet that doesn't need to be.
-- **Connected devices.** Cameras, sensors, and IoT on their own network, integrated through vendor APIs or local services, and alerting that people act on.
+- **Connected devices.** IoT, sensors, and cameras on their own network, with the hardware set up and integrated with your software through vendor APIs or local services, and alerting that people act on.
 - **Monitoring and resilience.** Health checks, logs, backup of device configurations, and a tested recovery path.
 - **Equipment selection.** Options compared on fit, security updates, lifetime cost, and lock-in.
 

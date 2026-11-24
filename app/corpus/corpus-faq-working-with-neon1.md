@@ -24,7 +24,7 @@ What you approve in a [proposal](../examples/proposal.md) is what we both agree 
 
 ## Do you use AI?
 
-Yes. It helps me research, recompose my writing, review, and build faster, and I direct it. I make the decisions, approve every release, and answer for the result. [How I work with AI](../policies/ai-use.md) has the detail.
+Yes. It helps me research, polish my writing, review, and build faster, and I direct it. I make the decisions, approve every release, and answer for the result. [How I work with AI](../policies/ai-use.md) has the detail.
 
 ## What if something urgent comes up?
 
@@ -46,4 +46,4 @@ Yes, informational awareness sessions for groups, from parents and teachers to e
 
 When a project needs a licensed installer, an independent auditor, or a penetration tester, I bring in a vetted one and write their role into the proposal.
 
-I cover workflow automation, cloud and AI engineering, networks and connected systems, and security readiness. I get you ready for a review, and the reviewer makes the call. I work with your lawyer, accountant, or auditor on the technical side, and I take on personal or health data once the right agreements and insurance are in place. What I publish is general information, and a professional decides what applies to you.
+I cover workflow automation, cloud and AI engineering, networks, devices, and connected systems, and security readiness. I get you ready for a review, and the reviewer makes the call. I work with your lawyer, accountant, or auditor on the technical side, and I take on personal or health data once the right agreements and insurance are in place. What I publish is general information, and a professional decides what applies to you.

@@ -1,19 +1,19 @@
 # Services (https://neon1.tech/)
 
-Workflow automation, cloud and AI engineering, networks and connected systems, and security readiness, from a focused assessment to a complete implementation.
+Workflow automation, cloud and AI engineering, networks, devices, and connected systems, and security readiness, from a focused assessment to a complete implementation.
 
-neon1 is my independent engineering and technology consulting practice. I assess, design, build, integrate, and improve technology systems for businesses, technical teams, and individuals, from a focused assessment to a complete implementation.
+neon1 is my independent engineering and technology consulting practice. I assess, design, build, integrate, and improve technology systems for businesses, technical teams, and individuals.
 
 ## Four services
 
 | Service | What it covers | Common reasons to call |
-|---|---|
+|---|---|---|
 | **Workflow automation** | Systems integration, APIs and events, data synchronization and quality, custom applications, reporting, and AI-assisted document processing | Systems of record disagree, exceptions are handled by hand, reporting needs data no single system holds, or a process has outgrown its tools |
 | **Cloud and AI engineering** | Cloud architecture, infrastructure as code, delivery pipelines, migrations, production readiness, observability, cost, and AI applications with access control and evaluation | A launch or migration with a rollback requirement, an architecture or cost review, or an AI feature that must cite sources and respect permissions |
-| **Networks and connected systems** | Network design and segmentation, multi-site and remote access, cameras, sensors, and other connected devices, monitoring, local storage, and backup | A flat network that should be segmented, a new location, devices to integrate and monitor, or a home network built to a higher standard |
+| **Networks, devices, and connected systems** | Network design and segmentation, multi-site and remote access, IoT, sensors, cameras, and other connected devices, with the hardware and software integrated, monitoring, local storage, and backup | A flat network that should be segmented, a new location, devices to integrate and monitor, or a home network built to a higher standard |
 | **Security readiness** | Technical risk assessment, identity and access, hardening, cloud and network security, backup and recovery, and control and evidence work before a review | A customer security questionnaire, an upcoming SOC 2, HIPAA, or PCI DSS review, access that needs tightening, or recovery that was never tested |
 
-Pages: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md).
+Pages: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks, devices, and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md).
 
 ## Ways to engage
 
@@ -27,7 +27,7 @@ Pages: [workflow automation](../guides/use-case-workflows.md), [cloud and AI eng
 
 A proposal makes one recommendation, or sets out options when there's a real choice. See [pricing](pricing.md).
 
-Before any of these, the first 30-minute call covers your needs. If you write a project down in a [1NEON account](../guides/free-accounts.md) first, its assessment is free too: my written read of that project, with a likely approach and the first questions to settle. It's lighter than the paid assessment above.
+The first 30-minute call comes before any of these. Write a project down in a [1NEON account](../guides/free-accounts.md) first, and its assessment is free too: my written read, with a likely approach and the first questions to settle. It's lighter than the paid assessment above.
 
 ## Who keeps what
 
@@ -35,10 +35,10 @@ Before any of these, the first 30-minute call covers your needs. If you write a 
 |---|---|
 | Workflow automation | Your systems of record, accounts, data, and a runbook for each integration |
 | Cloud and AI engineering | Repositories, infrastructure code, and production on-call |
-| Networks and connected systems | The equipment, its admin accounts, the network diagram, and the asset inventory |
+| Networks, devices, and connected systems | The equipment, its admin accounts, the network diagram, and the asset inventory |
 | Security readiness | Your controls, evidence, and risk decisions |
 
-Licensed trades, audit opinions, and penetration tests come from the right specialist, whom I bring in and whose role the proposal defines. On-site work is within about 30 miles of Queens, NY. Everything else is remote.
+Licensed trades, audit opinions, and penetration tests come from the right specialist, whom I bring in and whose role the proposal defines. Where and when I work is on the [contact page](contact.md).
 
 ## Past work
 

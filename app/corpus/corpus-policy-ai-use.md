@@ -2,13 +2,13 @@
 
 How AI supports my research, review, and building, what stays with me, and how your information is kept out of it.
 
-I write and publish under my own name, and I make the decisions: what neon1 says, how its systems are built, and what ships. AI is part of how I work. It helps me research, recompose, review, and build faster.
+I write and publish under my own name, and I make the decisions: what neon1 says, how its systems are built, and what ships. AI is part of how I work. It helps me research, polish, review, and build faster.
 
 ## Where the work comes from
 
-Everything neon1 publishes, code and writing, builds on years of my own work: what I've learned and checked, the curricula I wrote, the guides and documentation I built, and constant study. AI now helps me revise, recompose, and supplement it before and while I share it.
+Everything neon1 publishes, code and writing, builds on years of my own work: what I've learned and checked, the curricula I wrote, the guides and documentation I built, and constant study. AI now helps me revise, polish, and supplement it before and while I share it.
 
-AI is my main tool for broad research, current and historical, and I check facts, figures, and sources against the original before I use them. It also reviews my content and recomposes it to keep a clean, consistent voice and a short length. That last part matters to me. I tend to overwrite, whether it's a blog post a few people read or a comment no one will, and I care enough that it shows. AI helps me say it in fewer words, so I don't waste your time.
+AI is my main tool for broad research, current and historical, and I check facts, figures, and sources against the original before I use them. It also reviews my content and polishes it to keep a clean, consistent voice and a short length. That last part matters to me. I tend to overwrite, whether it's a blog post a few people read or a comment no one will, and I care enough that it shows. AI helps me say it in fewer words, so I don't waste your time.
 
 None of this plays down my part. The ideas are mine, and so are the hours of building, trying, and refining, and the work of getting something ready to share. I use AI the way I think it should be used: carefully, with limits and a person in charge, to get more out of what I already know. I say so plainly because I respect the work, the people who read it, and the places it appears.
 
@@ -20,7 +20,7 @@ The [AI quality and oversight](../standards/ai-quality.md) standard sets how AI 
 
 ## How it fits together
 
-One loop runs through everything. I research and decide, then recompose and build with AI's help, and check the result. Automated tests run on every change, and each change goes to a private copy of the site and 1NEON first. I look it over there, approve the release, and it goes live. neon1's words are written once, in the same corpus that holds this page, and the site, Neo, and 1NEON read from it, so a fact changes in one place. It's public, so you can read what Neo and my AI tools work from. After release, budgets and caps watch spend and misuse, and a weekly refresh keeps Neo's documents current. When a model changes, Neo's test questions decide whether the new one replaces the old. [How neon1 is built](../company/architecture.md) shows the parts.
+One loop runs through everything. I research and decide, then polish and build with AI's help, and check the result. Automated tests run on every change, and each change goes to a private copy of the site and 1NEON first. I look it over there, approve the release, and it goes live. neon1's words are written once, in the same corpus that holds this page, and the site, Neo, and 1NEON read from it, so a fact changes in one place. It's public, so you can read what Neo and my AI tools work from. After release, budgets and caps watch spend and misuse, and a weekly refresh keeps Neo's documents current. When a model changes, Neo's test questions decide whether the new one replaces the old. [How neon1 is built](../company/architecture.md) shows the parts.
 
 ## Neo
 
