@@ -6,6 +6,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## Unreleased
 
 ### Changed
+- The README says "first call" where it said "free call".
 - The bundled corpus is rebuilt from neon1-corpus v0.54.0. It describes the two partner cases as an AWS Select Partner engagement, without the partner's name, and carries the service agreement's case-study and naming choices.
 - The whole site may ask 60 questions a day, down from 500, which keeps the worst-case month near $11 at about 0.6 cent a question. Past that, Neo says to try again tomorrow and links the call booking. One visitor may ask 15 an hour, down from 60, so no one visitor can use a quarter of the day's cap in an hour. The README states the measured figures.
 
