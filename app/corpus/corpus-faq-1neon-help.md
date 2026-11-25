@@ -167,10 +167,10 @@ A sign-in with your face, fingerprint, or device PIN instead of a code. It's phi
 ## Your account
 
 ### How do I change my name or the look?
-Open your profile from the menu and change your name, title, theme, menu, or notifications. Most changes save by themselves. [Watch it](https://neon1.tech/1NEON/live?play=profile).
+Open your profile from the menu to change your name, title, time zone, menu, or notifications. Most changes save by themselves. The theme and dark mode switches are at the bottom of the menu. [Watch it](https://neon1.tech/1NEON/live?play=profile).
 
 ### How do I sign out?
-Open your profile and choose **Sign out**.
+Open the menu, tap the sign-out icon beside your name, then tap **Sign out**. Or choose **Sign out** on your profile.
 
 ### I lost my phone or my authenticator app.
 You can still sign in with an emailed code. The second step is only for admin actions. If you have another method, confirm with it, then remove the lost one and add a new one. If you've lost every method, email [hello@neon1.tech](mailto:hello@neon1.tech) from your account's address. Email alone isn't enough, since a stolen mailbox is what the second step guards against, so I confirm who you are by calling a number already on record (never one from the email), plus another admin's written OK if your organization has one. Then I remove the lost methods, record it, and email you. Only admin actions wait meanwhile. There's no self-service reset.

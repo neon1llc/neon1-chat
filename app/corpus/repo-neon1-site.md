@@ -36,7 +36,7 @@ Every build reads the newest corpus release (the highest `vX.Y.Z` tag; `make cor
 
 ### What's new
 
-`/knowledge/company/whats-new/` lists releases and updated documents since the relaunch (`SINCE` in `scripts/whats-new-lib.mjs`, November 5, 2026), newest day first. It is built with the Knowledge Center from the same inputs as the releases page, plus each document's `updated` date from the corpus. Updates with no feed, such as a profile elsewhere, go in `scripts/whats-new-external.json` as `{ "date": "YYYY-MM-DD", "source": "Upwork", "title": "...", "url": "https://..." }`; the build fails on an incomplete row. Raw commits never appear.
+`/knowledge/company/whats-new/` lists releases back to September 2025 and documents updated since the relaunch (`SINCE` in `scripts/whats-new-lib.mjs`, November 5, 2026), newest day first. `scripts/whats-new-notes.json` adds a line to an early release's row, keyed `repo@version`. It is built with the Knowledge Center from the same inputs as the releases page, plus each document's `updated` date from the corpus. Updates with no feed, such as a profile elsewhere, go in `scripts/whats-new-external.json` as `{ "date": "YYYY-MM-DD", "source": "Upwork", "title": "...", "url": "https://..." }`; the build fails on an incomplete row. Raw commits never appear.
 
 ### Publishing a corpus release
 

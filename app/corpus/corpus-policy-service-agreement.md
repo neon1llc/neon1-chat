@@ -1,14 +1,14 @@
 # Service agreement (https://neon1.tech/1NEON/agreement)
 
-neon1's service agreement, as a client organization signs it once in 1NEON: how work is agreed, purchases, paying, ownership, confidentiality, records, quality, limits, and ending.
+neon1's service agreement, as a client organization signs it once in 1NEON: how work is agreed, purchases, paying, ownership, confidentiality, case studies, records, quality, limits, and ending.
 
 **The short version**
 
-- One agreement covers every project. Each option you approve sets that project's scope, price, and timeline.
-- Estimates, set by discovery and billed hourly, never pass their high end without your approval. A small job may be fixed. Invoices are due in 15 days.
-- An admin signs once in 1NEON. Either of us can end it with 14 days' notice.
+- One agreement covers every project, and each option you approve sets its scope, price, and timeline.
+- Estimates never pass their high end without your approval, and invoices are due in 15 days.
+- You choose about case studies and your name, and either of us can end it with 14 days' notice.
 
-Edition 2.1
+Edition 2.3
 
 This agreement is between neon1 LLC, doing business as neon1 ("neon1", "I", "me"), and the organization named where it is signed in 1NEON ("you"). It covers every project I do for you while it is in effect.
 
@@ -22,7 +22,7 @@ Prices for equipment, software, and services from other vendors are estimates. Y
 
 ## Paying
 
-I send invoices through 1NEON. Each one is due within 15 days unless it says otherwise. A proposal prices the work as an estimate that discovery sets, billed for the hours I work, at the rate it states. Each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. Unforeseen work or purchases are agreed with you before I add them. When a proposal states a fixed price, for a small, well-defined job, that price is the whole price for the work described. An option may ask for a deposit when it is approved, as the proposal states. A deposit counts toward the final invoice. If the work done comes to less than a deposit you paid, I refund the difference. You can pay by bank transfer (ACH), card, check, Zelle, or wire. If an invoice is more than 30 days overdue, I may pause work until it is paid, after telling you.
+I send invoices through 1NEON. Each one is due within 15 days unless it says otherwise. A proposal prices the work as an estimate that discovery sets, billed for the hours I work, at the rate it states; each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. Unforeseen work or purchases are agreed with you before I add them. When a proposal states a fixed price, for a small, well-defined job, that price is the whole price for the work described. An option may ask for a deposit when it is approved, as the proposal states. A deposit counts toward the final invoice; if the work done comes to less than a deposit you paid, I refund the difference. You can pay by bank transfer (ACH), card, check, Zelle, or wire. If an invoice is more than 30 days overdue, I may pause work until it is paid, after telling you.
 
 ## What you provide
 
@@ -34,7 +34,23 @@ Once you have paid for a project, what I made for you in it is yours. I keep my 
 
 ## Confidentiality
 
-We each keep what we learn about the other's business private, and use it only for the work. This doesn't cover what is already public or what the law requires us to disclose.
+We each keep what we learn about the other's business private, and use it only for the work. This doesn't cover what is already public, what the law requires us to disclose, or what your choices below allow.
+
+## Case studies
+
+Good work is worth showing. If you're fine with it, I may use what I did and measured on your projects in case studies, blog posts, and other examples of my work. They're anonymous: nothing that names or points to you or your people, and none of your data or confidential details. A quote or logo always takes a separate yes.
+
+You choose when you sign:
+
+- **Yes, anonymized is fine.**
+- **Decide later.** I ask you about a project before I write about it.
+- **No.** I don't write about your projects.
+
+## Using your name
+
+You also choose whether I may list your organization's name as a client: **ask me first**, **yes**, or **no**. A name on a list doesn't link you to an anonymized case study.
+
+An admin can change either choice in 1NEON at any time, and the change applies from then on. Ask me to take down something I published about your work, and I remove it from the places I control.
 
 ## Regulated data
 
