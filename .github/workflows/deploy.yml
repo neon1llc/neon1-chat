@@ -2,12 +2,12 @@
 
 name: deploy
 
-# Pushes to main that change anything that ships (the app, its locked dependencies, the
+# Pushes to main that change shipped app files, locked dependencies, the
 # packaging and verification scripts) or the infrastructure, or a manual run
 on:
   push:
     branches: [main]
-    paths: ["app/**", "infra/**", "package.json", "package-lock.json", "scripts/package.mjs", "scripts/verify-release.mjs", ".github/workflows/deploy.yml"]
+    paths: ["app/src/**", "app/corpus/**", "infra/**", "package.json", "package-lock.json", "scripts/package.mjs", "scripts/verify-release.mjs"]
   workflow_dispatch:
 
 # Read-only by default; the release job adds the OIDC token it needs

@@ -100,6 +100,27 @@ test("the site's daily cap is not anyone's strike", async () => {
   assert.ok(![...db.items.keys()].some((k) => k.startsWith("pen#") && db.items.get(k).until));
 });
 
+test("15 questions per visitor per hour and 60 questions per site per day are enforced", async () => {
+  const hourly = table();
+  const settings = { table: "t", perMinute: 6, perHour: 15, perDay: 60, client: hourly };
+  const start = at("2026-11-09T10:00:00Z");
+  for (let i = 0; i < 15; i++) {
+    const now = new Date(start.getTime() + Math.floor(i / 5) * 60_000);
+    assert.equal(await allow(IP, { ...settings, now, question: q(`hour-${i}`) }), null);
+  }
+  const hourlyBlock = await allow(IP, { ...settings, now: new Date(start.getTime() + 3 * 60_000), question: q("hour-16") });
+  assert.deepEqual([hourlyBlock.blocked, hourlyBlock.reason], ["cooldown", "hourly"]);
+
+  const daily = table();
+  for (let i = 0; i < 60; i++) {
+    const ip = `198.51.${Math.floor(i / 250)}.${(i % 250) + 1}`;
+    const out = await allow(ip, { ...settings, client: daily, now: start, question: q(`day-${i}`) });
+    assert.equal(out, null, `site question ${i + 1}`);
+  }
+  const dailyBlock = await allow("203.0.113.8", { ...settings, client: daily, now: start, question: q("day-61") });
+  assert.deepEqual([dailyBlock.blocked, dailyBlock.retry], ["daily", 50_400]);
+});
+
 test("every third flagged message in an hour starts a cooldown from the next message", async () => {
   const db = table();
   const now = at("2026-11-09T10:00:00Z");

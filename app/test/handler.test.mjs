@@ -43,6 +43,25 @@ test("a valid question gets a reply after one strike-record read and three count
   assert.equal(model.calls[0].messages[0].content[0].text, "What do you do?");
 });
 
+test("the handler defaults to 15 questions per visitor per hour and 60 per site per day", async () => {
+  const oldHour = process.env.PER_HOUR;
+  const oldDay = process.env.PER_DAY;
+  delete process.env.PER_HOUR;
+  delete process.env.PER_DAY;
+  try {
+    const dynamo = fake(() => ({}));
+    await handler(event({ messages: [{ role: "user", content: "What does a project usually include?" }] }), { dynamo, bedrock: bedrock() });
+    const maximumFor = (key) => dynamo.calls.find((call) => key(call.Key.pk.S))?.ExpressionAttributeValues?.[":max"]?.N;
+    assert.equal(maximumFor((key) => /^ip#.+#\d{4}-\d{2}-\d{2}T\d{2}$/.test(key)), "15");
+    assert.equal(maximumFor((key) => key.startsWith("day#")), "60");
+  } finally {
+    if (oldHour === undefined) delete process.env.PER_HOUR;
+    else process.env.PER_HOUR = oldHour;
+    if (oldDay === undefined) delete process.env.PER_DAY;
+    else process.env.PER_DAY = oldDay;
+  }
+});
+
 test("the visitor cap stops the request before the model is called", async () => {
   const dynamo = fake((input) => {
     if (input.ConditionExpression) throw Object.assign(new Error("cap"), { name: "ConditionalCheckFailedException" });
