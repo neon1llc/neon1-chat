@@ -1,0 +1,68 @@
+# .github/workflows/release-control.yml - Puts an earlier release back. Started by hand or by the owner's admin portal.
+# It runs from main only, moves main only after the required checks pass on the exact commit, and follows the
+# deploy to its end (.github/release-control.sh). Production infrastructure stays as it is.
+
+name: release-control
+run-name: "${{ inputs.action }} ${{ inputs.target }} (${{ inputs.request_id }})"
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: What to do
+        required: true
+        type: choice
+        options:
+          - rollback
+      expected_main:
+        description: The main commit the preview was made against
+        required: true
+        type: string
+      target:
+        description: A release tag
+        required: true
+        type: string
+      request_id:
+        description: An id for finding this run again
+        required: false
+        default: by-hand
+        type: string
+
+permissions:
+  contents: read
+
+# One release change at a time, never cancelled halfway
+concurrency:
+  group: release-control
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    # contents moves main and dev within their rules; actions starts the checks and the deploy
+    permissions:
+      contents: write
+      actions: write
+      checks: read
+    steps:
+      # Full history and tags. This checkout keeps its token because the script pushes
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      # Inputs arrive as environment values, never as script text. The script runs from a copy outside the tree it changes
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ inputs.action }}
+          EXPECTED_MAIN: ${{ inputs.expected_main }}
+          TARGET: ${{ inputs.target }}
+          CHECKS_WORKFLOW: ci.yml
+          REQUIRED_CHECKS: ci-secrets ci-app ci-terraform
+          DEPLOY_WORKFLOW: deploy.yml
+          KEEP_PATHS: "infra"
+        run: |
+          cp .github/release-control.sh "$RUNNER_TEMP/release-control.sh"
+          bash "$RUNNER_TEMP/release-control.sh"
