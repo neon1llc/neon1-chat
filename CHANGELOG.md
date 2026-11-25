@@ -6,6 +6,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 ## Unreleased
 
 ### Changed
+- Neo's corpus describes the two partner cases as an AWS Select Partner engagement, without the partner's name, and carries the service agreement's case-study and naming choices.
 - The whole site may ask 60 questions a day, down from 500, which keeps the worst-case month near $11 at about 0.6 cent a question. Past that, Neo says to try again tomorrow and links the call booking. One visitor may ask 15 an hour, down from 60, so no one visitor can use a quarter of the day's cap in an hour. The README states the measured figures.
 
 ## v0.4.0 - 2026-11-23
@@ -76,7 +77,7 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 - Neo's replies keep neon1's voice: when a reply uses "I" or "we" for neon1's work, a short second pass with the same model rewrites it as "neon1" or "Pradeep", and the rewrite is used only if it changes no link or price. `VOICE_PASS=0` turns it off.
 - A sentence claiming neon1 did similar work for a kind of client no case study names is dropped before the reply is shown.
 - Neo offers the free call or email when the visitor's next step is a person, not at the end of every reply.
-- Eval: the rubric judge knows that some case studies were subcontracted through Xenoss, and where Neo's directives are published.
+- Eval: the rubric judge knows that some case studies were subcontracted through a partner, and where Neo's directives are published.
 
 ## v0.2.7 - 2026-11-16
 

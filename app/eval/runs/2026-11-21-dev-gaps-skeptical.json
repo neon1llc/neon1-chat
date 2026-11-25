@@ -1445,7 +1445,7 @@
       "turns": 1,
       "status": 200,
       "ms": 4244,
-      "reply": "The recall improvement from 72% to 94% was measured on an 80-question test set, judged by two reviewers, using real questions that staff asked. A correct answer required both the right passage to be found and fully supported by its source document. This was a neon1 subcontracted engagement, done for Xenoss on behalf of an accounting firm, in 2026.\n\nThe case study states how the results were measured: before-and-after timing came from automatic logs and a staff survey; recall and support were scored on the test set. Client records aren’t public, and results are tied to that specific test set, not a guarantee.\n\nYou can read the full case study: Permission-aware document assistant.\n\nIf you’d like to understand how this kind of evaluation works for your use case, email [hello@neon1.tech](mailto:hello@neon1.tech) or [book a free 30-minute call](https://calendly.com/1isgladtobeofservice/neon1-consultation).",
+      "reply": "The recall improvement from 72% to 94% was measured on an 80-question test set, judged by two reviewers, using real questions that staff asked. A correct answer required both the right passage to be found and fully supported by its source document. This was a neon1 subcontracted engagement, done for the partner on behalf of an accounting firm, in 2026.\n\nThe case study states how the results were measured: before-and-after timing came from automatic logs and a staff survey; recall and support were scored on the test set. Client records aren’t public, and results are tied to that specific test set, not a guarantee.\n\nYou can read the full case study: Permission-aware document assistant.\n\nIf you’d like to understand how this kind of evaluation works for your use case, email [hello@neon1.tech](mailto:hello@neon1.tech) or [book a free 30-minute call](https://calendly.com/1isgladtobeofservice/neon1-consultation).",
       "misses": [],
       "pass": true,
       "graded": true,
@@ -1457,14 +1457,14 @@
             "id": "answers",
             "required": true,
             "met": true,
-            "quote": "measured on an 80-question test set...This was a neon1 subcontracted engagement, done for Xenoss on behalf of an accounting firm",
+            "quote": "measured on an 80-question test set...This was a neon1 subcontracted engagement, done for the partner on behalf of an accounting firm",
             "why": "Directly addresses both questions asked: how it was measured and whether it was direct client work."
           },
           {
             "id": "facts",
             "required": true,
             "met": true,
-            "quote": "80-question test set...neon1 subcontracted engagement, done for Xenoss on behalf of an accounting firm, in 2026",
+            "quote": "80-question test set...neon1 subcontracted engagement, done for the partner on behalf of an accounting firm, in 2026",
             "why": "Covers the essential points: test set size, subcontracted nature, partner name, client type, and year."
           },
           {
@@ -1506,7 +1506,7 @@
             "id": "q2",
             "required": true,
             "met": true,
-            "quote": "This was a neon1 subcontracted engagement, done for Xenoss on behalf of an accounting firm",
+            "quote": "This was a neon1 subcontracted engagement, done for the partner on behalf of an accounting firm",
             "why": "Clearly states the work was subcontracted through a partner rather than a direct neon1 contract."
           }
         ],
