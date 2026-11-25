@@ -1,8 +1,8 @@
 # AWS CLIP (AWS CLI Plus): the repository README, written for developers (https://github.com/neon1llc/aws-clip)
 
-# AWS CLI Plus
+# AWS CLIP
 
-AWS CLI Plus (`aws-clip`) sits in front of AWS CLI v2 for multi-profile work. It finds your profiles, logs in through each profile's own path, checks the active account and principal, and confirms risky commands against the account you expect. For one-off work, use `aws` directly.
+AWS CLIP (AWS CLI Plus) sits in front of AWS CLI v2 for multi-profile work. It finds your profiles, logs in through each profile's own path, checks the active account and principal, and confirms risky commands against the account you expect. For one-off work, use `aws` directly.
 
 **Status:** v0.x, early software. Tests run against a fake AWS CLI and never contact AWS. I've only used it on my own machines.
 
@@ -15,13 +15,13 @@ AWS CLI Plus (`aws-clip`) sits in front of AWS CLI v2 for multi-profile work. It
 | Short-lived credentials, SSO login, profile config | AWS CLI v2 itself: [`aws configure sso`](https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html) and [`aws login`](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-authentication.html) |
 | Fast role switching and several consoles open at once | [Granted](https://github.com/fwdcloudsec/granted) |
 | Storing long-lived IAM keys in an OS keystore | An actively maintained [aws-vault fork](https://github.com/ByteNess/aws-vault), since the [original](https://github.com/99designs/aws-vault) is abandoned. Better, move off long-lived keys |
-| A prompt and account check at the moment you run a risky CLI command | **aws-clip** |
+| A prompt and account check at the moment you run a risky CLI command | **AWS CLIP** |
 
-aws-clip works beside the others and stores no credentials. It catches a shell still pointed at production when you meant development.
+AWS CLIP works beside the others and stores no credentials. It catches a shell still pointed at production when you meant development.
 
 ## Install
 
-Needs AWS CLI v2 on `PATH`. With Go 1.22 or newer:
+Needs AWS CLI v2 on `PATH`. With Go 1.26 or newer:
 
 ```sh
 go install github.com/neon1llc/aws-clip/cmd/aws-clip@latest
@@ -31,10 +31,26 @@ aws-clip doctor
 Or download a macOS or Linux binary (arm64 or amd64) from the [latest release](https://github.com/neon1llc/aws-clip/releases/latest) and check it against `checksums.txt`:
 
 ```sh
-sha256sum --check --ignore-missing checksums.txt   # on macOS: shasum -a 256 --check --ignore-missing checksums.txt
-chmod +x aws-clip_linux_amd64 && mv aws-clip_linux_amd64 ~/.local/bin/aws-clip
+# Linux amd64
+sha256sum --check --ignore-missing checksums.txt
+chmod +x aws-clip_linux_amd64
+mv aws-clip_linux_amd64 ~/.local/bin/aws-clip
+```
+
+```sh
+# macOS arm64
+shasum -a 256 --check --ignore-missing checksums.txt
+chmod +x aws-clip_darwin_arm64
+mv aws-clip_darwin_arm64 ~/.local/bin/aws-clip
+```
+
+Then confirm that AWS CLI v2 is on `PATH` and run:
+
+```sh
 aws-clip doctor
 ```
+
+Release binaries are provided for Linux and macOS on amd64 and arm64. Windows amd64 is supported through `go install`; prebuilt Windows binaries are not provided. CI tests Go 1.26 and 1.27 on Linux, macOS, and Windows.
 
 Or build from a clone:
 
