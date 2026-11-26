@@ -96,7 +96,7 @@ test("a reply over the limit is cut at a sentence end and fits the history", () 
 });
 
 test("a cut never lands inside a Markdown link or URL", () => {
-  const link = "[book a free call](https://calendly.com/1isgladtobeofservice/neon1-consultation)";
+  const link = "[book a free call](https://calendly.com/book-neon1/initial)";
   const text = `${"word ".repeat(225)}${link} and more words after it to push past the limit`;
   const out = clip(text, 1200);
   assert.ok(out.length <= 1200);
