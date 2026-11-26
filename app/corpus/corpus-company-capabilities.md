@@ -20,8 +20,8 @@ Four services: [workflow automation](../guides/use-case-workflows.md), [cloud an
 
 | Client | Kind | Work | Result |
 |---|---|---|---|
-| Accounting firm | neon1 subcontracted engagement, with an AWS Select Partner | [Permission-aware document assistant](../case-studies/answers-in-seconds.md) over the firm's Microsoft 365 documents, on Amazon Bedrock | Median lookup from about 5 minutes to 14 seconds, and recall from 72% to 94%, on an 80-question test set |
-| Dermatology practice | neon1 subcontracted engagement, with an AWS Select Partner | [Patient intake portal](../case-studies/intake-out-of-the-inbox.md), serverless on AWS | Median intake from 2.6 days to 3.4 hours, and staff time from 24 to 8 minutes each |
+| Accounting firm | neon1 subcontracted engagement | [Permission-aware document assistant](../case-studies/answers-in-seconds.md) over the firm's Microsoft 365 documents, on Amazon Bedrock | Median lookup from about 5 minutes to 14 seconds, and recall from about 70% to over 90%, on an 80-question test set |
+| Dermatology practice | neon1 subcontracted engagement | [Patient intake portal](../case-studies/intake-out-of-the-inbox.md), serverless on AWS | Median intake from 2.6 days to 3.4 hours, and staff time from 24 to 8 minutes each |
 | Automotive business | neon1 engagement | [Two-site server migration](../case-studies/two-offices-off-local-servers.md) to AWS, with the client's technical lead | Both locations moved with no application rewrite, records reconciled, and restore tested |
 | Small local business | neon1 engagement | [Operations integration and monitoring](../case-studies/one-view-of-the-shop.md): point-of-sale, order tracking, and cameras joined on AWS, on a separate device network | The owner acts on problems from anywhere, not only on site |
 | Schools, families, and teams | neon1 engagement | [Security awareness sessions](../case-studies/security-for-non-security-people.md) | Informational sessions, with accounts and devices secured during the session |

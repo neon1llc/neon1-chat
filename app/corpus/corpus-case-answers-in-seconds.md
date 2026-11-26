@@ -6,7 +6,7 @@ Staff spent minutes searching Microsoft 365, or asked a senior colleague.
 
 neon1 subcontracted engagement, 2026
 
-**~5 min → 14 s** lookup · recall 72% → 94%
+**~5 min → 14 s** lookup · recall ~70% → 90%+
 
 | | In short |
 |---|---|
@@ -23,7 +23,7 @@ The ask: staff ask a normal question and get the approved answer with its source
 
 ## The work
 
-This was my first project with an AWS Select Partner, a partnership that helps us both: I bring them local client opportunities, they support design and maintenance, and, being local, I'm the lead engineer. The partner held the contract, with me as its subcontractor. We designed it together, they maintain it, and I handled ingestion, embeddings, retrieval, and answer quality.
+I was the lead engineer, subcontracted to an AWS Select Partner that held the contract. We designed it together, the partner maintains it, and I built ingestion, embeddings, retrieval, and answer quality.
 
 - Only approved Microsoft 365 libraries sync into versioned, encrypted S3, with source, version, and access details.
 - Bedrock Knowledge Bases, Titan embeddings, and OpenSearch Serverless run hybrid search, so exact form numbers match as well as reworded questions.
@@ -34,10 +34,10 @@ This was my first project with an AWS Select Partner, a partnership that helps u
 
 | Measure                                  | Before       | After  |
 |------------------------------------------|--------------|--------|
-| Median lookup, answer and source checked | ~4.8 min     | 13.6 s |
+| Median lookup, answer and source checked | ~5 min       | ~14 s  |
 | Slowest 5% of lookups                    | up to 10 min | ~24 s  |
-| Right passage found (recall at 8)        | 72%          | 94%    |
-| Answers fully supported by their source  | 78%          | 92%    |
+| Right passage found (recall at 8)        | ~70%         | 90%+   |
+| Answers fully supported by their source  | under 80%    | 90%+   |
 | Interruptions of senior staff per week   | ~18          | ~7     |
 
 Measured on 80 representative questions, including ones it should refuse, judged by two reviewers. A fast answer from the wrong document counted as a failure. Lookup times before launch were timed automatically and checked against the staff's own estimates in a short survey. After launch, the system records the start and end of each lookup, as metrics only, with no question or answer text. Interruptions of senior staff left no record, so that figure comes from the survey.

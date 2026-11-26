@@ -125,7 +125,7 @@ Yes, until you accept the handover. The decision maker uses **Choose this instea
 That your organization agreed to the option as shown: its scope, cost, timeline, and conditions. Both sides can rely on it, alongside your signed agreement with neon1, which governs the paid work.
 
 ### How do I accept a handover step?
-On **Normalize**, steps are ticked as they're done. Once all are, the decision maker chooses **Accept the handover** and signs with their typed name. One signature accepts every step. **Check it and accept** accepts one step early. Accepted steps can't be edited, and acceptance prompts the final invoice. Watch [the handover](https://neon1.tech/1NEON/live?play=handover) and [the final invoice](https://neon1.tech/1NEON/live?play=final). Work is accepted only when someone records it. While a decision waits on you, email reminds you after 3 and 7 business days.
+On **Normalize**, steps are ticked as they're done. Once all are, the decision maker chooses **Accept the handover** and signs with their typed name. One signature accepts every step. **Check it and accept** accepts one step early. Accepted steps can't be edited, and acceptance prompts the final invoice. Watch [the handover](https://neon1.tech/1NEON/live?play=handover) and [the final invoice](https://neon1.tech/1NEON/live?play=final).
 
 ### What do Cost, Quality, and Effort mean?
 neon1's 1 to 5 rating of each option, where more dots is always better. **Cost** is the total cost, **Quality** how fully it meets your requirements, and **Effort** your team's effort to adopt and run it. **How this adds up** shows the hours and when you'd pay. Demo and walkthrough figures are illustrative. [Watch it](https://neon1.tech/1NEON/live?play=propose).
