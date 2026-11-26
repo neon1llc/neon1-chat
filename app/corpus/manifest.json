@@ -1,22 +1,22 @@
 {
-  "digest": "sha256:b3093cc41b4df29bb9dd93595aae7ebc3c5f0be35cf7099a279bc19132e06282",
-  "chars": 138095,
+  "digest": "sha256:5b9965d2e9aeefcfca38365a249a71e908ad3ab53023df2023259f99adf79bdb",
+  "chars": 144208,
   "sources": [
     {
       "file": "corpus-company-about.md",
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-about.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
-      "sha256": "ebebef9e7a7b65045395884511a875019a1b1bd73ed638eaac9050115ca5438f",
-      "chars": 1947
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "1b31d1ad0724dd48636dd5e2ab524d676dbd498cc656c95a419016f5157ba971",
+      "chars": 2104
     },
     {
       "file": "corpus-company-mission.md",
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-mission.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "8f4860a154b1096f2521385281d4329ef979fc2194dc44fbf289ace182265bea",
       "chars": 1188
     },
@@ -25,7 +25,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-names.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "695c1a6dfc96dd1b5161a4e8c3ad3880227d2fe54807eae97ccba046386e2040",
       "chars": 1026
     },
@@ -34,16 +34,16 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-capabilities.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
-      "sha256": "da9f5d1b305ede870c357b2585093756c2494ff803d9149f2afb9f9e124320c1",
-      "chars": 4729
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "dc9894d02cd8b8baa323682ea384a1f39972b4fd6b2d6a293b896fed79a80b2f",
+      "chars": 5038
     },
     {
       "file": "corpus-company-contact.md",
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-contact.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "02a508f2abf9b2bddf6ce8f9f47ddc00ef761ae6dd5475dbd734ec3533f17b1b",
       "chars": 2055
     },
@@ -52,16 +52,16 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#services.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
-      "sha256": "49ac97c5f833ae99e7d6bf9d3cf1d4202f2a5d52c660101a2c3104e18f5abe80",
-      "chars": 4347
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "833e93bc3032e9bf70a5c728f5ca263d88038ae5ebdc1f587955d57f3cf212d4",
+      "chars": 5280
     },
     {
       "file": "corpus-company-pricing.md",
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-pricing.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "89900297b61ad60f30f76910c57f540adffd48cc14f60faa772a3621c23d0208",
       "chars": 3587
     },
@@ -70,7 +70,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-process.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "7fcccc82013529ed2ed13966e34a5764aa8e5febf782fbc6476a1aa3559c7783",
       "chars": 940
     },
@@ -79,7 +79,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#company-publishing-client-work.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "ec7abdabb07f37e9a1734e0806c461d5aa784f3dd4ac7e779d88f32c7df8d0c8",
       "chars": 1195
     },
@@ -88,7 +88,7 @@
       "url": "https://neon1.tech/1NEON/agreement",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#policy-service-agreement.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "e645ae102666412733e0374dcebf7e0a57b582c0e5bed263b928abed1b7002b2",
       "chars": 5031
     },
@@ -97,7 +97,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#standards-ai-quality.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "43fedc07508d4f2441ec63a4c7f10e3827bbc35ec5b9264dfbb5ed779cbc1932",
       "chars": 4927
     },
@@ -106,16 +106,34 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-cloud.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "87d4cd83afbba501ffa576848525054921fcfd1214cd02b940cbc0ab5ef2bae0",
       "chars": 2824
+    },
+    {
+      "file": "corpus-guides-use-case-custom-software.md",
+      "url": "https://neon1.tech/",
+      "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-custom-software.md",
+      "revision": "neon1-corpus content-clean",
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "4ec3fc32eedb5016ffc32e53ae17c8486dbf105b92e8c0e6f0571635fd41f0fd",
+      "chars": 2415
+    },
+    {
+      "file": "corpus-guides-use-case-modernization.md",
+      "url": "https://neon1.tech/",
+      "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-modernization.md",
+      "revision": "neon1-corpus content-clean",
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "0f76126a7f0d6b154c3aeae49c47cbdb237bf5b8eb434a1bc71c78a91d574bcd",
+      "chars": 2260
     },
     {
       "file": "corpus-guides-use-case-networks.md",
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-networks.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "1e1d6b6ce27e8c80974d2fcbfa31c4d63a142efeca1ff09f5f9cc5cafdec5396",
       "chars": 2455
     },
@@ -124,7 +142,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-security-readiness.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "106eee313ae39084e308769cfeb7ed33ef85c5e327f79b2fab2c584a227eb035",
       "chars": 2161
     },
@@ -133,16 +151,16 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#guides-use-case-workflows.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
-      "sha256": "9f00baca1312166a17e2fbdff9300304d433a96d6ac29435a10d10f80269a645",
-      "chars": 2540
+      "fetched": "2026-11-26T18:14:47.344Z",
+      "sha256": "806e67c8a6fcfa51cecaf239b3dd8544f4ff93432fd961bcaafd97520f47c8b0",
+      "chars": 2579
     },
     {
       "file": "corpus-faq-1neon-help.md",
       "url": "https://neon1.tech/1NEON/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#faq-1neon-help.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "7645478f150251b3080242ea2d0a19b7bd5d548606af3943307ccb6f56989d29",
       "chars": 23384
     },
@@ -151,7 +169,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#faq-working-with-neon1.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "38d6ffe9fcb9e7fdb0589a99866f17616f02170510ba18d6b7542d9e18875b48",
       "chars": 3868
     },
@@ -160,7 +178,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-answers-in-seconds.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "53ab55739a6b27d4b5fd7bfddb467d0d2f0a1f6edfe6dc434a0fd85bd1071735",
       "chars": 3547
     },
@@ -169,7 +187,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-intake-out-of-the-inbox.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "4809cabdaea165ab81fd263e79a4e1ac2b2dfe42b5a1a5ea2bbc634e3abdee4e",
       "chars": 3286
     },
@@ -178,7 +196,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-one-view-of-the-shop.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "6be2d35867d13f4e23621f185b4dc5e83826a5977954ef0ddb62c4910f92bea2",
       "chars": 2976
     },
@@ -187,7 +205,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-two-offices-off-local-servers.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "1de2af94ed87b1a6e00328fb20a6647964dfa0e674965802b3875bf0f250f9b9",
       "chars": 2015
     },
@@ -196,7 +214,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-security-for-non-security-people.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "6d41e9b85ee4277977de9039aded06b545a943b7826cb914e5e76e1efa4515ca",
       "chars": 1823
     },
@@ -205,7 +223,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-cameras-to-grandmas-email.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "389f0dd476e81b6363bd3c99ed518a5492fc2c3faf9871759629c18f1f2eac6d",
       "chars": 1386
     },
@@ -214,7 +232,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#case-where-neon1-started.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "b6f910c6a836d8e9a66b794dc61ba91b519f1a5815ff255de249254456a3c73b",
       "chars": 1398
     },
@@ -223,7 +241,7 @@
       "url": "https://neon1.tech/1NEON/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#product-1neon.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "99a06f8209b9575467c2ba086a04affcb845ee361730ee45eea90251fbc87cbc",
       "chars": 2068
     },
@@ -232,7 +250,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#product-aws-clip.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "9b6fd0c472658735ca60e954fe16ebeb2f78b9395d7db5c9b50254d93a7d5fee",
       "chars": 2431
     },
@@ -241,7 +259,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#product-deploy-ops.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "21d72477716d9a5607b3ec6a9bd1e437a82752776459ab4323ecaa0d0d18dc1c",
       "chars": 2010
     },
@@ -250,7 +268,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#product-ready-secure-go.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "efa0f5afb78d9af05338d708c9ec2784cc6c429455c67fa3fedfec72ffbcfebd",
       "chars": 1979
     },
@@ -259,7 +277,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#landscape-where-else-to-get-help.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "15554f64d50eaebeb70d230f02936638f23a374b4bbce14fad3dbc3370b90f79",
       "chars": 3965
     },
@@ -268,7 +286,7 @@
       "url": "https://neon1.tech/knowledge/policies/accessibility/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#policy-accessibility.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "62de76627eaf0b177754b8fd11fa82dfe63139677be077b5f328a002a5969bad",
       "chars": 2330
     },
@@ -277,7 +295,7 @@
       "url": "https://neon1.tech/knowledge/policies/ai-use/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#policy-ai-use.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "994bd78a41850b73ecc504d2521d900217fbaf71e67a47138145435d35d4151c",
       "chars": 4076
     },
@@ -286,7 +304,7 @@
       "url": "https://neon1.tech/knowledge/policies/security/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#policy-security.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "da7ad561437e2bc9c2ff9f33bb26498467c558c3a0bf4a02dfd5e27daaabc03c",
       "chars": 1633
     },
@@ -295,7 +313,7 @@
       "url": "https://neon1.tech/1NEON/terms",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#policy-terms.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "192439086d788933d9a19cfd690f973e097abbe1d73484871c9f7d01331531a2",
       "chars": 6243
     },
@@ -304,7 +322,7 @@
       "url": "https://neon1.tech/",
       "source": "https://github.com/neon1llc/neon1-corpus#content-clean#neo-chat.md",
       "revision": "neon1-corpus content-clean",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "4ecec8ceafbeea82243ff5299f1a101d36d3d051b40cfb5357652169b5d4cb30",
       "chars": 8647
     },
@@ -313,7 +331,7 @@
       "url": "https://github.com/neon1llc/neon1-site",
       "source": "https://raw.githubusercontent.com/neon1llc/neon1-site/5e51961ced702c1e7ae13687f7981a7f6ea23d4c/README.md",
       "revision": "5e51961ced702c1e7ae13687f7981a7f6ea23d4c",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "e28595a40fef2f430c0e6c10fe3e0f7fed34ee038a13bf89c9e0c7171dc33dcc",
       "chars": 4934
     },
@@ -322,7 +340,7 @@
       "url": "https://github.com/neon1llc/neon1-1NEON",
       "source": "https://raw.githubusercontent.com/neon1llc/neon1-1NEON/c16ca47db82084ba0b0945f4a3b708baac846027/README.md",
       "revision": "c16ca47db82084ba0b0945f4a3b708baac846027",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "56b6b61294413691c3a5fe02e8103c2d95e8abe393ac478561b23b0d044b579c",
       "chars": 4215
     },
@@ -331,7 +349,7 @@
       "url": "https://github.com/neon1llc/neon1-aws-infrastructure",
       "source": "https://raw.githubusercontent.com/neon1llc/neon1-aws-infrastructure/b04a0cf6881a2139856a33a966479ffae13b7a8a/README.md",
       "revision": "b04a0cf6881a2139856a33a966479ffae13b7a8a",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "5f34fc4734cacea55f559e5655faf5e17dabec7fc171b347af1971c922898378",
       "chars": 4617
     },
@@ -340,7 +358,7 @@
       "url": "https://github.com/neon1llc/aws-clip",
       "source": "https://raw.githubusercontent.com/neon1llc/aws-clip/a7db1f15ed94ce1b38a260d1f51e75fdf25eb2f3/README.md",
       "revision": "a7db1f15ed94ce1b38a260d1f51e75fdf25eb2f3",
-      "fetched": "2026-11-26T18:10:56.829Z",
+      "fetched": "2026-11-26T18:14:47.344Z",
       "sha256": "14280db0304940d9e0b903d407e910798257fcc6d33d19478b1f26e5dd5f7783",
       "chars": 4312
     }

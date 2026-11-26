@@ -15,7 +15,7 @@ Integrating business systems, automating processes, and building the software in
 
 - **Integration.** APIs, webhooks, and event-driven sync between CRM, ERP, point-of-sale, accounting, scheduling, and document systems, with identifiers mapped and a clear source of truth for each record.
 - **Exception handling.** Retries, idempotency, reconciliation reports, and a queue for anything that needs a person, so failures are visible rather than silent.
-- **Custom applications.** Portals, internal tools, and services where configuration and integration can't meet the requirement.
+- **Custom pieces.** Small services and screens where configuration can't meet the requirement. Larger applications are [custom software](use-case-custom-software.md).
 - **Reporting and visibility.** Data consolidated into dashboards and reports that people use.
 - **AI where it earns its place.** Document classification and extraction with review, measured against real samples.
 

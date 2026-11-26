@@ -2,11 +2,11 @@
 
 neon1 on one page for a buyer, partner, or procurement office: what it does, how it differs, work it has delivered, and the company's details.
 
-neon1 is an independent engineering and technology consulting practice run by Pradeep Tathineni, its lead engineer, with more than eight years in cloud infrastructure, automation, and software delivery. It assesses, designs, builds, integrates, and improves technology systems for businesses, technical teams, and individuals.
+neon1 is an independent engineering and technology consulting practice run by Pradeep Tathineni, its lead engineer, with more than eight years in cloud infrastructure, automation, and software delivery, and recent work in AI evaluation and operations. It assesses, designs, builds, integrates, and improves technology systems for businesses, technical teams, and individuals.
 
 ## What I do
 
-Four services: [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [networks, devices, and connected systems](../guides/use-case-networks.md), and [security readiness](../guides/use-case-security-readiness.md). Audit opinions come from independent auditors.
+Six services: [custom software](../guides/use-case-custom-software.md), [workflow automation](../guides/use-case-workflows.md), [cloud and AI engineering](../guides/use-case-cloud.md), [modernization](../guides/use-case-modernization.md), [networks, devices, and connected systems](../guides/use-case-networks.md), and security [readiness](../guides/use-case-security-readiness.md) and [awareness](../guides/use-case-security-awareness.md). Audit opinions come from independent auditors.
 
 ## How engagements work
 
@@ -38,7 +38,7 @@ Four services: [workflow automation](../guides/use-case-workflows.md), [cloud an
 | **Business address** | 418 Broadway, Ste R, Albany, NY 12207 |
 | **Service area** | Remote across the US, or on site within about 30 miles of Queens, NY. Outside the US, ask |
 | **Owner** | Pradeep Tathineni |
-| **Certification** | AWS Certified Cloud Practitioner (2025) |
+| **Credentials** | AWS Certified Cloud Practitioner (2025), and a postgraduate program in AI and machine learning, University of Texas at Austin (2026) |
 | **Email** | hello@neon1.tech |
 | **Phone** | [(424) 32-neon1](tel:+14243263661), that's (424) 326-3661 |
 | **Website** | [neon1.tech](https://neon1.tech) |
