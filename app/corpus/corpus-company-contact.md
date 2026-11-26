@@ -6,7 +6,7 @@ How to reach neon1, when, and what the first call covers.
 |---|---|
 | **Email** | [hello@neon1.tech](mailto:hello@neon1.tech) |
 | **Call or text** | [(424) 32-neon1](tel:+14243263661), that's (424) 326-3661 |
-| **Book a call** | [calendly.com/1isgladtobeofservice/neon1-consultation](https://calendly.com/1isgladtobeofservice/neon1-consultation) |
+| **Book a call** | [calendly.com/book-neon1/initial](https://calendly.com/book-neon1/initial) |
 | **LinkedIn** | [Pradeep](https://www.linkedin.com/in/pradeep-tathineni/) and [neon1](https://www.linkedin.com/company/neon1llc) |
 | **GitHub** | [neon1llc](https://github.com/neon1llc) |
 

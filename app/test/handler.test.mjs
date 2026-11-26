@@ -135,7 +135,7 @@ test("the prompt carries the public sources and the grounding rules", () => {
   assert.match(prompt, /1 is glad to be of service/);
   // The human route is in the rules, so Neo can offer Pradeep whenever it can't fully answer
   assert.match(prompt, /\[hello@neon1\.tech\]\(mailto:hello@neon1\.tech\)/);
-  assert.match(prompt, /calendly\.com\/1isgladtobeofservice\/neon1-consultation/);
+  assert.match(prompt, /calendly\.com\/book-neon1\/initial/);
 });
 
 test("links are real and labeled; invented ones lose the link", async () => {
