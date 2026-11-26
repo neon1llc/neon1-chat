@@ -97,7 +97,7 @@ function offline() {
       if (last.role !== "user" || last.content[0].text !== checked.messages.at(-1).content) problems.push("the question isn't the last user turn");
       if (system.includes(checked.messages.at(-1).content)) problems.push("the question leaked into the system prompt");
       // The human route and the scope switch are always in the rules
-      if (!system.includes("hello@neon1.tech") || !system.includes("calendly.com/1isgladtobeofservice/neon1-consultation")) problems.push("the human route is missing from the prompt");
+      if (!system.includes("hello@neon1.tech") || !system.includes("calendly.com/book-neon1/initial")) problems.push("the human route is missing from the prompt");
       if (!/SCOPE: (general-help|neon1-only)/.test(system)) problems.push("the scope switch isn't named in the prompt");
       if (req.system.some((b) => /^FIT:/.test(b.text ?? ""))) problems.push("a film-line note is still assembled");
       // The facts the expected answer depends on are in the sources the prompt carries

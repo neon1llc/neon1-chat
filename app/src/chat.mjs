@@ -9,7 +9,7 @@ export { loadCorpus, loadDirectives } from "./corpus.mjs";
 
 // Where people go when Neo can't answer, is limited, or is unsure: the email and booking link on
 // neon1's contact page (corpus/company/contact.md). A test checks both are still there
-export const BOOKING = "https://calendly.com/1isgladtobeofservice/neon1-consultation";
+export const BOOKING = "https://calendly.com/book-neon1/initial";
 export const EMAIL = "hello@neon1.tech";
 
 // The human route in Markdown, as the chat window renders it (neon1-site shared/chat.js)
