@@ -47,7 +47,7 @@ Only with your approval. If the work turns out bigger, or something unforeseen o
 
 ## Paying
 
-A project usually starts with a deposit of half the estimate's low end, and the rest is billed when you accept the handover. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
+A project usually starts with a deposit of 30% of the estimate's low end. After that, I bill the hours worked every two weeks, or a fixed price by its milestones or on delivery. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
 
 ## Room to adjust
 
