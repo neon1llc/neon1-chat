@@ -217,11 +217,10 @@ test("a reply that decides HIPAA applies to the visitor becomes a pointer to a p
 
 test("a flat 'neon1 doesn't set up laptops' becomes 'the pages don't list it'", () => {
   const out = guardClaims("neon1 doesn't set up laptops or handle hardware installation. A local IT provider does that.", "Give me a fixed price right now for setting up 5 new laptops.");
-  assert.match(out, /^The pages don't list laptop or hardware setup, so a call settles whether it fits\. A local IT provider does that\.\n\nA fixed price or estimate comes in a proposal after the free call\. The pricing page's rough guide is \$150 to \$750/);
+  assert.match(out, /^The pages don't list laptop or hardware setup, so a call settles whether it fits\. A local IT provider does that\.\n\nA fixed price or estimate comes in a proposal after the free call\. The \[pricing page\]/);
   // The proposal line is not repeated when the reply already says it
-  assert.match(guardClaims("A proposal sets the price.", "Can I get a quote?"), /rough guide is \$150 to \$750/);
-  const both = "A proposal sets the price, and a small fix is often $150 to $750.";
-  assert.equal(guardClaims(both, "Can I get a quote?"), both);
+  const said = "A proposal sets the price.";
+  assert.equal(guardClaims(said, "Can I get a quote?"), said);
   // Network work that touches devices stays
   const net = "neon1 doesn't replace your devices, but the networks service covers how devices connect.";
   assert.equal(guardClaims(net, "x"), net);

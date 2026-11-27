@@ -30,7 +30,7 @@ test("the scope switch defaults to general help and narrows to neon1 only", () =
   assert.match(systemPrompt(corpus, "", "typo"), /Answer about neon1 only/);
   // What never changes with scope: neon1 facts, prices, and commitments come only from the sources
   for (const p of [general, narrow]) {
-    assert.match(p, /Dollar figures: use only the ones the SOURCES publish/);
+    assert.match(p, /Dollar figures: never state a price, range, or rate/);
     assert.match(p, /Never commit neon1/);
     assert.match(p, /offer Pradeep/);
   }
