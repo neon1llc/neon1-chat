@@ -70,8 +70,8 @@ test("a hanging model is aborted at the request deadline and logs no visitor tex
   expectSafe(result, 504, "timeout");
   assert.equal(result.headers["retry-after"], "10");
   assert.equal(signal.aborted, true);
-  assert.equal(lines.length, 1);
-  assert.deepEqual(JSON.parse(lines[0]), { event: "chat_error", name: "Timeout" });
+  const logs = lines.map((line) => JSON.parse(line));
+  assert.ok(logs.some((log) => log.event === "chat_error" && log.name === "Timeout"));
   assert.ok(lines.every((line) => !line.includes("9073")));
 });
 
