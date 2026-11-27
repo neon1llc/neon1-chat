@@ -6,7 +6,7 @@ import { gate, latestBaseline } from "../eval/gate.mjs";
 // A run of n questions where the listed ids fail each grade
 function run(ids, { keywordFails = [], rubricFails = [], judged = true } = {}) {
   const results = ids.map((id) => ({
-    id, graded: true, pass: !keywordFails.includes(id),
+    id, status: 200, reply: `Reply for ${id}`, graded: true, pass: !keywordFails.includes(id),
     ...(judged ? { rubric: { pass: !rubricFails.includes(id), misses: rubricFails.includes(id) ? ["rubric: facts"] : [] } } : {}),
   }));
   const passed = results.filter((r) => r.pass).length;
@@ -37,6 +37,30 @@ test("fails an unjudged or partial run, and an unjudged baseline", () => {
   partial.summary.asked = 3;
   assert.match(gate(partial, run(ids)).problems.join(), /asked 3 of 4/);
   assert.match(gate(run(ids), run(ids, { judged: false })).problems.join(), /baseline has no rubric grade/);
+});
+
+test("fails when a result has an HTTP or model error status", () => {
+  for (const status of [502, 503, "network"]) {
+    const candidate = run(ids);
+    candidate.results[0].status = status;
+    const result = gate(candidate, run(ids));
+    assert.equal(result.pass, false, `accepted status ${status}`);
+    assert.match(result.problems.join(), /failed status/);
+  }
+});
+
+test("fails when candidate question IDs differ from the baseline", () => {
+  const result = gate(run(["a", "b", "c", "other"]), run(ids));
+  assert.equal(result.pass, false);
+  assert.match(result.problems.join(), /question IDs do not match/);
+});
+
+test("fails when a successful result has an empty reply", () => {
+  const candidate = run(ids);
+  candidate.results[0].reply = "  ";
+  const result = gate(candidate, run(ids));
+  assert.equal(result.pass, false);
+  assert.match(result.problems.join(), /empty replies/);
 });
 
 test("finds the newest judged baseline", () => {

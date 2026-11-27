@@ -55,6 +55,22 @@ test("the published prices are the pricing page's figures, and the real page has
   assert.deepEqual(dollarFigures("From $1,000 to $3k, or 750 USD, or 1 500 $."), [1000, 3000, 750, 1500]);
 });
 
+test("the documented dollar forms are recognized and removed when unpublished", () => {
+  const examples = [
+    ["$1,000", 1000],
+    ["$1k", 1000],
+    ["1 000 $", 1000],
+    ["750 USD", 750],
+    ["750 dollars", 750],
+    ["750 dólares", 750],
+  ];
+  for (const [form, amount] of examples) {
+    assert.deepEqual(dollarFigures(form), [amount], form);
+    const filtered = onlyPublishedPrices(`The quote is ${form}.`, new Set());
+    assert.deepEqual(dollarFigures(filtered), [], form);
+  }
+});
+
 test("a sentence with an unpublished price goes; published ranges stay", () => {
   const prices = publishedPrices(pricedCorpus);
   assert.equal(onlyPublishedPrices("Small fixes run $150 to $750. My rate is $95 an hour. Book a call.", prices), "Small fixes run $150 to $750. Book a call.");
