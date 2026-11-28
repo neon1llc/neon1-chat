@@ -5,6 +5,9 @@ neon1-chat releases use `v0.MINOR.PATCH` until the first complete release, v1.0.
 
 ## Unreleased
 
+### Changed
+- Neo's sources follow the reworded case studies, agreements, privacy policy, and publication form.
+
 ### Fixed
 - Booking links go to calendly.com/book-neon1/initial. The old link stopped working.
 

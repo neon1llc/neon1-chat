@@ -2,36 +2,33 @@
 
 People knew they were exposed online, but not where to start.
 
-*schools, families, & teams · security*
+*community education · security*
 
-neon1 engagement, 2025
+Community education: Community education, 2025
 
-**parents to executives** · every level
+**practical steps** · for any level
 
 | | In short |
 |---|---|
 | **The problem** | People knew they were exposed online, but not where to start. |
-| **The work** | Plain-language sessions on networks, cameras, fraud, and data brokers. |
-| **The results** | Live checkups, and the questions people brought back. |
-| **After handover** | Kept current with Ready, Secure, Go as threats change. |
+| **The work** | Practical online safety sessions. |
+| **The results** | Educational, not certified training. |
+| **After handover** | Sessions for your group on request. |
 
 ## The problem
 
-Teachers, parents, engineers, and executives knew their accounts, homes, and businesses were exposed, but the advice they'd seen was too technical or too vague to use.
+People knew their accounts, homes, and businesses were exposed, but the advice they'd seen was too technical or too vague to use.
 
 ## The work
 
-I've run sessions for groups of parents, teachers, engineers, and executives. Most were hosted by small and medium businesses for their own people. Others I held in a rented WeWork room for people who came through my Retro NY meetups. Each session fits the audience's devices and accounts, with time to change real settings. Topics include:
+I've led practical online safety sessions for people with different levels of technical experience.
 
-- Securing home and business networks, cameras, and connected devices.
-- Fraud, phishing, data brokers, and what's sold on the dark web.
-- Account hygiene, password managers, and two-factor sign-in.
-- The security of physical spaces, not just screens.
+The sessions cover account security, fraud, home and business networks, privacy, and connected devices. I focus on steps participants can understand and apply themselves.
 
 ## The results
 
-The best measure is what people do: turning on two-factor sign-in during the session, changing default camera and router passwords, and returning with questions about their own setups.
+These are educational sessions, not certified training or a formal security assessment.
 
 ## After handover
 
-The sessions are informational, not certified training. Controls and audit preparation are [security readiness](../guides/use-case-security-readiness.md) work. [Contact me](../engagement/contact.md) about a session for your group.
+Controls and audit preparation are [security readiness](../guides/use-case-security-readiness.md) work. [Contact me](../engagement/contact.md) about a session for your group.

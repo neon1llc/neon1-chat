@@ -1,32 +1,32 @@
 # Where neon1 started (https://neon1.tech/)
 
-A grade school wanted real STEM tools on a small budget.
+My work with a school community in Queens before I formed neon1.
 
-*grade school · community*
+*local school community · community*
 
-Personal or volunteer work: As a volunteer, before neon1, 2025
+Personal or volunteer work: Before neon1, 2025
 
-**at no charge** · where it began
+**before neon1** · where it began
 
 | | In short |
 |---|---|
-| **The problem** | A grade school wanted real STEM tools on a small budget. |
-| **The work** | Budgeted and set up a new STEM edtech system, at no charge. |
-| **The results** | Watched how classes used it, and adjusted. |
-| **After handover** | Security sessions at no charge for teachers and parents became neon1. |
+| **The problem** | Helping a school community make better use of technology. |
+| **The work** | Educational technology setup and online safety guidance. |
+| **The results** | It shaped neon1. |
+| **After handover** | Not a neon1 engagement. |
 
 ## The problem
 
-P.S. 33 Edward M. Funk, a grade school in Queens, needed a STEM edtech setup that teachers would use, on a budget with no room for mistakes. I'd long wanted to do this work in my community.
+Before forming neon1 LLC, I worked with a local school community in Queens, helping teachers and students make better use of technology.
 
 ## The work
 
-I'd volunteered there in high school, and in 2025 I was working there after school as a counselor, teacher's aide, and tech assistant. On my own time, I compared options, budgeted the system, and set it up for the classrooms. I then invited teachers and parents to sessions on staying safe online, at no charge.
+Alongside my work at the school, I helped plan and set up educational technology and shared practical online safety guidance with teachers and families.
 
 ## The results
 
-Teachers used it in class, and parents left with specific steps. That showed the help was worth offering more widely.
+That experience helped shape neon1: technology should be understandable, useful, and accessible to the people who depend on it.
 
 ## After handover
 
-That's how neon1 began, and community work is still part of it. Schools and community groups can [contact me](../engagement/contact.md).
+This was part of my experience before forming the company, not a commercial neon1 engagement. Schools and community groups can [contact me](../engagement/contact.md).

@@ -1,34 +1,32 @@
-# Home cameras and family accounts (https://neon1.tech/)
+# Home technology and account security (https://neon1.tech/)
 
-A house with no cameras, and passwords reused everywhere.
+A personal project: home technology and account security for my family.
 
 *family & friends · home tech*
 
-Personal or volunteer work: For my own family, 2025
+Personal or volunteer work: Personal project, before neon1, 2025
 
-**9 devices** · cameras, DNS filtering, passwords
+**personal project** · before neon1
 
 | | In short |
 |---|---|
-| **The problem** | A house with no cameras, and passwords reused everywhere. |
-| **The work** | A camera system at my parents' house, and a password manager for the family. |
-| **The results** | Checked recordings, alerts, and logins work without me. |
-| **After handover** | Advice and troubleshooting when something acts up. |
+| **The problem** | Home technology needed to be easier to manage and secure. |
+| **The work** | Camera monitoring, network filtering, passwords, and stronger sign-in. |
+| **The results** | Easier to manage without giving up security. |
+| **After handover** | Not a client engagement. |
 
 ## The problem
 
-My parents' house had no cameras, and the family reused a few passwords across accounts. I did this work in February 2025, for my own family, before neon1 was formed.
+Everyday technology at home needed to be easier to manage without giving up security.
 
 ## The work
 
-- Placed eight cameras, outdoor and indoor, around entrances and blind spots, then set up recording and alerts.
-- Added network-wide ad and tracker blocking with a Pi-hole DNS server.
-- Moved the family onto a password manager, one person at a time, with two-factor sign-in on key accounts.
+Before founding neon1 LLC, I helped my family improve home technology and account security. I set up camera monitoring, network-level filtering, password management, and stronger sign-in protection.
 
 ## The results
 
-The test was whether everyone could use it without calling me. Recordings and alerts work, and everyone finds their passwords on their own.
+The goal was to make everyday technology easier to manage without sacrificing security.
 
 ## After handover
 
-Advice and troubleshooting when something breaks. Household work ranges from one device to a full home network.
+This was a personal project, not a commercial client engagement.

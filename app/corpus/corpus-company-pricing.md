@@ -43,11 +43,11 @@ After a project, an optional [care plan](../templates/care-plan.md) covers updat
 
 ## When the price can change
 
-Only with your approval. If the work turns out bigger, or something unforeseen or a purchase comes up, I tell you before it costs more, and a revised proposal shows the new estimate. If the work takes fewer hours, you pay for fewer, and if the deposit came to more than the finished work, I refund the difference. Until you accept the handover, you can pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice.
+Only with your approval. If the work turns out bigger, or something unforeseen or a purchase comes up, I tell you before it costs more, and a revised proposal shows the new estimate. If the work takes fewer hours, you pay for fewer, and I refund any unearned deposit. Until you accept the handover, you can pick another option, say why, and sign again. What you've paid counts toward it, and nothing is billed twice.
 
 ## Paying
 
-A project usually starts with a deposit of 30% of the estimate's low end. After that, I bill the hours worked every two weeks, or a fixed price by its milestones or on delivery. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
+A project usually starts with a deposit of 30% of its fixed price or the estimate's low end, due before the work begins. A proposal may set a different amount, or none. After that, I bill the hours worked every two weeks, or a fixed price by its milestones or on delivery. Invoices come through 1NEON, due within 15 days, by bank transfer, card, check, Zelle, or wire, with no surcharge. The [service agreement](service-agreement.md) sets this out.
 
 ## Room to adjust
 

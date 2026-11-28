@@ -5,10 +5,10 @@ neon1's service agreement, as a client organization signs it once in 1NEON: how 
 **The short version**
 
 - One agreement covers every project, and each option you approve sets its scope, price, and timeline.
-- Invoices are due in 15 days, and paying never depends on, or counts as, accepting the work.
+- A deposit is due before work begins; other invoices in 15 days. Paying never depends on, or counts as, accepting the work.
 - You review and accept the work yourself; silence never counts, and you choose about case studies.
 
-Edition 2.4
+Edition 2.5
 
 This agreement is between neon1 LLC, doing business as neon1 ("neon1", "I", "me"), 418 Broadway, Ste R, Albany, NY 12207, and the organization named where it is signed in 1NEON ("you"), at the legal name and mailing address recorded with the signature. It covers every project I do for you while it is in effect.
 
@@ -22,15 +22,25 @@ Prices for equipment, software, and services from other vendors are estimates. Y
 
 ## Paying
 
-I invoice through 1NEON for work performed under an approved proposal, according to its billing schedule. For estimated work, I bill the hours worked at the agreed rate, every two weeks unless the proposal says otherwise. Each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. For a fixed price, set for a small, well-defined job, I bill by the agreed milestones or on delivery, and that price is the whole price for the work described. Unforeseen work or purchases are agreed with you before I add them. I send each invoice within 7 days after the period, milestone, or delivery it bills.
+I invoice through 1NEON for work performed under an approved proposal, according to its billing schedule. For estimated work, I bill the hours worked at the agreed rate, every two weeks unless the proposal says otherwise. Each hour is listed in 1NEON, and the total never passes the estimate's high end unless you approve a change first. For a fixed price, set for a small, well-defined job, I bill by the agreed milestones or on delivery, and that price is the whole price for the work described. Unforeseen work or purchases are agreed with you before I add them. I send the itemized record of work with each invoice, within seven days after the billing period, milestone, or delivery. Any different submission deadline needed for your payment process is agreed in the proposal before work begins.
 
-An option may ask for a deposit when it is approved: 30% of a fixed price or of an estimate's low end, unless the proposal states another share. A deposit counts toward later invoices. If the work done comes to less than a deposit you paid, I refund the difference.
+A project usually starts with a deposit of 30% of its fixed price or the low end of its estimate. The proposal may set a different amount, or no deposit, based on the work and payment schedule.
 
-Each invoice is due within 15 days unless we agree otherwise in writing. Payment for properly performed work does not depend on you recording acceptance, and paying an invoice does not mean you have accepted the work or given up a valid claim. You can pay by bank transfer (ACH), card, check, Zelle, or wire.
+Any required deposit is due before the work begins. It counts toward later invoices, and I refund any unearned amount when the project ends.
 
-If you believe an invoice includes work that was not agreed, performed, or delivered as required, tell me in 1NEON which part you dispute and why, and we will work to resolve it. The undisputed amount stays payable by its original due date.
+Each other invoice is due within 15 days unless we agree otherwise in writing. Payment for properly performed work does not depend on you recording acceptance, and paying an invoice does not mean you have accepted the work or given up a valid claim. You can pay by bank transfer (ACH), card, check, Zelle, or wire.
 
-I send a reminder the business day after an invoice is due. If an undisputed amount is more than 7 days overdue, I may pause work until it is paid, after telling you in writing.
+If you believe an invoice includes work that wasn't agreed, performed, or delivered as required, tell me promptly, in 1NEON or by email, which amount you dispute and why.
+
+We'll work to resolve it. The undisputed amount remains payable by its original due date. I won't pause work solely because an amount is genuinely disputed while we're working to resolve it.
+
+I send a reminder the business day after an invoice is due.
+
+If an undisputed amount becomes more than seven calendar days overdue, I may pause the affected work after giving you at least two business days' written notice to pay.
+
+When payment is received or we agree on another arrangement, I resume the work as soon as reasonably practical and confirm any changes to the schedule.
+
+A pause doesn't cancel obligations already incurred, disable your systems, withhold your data or access, or prevent you from arranging other support.
 
 ## Review and acceptance
 
@@ -42,9 +52,15 @@ If an agreed check fails, I correct the work and present it again for review. Si
 
 You give me timely answers, the access the work needs, and accounts held in your organization's name. Please don't put passwords or other secrets in 1NEON.
 
-If I cannot continue because I am waiting for your access, information, decisions, or participation, I tell you what is needed and how the delay affects the work. If the delay continues for 10 business days after that notice, I may pause the affected work and adjust its schedule. If it continues for 30 calendar days, I may end the affected project as described under Ending.
+If I cannot continue because I'm waiting for your access, information, decisions, or participation, I tell you what I need and how the delay affects the work.
 
-You remain responsible for work properly performed and purchases you approved before a pause or ending. I don't charge for work not yet done merely because a project is delayed.
+If the delay continues for ten business days after that notice, I may pause the affected work and adjust its schedule.
+
+If it continues for thirty calendar days, I may end the affected project, provided I've given you at least fourteen calendar days' written notice of the intended ending.
+
+If you resolve the delay before the project ends, we'll agree on a reasonable revised schedule. I'll confirm when I can resume.
+
+You remain responsible for work properly performed and purchases you approved. I don't charge for unperformed work merely because the project is delayed.
 
 ## Quality and defect correction
 
@@ -58,27 +74,35 @@ Your existing systems, data, accounts, credentials, and business records are alw
 
 ## Confidentiality
 
-We each keep what we learn about the other's business private, and use it only for the work. This doesn't cover what is already public, what the law requires us to disclose, or what your choices below allow.
+We each protect the other's non-public information and use it only for our agreed work, unless the other gives written permission.
+
+We may share it with people who need it for the work or professional advice and are required to protect it.
+
+This doesn't cover information that becomes public without a breach, was already lawfully known, is independently developed, is lawfully received without a confidentiality restriction, or must be disclosed by law. Where legally permitted, we tell each other before a required disclosure.
+
+This duty continues for three years after the agreement ends. Trade secrets stay protected for as long as they remain trade secrets. Personal information, credentials, and security-sensitive information remain protected while held and sensitive, and for as long as applicable law or a separate agreement requires.
+
+Publication requires the permission described in this agreement. Nothing here reduces protections required by law or a separate data protection agreement.
 
 ## Case studies
 
-You can choose whether I may describe our work publicly in anonymized case studies, articles, or examples. Your choice does not affect the services I provide or their price.
+You choose whether I may describe our work in anonymized case studies, articles, or examples. Your choice does not affect your services or their price.
 
-Anonymized means that neither the information itself nor its combination with other reasonably available information can reasonably identify your organization, your people, or your customers. I never publish your confidential information, personal information, security-sensitive details, or identifiable records.
+- **Yes:** anonymized case studies are fine.
+- **Decide later:** ask me about each project before publication.
+- **No:** don't publish case studies about my projects.
 
-You choose when you sign. Nothing is selected for you:
+Nothing is selected for you. Without a recorded choice, I ask first.
 
-- **Yes.** Anonymized case studies are fine.
-- **Decide later.** I ask you about each project before publication.
-- **No.** I don't publish case studies about your projects.
+Anonymized means that the information, alone or combined with other reasonably available information, cannot reasonably identify your organization, your people, or your customers. I don't publish confidential information, personal information, or security-sensitive details.
 
 ## Your name and identifying material
 
-You also choose whether I may list your organization's name as a client: **ask me first**, **yes**, or **no**.
+You separately choose whether I may list your organization as a client: **ask me first**, **yes**, or **no**.
 
-Your name, logo or trademarks, quotations or testimonials, endorsements, identifiable screenshots, and linking your name to a particular case study each take a separate yes. Permission for anonymized case studies does not cover them.
+A logo, testimonial, quotation, endorsement, identifiable image, or link between your name and a particular case study requires separate permission.
 
-An admin can change these choices in 1NEON at any time, and the change applies from then on. If you withdraw permission, I stop further use and remove the affected material from the places I control. I can't guarantee removal of independent copies or archives kept by others.
+Someone authorized to act for your organization can change these choices at any time. If you withdraw permission, I stop further use and remove the affected material from places I control. Independent copies and archives may remain.
 
 ## Regulated data
 
@@ -94,9 +118,15 @@ Neither of us is liable to the other for indirect or consequential losses, such 
 
 ## Ending
 
-Either of us may end this agreement, or one project under it, with 14 days' written notice, by message in 1NEON or by email. Ending a project for a delay, as described above, also takes written notice.
+Either of us may end this agreement or an individual project with fourteen calendar days' written notice, by email or a message in 1NEON. Ending a project because of client delay also follows the notice requirements above.
 
-When it ends, you pay for work properly performed and purchases you approved up to that point, not the price of work not yet done, and I refund any unearned deposit. I return your access and credentials and hand over the work made so far, with its records, which becomes yours once it is paid for. Ownership, confidentiality, your choices about case studies and your name, records, limits, and payment owed continue after it ends.
+During the notice period, we avoid unnecessary additional work and spending.
+
+When the project ends, you pay for work properly performed and purchases you approved that cannot reasonably be cancelled or refunded. For unfinished fixed-price work, the amount due follows the agreed milestone or partial-work values in the proposal.
+
+I send a final statement, credit any deposit and previous payments, and refund any unearned balance within fifteen days after final reconciliation. I return your access and credentials and hand over the work completed so far, with its records. Ownership of commissioned work follows the Ownership section.
+
+Payment owed, ownership, confidentiality, publication choices, recordkeeping, liability limits, and obligations to correct defects reported within the agreed period continue after ending.
 
 ## Disputes and law
 

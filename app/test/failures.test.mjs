@@ -52,7 +52,7 @@ const safe = (res, status) => {
   if (status >= 429) {
     if (body.code === "daily") assert.match(body.error, /^Neo has answered all it can for today\. Try again tomorrow, or \[book a call\]/);
     else assert.match(body.error, /\[hello@neon1\.tech\]\(mailto:hello@neon1\.tech\)/);
-    assert.match(body.error, /\]\(https:\/\/calendly\.com\/1isgladtobeofservice\/neon1-consultation\)/);
+    assert.match(body.error, /\]\(https:\/\/calendly\.com\/book-neon1\/initial\)/);
   }
   return body;
 };

@@ -364,7 +364,7 @@ const PRACTICE_CLAIM =
 const PAST_WORK =
   /\bneon1 (has|had) (set up|built|moved|connected|done|worked|automated|created|designed|migrated)\b|\b(in|for example, in|like in) one (of neon1['’]s )?case stud(y|ies)\b|\bthe case study (where|in which)\b/i;
 const CASE_TITLE =
-  /permission-aware document assistant|patient intake portal|operations integration and monitoring|two-site|security awareness sessions|home cameras and family accounts|where neon1 started|answers in seconds|cameras to grandma|intake, out of the shared inbox|out of the shared inbox|one view of the (business|shop)|security for non-security people|two offices off local servers|sample proposal|fictional (bakery|example)|maple street bakery/i;
+  /permission-aware document assistant|patient intake portal|operations integration and monitoring|two-site|security awareness sessions|home cameras and family accounts|home technology and account security|where neon1 started|answers in seconds|cameras to grandma|intake, out of the shared inbox|out of the shared inbox|one view of the (business|shop)|security for non-security people|two offices off local servers|sample proposal|fictional (bakery|example)|maple street bakery/i;
 const inventedPast = (sentence) => PAST_WORK.test(sentence) && !CASE_TITLE.test(sentence);
 
 // A sentence saying neon1 itself is certified, audited, accredited, or a vendor partner is dropped:
