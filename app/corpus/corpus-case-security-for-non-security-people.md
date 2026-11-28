@@ -4,7 +4,7 @@ People knew they were exposed online, but not where to start.
 
 *community education · security*
 
-Community education: Community education, 2025
+Community education, 2025
 
 **practical steps** · for any level
 

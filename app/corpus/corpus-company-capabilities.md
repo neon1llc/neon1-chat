@@ -20,8 +20,8 @@ Six services: [custom software](../guides/use-case-custom-software.md), [workflo
 
 | Client | Kind | Work | Result |
 |---|---|---|---|
-| Accounting firm | neon1 subcontracted engagement | [Permission-aware document assistant](../case-studies/answers-in-seconds.md) over the firm's Microsoft 365 documents, on Amazon Bedrock | Cited answers from documents each person may see |
-| Dermatology practice | neon1 subcontracted engagement | [Patient intake portal](../case-studies/intake-out-of-the-inbox.md), serverless on AWS | One queue of complete and missing intakes |
+| Accounting firm | neon1 subcontracted engagement | [Permission-aware document assistant](../case-studies/answers-in-seconds.md) over the firm's Microsoft 365 documents, on Amazon Bedrock | Median lookup from about 5 minutes to 14 seconds, and recall from about 70% to over 90%, on an 80-question test set |
+| Dermatology practice | neon1 subcontracted engagement | [Patient intake portal](../case-studies/intake-out-of-the-inbox.md), serverless on AWS | Median intake from 2.6 days to 3.4 hours, and staff time from 24 to 8 minutes each |
 | Automotive business | neon1 engagement | [Two-site server migration](../case-studies/two-offices-off-local-servers.md) to AWS, with the client's technical lead | Both offices moved with no application rewrite |
 | Small local business | neon1 engagement | [Operations integration and monitoring](../case-studies/one-view-of-the-shop.md) on AWS | The owner can act on problems without being on site |
 | Schools, families, and teams | Community education | [Security awareness sessions](../case-studies/security-for-non-security-people.md) | Practical online safety steps |

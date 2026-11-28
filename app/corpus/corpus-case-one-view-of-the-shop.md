@@ -13,7 +13,7 @@ neon1 engagement, 2025
 | **The problem** | Separate systems each lived on their own screen. |
 | **The work** | Tied them together on AWS, shown on wall tablets and a remote view. |
 | **The results** | The owner can act on problems from anywhere. |
-| **After handover** | I manage it remotely. |
+| **After handover** | I manage it remotely, and computer vision is in progress. |
 
 ## The problem
 
@@ -35,4 +35,4 @@ The owner can see and act on problems without being on site.
 
 ## After handover
 
-I manage the setup remotely, and the owner and staff use it day to day. Anything new is tested before anyone relies on it.
+I manage the setup remotely, and the owner and staff use it day to day. Computer vision is in progress, and it gets tested before anyone relies on it.

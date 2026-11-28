@@ -6,14 +6,14 @@ Patient intake ran through a shared inbox and a slow EHR, with staff chasing doc
 
 neon1 subcontracted engagement, 2026
 
-**one queue** · complete and missing
+**2.6 days → 3.4 hours** · 24 → 8 min staff time
 
 | | In short |
 |---|---|
 | **The problem** | Intake ran through a shared inbox, with staff chasing documents by email. |
 | **The work** | An AWS portal where patients upload once and staff see what's complete. |
-| **The results** | Staff see what's missing without searching email. |
-| **After handover** | Maintained with the partner. |
+| **The results** | Compared four weeks before and after. |
+| **After handover** | The partner maintains it. |
 
 ## The problem
 
@@ -29,8 +29,14 @@ I mapped the process with staff, then built a Terraform-managed serverless porta
 
 ## The results
 
-Documents arrive in one place, and staff can see what's missing without searching email.
+| Measure | Before | After |
+|---|---|---|
+| Median time to a complete intake | ~2.6 days | ~3.4 hours |
+| Staff time per intake | ~24 min | ~8 min |
+| Intakes needing a missing-document follow-up | ~34% | ~10% |
+
+Four weeks before and after, with the same definitions. Where there was no digital record, mostly before launch, figures come from the old records and a short staff survey.
 
 ## After handover
 
-The partner and I maintain the portal. Next is a direct interface to the record system, once its vendor enables one.
+The partner maintains the portal. Next is a direct interface to the record system, once its vendor enables one.
